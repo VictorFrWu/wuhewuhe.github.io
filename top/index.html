@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="top,文章阅读量排行榜" />
 
 
 
@@ -86,14 +86,18 @@
 
 
 
+<meta name="description" content="博客文章阅读量排行榜">
 <meta property="og:type" content="website">
-<meta property="og:title" content="categories">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta property="og:title" content="TopX">
+<meta property="og:url" content="http://yoursite.com/top/index.html">
 <meta property="og:site_name" content="Study room of WU He">
+<meta property="og:description" content="博客文章阅读量排行榜">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2019-12-28T15:05:03.000Z">
-<meta property="article:modified_time" content="2019-12-28T15:05:41.334Z">
+<meta property="article:published_time" content="2019-12-28T22:07:09.000Z">
+<meta property="article:modified_time" content="2019-12-28T22:14:59.646Z">
 <meta property="article:author" content="WU He">
+<meta property="article:tag" content="top">
+<meta property="article:tag" content="文章阅读量排行榜">
 <meta name="twitter:card" content="summary">
 
 
@@ -124,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/"/>
+  <link rel="canonical" href="http://yoursite.com/top/"/>
 
 
 
 
 
-  <title>categories | Study room of WU He</title>
+  <title>TopX | Study room of WU He</title>
   
 
 
@@ -314,8 +318,12 @@
     <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">categories</h1>
+	<h1 class="post-title" itemprop="name headline">TopX</h1>
 
+
+	<div class="post-meta">
+		<div class="post-description">博客文章阅读量排行榜</div>
+	</div>
 
 
 </header>
@@ -326,14 +334,31 @@
       <div class="post-body">
         
         
-          <div class="category-all-page">
-            <div class="category-all-title">
-                4 categories in total
-            </div>
-            <div class="category-all">
-              <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithme/">Algorithme</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming-contest/">programming contest</a><span class="category-list-count">1</span></li></ul>
-            </div>
-          </div>
+          <div id="top"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script>AV.initialize("app_id", "app_key");</script>
+<script type="text/javascript">
+    var time=0
+    var title=""
+    var url=""
+    var query = new AV.Query('Counter');
+    query.notEqualTo('id',0);
+    query.descending('time');
+    query.limit(1000);
+    query.find().then(function (todo) {
+        for (var i=0;i<1000;i++){
+            var result=todo[i].attributes;
+            time=result.time;
+            title=result.title;
+            url=result.url;
+            var content="<a href='"+"https://wuhewuhe.github.io/"+url+"'>"+title+"</a>"+"<br />"+"<font color='#555'>"+"阅读次数："+time+"</font>"+"<br /><br />";
+            document.getElementById("top").innerHTML+=content
+        }
+    }, function (error) {
+        console.log("error");
+    });
+</script>
+<style>.post-description { display: none; }</style>
         
       </div>
       

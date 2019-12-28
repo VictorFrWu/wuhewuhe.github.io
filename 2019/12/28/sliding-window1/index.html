@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="two pointer,sliding window," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="sliding window直译为滑动窗口，大家可能直接会想到我们平时生活中的推拉窗户。在我们实际编程中，他也正是模拟这个生活中的场景，先去拉一个窗户，再去推另一个窗户。这个过程中我们分别用两个变量去代表这两个窗户，一快一慢，一左一右，这也是我们经常提到双指针问题。虽然在java，python，javascript，Csharp… … 等诸如此类的面向对象高级程序语言中，我们已经对指针弱化，将其">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sliding window1">
+<meta property="og:url" content="http://yoursite.com/2019/12/28/sliding-window1/index.html">
+<meta property="og:site_name" content="Study room of WU He">
+<meta property="og:description" content="sliding window直译为滑动窗口，大家可能直接会想到我们平时生活中的推拉窗户。在我们实际编程中，他也正是模拟这个生活中的场景，先去拉一个窗户，再去推另一个窗户。这个过程中我们分别用两个变量去代表这两个窗户，一快一慢，一左一右，这也是我们经常提到双指针问题。虽然在java，python，javascript，Csharp… … 等诸如此类的面向对象高级程序语言中，我们已经对指针弱化，将其">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2019/12/28/sliding-window1/slidingwindow1.jpeg">
+<meta property="og:image" content="https://mp.weixin.qq.com/mp/qrcode?scene=10000004&amp;size=102&amp;__biz=MzI5MTM4Njk1NQ==&amp;mid=100000078&amp;idx=1&amp;sn=c183b7cc5016e9f34330020a8e3b110a&amp;send_time=1577568956">
+<meta property="article:published_time" content="2019-12-28T17:59:09.000Z">
+<meta property="article:modified_time" content="2019-12-28T21:48:12.155Z">
+<meta property="article:author" content="WU He">
+<meta property="article:tag" content="two pointer">
+<meta property="article:tag" content="sliding window">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2019/12/28/sliding-window1/slidingwindow1.jpeg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/12/28/sliding-window1/"/>
+
+
+
+
+
+  <title>sliding window1 | Study room of WU He</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Study room of WU He</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            Commonweal 404
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-top">
+          <a href="/top/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-signal"></i> <br />
+            
+            TopX
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/28/sliding-window1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WU He">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/selfie.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Study room of WU He">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">sliding window1</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-12-28T18:59:09+01:00">
+                2019-12-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithme/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithme</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/12/28/sliding-window1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2019/12/28/sliding-window1/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> readers
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/2019/12/28/sliding-window1/slidingwindow1.jpeg" alt="slidingwindow1"></p>
+<p>sliding window直译为滑动窗口，大家可能直接会想到我们平时生活中的推拉窗户。在我们实际编程中，他也正是模拟这个生活中的场景，先去拉一个窗户，再去推另一个窗户。这个过程中我们分别用两个变量去代表这两个窗户，一快一慢，一左一右，这也是我们经常提到双指针问题。虽然在java，python，javascript，Csharp… … 等诸如此类的面向对象高级程序语言中，我们已经对指针弱化，将其变为对变量的引用，很大程度上简化了开发，但是指针的思想在我看来却仍然适用，而且加深对其的理解也有助于我们的编程。因此在思考了很久之后，我将sliding window这个主题作为我的第一篇文章。</p>
+<h4 id="导语"><a class="header-anchor" href="#导语"></a>导语:</h4>
+<p>首先，sliding window，无论是我们熟知的🇨🇳大厂，百度，腾讯，阿里，头条… 或是美帝的google，amazon，fb，netflix… . 都十分青睐用此类型题目 去考察面试者。回过头想为什么，仅以我现在的知识我觉得，此类型问题本身并不复杂，问题的难点主要在两点 ：1 如何在面试中将问题理解，并能够想到用sliding window去解决这类问题 ，尤其是模拟实际生活的题，更是需要我们融会贯通。2 实现过程中有很多小的细节需要注意，例如窗口的滑动，触发一定的条件，左右指针不断的变化，导致结果随之变化，因此我们在实际手撕代码的过程中，经常出现bug。因此本文从算法分析，思路解析，再结合题目与代码去谈这个问题。。。废话不多说，进入正题。</p>
+<h4 id="算法分"><a class="header-anchor" href="#算法分"></a>算法分</h4>
+<p>滑动窗口大多数是用双指针求解，也有一些特殊的问题我们会结合一些特殊的数据结构，例如sorted_map（priority queue）或者的dequeue。对于此类特定的题型，我会在第二篇文章中讲述。本文主要讲述一般情况下的sliding window解决思路。</p>
+<p>一般情况下的sliding window会给予我们一个特定数组或者字符串，让我们去找到满足一定条件的子数组或子字符串。比如：<br>
+找到最短字符串包含特定字符（有重复，无重复）<br>
+最长的子数组或字符串最多含有k个字符<br>
+最长的子数组或字符串只含有k个字符<br>
+一个特定的字符串在长字符串中出现的位置<br>
+……….</p>
+<p>此类型题的大概时间复杂度为o(n)，需要遍历一次长字符串, 空间复杂度大多为常熟级别，近似于int[128]。之所以称为sliding window是由于，我们分别用快慢两个指针一前一后夹着字符串遍历，类似于一个窗口，这个窗口大小和范围会随着前后指针的移动发生变化。</p>
+<h4 id="解题思路"><a class="header-anchor" href="#解题思路"></a>解题思路</h4>
+<p>这类型题的整体思路是设置两个快慢指针。快指针从左向右移动，目的是在每个快指针停留的位置，触发一定的条件，然后慢指针再随之移动，当其满足某种条件后，快指针再移动，周而复始，直到字符串遍历完毕，退出循环。<br>
+因此重点就在于，什么时候移动窗口，什么时候窗口保持不变。下面我写一个伪代码模版，给大家参考。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Public <span class="keyword">int</span> <span class="title">sildingwindow</span><span class="params">(String [] strs. .. )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="comment">//处理边界条件  参数判断</span></span><br><span class="line">If( condition )</span><br><span class="line"> <span class="keyword">return</span> </span><br><span class="line"><span class="comment">//初始化变量</span></span><br><span class="line"><span class="comment">//left 代表窗口左边， 慢指针</span></span><br><span class="line"><span class="comment">//count 计数，用于判断何时触发条件</span></span><br><span class="line"><span class="comment">//result 记录结果</span></span><br><span class="line">Int left = <span class="number">0</span>, count = <span class="number">0</span> ,result = <span class="number">0</span>;</span><br><span class="line"><span class="comment">//申请一个hash数组, 也可用其他数据结构比如hashmap</span></span><br><span class="line"><span class="keyword">int</span>[] hash = <span class="keyword">new</span> hash[<span class="number">128</span>]</span><br><span class="line"><span class="comment">//遍历数组，right代表窗口右侧，快指针</span></span><br><span class="line">For(<span class="keyword">int</span> right = <span class="number">0</span>; right&lt;strs.length;right++)&#123;</span><br><span class="line"><span class="comment">//每次移动一个格子后，更新hash</span></span><br><span class="line">Hash[strs[right]]++;</span><br><span class="line"><span class="comment">//更具窗口变更来改变条件</span></span><br><span class="line">If(Hash[strs[right]] = ..)</span><br><span class="line">&#123;</span><br><span class="line">Count++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 如果当前条件不满足，移动左指针直至条件满足为止 </span></span><br><span class="line"><span class="keyword">while</span> (count &gt; ..) </span><br><span class="line">&#123; </span><br><span class="line">  …</span><br><span class="line">   <span class="keyword">if</span> (…)</span><br><span class="line">  &#123; </span><br><span class="line">​     count—; </span><br><span class="line">   &#125; </span><br><span class="line">   hash[A[l]]++;</span><br><span class="line">​    left++; </span><br><span class="line"> &#125;</span><br><span class="line"><span class="comment">//条件根据具体题目要求确定返回结果</span></span><br><span class="line">res = Math.max(res, right-left+<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line">Return res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="经典例题"><a class="header-anchor" href="#经典例题"></a>经典例题</h4>
+<p>leetcode 3 Longest Substring Without Repeating Characters<br>
+Given a string, find the length of the <strong>longest substring</strong> without repeating characters.<br>
+<strong>Example 3:</strong><br>
+<strong>Input:</strong> “pwwkew”<br>
+<strong>Output:</strong> 3<br>
+<strong>Explanation:</strong> The answer is “wke”, with the length of 3.<br>
+​       Note that the answer must be a <strong>substring</strong>, “pwke” is a <em>subsequence</em> and not a substring.<br>
+题目很通俗易懂，给一个字符串，让我找到一个最长子字符串，要求其不包含重复元素。<br>
+解题思路：第一次看到这个题我们，会很快想到brute force解法，两个for循环遍历字符串，外层循环代表其实位置，内层循环代表终止位置，写一个函数判断字符串是否含有重复元素。为了对比出sliding window优势，我也写了此方法做对比。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line"><span class="keyword">int</span> n = s.length(); </span><br><span class="line"><span class="keyword">int</span> ans = <span class="number">0</span>; </span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt;= n; j++)</span><br><span class="line"><span class="keyword">if</span> (allUnique(s, i, j))</span><br><span class="line">ans = Math.max(ans, j - i); </span><br><span class="line"><span class="keyword">return</span> ans; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">allUnique</span><span class="params">(String s, <span class="keyword">int</span> start, <span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">Set&lt;Character&gt; set = <span class="keyword">new</span> HashSet&lt;&gt;(); </span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = start; i &lt; end; i++) &#123;</span><br><span class="line">Character ch = s.charAt(i); </span><br><span class="line"><span class="keyword">if</span> (set.contains(ch))</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">false</span>; </span><br><span class="line">set.add(ch); </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">true</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此方法时间复杂度为O(n^3) 三次遍历<br>
+但是如果我们要使用sliding window来解决此问题。我们不需要用n^2的时间复杂度去遍历字符串，假如我们已经验证从i - j不存在重复字符，那么我们可以把慢指针指向j，而不需要再从新遍历 i - j。然后通过对比result与快慢指针中间字符串的长度来得到最后结果。<br>
+以下，为代码示例，通常情况下提到检验重复，我们大多数会用到set。所以，我先写了一个set的解法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//set</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">​    <span class="keyword">int</span> n = s.length(); </span><br><span class="line">​    Set&lt;Character&gt; set = <span class="keyword">new</span> HashSet&lt;&gt;(); </span><br><span class="line">​    <span class="keyword">int</span> ans = <span class="number">0</span>, i = <span class="number">0</span>, j = <span class="number">0</span>; </span><br><span class="line">​    <span class="keyword">while</span> (i &lt; n &amp;&amp; j &lt; n) &#123;</span><br><span class="line">​      <span class="comment">// try to extend the range [i, j]</span></span><br><span class="line">​      <span class="keyword">if</span> (!set.contains(s.charAt(j)))&#123;</span><br><span class="line">​        set.add(s.charAt(j++)); </span><br><span class="line">​        ans = Math.max(ans, j - i); </span><br><span class="line">​      &#125;</span><br><span class="line">​      <span class="keyword">else</span> &#123;</span><br><span class="line">​        set.remove(s.charAt(i++)); </span><br><span class="line">​      &#125;</span><br><span class="line">​    &#125;</span><br><span class="line">​    <span class="keyword">return</span> ans; </span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>此解法可以，但是其最坏时间复杂度为2n，就是快慢指针分别都把字符串从头到尾访问一遍。类似于“aabbcc”<br>
+以下，为通用的sliding window 解法，我们可以引入hashmap，key代表访问字符，value代表字符出现次数。当hashmap中某一个key的值大于1，于是我们尝试移动慢指针，在map中, 把慢指针指向的值的频率减1。在这里有个小技巧，我们可以用一个128长度的int数组来表示，ASCII table 65-92 对应 a-z， 97 - 122 对应A - Z</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// array</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (s == <span class="keyword">null</span> || s.length() == <span class="number">0</span>)</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line"><span class="keyword">int</span> res = <span class="number">0</span>, left = <span class="number">0</span>; </span><br><span class="line"><span class="keyword">int</span>[] hash = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">128</span>]; </span><br><span class="line"><span class="keyword">char</span>[] c = s.toCharArray(); </span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++) &#123;</span><br><span class="line">hash[c[i]]++; </span><br><span class="line"><span class="keyword">while</span> (hash[c[i]] &gt; <span class="number">1</span>) &#123;</span><br><span class="line">hash[c[left]]--; </span><br><span class="line">left++; </span><br><span class="line">&#125;</span><br><span class="line">res = Math.max(res, i - left + <span class="number">1</span>); </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> res; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// hashmap</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (s == <span class="keyword">null</span> || s.length() == <span class="number">0</span>)</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line"><span class="keyword">int</span> res = <span class="number">0</span>, left = <span class="number">0</span>; </span><br><span class="line"><span class="keyword">char</span>[] c = s.toCharArray(); </span><br><span class="line">Map&lt;Character, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;Character, Integer&gt;(); </span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; c.length; i++) &#123;</span><br><span class="line">map.put(c[i], map.getOrDefault(c[i], <span class="number">0</span>) + <span class="number">1</span>); </span><br><span class="line"><span class="keyword">while</span> (map.get(c[i]) &gt; <span class="number">1</span>) &#123;</span><br><span class="line">map.put(c[left], map.get(c[left]) - <span class="number">1</span>); </span><br><span class="line">left++; </span><br><span class="line">&#125;</span><br><span class="line">res = Math.max(res, i - left + <span class="number">1</span>); </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> res; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="总结"><a class="header-anchor" href="#总结"></a>总结</h4>
+<p>之后我会陆续在写两篇关于sliding window的文章，列出所有我见过的有意思并且具有代表性的题，归类讲解。当然我不是大神，所以如果文章或者算法上哪里有问题还请各位轻喷多指点！！！<br>
+示例代码为了便于大家理解，我都写的java，当然我会把c++和python版本的代码放到我的github上。算法题主要是思路，所以语言上基本都是互通，如果大家有需要与其他的语言，Csharp, javascript…私信我，非常乐意把大家debug。</p>
+<p>放上我自己的github：<a href="https://github.com/wuhewuhe/AlgorithmeSource" target="_blank" rel="noopener">https://github.com/wuhewuhe/AlgorithmeSource</a></p>
+<h3 id="关注公众号-每周会有更多精彩的更新"><a class="header-anchor" href="#关注公众号-每周会有更多精彩的更新"></a>关注公众号 每周会有更多精彩的更新</h3>
+<p><img src="https://mp.weixin.qq.com/mp/qrcode?scene=10000004&amp;size=102&amp;__biz=MzI5MTM4Njk1NQ==&amp;mid=100000078&amp;idx=1&amp;sn=c183b7cc5016e9f34330020a8e3b110a&amp;send_time=1577568956" alt="img"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/two-pointer/" rel="tag"><i class="fa fa-tag"></i> two pointer</a>
+          
+            <a href="/tags/sliding-window/" rel="tag"><i class="fa fa-tag"></i> sliding window</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/28/battle-dev-review/" rel="prev" title="battle dev review">
+                battle dev review <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/selfie.jpg"
+                alt="WU He" />
+            
+              <p class="site-author-name" itemprop="name">WU He</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#导语"><span class="nav-number">1.</span> <span class="nav-text">导语:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#算法分"><span class="nav-number">2.</span> <span class="nav-text">算法分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解题思路"><span class="nav-number">3.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#经典例题"><span class="nav-number">4.</span> <span class="nav-text">经典例题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关注公众号-每周会有更多精彩的更新"><span class="nav-number"></span> <span class="nav-text">关注公众号 每周会有更多精彩的更新</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">WU He</span>
+
+  
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      people
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      times
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'wuhewuhe',
+            repo: 'comment-blog',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'ce5c9cf912217bcaa3ec335b2a972d4af4892315',
+            
+                client_id: 'a9634791864b88023599'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

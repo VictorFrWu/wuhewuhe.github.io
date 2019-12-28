@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="jframe,game,thread," />
 
 
 
@@ -86,15 +86,26 @@
 
 
 
+<meta name="description" content="Flappy Bird 仿写 通过之前做贪吃蛇和小恐龙跳跃，对jframe，swing和awt的基础已经回顾的差不多了，因此这篇文章就不再一一赘述我已经写过的细节。讲讲大体上实现思路，设计模式还有哪些点需要注意。惯例，还是把所有素材和源码放到github上。 Flappy bird这个游戏是2014年一个在美国工作的越南裔移动端游戏工程师（Dong Nguyen ）开发的，然后在apple商店推出">
 <meta property="og:type" content="article">
 <meta property="og:title" content="flappy bird">
 <meta property="og:url" content="http://yoursite.com/2019/12/28/flappy-bird/index.html">
 <meta property="og:site_name" content="Study room of WU He">
+<meta property="og:description" content="Flappy Bird 仿写 通过之前做贪吃蛇和小恐龙跳跃，对jframe，swing和awt的基础已经回顾的差不多了，因此这篇文章就不再一一赘述我已经写过的细节。讲讲大体上实现思路，设计模式还有哪些点需要注意。惯例，还是把所有素材和源码放到github上。 Flappy bird这个游戏是2014年一个在美国工作的越南裔移动端游戏工程师（Dong Nguyen ）开发的，然后在apple商店推出">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2019/12/28/flappy-bird/Screenshot%202019-12-15%20at%2001.23.53.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/28/flappy-bird/Screenshot%202019-12-15%20at%2002.02.16.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/28/flappy-bird/Screenshot%202019-12-15%20at%2002.03.46.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/28/flappy-bird/Screenshot%202019-12-28%20at%2023.54.44.png">
+<meta property="og:image" content="https://mp.weixin.qq.com/mp/qrcode?scene=10000004&amp;size=102&amp;__biz=MzI5MTM4Njk1NQ==&amp;mid=100000088&amp;idx=1&amp;sn=16ca5e771f23162962006d479965f676&amp;send_time=1577569951">
 <meta property="article:published_time" content="2019-12-28T19:54:17.000Z">
-<meta property="article:modified_time" content="2019-12-28T19:54:17.444Z">
+<meta property="article:modified_time" content="2019-12-28T23:35:33.743Z">
 <meta property="article:author" content="WU He">
+<meta property="article:tag" content="jframe">
+<meta property="article:tag" content="game">
+<meta property="article:tag" content="thread">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2019/12/28/flappy-bird/Screenshot%202019-12-15%20at%2001.23.53.png">
 
 
 
@@ -244,16 +255,6 @@
           </a>
         </li>
       
-        
-        <li class="menu-item menu-item-top">
-          <a href="/top/%20" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-signal"></i> <br />
-            
-            TopX
-          </a>
-        </li>
-      
 
       
         <li class="menu-item menu-item-search">
@@ -361,6 +362,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -403,7 +426,56 @@
       
 
       
-        
+        <h2 id="Flappy-Bird-仿写"><a class="header-anchor" href="#Flappy-Bird-仿写"></a>Flappy Bird 仿写</h2>
+<p>通过之前做贪吃蛇和小恐龙跳跃，对jframe，swing和awt的基础已经回顾的差不多了，因此这篇文章就不再一一赘述我已经写过的细节。讲讲大体上实现思路，设计模式还有哪些点需要注意。惯例，还是把所有素材和源码放到github上。</p>
+<p>Flappy bird这个游戏是2014年一个在美国工作的越南裔移动端游戏工程师（Dong Nguyen ）开发的，然后在apple商店推出后就瞬间爆火，然后其自己突然让游戏下架。我在youtube上看了一些视频，据说此事与dark net相关（也不知真的假的）。后来，过来一段时间，他又从新上架这这款游戏，可是已经没有了当时的人气。因为我也认识当事人，也不知道事情的来龙去脉，所以今天我只是从技术的角度去复习这款游戏。</p>
+<h4 id="技术选用与涉及技术："><a class="header-anchor" href="#技术选用与涉及技术："></a>技术选用与涉及技术：</h4>
+<p>java8， eclipse IDE, jframe，awt，swing，thread</p>
+<h4 id="思路"><a class="header-anchor" href="#思路"></a>思路:</h4>
+<p>由于我从事的领域并不是游戏开发，这只能算是我的爱好也是对技术的温故知新，所以我只是讲讲我对其的认识。我发现市场很多游戏都是单页面应用，我所指的单页面就是玩家对于操作对象始终停留在一个窗口中，我们通过不停的变化背景，生成障碍物去让游戏继续。对于这些单页面的应用，我通常的实现步骤就是先创建一个叫app的class，此类包含main函数，就是程序的入口，在这里面预设一个固定大小的主窗口初始化，加入监听器，然后再新建一个gamepanel类，所有的逻辑都会在这个类中完成。并将此类在app中事例化。然后分别对此程序中涉及到的所有对象创建class，比如小鸟（bird），管道（pipe），线程（thread），游戏本身所有的规则（game）。我本人的开发习惯是喜欢单独建一个辅助类（helper），存放所有的辅助函数，比如想图片的读取，声音的播放之类的。这些大概的轮廓搞好后，然后我们开始写程序。</p>
+<h4 id="1寻找素材-调整合适大小"><a class="header-anchor" href="#1寻找素材-调整合适大小"></a>1寻找素材 调整合适大小</h4>
+<p>这里我听取网友的建议然后进行过测试</p>
+<p>小鸟3张 翅膀平行，下落，上升  管道2张（朝上和朝下） 背景图片一站 陆地一张</p>
+<p>小鸟尺寸为 45 * 32 pixel</p>
+<p>管道为为 66*400 pixel</p>
+<p>大地和背景都为 500*500 pixel</p>
+<h4 id="2-绘制背景，管道-，小鸟"><a class="header-anchor" href="#2-绘制背景，管道-，小鸟"></a>2 绘制背景，管道 ，小鸟</h4>
+<p>首先绘制背景，分别加载两张背景图片，注意顺序，当图片累加时会有重叠的问题。</p>
+<p>然后是小鸟，给小鸟一个初始化的位置，作为游戏的起点。最后是管道。管道分为朝上和朝下，管道的宽度是固定的，也是给定一个初始值。</p>
+<p>完成这一步，效果就是大概这样的：</p>
+<img src="/2019/12/28/flappy-bird/Screenshot 2019-12-15 at 01.23.53.png" alt="Screenshot 2019-12-15 at 01.23.53" style="zoom:25%; ">
+<h4 id="3-让小鸟跳跃-移动-挥舞翅膀"><a class="header-anchor" href="#3-让小鸟跳跃-移动-挥舞翅膀"></a>3 让小鸟跳跃 移动 挥舞翅膀</h4>
+<h5 id="Step1-小鸟移动"><a class="header-anchor" href="#Step1-小鸟移动"></a>Step1 小鸟移动</h5>
+<p>实现这个功能，我需要预设一个jump为小鸟的单次上升高度。还有一个gravity引力系数，常识由于有地心引力的存在下降速度总是比上升速度快，我预设一个0.5，就是在我这个游戏中下降速度是上升速度的两倍。这里还有一点需要注意就是按键，如果按了空格键，小鸟位置上升，不按空格键，小鸟则直接下降，通过不停的点击空格键是可以让小鸟的高度累加。为了更贴近现实，我加入了一个图片旋转的功能，就是上升时，小鸟的头部会向上倾斜，反之亦然。此时我们可以通过awt的内置类affinetransform对图片进行一定幅度的旋转。</p>
+<h5 id="Step2-小鸟跳跃"><a class="header-anchor" href="#Step2-小鸟跳跃"></a>Step2 小鸟跳跃</h5>
+<p>与小恐龙制作相差无几，我们可以让背景以一定的速度从右向左移动就可以达到一种小鸟在移动的感觉。此时我们需要用到线程，每隔一定的时间，重新绘制背景。我预设一个25ms，每25ms线程就会更新一次小鸟以及背景的位置。然后对键盘键监听，按空格键则小鸟位置上升，松开空格键则位置下落。</p>
+<h5 id="Step3-挥舞翅膀"><a class="header-anchor" href="#Step3-挥舞翅膀"></a>Step3 挥舞翅膀</h5>
+<p>找到三张不同的图片是小鸟翅膀的位置分别在上中下，然后每隔25ms，单线程调用时累加游戏时间除以100再对3取余数，就达到了每100ms小鸟的翅膀就移动一次位置。</p>
+<h4 id="4-管道的出现-移动"><a class="header-anchor" href="#4-管道的出现-移动"></a>4 管道的出现 移动</h4>
+<p>因为我们每隔25ms线程会去重新刷新界面，所以我们给定管道一个初始速度3。每25ms，管道向左移动3pixel。然后取一个在50-200之间取一个随机值，代表在接下来的50-200pixel会出现下一个管道。对于管道的y坐标，需要多考虑一点，因为小鸟的高度是32pixel，然后管道的高度是400pixel所以管道只是在界面中显示一段，我对于游戏的设计就是朝上的管道和朝下的管道总是成对出现，然后为了保证小鸟可以顺利通过管道，我给两个管道中间预留了50-120的pixel，然后再去推理出朝上和朝下管道具体的y轴值。</p>
+<p>完成这一步，游戏也就实现了60%，效果如下：</p>
+<img src="/2019/12/28/flappy-bird/Screenshot 2019-12-15 at 02.02.16.png" alt="img" style="zoom:25%; ">
+<h4 id="5-碰撞检测"><a class="header-anchor" href="#5-碰撞检测"></a>5 碰撞检测</h4>
+<p>首先先新建一个arraylist用于存放出现的管道。奇数代表朝下，偶数朝上。用一个i记录当前管道。与小恐龙撞仙人掌相同，如何判定小鸟是否可以通过管道，我们需要对小鸟进行碰撞检测。每一组碰撞检测可以分为四个方面，我用两张图片向大家更好的讲解。</p>
+<img src="/2019/12/28/flappy-bird/Screenshot 2019-12-15 at 02.03.46.png" alt="Screenshot 2019-12-15 at 02.03.46" style="zoom:25%; ">
+<img src="/2019/12/28/flappy-bird/Screenshot 2019-12-28 at 23.54.44.png" alt="Screenshot 2019-12-28 at 23.54.44" style="zoom:25%; ">
+<p>我们取到小鸟的头部检测小鸟有没有碰到管道的两个前沿，以及小鸟分过管道后是否碰到管道的后沿。当然是存在一定可能小鸟会碰到管道的中间，但在我这个游戏中，我已经计算过，线程25ms刷新一次，如果小鸟在进入管道前没有撞到管道，小鸟在跳跃或者下降，因为宽度固定，所以小鸟已经走到管道外。因此我只需要检测管道的头和尾。与小鸟的头和尾即可。</p>
+<p>当然，我们还需要检测小鸟的位置使其置于大地和天空之间，如果超出范围也是碰撞。</p>
+<h4 id="6-游戏暂停-结束-重新开始"><a class="header-anchor" href="#6-游戏暂停-结束-重新开始"></a>6 游戏暂停 结束 重新开始</h4>
+<p>暂停：设置一个全局变量pause，初始值为false。点击p时则pause变为true，此时游戏暂停。在界面中写出提示语，点击p键继续游戏。我们需要暂时让线程停止工作，从而使画面不刷新。</p>
+<p>结束：设置一个全局变量death，初始值为false。当小鸟碰到大地，天空，管道时，death为true。在界面给出提示语，游戏结束，点击R键从新开始游戏</p>
+<p>重新开始 ： 从新初始化小鸟的位置，分数，清空管道的list。</p>
+<h4 id="7-分数统计-记录"><a class="header-anchor" href="#7-分数统计-记录"></a>7 分数统计 记录</h4>
+<p>在主窗体底下设置一个长矩形，分别代表当前得分和记录，没通过一对管道增加1分，当游戏结束时，比较当前得分与最高得分。若当前得分高则更新记录。</p>
+<p>最后呈现一下最终效果：</p>
+<h4 id="源代码："><a class="header-anchor" href="#源代码："></a>源代码：</h4>
+<p><a href="https://github.com/wuhewuhe/AlgorithmeSource/tree/master/BlogNotes/src/main/java/FlappyBird" target="_blank" rel="noopener">https://github.com/wuhewuhe/AlgorithmeSource/tree/master/BlogNotes/src/main/java/FlappyBird</a></p>
+<h4 id="总结："><a class="header-anchor" href="#总结："></a>总结：</h4>
+<p>通过此次的flappy bird的开发，相比于前两次无论是开发时间，思路，完成度从自己的角度出发都有了一定程度的提升。同时也学到了一些新的写法和awt的用法，比如图片旋转；把游戏逻辑单写成一个类来封装；对于按键监听的press，release双操作。下一次，我想复写一下马里奥（mario），以此结束Jframe这个模块。</p>
+<p><img src="https://mp.weixin.qq.com/mp/qrcode?scene=10000004&amp;size=102&amp;__biz=MzI5MTM4Njk1NQ==&amp;mid=100000088&amp;idx=1&amp;sn=16ca5e771f23162962006d479965f676&amp;send_time=1577569951" alt="img"></p>
+<p>微信扫一扫<br>
+关注该公众号</p>
+
       
     </div>
     
@@ -417,6 +489,16 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/jframe/" rel="tag"><i class="fa fa-tag"></i> jframe</a>
+          
+            <a href="/tags/game/" rel="tag"><i class="fa fa-tag"></i> game</a>
+          
+            <a href="/tags/thread/" rel="tag"><i class="fa fa-tag"></i> thread</a>
+          
+        </div>
       
 
       
@@ -498,8 +580,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -540,7 +631,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -563,6 +654,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Flappy-Bird-仿写"><span class="nav-number">1.</span> <span class="nav-text">Flappy Bird 仿写</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#技术选用与涉及技术："><span class="nav-number">1.0.1.</span> <span class="nav-text">技术选用与涉及技术：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#思路"><span class="nav-number">1.0.2.</span> <span class="nav-text">思路:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1寻找素材-调整合适大小"><span class="nav-number">1.0.3.</span> <span class="nav-text">1寻找素材 调整合适大小</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-绘制背景，管道-，小鸟"><span class="nav-number">1.0.4.</span> <span class="nav-text">2 绘制背景，管道 ，小鸟</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-让小鸟跳跃-移动-挥舞翅膀"><span class="nav-number">1.0.5.</span> <span class="nav-text">3 让小鸟跳跃 移动 挥舞翅膀</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Step1-小鸟移动"><span class="nav-number">1.0.5.1.</span> <span class="nav-text">Step1 小鸟移动</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Step2-小鸟跳跃"><span class="nav-number">1.0.5.2.</span> <span class="nav-text">Step2 小鸟跳跃</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Step3-挥舞翅膀"><span class="nav-number">1.0.5.3.</span> <span class="nav-text">Step3 挥舞翅膀</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-管道的出现-移动"><span class="nav-number">1.0.6.</span> <span class="nav-text">4 管道的出现 移动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-碰撞检测"><span class="nav-number">1.0.7.</span> <span class="nav-text">5 碰撞检测</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-游戏暂停-结束-重新开始"><span class="nav-number">1.0.8.</span> <span class="nav-text">6 游戏暂停 结束 重新开始</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-分数统计-记录"><span class="nav-number">1.0.9.</span> <span class="nav-text">7 分数统计 记录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#源代码："><span class="nav-number">1.0.10.</span> <span class="nav-text">源代码：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结："><span class="nav-number">1.0.11.</span> <span class="nav-text">总结：</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

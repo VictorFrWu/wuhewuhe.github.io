@@ -88,7 +88,7 @@
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Study room of WU He">
-<meta property="og:url" content="http://yoursite.com/tags/JFrame/index.html">
+<meta property="og:url" content="http://yoursite.com/tags/Jframe/index.html">
 <meta property="og:site_name" content="Study room of WU He">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="WU He">
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/JFrame/"/>
+  <link rel="canonical" href="http://yoursite.com/tags/Jframe/"/>
 
 
 
 
 
-  <title>Tag: JFrame | Study room of WU He</title>
+  <title>Tag: Jframe | Study room of WU He</title>
   
 
 
@@ -242,16 +242,6 @@
           </a>
         </li>
       
-        
-        <li class="menu-item menu-item-top">
-          <a href="/top/%20" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-signal"></i> <br />
-            
-            TopX
-          </a>
-        </li>
-      
 
       
         <li class="menu-item menu-item-search">
@@ -312,7 +302,7 @@
 
     <div id="posts" class="posts-collapse">
       <div class="collection-title">
-        <h1>JFrame<small>Tag</small>
+        <h1>Jframe<small>Tag</small>
         </h1>
       </div>
 
@@ -324,37 +314,9 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2019/12/28/trex-up/" itemprop="url">
+            <a class="post-title-link" href="/2019/12/28/tetris/" itemprop="url">
               
-                <span itemprop="name">trex up</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-12-28T20:54:06+01:00"
-              content="2019-12-28" >
-          12-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/12/28/greedy-snake/" itemprop="url">
-              
-                <span itemprop="name">greedy snake</span>
+                <span itemprop="name">tetris</span>
               
             </a>
         
@@ -362,7 +324,7 @@
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
-              datetime="2019-12-28T20:53:59+01:00"
+              datetime="2019-12-28T20:54:27+01:00"
               content="2019-12-28" >
           12-28
         </time>
@@ -450,7 +412,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -971,6 +933,50 @@
     }
 
     // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+w;
     $('.popup-trigger').click(function(e) {
       e.stopPropagation();
       if (isfetched === false) {

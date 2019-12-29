@@ -406,6 +406,37 @@
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  2.1k words
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  8 minutes
+                </span>
+              
+            </div>
+          
 
           
 
@@ -424,9 +455,9 @@
       
         <p><img src="/2019/12/28/sliding-window1/slidingwindow1.jpeg" alt="slidingwindow1"></p>
 <p>sliding window直译为滑动窗口，大家可能直接会想到我们平时生活中的推拉窗户。在我们实际编程中，他也正是模拟这个生活中的场景，先去拉一个窗户，再去推另一个窗户。这个过程中我们分别用两个变量去代表这两个窗户，一快一慢，一左一右，这也是我们经常提到双指针问题。虽然在java，python，javascript，Csharp… … 等诸如此类的面向对象高级程序语言中，我们已经对指针弱化，将其变为对变量的引用，很大程度上简化了开发，但是指针的思想在我看来却仍然适用，而且加深对其的理解也有助于我们的编程。因此在思考了很久之后，我将sliding window这个主题作为我的第一篇文章。</p>
-<h4 id="导语"><a class="header-anchor" href="#导语"></a>导语:</h4>
+<h4 id="导语">导语:</h4>
 <p>首先，sliding window，无论是我们熟知的🇨🇳大厂，百度，腾讯，阿里，头条… 或是美帝的google，amazon，fb，netflix… . 都十分青睐用此类型题目 去考察面试者。回过头想为什么，仅以我现在的知识我觉得，此类型问题本身并不复杂，问题的难点主要在两点 ：1 如何在面试中将问题理解，并能够想到用sliding window去解决这类问题 ，尤其是模拟实际生活的题，更是需要我们融会贯通。2 实现过程中有很多小的细节需要注意，例如窗口的滑动，触发一定的条件，左右指针不断的变化，导致结果随之变化，因此我们在实际手撕代码的过程中，经常出现bug。因此本文从算法分析，思路解析，再结合题目与代码去谈这个问题。。。废话不多说，进入正题。</p>
-<h4 id="算法分"><a class="header-anchor" href="#算法分"></a>算法分</h4>
+<h4 id="算法分">算法分</h4>
 <p>滑动窗口大多数是用双指针求解，也有一些特殊的问题我们会结合一些特殊的数据结构，例如sorted_map（priority queue）或者的dequeue。对于此类特定的题型，我会在第二篇文章中讲述。本文主要讲述一般情况下的sliding window解决思路。</p>
 <p>一般情况下的sliding window会给予我们一个特定数组或者字符串，让我们去找到满足一定条件的子数组或子字符串。比如：<br>
 找到最短字符串包含特定字符（有重复，无重复）<br>
@@ -435,11 +466,11 @@
 一个特定的字符串在长字符串中出现的位置<br>
 ……….</p>
 <p>此类型题的大概时间复杂度为o(n)，需要遍历一次长字符串, 空间复杂度大多为常熟级别，近似于int[128]。之所以称为sliding window是由于，我们分别用快慢两个指针一前一后夹着字符串遍历，类似于一个窗口，这个窗口大小和范围会随着前后指针的移动发生变化。</p>
-<h4 id="解题思路"><a class="header-anchor" href="#解题思路"></a>解题思路</h4>
+<h4 id="解题思路">解题思路</h4>
 <p>这类型题的整体思路是设置两个快慢指针。快指针从左向右移动，目的是在每个快指针停留的位置，触发一定的条件，然后慢指针再随之移动，当其满足某种条件后，快指针再移动，周而复始，直到字符串遍历完毕，退出循环。<br>
 因此重点就在于，什么时候移动窗口，什么时候窗口保持不变。下面我写一个伪代码模版，给大家参考。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Public <span class="keyword">int</span> <span class="title">sildingwindow</span><span class="params">(String [] strs. .. )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="comment">//处理边界条件  参数判断</span></span><br><span class="line">If( condition )</span><br><span class="line"> <span class="keyword">return</span> </span><br><span class="line"><span class="comment">//初始化变量</span></span><br><span class="line"><span class="comment">//left 代表窗口左边， 慢指针</span></span><br><span class="line"><span class="comment">//count 计数，用于判断何时触发条件</span></span><br><span class="line"><span class="comment">//result 记录结果</span></span><br><span class="line">Int left = <span class="number">0</span>, count = <span class="number">0</span> ,result = <span class="number">0</span>;</span><br><span class="line"><span class="comment">//申请一个hash数组, 也可用其他数据结构比如hashmap</span></span><br><span class="line"><span class="keyword">int</span>[] hash = <span class="keyword">new</span> hash[<span class="number">128</span>]</span><br><span class="line"><span class="comment">//遍历数组，right代表窗口右侧，快指针</span></span><br><span class="line">For(<span class="keyword">int</span> right = <span class="number">0</span>; right&lt;strs.length;right++)&#123;</span><br><span class="line"><span class="comment">//每次移动一个格子后，更新hash</span></span><br><span class="line">Hash[strs[right]]++;</span><br><span class="line"><span class="comment">//更具窗口变更来改变条件</span></span><br><span class="line">If(Hash[strs[right]] = ..)</span><br><span class="line">&#123;</span><br><span class="line">Count++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 如果当前条件不满足，移动左指针直至条件满足为止 </span></span><br><span class="line"><span class="keyword">while</span> (count &gt; ..) </span><br><span class="line">&#123; </span><br><span class="line">  …</span><br><span class="line">   <span class="keyword">if</span> (…)</span><br><span class="line">  &#123; </span><br><span class="line">​     count—; </span><br><span class="line">   &#125; </span><br><span class="line">   hash[A[l]]++;</span><br><span class="line">​    left++; </span><br><span class="line"> &#125;</span><br><span class="line"><span class="comment">//条件根据具体题目要求确定返回结果</span></span><br><span class="line">res = Math.max(res, right-left+<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line">Return res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="经典例题"><a class="header-anchor" href="#经典例题"></a>经典例题</h4>
+<h4 id="经典例题">经典例题</h4>
 <p>leetcode 3 Longest Substring Without Repeating Characters<br>
 Given a string, find the length of the <strong>longest substring</strong> without repeating characters.<br>
 <strong>Example 3:</strong><br>
@@ -457,11 +488,11 @@ Given a string, find the length of the <strong>longest substring</strong> withou
 <p>此解法可以，但是其最坏时间复杂度为2n，就是快慢指针分别都把字符串从头到尾访问一遍。类似于“aabbcc”<br>
 以下，为通用的sliding window 解法，我们可以引入hashmap，key代表访问字符，value代表字符出现次数。当hashmap中某一个key的值大于1，于是我们尝试移动慢指针，在map中, 把慢指针指向的值的频率减1。在这里有个小技巧，我们可以用一个128长度的int数组来表示，ASCII table 65-92 对应 a-z， 97 - 122 对应A - Z</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// array</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (s == <span class="keyword">null</span> || s.length() == <span class="number">0</span>)</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line"><span class="keyword">int</span> res = <span class="number">0</span>, left = <span class="number">0</span>; </span><br><span class="line"><span class="keyword">int</span>[] hash = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">128</span>]; </span><br><span class="line"><span class="keyword">char</span>[] c = s.toCharArray(); </span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++) &#123;</span><br><span class="line">hash[c[i]]++; </span><br><span class="line"><span class="keyword">while</span> (hash[c[i]] &gt; <span class="number">1</span>) &#123;</span><br><span class="line">hash[c[left]]--; </span><br><span class="line">left++; </span><br><span class="line">&#125;</span><br><span class="line">res = Math.max(res, i - left + <span class="number">1</span>); </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> res; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// hashmap</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (s == <span class="keyword">null</span> || s.length() == <span class="number">0</span>)</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line"><span class="keyword">int</span> res = <span class="number">0</span>, left = <span class="number">0</span>; </span><br><span class="line"><span class="keyword">char</span>[] c = s.toCharArray(); </span><br><span class="line">Map&lt;Character, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;Character, Integer&gt;(); </span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; c.length; i++) &#123;</span><br><span class="line">map.put(c[i], map.getOrDefault(c[i], <span class="number">0</span>) + <span class="number">1</span>); </span><br><span class="line"><span class="keyword">while</span> (map.get(c[i]) &gt; <span class="number">1</span>) &#123;</span><br><span class="line">map.put(c[left], map.get(c[left]) - <span class="number">1</span>); </span><br><span class="line">left++; </span><br><span class="line">&#125;</span><br><span class="line">res = Math.max(res, i - left + <span class="number">1</span>); </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> res; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="总结"><a class="header-anchor" href="#总结"></a>总结</h4>
+<h4 id="总结">总结</h4>
 <p>之后我会陆续在写两篇关于sliding window的文章，列出所有我见过的有意思并且具有代表性的题，归类讲解。当然我不是大神，所以如果文章或者算法上哪里有问题还请各位轻喷多指点！！！<br>
 示例代码为了便于大家理解，我都写的java，当然我会把c++和python版本的代码放到我的github上。算法题主要是思路，所以语言上基本都是互通，如果大家有需要与其他的语言，Csharp, javascript…私信我，非常乐意把大家debug。</p>
 <p>放上我自己的github：<a href="https://github.com/wuhewuhe/AlgorithmeSource" target="_blank" rel="noopener">https://github.com/wuhewuhe/AlgorithmeSource</a></p>
-<h3 id="关注公众号-每周会有更多精彩的更新"><a class="header-anchor" href="#关注公众号-每周会有更多精彩的更新"></a>关注公众号 每周会有更多精彩的更新</h3>
+<h3 id="关注公众号-每周会有更多精彩的更新">关注公众号 每周会有更多精彩的更新</h3>
 <p><img src="https://mp.weixin.qq.com/mp/qrcode?scene=10000004&amp;size=102&amp;__biz=MzI5MTM4Njk1NQ==&amp;mid=100000078&amp;idx=1&amp;sn=c183b7cc5016e9f34330020a8e3b110a&amp;send_time=1577568956" alt="img"></p>
 
       

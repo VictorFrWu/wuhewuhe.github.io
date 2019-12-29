@@ -419,6 +419,37 @@
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  1.6k words
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  5 minutes
+                </span>
+              
+            </div>
+          
 
           
 
@@ -435,19 +466,19 @@
       
 
       
-        <h4 id="前情回顾"><a class="header-anchor" href="#前情回顾"></a>前情回顾:</h4>
+        <h4 id="前情回顾">前情回顾:</h4>
 <p>周二晚上下班，感觉不是很累，于是颇有兴致的参加了一个叫battle dev的线上比赛，如果要是能拿到前三名，那奖励确实很丰厚，但是茫茫人海中，我也确实意识到自己还有很多待提高的方面。Ò<br>
 因此仅以下文，回顾并记录自己这次比赛中的收获。</p>
-<h4 id="比赛形式："><a class="header-anchor" href="#比赛形式："></a>比赛形式：</h4>
+<h4 id="比赛形式：">比赛形式：</h4>
 <p>时间两小时，题目五道题，难度逐渐增加，必须通过所有的test case测试，才能看到下一个题。编程语言不限定。</p>
-<h4 id="第一题"><a class="header-anchor" href="#第一题"></a>第一题</h4>
+<h4 id="第一题">第一题</h4>
 <img src="/2019/12/28/battle-dev-review/question1.png" alt="question1" style="zoom:25%; ">
 <img src="/2019/12/28/battle-dev-review/question1.2.png" alt="question1.2" style="zoom:25%; ">
 <p>眨眼一看，题目论述很长，其实是一道热身题，大概意思大家一起去出游，由于天气原因和突发状况，现在有一个人需要睡在没有帐篷的空地上。于是大家决定抽检，抽到最短的人去睡空地。<br>
 解法很多种，我就说一个我自己的解法。预设一个最小值，然后scanner不断扫描下一行，知道结束为止，如果发现有出现距离比预设值小，那么更换最小距离，并记录姓名，输出。<br>
 具体代码如下：<br>
 <img src="/2019/12/28/battle-dev-review/solution1.png" alt="solution1" style="zoom:25%; "></p>
-<h4 id="第二题"><a class="header-anchor" href="#第二题"></a>第二题</h4>
+<h4 id="第二题">第二题</h4>
 <img src="/2019/12/28/battle-dev-review/question2.png" alt="question2" style="zoom:25%; ">
 <img src="/2019/12/28/battle-dev-review/question2.2.png" alt="question2.2" style="zoom:25%; ">
 <p>同样也是论述很长，理解之后发现其问题也是不难，但很有意思，需要我们转化一下思维。因为当天我在做题时，也是犯了两次错误，才意识到他究竟想让我们求什么。题目大概说，为了庆祝奶奶的生日，某人决定用纸板去做装饰，告诉我们纸板可以重复使用，宽高都相同，只有长度不等。随机从纸箱中抽取四个纸板，可以对每个纸板裁剪成两半，让后我们保留自己用的一半，另一半扔掉，最后拼成最大一个正方形。问舍弃的面积<br>
@@ -461,7 +492,7 @@ Fourth time 2 cm.3 -&gt; 2.reject 1 cm * 3 + 2 cm * 2 + 1 cm</p>
 <hr>
 <p>实际就是四次最小长度，剩下的就是最大正方形。 想到这里，那代码就很简单了，具体如下<br>
 <img src="/2019/12/28/battle-dev-review/solution2.png" alt="solution2" style="zoom:25%; "></p>
-<h4 id="第三题"><a class="header-anchor" href="#第三题"></a>第三题</h4>
+<h4 id="第三题">第三题</h4>
 <img src="/2019/12/28/battle-dev-review/question3.png" alt="question3" style="zoom:25%; ">
 <img src="/2019/12/28/battle-dev-review/question3.2.png" alt="question3.2" style="zoom:25%; ">
 <img src="/2019/12/28/battle-dev-review/question3.3.png" alt="question3.3" style="zoom:25%; ">
@@ -470,7 +501,7 @@ Fourth time 2 cm.3 -&gt; 2.reject 1 cm * 3 + 2 cm * 2 + 1 cm</p>
 这个题有三点需要我们注意。第一，request是乱序的，所以我们需要用优先队列对其进行排序，用什么排序，按照题意，起始时间小的在前面，如果相同，则终止时间小的优先。第二，电缆数量不一定满足request的需求，所以需要我们在创建一个priority queue去记录电缆的时候用情况，如果有空闲电缆则可以直接使用。如没有则需要我们分类讨论，遍历正在使用的电缆，看看的当前电缆的开始时间前，是否有电缆可以使用完成。如果没有，则返回false，结束程序。第三点，也是最容易被忽视的一点，我也因为这个白白耗费15分钟，题目让我们输出的是电缆使用顺序，我们是要根据优先队列的弹出顺序决定电缆使用顺序，而不是自己顺序排列。<br>
 综上所述，我放上我自己的代码</p>
 <p><img src="/2019/12/28/battle-dev-review/solution3.png" alt="solution3"></p>
-<h4 id="第四题"><a class="header-anchor" href="#第四题"></a>第四题</h4>
+<h4 id="第四题">第四题</h4>
 <img src="/2019/12/28/battle-dev-review/question4.png" alt="question4" style="zoom:25%; ">
 <img src="/2019/12/28/battle-dev-review/question4.2.png" alt="question4.2" style="zoom:25%; ">
 <p>当天我也是做到第四题，读题到写代码大概用了25分钟，然后就gg了。确实当时没有做出来，我在这里就说说题目的大概意思，以及我记得思路，这个题题目里给了提示联想背包问题。所以我们可以很快的想到用动态规划解决。但是相比于背包问题，这个题有点特殊，他的粉末可以按克买，所以还需要再去讨论。<br>
@@ -481,9 +512,9 @@ Fourth time 2 cm.3 -&gt; 2.reject 1 cm * 3 + 2 cm * 2 + 1 cm</p>
 第二到N次，以此类推，max（dp[i][j-1]+Vi*Wi, dp[i][j])</p>
 <hr>
 <p>关键是粉末可以拆分成g，所以数据规模很大，我当时是将每个粉末拆分成g在此讨论可能是超时，没有通过，我会再修改修改更新文章与大家讨论。</p>
-<h4 id="收获"><a class="header-anchor" href="#收获"></a>收获:</h4>
+<h4 id="收获">收获:</h4>
 <p>简短的来说，还是意识到自己的不足，第一语言方面，读题理解时间过长，每道题要白白消耗掉10分钟完全用于读题理解，说明语言还需要精进。第二，做不到学以致用，还是缺乏将实际应用问题段时间联想到已知技术。第三，动态规划和graph的问题一直都是自己的短板，需要专项提升。</p>
-<h3 id="关注公众号-每周会有更多精彩的更新"><a class="header-anchor" href="#关注公众号-每周会有更多精彩的更新"></a>关注公众号 每周会有更多精彩的更新</h3>
+<h3 id="关注公众号-每周会有更多精彩的更新">关注公众号 每周会有更多精彩的更新</h3>
 <p><img src="https://mp.weixin.qq.com/mp/qrcode?scene=10000004&amp;size=102&amp;__biz=MzI5MTM4Njk1NQ==&amp;mid=100000078&amp;idx=1&amp;sn=c183b7cc5016e9f34330020a8e3b110a&amp;send_time=1577568956" alt="img"></p>
 
       

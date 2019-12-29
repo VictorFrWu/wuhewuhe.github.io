@@ -409,6 +409,37 @@
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  1.5k words
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  5 minutes
+                </span>
+              
+            </div>
+          
 
           
 
@@ -425,41 +456,41 @@
       
 
       
-        <h4 id="前情提要"><a class="header-anchor" href="#前情提要"></a>前情提要:</h4>
+        <h4 id="前情提要">前情提要:</h4>
 <p>相信所有人的童年里都玩过贪吃蛇，在那个智能手机还不发达的时代，诺基亚和摩托罗拉还是市场的霸主，那个时候手机大概每款手机里都有个贪吃蛇的游戏。当然，我这个文章不是和大家怀旧，还是本着以技术为主，记录生活的本质。其次，我觉得贪吃蛇这个项目简单有意思，非常适合新手入门学习java。</p>
-<h4 id="开发原因："><a class="header-anchor" href="#开发原因："></a>开发原因：</h4>
+<h4 id="开发原因：">开发原因：</h4>
 <p>本周在工作中遇到了Jframe和线程的bug，JFrame应该是一项很老的技术，上学的时候被作为一门教学语言，常常配合着AWT和SWING来用。当然，就目前来讲，桌面应用还是微软的天下（window操作系统），winforms，wpf， uwp这些成型的mvvm框架，开发简洁，尤其是其前端的UI拖拽绘制界面，nuget一键下载各种包确实比JFrame好用很多。当然要是IOS系统，那就是苹果全家桶了，再往下说就太多了。所以回归正题，jframe虽然有点过时，但是由于java仍然还是还是服务端的中流砥柱，其稳定高效跨平台的特点还是被大家所青睐，再加上很多公司java项目存在已久，像替换不是那么简单一句话的事。所以在此复习一下JFrame和线程操作，同时也来重温一下童年。</p>
-<h4 id="开发流程与工具："><a class="header-anchor" href="#开发流程与工具："></a>开发流程与工具：</h4>
+<h4 id="开发流程与工具：">开发流程与工具：</h4>
 <p>Eclipse ID<br>
 Java8， JFrame， Swing，Graphics，Timer线程</p>
 <p>首先我设置了一个1200<em>720pixel的画板， 然后将（25，75） - （850，625）的区域设置为贪吃蛇游戏区域。并把这个区域等分成25</em>25的小格子，长度为34个小盒子，宽为24个小盒子。其中蛇每次可以移动一个小盒子</p>
-<h4 id="第一步：初始化蛇"><a class="header-anchor" href="#第一步：初始化蛇"></a>第一步：初始化蛇</h4>
+<h4 id="第一步：初始化蛇">第一步：初始化蛇</h4>
 <p>刚开始蛇的长度为3，其中蛇头1，蛇身2。蛇头需要考虑到上下左右四个方向，我就依次找到了四个图片代替。对于蛇具体化的实现，二维list，或者listnode都可以，为了简便开发，我就用数组其实主题的逻辑思维都是一样。二维数组分别代表蛇的每一部分在x, y轴对应坐标。我初始化蛇的方向向右，给定蛇的具体坐标。然后我这里调用JPanel自带的Graphic类复写paint方法。分别画出头和身体。<br>
 <img src="/2019/12/28/greedy-snake/initSnake.png" alt="initSnake" style="zoom:25%; "></p>
-<h4 id="第二步：蛇的移动"><a class="header-anchor" href="#第二步：蛇的移动"></a>第二步：蛇的移动</h4>
+<h4 id="第二步：蛇的移动">第二步：蛇的移动</h4>
 <p>这里有一个小的问题，需要大家注意，就是每次移动我们需要先移动身体在移动头。这里有点与现实生活相反，为什么这么做，如果我们先移动头的话，那么头位置改变后，身体指向的位置本应该是原来头的位置，现在却指向现在头的位置从而造成蛇移动后有一条直线变成了一个点。<br>
 其次就是按键加上监听，上下左右代表移动。<br>
 <img src="/2019/12/28/greedy-snake/snakeMove.png" alt="snakeMove" style="zoom:25%; "></p>
-<h4 id="第三步：吃食物"><a class="header-anchor" href="#第三步：吃食物"></a>第三步：吃食物</h4>
+<h4 id="第三步：吃食物">第三步：吃食物</h4>
 <p>我初始化了四种食物，分别为橙子，桃，苹果，分别代表1，2，3分。还有毒药，吃过吃了毒药则减10分。因为苹果，桃，橙子的分数不同，所以概率也不同。然后蛇每吃掉一个水果后就会更新一个新的水果，如果一定时间内没有碰到毒药毒药则消失，一段时间后再次出现。这里有三点需要注意。</p>
-<h5 id="1"><a class="header-anchor" href="#1"></a>1</h5>
+<h5 id="1">1</h5>
 <p>如何生成概率不同的随机数？这里有个小技巧。生成从1个随机数范围是从1到100，然后如果其小于50则返回橙子1分，大于50小于80则返回桃子2分，大于80小于100则返回苹果3分。其概率分别对应50%，30%和20%</p>
-<h5 id="2"><a class="header-anchor" href="#2"></a>2</h5>
+<h5 id="2">2</h5>
 <p>如何生成水果和毒药？我们需要水果和毒药的坐标，生成两个数字x, y范围分别在（1，34）和（1，24）之间，然后乘25就是对应x，y轴的位置。然后每次需要确认，毒药和水果的位置没有重合, 并且没有和蛇重合。<br>
 &lt;img src=‘eatFood.png’ alt=‘eatFood’ style:&quot;zoom:25%; &quot; /&gt;</p>
-<h5 id="3"><a class="header-anchor" href="#3"></a>3</h5>
+<h5 id="3">3</h5>
 <p>如何刷新水果和毒药的坐标？当蛇头的x, y坐标等于水果的位置则证明水果被吃掉，此时从新生成新水果。如果毒药被吃掉，看一下分数，小于0则游戏结束，大于等于零则仍可以继续。这里我用到一个timer的线程，每隔1ms观察一次。然后我再建另外一个毒药的timer线程，每隔15s，去看一下毒药是否存在，如果存在则消失一段时间然后再重新刷新位置，如果被吃掉了则直接刷新位置。</p>
-<h4 id="第四步：game-over，-暂停-和-重新开始"><a class="header-anchor" href="#第四步：game-over，-暂停-和-重新开始"></a>第四步：game over， 暂停 和 重新开始</h4>
+<h4 id="第四步：game-over，-暂停-和-重新开始">第四步：game over， 暂停 和 重新开始</h4>
 <p>有三种可能性造成游戏结束，第一蛇头撞击墙壁，这就是每次移动后，我们取到蛇头的方向，然后分别判断其是否等于边界坐标，如果不等则游戏继续。第二点，蛇头撞击蛇身体，这里我们可以用一次for循环，遍历蛇头和蛇身体坐标，如出现一次蛇身体等于蛇头，则证明重合了游戏结束。最后就是吃了毒药分数小于0，加一个判断条件即可。<br>
 暂停和重新开始都是按space，预设两个个boolean类型值，分别代表暂停和游戏失败。每次一按spce，先判断是游戏失败还是暂定，如有失败，则重启游戏，若暂停，则游戏继续。这里需要注意，不能在暂停时候移动蛇头，所以要多写一个条件。</p>
 <p>&lt;img src=‘gameover_stop.png’ alt=‘gameover_stop’ style:&quot;zoom:25%; &quot; /&gt;<br>
 最后，我设置了一个变量作为游戏记录，分数更新则刷新纪录。</p>
-<h4 id="资源及源代码"><a class="header-anchor" href="#资源及源代码"></a>资源及源代码</h4>
+<h4 id="资源及源代码">资源及源代码</h4>
 <p><a href="https://github.com/wuhewuhe/AlgorithmeSource/tree/master/BlogNotes/src/main/java/GreedySnake" target="_blank" rel="noopener">https://github.com/wuhewuhe/AlgorithmeSource/tree/master/BlogNotes/src/main/java/GreedySnake</a></p>
-<h4 id="展示"><a class="header-anchor" href="#展示"></a>展示</h4>
-<p>放上一个视频，看一小效果<sup>*</sup><br>
+<h4 id="展示">展示</h4>
+<p>放上一个视频，看一小效果^*^<br>
 <img src="/2019/12/28/greedy-snake/show.png" alt="show" style="zoom:25%;"></p>
-<h3 id="关注公众号-每周会有更多精彩的更新"><a class="header-anchor" href="#关注公众号-每周会有更多精彩的更新"></a>关注公众号 每周会有更多精彩的更新</h3>
+<h3 id="关注公众号-每周会有更多精彩的更新">关注公众号 每周会有更多精彩的更新</h3>
 <p><img src="https://mp.weixin.qq.com/mp/qrcode?scene=10000004&amp;size=102&amp;__biz=MzI5MTM4Njk1NQ==&amp;mid=100000078&amp;idx=1&amp;sn=c183b7cc5016e9f34330020a8e3b110a&amp;send_time=1577568956" alt="img"></p>
 
       

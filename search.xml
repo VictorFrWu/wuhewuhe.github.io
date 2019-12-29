@@ -11,6 +11,20 @@
         <content type="html"><![CDATA[<h2 id="LRU-Least-Recently-Used-页面置换算法">LRU(Least Recently Used) 页面置换算法</h2><p>本篇文章阅读时间 5 分钟， 技术实现 java， javascript。</p><h4 id="概述">概述</h4><p>这一周本来是想将Mario（马里奥）做完，但是周三晚上下班看了一眼React，于是一发不可收拾，之前是听同学，朋友，同事说react的香，一直没有感觉到，真是自己从头学了一下才感受到他火确实是有道理。因为自己的学习笔记还没有整理完，mario的进度推迟了。正巧在自己做网站的时候，看到react-router里面有一个封装好的内置类history，自己在写的时候遇到了浏览记录的问题。正巧室友说在国内面试时被问到这个问题。这期，临时决定写一写这个LRU页面置换算法。</p><h4 id="算法缘由">算法缘由</h4><p>第一次听到这个页面置换算法应该是大三的操作系统课，但是当时也就是考试复习随便瞟一眼，也没仔细看。字如其名，其本质就是选择调出用户想要的页面，好的页面置换算法应有较低的页面更换频率，也就是说，应将以后不会再访问或者以后较长时间内不会再访问的页面先调出。这是官方给出的解释，白话说，假如浏览器只能同时加载显示三个页面，那么我们应该通过一种最合理的方式显示出我们最常用的三个，而将不常用的替换掉。常见的置换算法像是OPT，FIFO，CLOCK，LRU。我自己认为LRU是最贴近现实生活，同时也是最常考到。</p><h4 id="例题展示">例题展示</h4><p>为了更好的讲述这个题，我就从leetcode上面直接拔下来一个题。</p><img src="/2019/12/28/LRU/Screenshot 2019-12-22 at 21.24.22.png" alt="Screenshot 2019-12-22 at 21.24.22" style="zoom:25%; "><p>题目说的什么意思呢，就是让我们自己通过数据结构设计一个类并指定缓存的最大存储量，类表示的就是我们浏览器的缓存，类里面有两个方法，分别为get和put。get的意思就是，如果此时缓存记录里有我要找的东西，那么直接返回结果。没有就输出一个-1。put的意思就是，每次我们访问一个新的网页，将这个网页放入到我们的缓存中，如果该网页已经存在于缓存中，则对其内容进行替换。若不存在，加入到缓存中。</p><p>他这里有一个follow up：问我们怎么能够用常数的时间复杂度完成所有的操作。（就是优的解决方案）</p><h4 id="分析：">分析：</h4><p>首先读完这个题目，并结合我们的我们的生活常识，很快，我就想到根据我们需要用一个固定长度的数据结构去存储用户的访问记录。然后再看到put方法key，value键值对，我想到了hashtable。我们可以用hashtable的key设置为数字，代表用户的浏览记录标示；value作为内容。并且hashtable的查找时间复杂度为O（1）。再之后，我们会发现这个题单纯一个hashmap数据结构还不能满足我们的所有需求，比如从技术层面出发，我们知道hashmap的添加和删除操作都是o（logn）的时间复杂度。应用层面上，单纯只用hashmap，我们怎么做到对内容的更新与调度。于是，在这里我们可以在引入一个双向节点，这里有很多做法比如用deque，linkedlist。我是从题目本身出发，自己写了一个Node类，他有四个属性，分别是prev（前一个节点），next（下一个节点），key（页面表示），value（内容）。这样设计的好处就是，我们在执行添加和删除的操作时，只需要改变指针的方向不需要便利整个list到达了最优的时间复杂度。</p><p>这里，可能文字还是有些拗口，尤其是针对分计算机专业的童鞋们，我付上一个图片更能清晰直观的描述设计思路，以及运行过程。</p><p><strong>模型</strong></p><table><thead><tr><th><strong>Hash table - capacity</strong>**（<strong><strong>2</strong></strong>）****- head(0, 0)**</th></tr></thead><tbody><tr><td>Node 1 key = 1, value = 1, prev = head, next = Node2</td></tr><tr><td>Node 2 key = 1, value = 1, prev = Node1, next = tail</td></tr></tbody></table><img src="/2019/12/28/LRU/Screenshot 2019-12-22 at 21.45.19.png" alt="Screenshot 2019-12-22 at 21.45.19" style="zoom:25%; "><p>假设我们模拟执行 例题中给的几步</p><h5 id="Step-1-LRUCache-cache-new-LRUCache-2-cache-put-1-1">Step 1 : LRUCache cache = new LRUCache(2); cache.put(1, 1);</h5><p>首先我们初始化了一个缓存对象，并设置他的最大容量为2。</p><p>此时我们将第一个元素放进来。</p><img src="/2019/12/28/LRU/Screenshot 2019-12-29 at 00.26.27.png" alt="Screenshot 2019-12-29 at 00.26.27" style="zoom:25%; "><h5 id="Step2-cache-put-2-2">Step2 : cache.put(2, 2);</h5><p>检测是否超过最大容量。再将第二元素放到队伍头节点</p><img src="/2019/12/28/LRU/Screenshot 2019-12-29 at 00.26.30.png" alt="Screenshot 2019-12-29 at 00.26.30" style="zoom:25%; "><h5 id="Step3-cache-get-1">Step3 : cache.get(1);</h5><p>检测缓存中是否有id为1的内容，对节点队列进行遍历。发现有则返回value。并交换节点（2，2）和（1，1）的位置。</p><img src="/2019/12/28/LRU/Screenshot 2019-12-29 at 00.26.34.png" alt="Screenshot 2019-12-29 at 00.26.34" style="zoom:25%; "><h5 id="Step4-cache-put-3-3">Step4 : cache.put(3, 3);</h5><p>检测已经超过最大容量，因为我们将队尾的节点（2，2）删除，再把新的节点（3，3）放到头部</p><img src="/2019/12/28/LRU/Screenshot 2019-12-29 at 00.26.38.png" alt="Screenshot 2019-12-29 at 00.26.38" style="zoom:25%; "><h5 id="Step5-cache-get-2">Step5 : cache.get(2);</h5><p>检测缓存中是否有id为2的内容，对节点队列进行遍历。没有返回-1</p><img src="/2019/12/28/LRU/Screenshot 2019-12-29 at 00.26.41.png" alt="Screenshot 2019-12-29 at 00.26.41" style="zoom:25%; "><h5 id="Step6-cache-put-4-4">Step6 : cache.put(4, 4);</h5><p>检测已经超过最大容量，因为我们将队尾的节点（1，1）删除，再把新的节点（4，4）放到头部</p><img src="/2019/12/28/LRU/Screenshot 2019-12-29 at 00.26.44.png" alt="Screenshot 2019-12-29 at 00.26.44" style="zoom:25%; "><h5 id="Step7-cache-get-1">Step7 : cache.get(1);</h5><p>检测缓存中是否有id为1的内容，对节点队列进行遍历。没有返回-1</p><img src="/2019/12/28/LRU/Screenshot 2019-12-29 at 00.26.48.png" alt="Screenshot 2019-12-29 at 00.26.48" style="zoom:25%; "><h5 id="Step8-cache-get-3">Step8 :cache.get(3);</h5><p>检测缓存中是否有课id为3的内容，对节点队列进行遍历。发现有则返回value</p><img src="/2019/12/28/LRU/Screenshot 2019-12-29 at 00.26.52.png" alt="Screenshot 2019-12-29 at 00.26.52" style="zoom:25%; "><h5 id="Step9-cache-get-4">Step9 : cache.get(4);</h5><p>检测缓存中是否有课id为3的内容，对节点队列进行遍历。发现有则返回value。并交换节点（4，4）和（3，3）的位置。</p><img src="/2019/12/28/LRU/Screenshot 2019-12-29 at 00.26.55.png" alt="Screenshot 2019-12-29 at 00.26.55" style="zoom:25%; "><h4 id="代码实现">代码实现</h4><img src="/2019/12/28/LRU/Screenshot 2019-12-22 at 22.04.26.png" alt="Screenshot 2019-12-22 at 22.04.26" style="zoom:25%; "><p>为了方便编程，避免空指针，便于调试。我自己设置了一个头节点和尾节点。在LRU里面自定义一个内部节点类。LRU的结构为hashmap套node。</p><img src="/2019/12/28/LRU/Screenshot 2019-12-22 at 22.07.26.png" alt="Screenshot 2019-12-22 at 22.07.26" style="zoom:25%; "><p>添加到头部，因为是双向所以需要改变两次。这里要插入头部，所以先保存一下原有的头节点，再让原有的头节点与新添加节点做操作。1 新添加节点的下一个指向原有头节点。2 head的下一个指向新添加节点。3 原有头节点的上一个指向新添加节点。 4新添加节点的上一个指向head。 建议大家在做指针指向问题的时候画草图，并且想改变好一个方向再去改变另外的方向。</p><p>删除，也是把前一个节点的下一个节点指向要删除节点的下一个。再把删除节点下一个的前一个指向删除节点的前一个。<img src="/2019/12/28/LRU/Screenshot 2019-12-22 at 22.15.39.png" alt="Screenshot 2019-12-22 at 22.15.39" style="zoom:25%; "></p><p>get 操作：检测hashmap是否含有key值。若存在，取出node节点，删除原有的node节点，再从新插入到头部。返回value。没有直接返回-1。</p><p>put操作 ：检测hashmap是否含有key值，若存在，取出node节点。取出node节点，删除原有的node节点，再从新插入到头部。若没有，先判断，hashmap是否达到自己的最大容量，若达到，删除队尾节点，在将新节点插入头部。如没达到容量直接插入。</p><h4 id="测试结果">测试结果</h4><img src="/2019/12/28/LRU/Screenshot 2019-12-22 at 22.03.57.png" alt="Screenshot 2019-12-22 at 22.03.57" style="zoom:25%; "><h4 id="源码仓库：">源码仓库：</h4><p><a href="https://github.com/wuhewuhe/LeetcodeNotes/tree/master/src/RealLifeProblem" target="_blank" rel="noopener">https://github.com/wuhewuhe/LeetcodeNotes/tree/master/src/RealLifeProblem</a></p><h4 id="总结">总结</h4><p><strong>LRU</strong>最近最久未使用页面置换算法，无论是在面试中作为一个程序设计题的高频出现，还是其cache思想贴近实际生活都是我认为很重要的一个点。希望自己的见解都初学者有帮助，对非it领域算是一个扩展知识的文章。</p>]]></content>
       
       
+      <categories>
+          
+          <category> Algorithme </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> page replacement </tag>
+            
+            <tag> lru </tag>
+            
+        </tags>
       
     </entry>
     
@@ -33,11 +47,11 @@
       
         <tags>
             
-            <tag> Jframe </tag>
+            <tag> jframe </tag>
             
-            <tag> Game </tag>
+            <tag> game </tag>
             
-            <tag> Thread </tag>
+            <tag> thread </tag>
             
         </tags>
       
@@ -55,16 +69,16 @@
       
       <categories>
           
-          <category> java </category>
+          <category> Java </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> game </tag>
-            
             <tag> jframe </tag>
+            
+            <tag> game </tag>
             
             <tag> thread </tag>
             
@@ -91,11 +105,11 @@
       
         <tags>
             
-            <tag> JFrame </tag>
+            <tag> game </tag>
             
-            <tag> Game </tag>
+            <tag> thread </tag>
             
-            <tag> Thread </tag>
+            <tag> jFrame </tag>
             
         </tags>
       
@@ -113,7 +127,7 @@
       
       <categories>
           
-          <category> java </category>
+          <category> Java </category>
           
       </categories>
       
@@ -122,9 +136,9 @@
             
             <tag> game </tag>
             
-            <tag> JFrame </tag>
+            <tag> jFrame </tag>
             
-            <tag> Timer </tag>
+            <tag> timer </tag>
             
         </tags>
       
@@ -142,7 +156,7 @@
       
       <categories>
           
-          <category> programming contest </category>
+          <category> Programming contest </category>
           
       </categories>
       

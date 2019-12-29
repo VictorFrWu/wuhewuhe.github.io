@@ -105,11 +105,11 @@
       
         <tags>
             
+            <tag> jframe </tag>
+            
             <tag> game </tag>
             
             <tag> thread </tag>
-            
-            <tag> jFrame </tag>
             
         </tags>
       
@@ -134,9 +134,9 @@
       
         <tags>
             
-            <tag> game </tag>
+            <tag> jframe </tag>
             
-            <tag> jFrame </tag>
+            <tag> game </tag>
             
             <tag> timer </tag>
             

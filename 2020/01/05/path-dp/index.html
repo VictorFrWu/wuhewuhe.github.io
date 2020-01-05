@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="dynamic programming,recursive," />
 
 
 
@@ -92,18 +92,21 @@
 
 <meta name="description" content="什么是动态规划 在网上找到一个很形象的例子，猿爸爸把 1+1+1+1+1+1+1+1 &#x3D; 写在纸上，问小猿（咦）： 「它们加起来是多少哇？」 （数了一会…）「8 ！」 猿爸爸在左边又加了个 1+，再问一次小猿： 「现在呢？」 （迅速地）「9 ！」 「为什么小猿这么快就知道了呢？」 「因为你刚刚加了 1 啊~」 「所以只要记得之前的结果，就不用再计一次数啦。」 嗯，动态规划就是一种「先记住些事，方便">
 <meta property="og:type" content="article">
-<meta property="og:title" content="path dp">
+<meta property="og:title" content="有路径问题浅谈动态规划">
 <meta property="og:url" content="http://yoursite.com/2020/01/05/path-dp/index.html">
 <meta property="og:site_name" content="He WU">
 <meta property="og:description" content="什么是动态规划 在网上找到一个很形象的例子，猿爸爸把 1+1+1+1+1+1+1+1 &#x3D; 写在纸上，问小猿（咦）： 「它们加起来是多少哇？」 （数了一会…）「8 ！」 猿爸爸在左边又加了个 1+，再问一次小猿： 「现在呢？」 （迅速地）「9 ！」 「为什么小猿这么快就知道了呢？」 「因为你刚刚加了 1 啊~」 「所以只要记得之前的结果，就不用再计一次数啦。」 嗯，动态规划就是一种「先记住些事，方便">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://yoursite.com/2020/01/05/path-dp/Screenshot%202020-01-05%20at%2016.49.32.png">
+<meta property="og:image" content="http://yoursite.com/2020/01/05/path-dp/Screenshot%202020-01-05%20at%2017.10.53.png">
 <meta property="og:image" content="http://yoursite.com/2020/01/05/path-dp/Screenshot%202020-01-05%20at%2017.17.33.png">
 <meta property="og:image" content="http://yoursite.com/2020/01/05/path-dp/Screenshot%202020-01-05%20at%2017.19.54.png">
 <meta property="og:image" content="http://yoursite.com/2020/01/05/path-dp/Screenshot%202020-01-05%20at%2017.26.00.png">
 <meta property="article:published_time" content="2020-01-05T16:32:11.000Z">
-<meta property="article:modified_time" content="2020-01-05T17:12:01.486Z">
+<meta property="article:modified_time" content="2020-01-05T17:25:20.986Z">
 <meta property="article:author" content="WU He">
+<meta property="article:tag" content="dynamic programming">
+<meta property="article:tag" content="recursive">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yoursite.com/2020/01/05/path-dp/Screenshot%202020-01-05%20at%2016.49.32.png">
 
@@ -141,7 +144,7 @@
 
 
 
-  <title>path dp | He WU</title>
+  <title>有路径问题浅谈动态规划 | He WU</title>
   
 
 
@@ -338,7 +341,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">path dp</h1>
+          <h1 class="post-title" itemprop="name headline">有路径问题浅谈动态规划</h1>
         
 
         <div class="post-meta">
@@ -360,6 +363,39 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithme/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithme</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">Leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -472,7 +508,7 @@
 <li>状态</li>
 </ul>
 <p>我们可以将这个题转化为一个m*n的矩阵，矩阵上的每一个格子的值就代表从左上到达该格子的所有路径总和。</p>
-<p>&lt;img src=“Screenshot 2020-01-05 at 17.10.53.png” alt=“Screenshot 2020-01-05 at 17.10.53” style=&quot;zoom:25%; &quot; /</p>
+<img src="/2020/01/05/path-dp/Screenshot 2020-01-05 at 17.10.53.png" alt="Screenshot 2020-01-05 at 17.10.53" style="zoom:25%; ">
 <p>如图所示，由A到B最多有两个路径： 1 右 下 2 下右。 所以B对应的状态为2，A对应的状态为1</p>
 <ul>
 <li>
@@ -558,7 +594,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link:</strong>
-    <a href="http://yoursite.com/2020/01/05/path-dp/" title="path dp">http://yoursite.com/2020/01/05/path-dp/</a>
+    <a href="http://yoursite.com/2020/01/05/path-dp/" title="有路径问题浅谈动态规划">http://yoursite.com/2020/01/05/path-dp/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice: </strong>
@@ -570,6 +606,14 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/dynamic-programming/" rel="tag"><i class="fa fa-tag"></i> dynamic programming</a>
+          
+            <a href="/tags/recursive/" rel="tag"><i class="fa fa-tag"></i> recursive</a>
+          
+        </div>
       
 
       
@@ -687,7 +731,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -698,7 +742,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

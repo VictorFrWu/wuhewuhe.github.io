@@ -413,11 +413,6 @@
           
 
           
-            <span class="post-meta-divider">|</span>
-            <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>readers
-            </span>
-          
 
           
             <div class="post-wordcount">
@@ -893,15 +888,15 @@
 <script>
     $(document).ready(function() {
         var int = setInterval(fixCount, 100);
-        var busuanziSiteOffset = parseInt();
+        //var busuanziSiteOffset = parseInt();
         function fixCount() {
             if ($("#busuanzi_container_site_pv").css("display") != "none") {
                 clearInterval(int);
-                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + busuanziSiteOffset);
+                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) +10000);
             }
             if ($("#busuanzi_container_site_uv").css("display") != "none") {
                 clearInterval(int);
-                $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + busuanziSiteOffset);
+                $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + 20000);
             }
         }
     });
@@ -928,14 +923,9 @@
       times 
     </span>
   
-
+<!--  不蒜子计数
   
-    <span class="page_pv">
-      <i class="fa fa-file-o"></i> 
-      <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
-      readers 
-    </span>
-  
+  -->
 </div>
 
 

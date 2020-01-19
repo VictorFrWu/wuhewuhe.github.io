@@ -1389,19 +1389,8 @@ markdown 可能很多人听起来有点陌生，他就是类似于我们常使�
 	}
 	siteTime()
 </script>
-<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-<script>
-    $(document).ready(function() {
-        var int = setInterval(fixCount, 100);
-        var busuanziSiteOffset = 10000;
-        function fixCount() {
-                clearInterval(int);
-                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + 2*busuanziSiteOffset);
-                $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + busuanziSiteOffset);
-            }
-        }
-    });
-</script>
+   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
         
 <div class="busuanzi-count">
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
@@ -1429,6 +1418,12 @@ markdown 可能很多人听起来有点陌生，他就是类似于我们常使�
 
 
 
+  
+    <span class="site-uv">
+      
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
   
 
   

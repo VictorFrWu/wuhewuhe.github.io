@@ -1432,6 +1432,10 @@ Flappy bird这个游戏是2014
                 clearInterval(int);
                 $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + 10000);
             }
+            if ($("#busuanzi_container_page_pv").css("display") != "none") {
+                clearInterval(int);
+                $("#busuanzi_value_page_pv").html(parseInt($("#busuanzi_value_page_pv").html()) + 10000);
+            }
         }
     });
 </script>
@@ -1440,7 +1444,7 @@ Flappy bird这个游戏是2014
     <span class="site-uv">
       访客数
       <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-      人 |
+      人
     </span>
   
 
@@ -1448,15 +1452,15 @@ Flappy bird这个游戏是2014
     <span class="site-pv">
       总访问量 
       <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-      次 | 
+      次 
     </span>
   
 
   
     <span class="page_pv">
-      <i class="fa fa-file-o"></i> 阅读数 
+      阅读数 
       <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
-       
+      次 
     </span>
   
 

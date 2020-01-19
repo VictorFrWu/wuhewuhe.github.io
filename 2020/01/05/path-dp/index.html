@@ -93,22 +93,22 @@
 <meta name="description" content="什么是动态规划 在网上找到一个很形象的例子，猿爸爸把 1+1+1+1+1+1+1+1 &#x3D; 写在纸上，问小猿（咦）： 「它们加起来是多少哇？」 （数了一会…）「8 ！」 猿爸爸在左边又加了个 1+，再问一次小猿： 「现在呢？」 （迅速地）「9 ！」 「为什么小猿这么快就知道了呢？」 「因为你刚刚加了 1 啊~」 「所以只要记得之前的结果，就不用再计一次数啦。」 嗯，动态规划就是一种「先记住些事，方便">
 <meta property="og:type" content="article">
 <meta property="og:title" content="有路径问题浅谈动态规划">
-<meta property="og:url" content="https://wuhewuhe.github.io/%E2%80%99/2020/01/05/path-dp/index.html">
+<meta property="og:url" content="https://wuhewuhe.github.io/2020/01/05/path-dp/index.html">
 <meta property="og:site_name" content="He WU">
 <meta property="og:description" content="什么是动态规划 在网上找到一个很形象的例子，猿爸爸把 1+1+1+1+1+1+1+1 &#x3D; 写在纸上，问小猿（咦）： 「它们加起来是多少哇？」 （数了一会…）「8 ！」 猿爸爸在左边又加了个 1+，再问一次小猿： 「现在呢？」 （迅速地）「9 ！」 「为什么小猿这么快就知道了呢？」 「因为你刚刚加了 1 啊~」 「所以只要记得之前的结果，就不用再计一次数啦。」 嗯，动态规划就是一种「先记住些事，方便">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://wuhewuhe.github.io/%E2%80%99/2020/01/05/path-dp/Screenshot%202020-01-05%20at%2016.49.32.png">
-<meta property="og:image" content="https://wuhewuhe.github.io/%E2%80%99/2020/01/05/path-dp/Screenshot%202020-01-05%20at%2017.10.53.png">
-<meta property="og:image" content="https://wuhewuhe.github.io/%E2%80%99/2020/01/05/path-dp/Screenshot%202020-01-05%20at%2017.17.33.png">
-<meta property="og:image" content="https://wuhewuhe.github.io/%E2%80%99/2020/01/05/path-dp/Screenshot%202020-01-05%20at%2017.19.54.png">
-<meta property="og:image" content="https://wuhewuhe.github.io/%E2%80%99/2020/01/05/path-dp/Screenshot%202020-01-05%20at%2017.26.00.png">
+<meta property="og:image" content="https://wuhewuhe.github.io/2020/01/05/path-dp/Screenshot%202020-01-05%20at%2016.49.32.png">
+<meta property="og:image" content="https://wuhewuhe.github.io/2020/01/05/path-dp/Screenshot%202020-01-05%20at%2017.10.53.png">
+<meta property="og:image" content="https://wuhewuhe.github.io/2020/01/05/path-dp/Screenshot%202020-01-05%20at%2017.17.33.png">
+<meta property="og:image" content="https://wuhewuhe.github.io/2020/01/05/path-dp/Screenshot%202020-01-05%20at%2017.19.54.png">
+<meta property="og:image" content="https://wuhewuhe.github.io/2020/01/05/path-dp/Screenshot%202020-01-05%20at%2017.26.00.png">
 <meta property="article:published_time" content="2020-01-05T16:32:11.000Z">
 <meta property="article:modified_time" content="2020-01-05T17:25:20.986Z">
 <meta property="article:author" content="WU He">
 <meta property="article:tag" content="dynamic programming">
 <meta property="article:tag" content="recursive">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://wuhewuhe.github.io/%E2%80%99/2020/01/05/path-dp/Screenshot%202020-01-05%20at%2016.49.32.png">
+<meta name="twitter:image" content="https://wuhewuhe.github.io/2020/01/05/path-dp/Screenshot%202020-01-05%20at%2016.49.32.png">
 
 
 
@@ -138,7 +138,7 @@
 
 
 
-  <link rel="canonical" href="https://wuhewuhe.github.io/’/2020/01/05/path-dp/"/>
+  <link rel="canonical" href="https://wuhewuhe.github.io/2020/01/05/path-dp/"/>
 
 
 
@@ -324,7 +324,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://wuhewuhe.github.io/’/2020/01/05/path-dp/">
+    <link itemprop="mainEntityOfPage" href="https://wuhewuhe.github.io/2020/01/05/path-dp/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WU He">
@@ -500,7 +500,7 @@
 <hr>
 <h3 id="例题">例题</h3>
 <p>本题是我从leetcode上的第62题，可以说是一道非常经典的动态规划入门题：</p>
-<img src="/%E2%80%99/2020/01/05/path-dp/Screenshot 2020-01-05 at 16.49.32.png" alt="Screenshot 2020-01-05 at 16.49.32" style="zoom:50%; ">
+<img src="/2020/01/05/path-dp/Screenshot 2020-01-05 at 16.49.32.png" alt="Screenshot 2020-01-05 at 16.49.32" style="zoom:50%; ">
 <p>题目让我们找到从图的左上角到右下角的所有路径，告诉我们只能向下或者向右走。</p>
 <h3 id="题目分析">题目分析</h3>
 <p>首先这个题是一个<strong>计数</strong>问题，提到计数这个关键词，那么很快我们就可以联想到程序猿爸爸让儿子1+1+1… .</p>
@@ -508,23 +508,23 @@
 <li>状态</li>
 </ul>
 <p>我们可以将这个题转化为一个m*n的矩阵，矩阵上的每一个格子的值就代表从左上到达该格子的所有路径总和。</p>
-<img src="/%E2%80%99/2020/01/05/path-dp/Screenshot 2020-01-05 at 17.10.53.png" alt="Screenshot 2020-01-05 at 17.10.53" style="zoom:25%; ">
+<img src="/2020/01/05/path-dp/Screenshot 2020-01-05 at 17.10.53.png" alt="Screenshot 2020-01-05 at 17.10.53" style="zoom:25%; ">
 <p>如图所示，由A到B最多有两个路径： 1 右 下 2 下右。 所以B对应的状态为2，A对应的状态为1</p>
 <ul>
 <li>
 <p>初始化</p>
 <p>明确了状态之后，我们需要对矩阵初始化，为了题目给定了矩阵的长和宽，那么我们就可以创建一个对应的m*n的矩阵，然后我们知道初始位置是左上角，所以其初始值为1，然后最上面的一行和最左面的一行值也都为1。因为我们只有一种方式可以到达他们。</p>
-<img src="/%E2%80%99/2020/01/05/path-dp/Screenshot 2020-01-05 at 17.17.33.png" alt="Screenshot 2020-01-05 at 17.17.33" style="zoom:25%; ">
+<img src="/2020/01/05/path-dp/Screenshot 2020-01-05 at 17.17.33.png" alt="Screenshot 2020-01-05 at 17.17.33" style="zoom:25%; ">
 </li>
 <li>
 <p>状态转换方程</p>
 <p>回到图中，我们已经已知了初始值，那么我们如何求解到问号位置的值呢？<br>
-<img src="/%E2%80%99/2020/01/05/path-dp/Screenshot 2020-01-05 at 17.19.54.png" alt="Screenshot 2020-01-05 at 17.19.54" style="zoom:25%; "><br>
+<img src="/2020/01/05/path-dp/Screenshot 2020-01-05 at 17.19.54.png" alt="Screenshot 2020-01-05 at 17.19.54" style="zoom:25%; "><br>
 我们发现到达？位置的路径总和就是等于到达？位置上方和左边的值相加。因为题目告诉我们只有两种移动方式。对应的方程就是 <code>res[i][j] = res[i - 1][j] + res[i][j - 1];</code></p>
 </li>
 </ul>
 <h3 id="结果展示">结果展示</h3>
-<img src="/%E2%80%99/2020/01/05/path-dp/Screenshot 2020-01-05 at 17.26.00.png" alt="Screenshot 2020-01-05 at 17.26.00" style="zoom:50%; ">
+<img src="/2020/01/05/path-dp/Screenshot 2020-01-05 at 17.26.00.png" alt="Screenshot 2020-01-05 at 17.26.00" style="zoom:50%; ">
 所以如果我们给出一个4*4的矩阵，那么一共存在20种走法从左上走到右下
 <h3 id="代码实现">代码实现</h3>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">public int uniquePaths(int m, int n) &#123;</span><br><span class="line">		&#x2F;&#x2F;corner case</span><br><span class="line">		if (m &#x3D;&#x3D; 0 || n &#x3D;&#x3D; 0)</span><br><span class="line">			return 0;</span><br><span class="line">		if (m &#x3D;&#x3D; 1 || n &#x3D;&#x3D; 1)</span><br><span class="line">			return 1;</span><br><span class="line">		&#x2F;&#x2F; init state </span><br><span class="line">		int[][] res &#x3D; new int[m][n];</span><br><span class="line">		for (int i &#x3D; 0; i &lt; m; i++) &#123;</span><br><span class="line">			res[i][0] &#x3D; 1;</span><br><span class="line">		&#125;</span><br><span class="line">		for (int i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line">			res[0][i] &#x3D; 1;</span><br><span class="line">		&#125;</span><br><span class="line">		&#x2F;&#x2F; loop the matrix </span><br><span class="line">		for (int i &#x3D; 1; i &lt; m; i++) &#123;</span><br><span class="line">			for (int j &#x3D; 1; j &lt; n; j++) &#123;</span><br><span class="line">				&#x2F;&#x2F; state change equation</span><br><span class="line">				res[i][j] &#x3D; res[i - 1][j] + res[i][j - 1];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		return res[m - 1][n - 1];</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
@@ -594,7 +594,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link:</strong>
-    <a href="https://wuhewuhe.github.io/%E2%80%99/2020/01/05/path-dp/" title="有路径问题浅谈动态规划">https://wuhewuhe.github.io/%E2%80%99/2020/01/05/path-dp/</a>
+    <a href="https://wuhewuhe.github.io/2020/01/05/path-dp/" title="有路径问题浅谈动态规划">https://wuhewuhe.github.io/2020/01/05/path-dp/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice: </strong>

@@ -93,7 +93,7 @@
 <meta name="description" content="this is a real blog, no lying no frauding">
 <meta property="og:type" content="website">
 <meta property="og:title" content="He WU">
-<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta property="og:url" content="https://wuhewuhe.github.io/%E2%80%99/page/2/index.html">
 <meta property="og:site_name" content="He WU">
 <meta property="og:description" content="this is a real blog, no lying no frauding">
 <meta property="og:locale" content="en_US">
@@ -128,7 +128,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/page/2/"/>
+  <link rel="canonical" href="https://wuhewuhe.github.io/’/page/2/"/>
 
 
 
@@ -315,7 +315,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/28/LRU/">
+    <link itemprop="mainEntityOfPage" href="https://wuhewuhe.github.io/’/2019/12/28/LRU/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WU He">
@@ -499,7 +499,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/28/tetris/">
+    <link itemprop="mainEntityOfPage" href="https://wuhewuhe.github.io/’/2019/12/28/tetris/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WU He">
@@ -682,7 +682,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/28/flappy-bird/">
+    <link itemprop="mainEntityOfPage" href="https://wuhewuhe.github.io/’/2019/12/28/flappy-bird/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WU He">
@@ -865,7 +865,7 @@ Flappy bird这个游戏是2014
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/28/trex-up/">
+    <link itemprop="mainEntityOfPage" href="https://wuhewuhe.github.io/’/2019/12/28/trex-up/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WU He">
@@ -1047,7 +1047,7 @@ Flappy bird这个游戏是2014
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/28/greedy-snake/">
+    <link itemprop="mainEntityOfPage" href="https://wuhewuhe.github.io/’/2019/12/28/greedy-snake/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WU He">
@@ -1416,7 +1416,25 @@ Flappy bird这个游戏是2014
 	}
 	siteTime()
 </script>
-
+<span id="busuanzi_value_site_pv"></span>
+<span id="busuanzi_value_site_uv"></span>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var int = setInterval(fixCount, 100);
+        var busuanziSiteOffset = parseInt(10000);
+        function fixCount() {
+            if ($("#busuanzi_container_site_pv").css("display") != "none") {
+                clearInterval(int);
+                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + busuanziSiteOffset);
+            }
+			if ($("#busuanzi_container_site_uv").css("display") != "none") {
+                clearInterval(int);
+                $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + busuanziSiteOffset);
+            }
+        }
+    });
+</script>
         
 <div class="busuanzi-count">
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
@@ -1445,19 +1463,7 @@ Flappy bird这个游戏是2014
 
 
   
-    <span class="site-uv">
-      
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-      
-    </span>
-  
 
-  
-    <span class="site-pv">
-       
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-       
-    </span>
   
 <!--  不蒜子计数
   

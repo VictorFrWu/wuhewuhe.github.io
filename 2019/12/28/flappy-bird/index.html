@@ -93,14 +93,14 @@
 <meta name="description" content="Flappy Bird 仿写 通过之前做贪吃蛇和小恐龙跳跃，对jframe，swing和awt的基础已经回顾的差不多了，因此这篇文章就不再一一赘述我已经写过的细节。讲讲大体上实现思路，设计模式还有哪些点需要注意。惯例，还是把所有素材和源码放到github上。 Flappy bird这个游戏是2014年一个在美国工作的越南裔移动端游戏工程师（Dong Nguyen ）开发的，然后在apple商店推出">
 <meta property="og:type" content="article">
 <meta property="og:title" content="flappy bird">
-<meta property="og:url" content="http://yoursite.com/2019/12/28/flappy-bird/index.html">
+<meta property="og:url" content="https://wuhewuhe.github.io/%E2%80%99/2019/12/28/flappy-bird/index.html">
 <meta property="og:site_name" content="He WU">
 <meta property="og:description" content="Flappy Bird 仿写 通过之前做贪吃蛇和小恐龙跳跃，对jframe，swing和awt的基础已经回顾的差不多了，因此这篇文章就不再一一赘述我已经写过的细节。讲讲大体上实现思路，设计模式还有哪些点需要注意。惯例，还是把所有素材和源码放到github上。 Flappy bird这个游戏是2014年一个在美国工作的越南裔移动端游戏工程师（Dong Nguyen ）开发的，然后在apple商店推出">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://yoursite.com/2019/12/28/flappy-bird/Screenshot%202019-12-15%20at%2001.23.53.png">
-<meta property="og:image" content="http://yoursite.com/2019/12/28/flappy-bird/Screenshot%202019-12-15%20at%2002.02.16.png">
-<meta property="og:image" content="http://yoursite.com/2019/12/28/flappy-bird/Screenshot%202019-12-15%20at%2002.03.46.png">
-<meta property="og:image" content="http://yoursite.com/2019/12/28/flappy-bird/Screenshot%202019-12-28%20at%2023.54.44.png">
+<meta property="og:image" content="https://wuhewuhe.github.io/%E2%80%99/2019/12/28/flappy-bird/Screenshot%202019-12-15%20at%2001.23.53.png">
+<meta property="og:image" content="https://wuhewuhe.github.io/%E2%80%99/2019/12/28/flappy-bird/Screenshot%202019-12-15%20at%2002.02.16.png">
+<meta property="og:image" content="https://wuhewuhe.github.io/%E2%80%99/2019/12/28/flappy-bird/Screenshot%202019-12-15%20at%2002.03.46.png">
+<meta property="og:image" content="https://wuhewuhe.github.io/%E2%80%99/2019/12/28/flappy-bird/Screenshot%202019-12-28%20at%2023.54.44.png">
 <meta property="article:published_time" content="2019-12-28T19:54:17.000Z">
 <meta property="article:modified_time" content="2019-12-29T20:38:35.074Z">
 <meta property="article:author" content="WU He">
@@ -108,7 +108,7 @@
 <meta property="article:tag" content="game">
 <meta property="article:tag" content="thread">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2019/12/28/flappy-bird/Screenshot%202019-12-15%20at%2001.23.53.png">
+<meta name="twitter:image" content="https://wuhewuhe.github.io/%E2%80%99/2019/12/28/flappy-bird/Screenshot%202019-12-15%20at%2001.23.53.png">
 
 
 
@@ -138,7 +138,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/12/28/flappy-bird/"/>
+  <link rel="canonical" href="https://wuhewuhe.github.io/’/2019/12/28/flappy-bird/"/>
 
 
 
@@ -324,7 +324,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/28/flappy-bird/">
+    <link itemprop="mainEntityOfPage" href="https://wuhewuhe.github.io/’/2019/12/28/flappy-bird/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WU He">
@@ -471,7 +471,7 @@
 <p>首先绘制背景，分别加载两张背景图片，注意顺序，当图片累加时会有重叠的问题。</p>
 <p>然后是小鸟，给小鸟一个初始化的位置，作为游戏的起点。最后是管道。管道分为朝上和朝下，管道的宽度是固定的，也是给定一个初始值。</p>
 <p>完成这一步，效果就是大概这样的：</p>
-<img src="/2019/12/28/flappy-bird/Screenshot 2019-12-15 at 01.23.53.png" alt="Screenshot 2019-12-15 at 01.23.53" style="zoom:25%; ">
+<img src="/%E2%80%99/2019/12/28/flappy-bird/Screenshot 2019-12-15 at 01.23.53.png" alt="Screenshot 2019-12-15 at 01.23.53" style="zoom:25%; ">
 <h4 id="3-让小鸟跳跃-移动-挥舞翅膀">3 让小鸟跳跃 移动 挥舞翅膀</h4>
 <h5 id="Step1-小鸟移动">Step1 小鸟移动</h5>
 <p>实现这个功能，我需要预设一个jump为小鸟的单次上升高度。还有一个gravity引力系数，常识由于有地心引力的存在下降速度总是比上升速度快，我预设一个0.5，就是在我这个游戏中下降速度是上升速度的两倍。这里还有一点需要注意就是按键，如果按了空格键，小鸟位置上升，不按空格键，小鸟则直接下降，通过不停的点击空格键是可以让小鸟的高度累加。为了更贴近现实，我加入了一个图片旋转的功能，就是上升时，小鸟的头部会向上倾斜，反之亦然。此时我们可以通过awt的内置类affinetransform对图片进行一定幅度的旋转。</p>
@@ -482,11 +482,11 @@
 <h4 id="4-管道的出现-移动">4 管道的出现 移动</h4>
 <p>因为我们每隔25ms线程会去重新刷新界面，所以我们给定管道一个初始速度3。每25ms，管道向左移动3pixel。然后取一个在50-200之间取一个随机值，代表在接下来的50-200pixel会出现下一个管道。对于管道的y坐标，需要多考虑一点，因为小鸟的高度是32pixel，然后管道的高度是400pixel所以管道只是在界面中显示一段，我对于游戏的设计就是朝上的管道和朝下的管道总是成对出现，然后为了保证小鸟可以顺利通过管道，我给两个管道中间预留了50-120的pixel，然后再去推理出朝上和朝下管道具体的y轴值。</p>
 <p>完成这一步，游戏也就实现了60%，效果如下：</p>
-<img src="/2019/12/28/flappy-bird/Screenshot 2019-12-15 at 02.02.16.png" alt="img" style="zoom:25%; ">
+<img src="/%E2%80%99/2019/12/28/flappy-bird/Screenshot 2019-12-15 at 02.02.16.png" alt="img" style="zoom:25%; ">
 <h4 id="5-碰撞检测">5 碰撞检测</h4>
 <p>首先先新建一个arraylist用于存放出现的管道。奇数代表朝下，偶数朝上。用一个i记录当前管道。与小恐龙撞仙人掌相同，如何判定小鸟是否可以通过管道，我们需要对小鸟进行碰撞检测。每一组碰撞检测可以分为四个方面，我用两张图片向大家更好的讲解。</p>
-<img src="/2019/12/28/flappy-bird/Screenshot 2019-12-15 at 02.03.46.png" alt="Screenshot 2019-12-15 at 02.03.46" style="zoom:25%; ">
-<img src="/2019/12/28/flappy-bird/Screenshot 2019-12-28 at 23.54.44.png" alt="Screenshot 2019-12-28 at 23.54.44" style="zoom:25%; ">
+<img src="/%E2%80%99/2019/12/28/flappy-bird/Screenshot 2019-12-15 at 02.03.46.png" alt="Screenshot 2019-12-15 at 02.03.46" style="zoom:25%; ">
+<img src="/%E2%80%99/2019/12/28/flappy-bird/Screenshot 2019-12-28 at 23.54.44.png" alt="Screenshot 2019-12-28 at 23.54.44" style="zoom:25%; ">
 <p>我们取到小鸟的头部检测小鸟有没有碰到管道的两个前沿，以及小鸟分过管道后是否碰到管道的后沿。当然是存在一定可能小鸟会碰到管道的中间，但在我这个游戏中，我已经计算过，线程25ms刷新一次，如果小鸟在进入管道前没有撞到管道，小鸟在跳跃或者下降，因为宽度固定，所以小鸟已经走到管道外。因此我只需要检测管道的头和尾。与小鸟的头和尾即可。</p>
 <p>当然，我们还需要检测小鸟的位置使其置于大地和天空之间，如果超出范围也是碰撞。</p>
 <h4 id="6-游戏暂停-结束-重新开始">6 游戏暂停 结束 重新开始</h4>
@@ -557,7 +557,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link:</strong>
-    <a href="http://yoursite.com/2019/12/28/flappy-bird/" title="flappy bird">http://yoursite.com/2019/12/28/flappy-bird/</a>
+    <a href="https://wuhewuhe.github.io/%E2%80%99/2019/12/28/flappy-bird/" title="flappy bird">https://wuhewuhe.github.io/%E2%80%99/2019/12/28/flappy-bird/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice: </strong>
@@ -850,7 +850,25 @@
 	}
 	siteTime()
 </script>
-
+<span id="busuanzi_value_site_pv"></span>
+<span id="busuanzi_value_site_uv"></span>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var int = setInterval(fixCount, 100);
+        var busuanziSiteOffset = parseInt(10000);
+        function fixCount() {
+            if ($("#busuanzi_container_site_pv").css("display") != "none") {
+                clearInterval(int);
+                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + busuanziSiteOffset);
+            }
+			if ($("#busuanzi_container_site_uv").css("display") != "none") {
+                clearInterval(int);
+                $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + busuanziSiteOffset);
+            }
+        }
+    });
+</script>
         
 <div class="busuanzi-count">
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
@@ -879,19 +897,7 @@
 
 
   
-    <span class="site-uv">
-      
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-      
-    </span>
-  
 
-  
-    <span class="site-pv">
-       
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-       
-    </span>
   
 <!--  不蒜子计数
   

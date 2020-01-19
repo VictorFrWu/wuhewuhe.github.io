@@ -93,7 +93,7 @@
 <meta name="description" content="this is a real blog, no lying no frauding">
 <meta property="og:type" content="website">
 <meta property="og:title" content="He WU">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="https://wuhewuhe.github.io/%E2%80%99/index.html">
 <meta property="og:site_name" content="He WU">
 <meta property="og:description" content="this is a real blog, no lying no frauding">
 <meta property="og:locale" content="en_US">
@@ -128,7 +128,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="https://wuhewuhe.github.io/’/"/>
 
 
 
@@ -315,7 +315,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/18/setupSiteImprove/">
+    <link itemprop="mainEntityOfPage" href="https://wuhewuhe.github.io/’/2020/01/18/setupSiteImprove/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WU He">
@@ -475,7 +475,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/18/gitTuto/">
+    <link itemprop="mainEntityOfPage" href="https://wuhewuhe.github.io/’/2020/01/18/gitTuto/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WU He">
@@ -635,7 +635,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/15/how-to-setup-site/">
+    <link itemprop="mainEntityOfPage" href="https://wuhewuhe.github.io/’/2020/01/15/how-to-setup-site/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WU He">
@@ -818,7 +818,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/05/path-dp/">
+    <link itemprop="mainEntityOfPage" href="https://wuhewuhe.github.io/’/2020/01/05/path-dp/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WU He">
@@ -1018,7 +1018,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/29/markdown/">
+    <link itemprop="mainEntityOfPage" href="https://wuhewuhe.github.io/’/2019/12/29/markdown/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WU He">
@@ -1389,7 +1389,25 @@ markdown 可能很多人听起来有点陌生，他就是类似于我们常使�
 	}
 	siteTime()
 </script>
-
+<span id="busuanzi_value_site_pv"></span>
+<span id="busuanzi_value_site_uv"></span>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var int = setInterval(fixCount, 100);
+        var busuanziSiteOffset = parseInt(10000);
+        function fixCount() {
+            if ($("#busuanzi_container_site_pv").css("display") != "none") {
+                clearInterval(int);
+                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + busuanziSiteOffset);
+            }
+			if ($("#busuanzi_container_site_uv").css("display") != "none") {
+                clearInterval(int);
+                $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + busuanziSiteOffset);
+            }
+        }
+    });
+</script>
         
 <div class="busuanzi-count">
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
@@ -1418,19 +1436,7 @@ markdown 可能很多人听起来有点陌生，他就是类似于我们常使�
 
 
   
-    <span class="site-uv">
-      
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-      
-    </span>
-  
 
-  
-    <span class="site-pv">
-       
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-       
-    </span>
   
 <!--  不蒜子计数
   

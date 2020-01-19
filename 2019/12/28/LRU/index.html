@@ -93,32 +93,32 @@
 <meta name="description" content="LRU(Least Recently Used) 页面置换算法 本篇文章阅读时间 5 分钟， 技术实现 java， javascript。 概述 这一周本来是想将Mario（马里奥）做完，但是周三晚上下班看了一眼React，于是一发不可收拾，之前是听同学，朋友，同事说react的香，一直没有感觉到，真是自己从头学了一下才感受到他火确实是有道理。因为自己的学习笔记还没有整理完，mario的进度推迟了">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LRU">
-<meta property="og:url" content="http://yoursite.com/2019/12/28/LRU/index.html">
+<meta property="og:url" content="https://wuhewuhe.github.io/%E2%80%99/2019/12/28/LRU/index.html">
 <meta property="og:site_name" content="He WU">
 <meta property="og:description" content="LRU(Least Recently Used) 页面置换算法 本篇文章阅读时间 5 分钟， 技术实现 java， javascript。 概述 这一周本来是想将Mario（马里奥）做完，但是周三晚上下班看了一眼React，于是一发不可收拾，之前是听同学，朋友，同事说react的香，一直没有感觉到，真是自己从头学了一下才感受到他火确实是有道理。因为自己的学习笔记还没有整理完，mario的进度推迟了">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://yoursite.com/2019/12/28/LRU/Screenshot%202019-12-22%20at%2021.24.22.png">
-<meta property="og:image" content="http://yoursite.com/2019/12/28/LRU/Screenshot%202019-12-22%20at%2021.45.19.png">
-<meta property="og:image" content="http://yoursite.com/2019/12/28/LRU/Screenshot%202019-12-29%20at%2000.26.27.png">
-<meta property="og:image" content="http://yoursite.com/2019/12/28/LRU/Screenshot%202019-12-29%20at%2000.26.30.png">
-<meta property="og:image" content="http://yoursite.com/2019/12/28/LRU/Screenshot%202019-12-29%20at%2000.26.34.png">
-<meta property="og:image" content="http://yoursite.com/2019/12/28/LRU/Screenshot%202019-12-29%20at%2000.26.38.png">
-<meta property="og:image" content="http://yoursite.com/2019/12/28/LRU/Screenshot%202019-12-29%20at%2000.26.41.png">
-<meta property="og:image" content="http://yoursite.com/2019/12/28/LRU/Screenshot%202019-12-29%20at%2000.26.44.png">
-<meta property="og:image" content="http://yoursite.com/2019/12/28/LRU/Screenshot%202019-12-29%20at%2000.26.48.png">
-<meta property="og:image" content="http://yoursite.com/2019/12/28/LRU/Screenshot%202019-12-29%20at%2000.26.52.png">
-<meta property="og:image" content="http://yoursite.com/2019/12/28/LRU/Screenshot%202019-12-29%20at%2000.26.55.png">
-<meta property="og:image" content="http://yoursite.com/2019/12/28/LRU/Screenshot%202019-12-22%20at%2022.04.26.png">
-<meta property="og:image" content="http://yoursite.com/2019/12/28/LRU/Screenshot%202019-12-22%20at%2022.07.26.png">
-<meta property="og:image" content="http://yoursite.com/2019/12/28/LRU/Screenshot%202019-12-22%20at%2022.15.39.png">
-<meta property="og:image" content="http://yoursite.com/2019/12/28/LRU/Screenshot%202019-12-22%20at%2022.03.57.png">
+<meta property="og:image" content="https://wuhewuhe.github.io/%E2%80%99/2019/12/28/LRU/Screenshot%202019-12-22%20at%2021.24.22.png">
+<meta property="og:image" content="https://wuhewuhe.github.io/%E2%80%99/2019/12/28/LRU/Screenshot%202019-12-22%20at%2021.45.19.png">
+<meta property="og:image" content="https://wuhewuhe.github.io/%E2%80%99/2019/12/28/LRU/Screenshot%202019-12-29%20at%2000.26.27.png">
+<meta property="og:image" content="https://wuhewuhe.github.io/%E2%80%99/2019/12/28/LRU/Screenshot%202019-12-29%20at%2000.26.30.png">
+<meta property="og:image" content="https://wuhewuhe.github.io/%E2%80%99/2019/12/28/LRU/Screenshot%202019-12-29%20at%2000.26.34.png">
+<meta property="og:image" content="https://wuhewuhe.github.io/%E2%80%99/2019/12/28/LRU/Screenshot%202019-12-29%20at%2000.26.38.png">
+<meta property="og:image" content="https://wuhewuhe.github.io/%E2%80%99/2019/12/28/LRU/Screenshot%202019-12-29%20at%2000.26.41.png">
+<meta property="og:image" content="https://wuhewuhe.github.io/%E2%80%99/2019/12/28/LRU/Screenshot%202019-12-29%20at%2000.26.44.png">
+<meta property="og:image" content="https://wuhewuhe.github.io/%E2%80%99/2019/12/28/LRU/Screenshot%202019-12-29%20at%2000.26.48.png">
+<meta property="og:image" content="https://wuhewuhe.github.io/%E2%80%99/2019/12/28/LRU/Screenshot%202019-12-29%20at%2000.26.52.png">
+<meta property="og:image" content="https://wuhewuhe.github.io/%E2%80%99/2019/12/28/LRU/Screenshot%202019-12-29%20at%2000.26.55.png">
+<meta property="og:image" content="https://wuhewuhe.github.io/%E2%80%99/2019/12/28/LRU/Screenshot%202019-12-22%20at%2022.04.26.png">
+<meta property="og:image" content="https://wuhewuhe.github.io/%E2%80%99/2019/12/28/LRU/Screenshot%202019-12-22%20at%2022.07.26.png">
+<meta property="og:image" content="https://wuhewuhe.github.io/%E2%80%99/2019/12/28/LRU/Screenshot%202019-12-22%20at%2022.15.39.png">
+<meta property="og:image" content="https://wuhewuhe.github.io/%E2%80%99/2019/12/28/LRU/Screenshot%202019-12-22%20at%2022.03.57.png">
 <meta property="article:published_time" content="2019-12-28T19:54:40.000Z">
 <meta property="article:modified_time" content="2019-12-29T20:37:31.225Z">
 <meta property="article:author" content="WU He">
 <meta property="article:tag" content="page replacement">
 <meta property="article:tag" content="lru">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2019/12/28/LRU/Screenshot%202019-12-22%20at%2021.24.22.png">
+<meta name="twitter:image" content="https://wuhewuhe.github.io/%E2%80%99/2019/12/28/LRU/Screenshot%202019-12-22%20at%2021.24.22.png">
 
 
 
@@ -148,7 +148,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/12/28/LRU/"/>
+  <link rel="canonical" href="https://wuhewuhe.github.io/’/2019/12/28/LRU/"/>
 
 
 
@@ -334,7 +334,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/28/LRU/">
+    <link itemprop="mainEntityOfPage" href="https://wuhewuhe.github.io/’/2019/12/28/LRU/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WU He">
@@ -472,7 +472,7 @@
 <p>第一次听到这个页面置换算法应该是大三的操作系统课，但是当时也就是考试复习随便瞟一眼，也没仔细看。字如其名，其本质就是选择调出用户想要的页面，好的页面置换算法应有较低的页面更换频率，也就是说，应将以后不会再访问或者以后较长时间内不会再访问的页面先调出。这是官方给出的解释，白话说，假如浏览器只能同时加载显示三个页面，那么我们应该通过一种最合理的方式显示出我们最常用的三个，而将不常用的替换掉。常见的置换算法像是OPT，FIFO，CLOCK，LRU。我自己认为LRU是最贴近现实生活，同时也是最常考到。</p>
 <h4 id="例题展示">例题展示</h4>
 <p>为了更好的讲述这个题，我就从leetcode上面直接拔下来一个题。</p>
-<img src="/2019/12/28/LRU/Screenshot 2019-12-22 at 21.24.22.png" alt="Screenshot 2019-12-22 at 21.24.22" style="zoom:25%; ">
+<img src="/%E2%80%99/2019/12/28/LRU/Screenshot 2019-12-22 at 21.24.22.png" alt="Screenshot 2019-12-22 at 21.24.22" style="zoom:25%; ">
 <p>题目说的什么意思呢，就是让我们自己通过数据结构设计一个类并指定缓存的最大存储量，类表示的就是我们浏览器的缓存，类里面有两个方法，分别为get和put。get的意思就是，如果此时缓存记录里有我要找的东西，那么直接返回结果。没有就输出一个-1。put的意思就是，每次我们访问一个新的网页，将这个网页放入到我们的缓存中，如果该网页已经存在于缓存中，则对其内容进行替换。若不存在，加入到缓存中。</p>
 <p>他这里有一个follow up：问我们怎么能够用常数的时间复杂度完成所有的操作。（就是优的解决方案）</p>
 <h4 id="分析：">分析：</h4>
@@ -494,46 +494,46 @@
 </tr>
 </tbody>
 </table>
-<img src="/2019/12/28/LRU/Screenshot 2019-12-22 at 21.45.19.png" alt="Screenshot 2019-12-22 at 21.45.19" style="zoom:25%; ">
+<img src="/%E2%80%99/2019/12/28/LRU/Screenshot 2019-12-22 at 21.45.19.png" alt="Screenshot 2019-12-22 at 21.45.19" style="zoom:25%; ">
 <p>假设我们模拟执行 例题中给的几步</p>
 <h5 id="Step-1-LRUCache-cache-new-LRUCache-2-cache-put-1-1">Step 1 : LRUCache cache = new LRUCache(2); cache.put(1, 1);</h5>
 <p>首先我们初始化了一个缓存对象，并设置他的最大容量为2。</p>
 <p>此时我们将第一个元素放进来。</p>
-<img src="/2019/12/28/LRU/Screenshot 2019-12-29 at 00.26.27.png" alt="Screenshot 2019-12-29 at 00.26.27" style="zoom:25%; ">
+<img src="/%E2%80%99/2019/12/28/LRU/Screenshot 2019-12-29 at 00.26.27.png" alt="Screenshot 2019-12-29 at 00.26.27" style="zoom:25%; ">
 <h5 id="Step2-cache-put-2-2">Step2 : cache.put(2, 2);</h5>
 <p>检测是否超过最大容量。再将第二元素放到队伍头节点</p>
-<img src="/2019/12/28/LRU/Screenshot 2019-12-29 at 00.26.30.png" alt="Screenshot 2019-12-29 at 00.26.30" style="zoom:25%; ">
+<img src="/%E2%80%99/2019/12/28/LRU/Screenshot 2019-12-29 at 00.26.30.png" alt="Screenshot 2019-12-29 at 00.26.30" style="zoom:25%; ">
 <h5 id="Step3-cache-get-1">Step3 : cache.get(1);</h5>
 <p>检测缓存中是否有id为1的内容，对节点队列进行遍历。发现有则返回value。并交换节点（2，2）和（1，1）的位置。</p>
-<img src="/2019/12/28/LRU/Screenshot 2019-12-29 at 00.26.34.png" alt="Screenshot 2019-12-29 at 00.26.34" style="zoom:25%; ">
+<img src="/%E2%80%99/2019/12/28/LRU/Screenshot 2019-12-29 at 00.26.34.png" alt="Screenshot 2019-12-29 at 00.26.34" style="zoom:25%; ">
 <h5 id="Step4-cache-put-3-3">Step4 : cache.put(3, 3);</h5>
 <p>检测已经超过最大容量，因为我们将队尾的节点（2，2）删除，再把新的节点（3，3）放到头部</p>
-<img src="/2019/12/28/LRU/Screenshot 2019-12-29 at 00.26.38.png" alt="Screenshot 2019-12-29 at 00.26.38" style="zoom:25%; ">
+<img src="/%E2%80%99/2019/12/28/LRU/Screenshot 2019-12-29 at 00.26.38.png" alt="Screenshot 2019-12-29 at 00.26.38" style="zoom:25%; ">
 <h5 id="Step5-cache-get-2">Step5 : cache.get(2);</h5>
 <p>检测缓存中是否有id为2的内容，对节点队列进行遍历。没有返回-1</p>
-<img src="/2019/12/28/LRU/Screenshot 2019-12-29 at 00.26.41.png" alt="Screenshot 2019-12-29 at 00.26.41" style="zoom:25%; ">
+<img src="/%E2%80%99/2019/12/28/LRU/Screenshot 2019-12-29 at 00.26.41.png" alt="Screenshot 2019-12-29 at 00.26.41" style="zoom:25%; ">
 <h5 id="Step6-cache-put-4-4">Step6 : cache.put(4, 4);</h5>
 <p>检测已经超过最大容量，因为我们将队尾的节点（1，1）删除，再把新的节点（4，4）放到头部</p>
-<img src="/2019/12/28/LRU/Screenshot 2019-12-29 at 00.26.44.png" alt="Screenshot 2019-12-29 at 00.26.44" style="zoom:25%; ">
+<img src="/%E2%80%99/2019/12/28/LRU/Screenshot 2019-12-29 at 00.26.44.png" alt="Screenshot 2019-12-29 at 00.26.44" style="zoom:25%; ">
 <h5 id="Step7-cache-get-1">Step7 : cache.get(1);</h5>
 <p>检测缓存中是否有id为1的内容，对节点队列进行遍历。没有返回-1</p>
-<img src="/2019/12/28/LRU/Screenshot 2019-12-29 at 00.26.48.png" alt="Screenshot 2019-12-29 at 00.26.48" style="zoom:25%; ">
+<img src="/%E2%80%99/2019/12/28/LRU/Screenshot 2019-12-29 at 00.26.48.png" alt="Screenshot 2019-12-29 at 00.26.48" style="zoom:25%; ">
 <h5 id="Step8-cache-get-3">Step8 :cache.get(3);</h5>
 <p>检测缓存中是否有课id为3的内容，对节点队列进行遍历。发现有则返回value</p>
-<img src="/2019/12/28/LRU/Screenshot 2019-12-29 at 00.26.52.png" alt="Screenshot 2019-12-29 at 00.26.52" style="zoom:25%; ">
+<img src="/%E2%80%99/2019/12/28/LRU/Screenshot 2019-12-29 at 00.26.52.png" alt="Screenshot 2019-12-29 at 00.26.52" style="zoom:25%; ">
 <h5 id="Step9-cache-get-4">Step9 : cache.get(4);</h5>
 <p>检测缓存中是否有课id为3的内容，对节点队列进行遍历。发现有则返回value。并交换节点（4，4）和（3，3）的位置。</p>
-<img src="/2019/12/28/LRU/Screenshot 2019-12-29 at 00.26.55.png" alt="Screenshot 2019-12-29 at 00.26.55" style="zoom:25%; ">
+<img src="/%E2%80%99/2019/12/28/LRU/Screenshot 2019-12-29 at 00.26.55.png" alt="Screenshot 2019-12-29 at 00.26.55" style="zoom:25%; ">
 <h4 id="代码实现">代码实现</h4>
-<img src="/2019/12/28/LRU/Screenshot 2019-12-22 at 22.04.26.png" alt="Screenshot 2019-12-22 at 22.04.26" style="zoom:25%; ">
+<img src="/%E2%80%99/2019/12/28/LRU/Screenshot 2019-12-22 at 22.04.26.png" alt="Screenshot 2019-12-22 at 22.04.26" style="zoom:25%; ">
 <p>为了方便编程，避免空指针，便于调试。我自己设置了一个头节点和尾节点。在LRU里面自定义一个内部节点类。LRU的结构为hashmap套node。</p>
-<img src="/2019/12/28/LRU/Screenshot 2019-12-22 at 22.07.26.png" alt="Screenshot 2019-12-22 at 22.07.26" style="zoom:25%; ">
+<img src="/%E2%80%99/2019/12/28/LRU/Screenshot 2019-12-22 at 22.07.26.png" alt="Screenshot 2019-12-22 at 22.07.26" style="zoom:25%; ">
 <p>添加到头部，因为是双向所以需要改变两次。这里要插入头部，所以先保存一下原有的头节点，再让原有的头节点与新添加节点做操作。1 新添加节点的下一个指向原有头节点。2 head的下一个指向新添加节点。3 原有头节点的上一个指向新添加节点。 4新添加节点的上一个指向head。 建议大家在做指针指向问题的时候画草图，并且想改变好一个方向再去改变另外的方向。</p>
-<p>删除，也是把前一个节点的下一个节点指向要删除节点的下一个。再把删除节点下一个的前一个指向删除节点的前一个。<img src="/2019/12/28/LRU/Screenshot 2019-12-22 at 22.15.39.png" alt="Screenshot 2019-12-22 at 22.15.39" style="zoom:25%; "></p>
+<p>删除，也是把前一个节点的下一个节点指向要删除节点的下一个。再把删除节点下一个的前一个指向删除节点的前一个。<img src="/%E2%80%99/2019/12/28/LRU/Screenshot 2019-12-22 at 22.15.39.png" alt="Screenshot 2019-12-22 at 22.15.39" style="zoom:25%; "></p>
 <p>get 操作：检测hashmap是否含有key值。若存在，取出node节点，删除原有的node节点，再从新插入到头部。返回value。没有直接返回-1。</p>
 <p>put操作 ：检测hashmap是否含有key值，若存在，取出node节点。取出node节点，删除原有的node节点，再从新插入到头部。若没有，先判断，hashmap是否达到自己的最大容量，若达到，删除队尾节点，在将新节点插入头部。如没达到容量直接插入。</p>
 <h4 id="测试结果">测试结果</h4>
-<img src="/2019/12/28/LRU/Screenshot 2019-12-22 at 22.03.57.png" alt="Screenshot 2019-12-22 at 22.03.57" style="zoom:25%; ">
+<img src="/%E2%80%99/2019/12/28/LRU/Screenshot 2019-12-22 at 22.03.57.png" alt="Screenshot 2019-12-22 at 22.03.57" style="zoom:25%; ">
 <h4 id="源码仓库：">源码仓库：</h4>
 <p><a href="https://github.com/wuhewuhe/LeetcodeNotes/tree/master/src/RealLifeProblem" target="_blank" rel="noopener">https://github.com/wuhewuhe/LeetcodeNotes/tree/master/src/RealLifeProblem</a></p>
 <h4 id="总结">总结</h4>
@@ -595,7 +595,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link:</strong>
-    <a href="http://yoursite.com/2019/12/28/LRU/" title="LRU">http://yoursite.com/2019/12/28/LRU/</a>
+    <a href="https://wuhewuhe.github.io/%E2%80%99/2019/12/28/LRU/" title="LRU">https://wuhewuhe.github.io/%E2%80%99/2019/12/28/LRU/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice: </strong>
@@ -886,7 +886,25 @@
 	}
 	siteTime()
 </script>
-
+<span id="busuanzi_value_site_pv"></span>
+<span id="busuanzi_value_site_uv"></span>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var int = setInterval(fixCount, 100);
+        var busuanziSiteOffset = parseInt(10000);
+        function fixCount() {
+            if ($("#busuanzi_container_site_pv").css("display") != "none") {
+                clearInterval(int);
+                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + busuanziSiteOffset);
+            }
+			if ($("#busuanzi_container_site_uv").css("display") != "none") {
+                clearInterval(int);
+                $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + busuanziSiteOffset);
+            }
+        }
+    });
+</script>
         
 <div class="busuanzi-count">
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
@@ -915,19 +933,7 @@
 
 
   
-    <span class="site-uv">
-      
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-      
-    </span>
-  
 
-  
-    <span class="site-pv">
-       
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-       
-    </span>
   
 <!--  不蒜子计数
   

@@ -93,7 +93,7 @@
 <meta name="description" content="关于我 我叫吴赫，一个外表逗比内心细腻的码农，来自北京现在在巴黎工作。大学在北京工业大学读的计算机，参加了一个中法工程师的项目于是在大三结束来到了巴黎，在一个叫efrei的工程师学校读了1年本科和2年研究生。 出国前 和大多数学生一样，我是一个普通人，智商平平，也没有啥过人之处，爱好广发，好动。高考报志愿的时候看到一个可以出国的项目就报了，对计算机也没啥兴趣，国内边学边玩过了三年丰富多彩的生活。然">
 <meta property="og:type" content="website">
 <meta property="og:title" content="about">
-<meta property="og:url" content="http://yoursite.com/about/index.html">
+<meta property="og:url" content="https://wuhewuhe.github.io/%E2%80%99/about/index.html">
 <meta property="og:site_name" content="He WU">
 <meta property="og:description" content="关于我 我叫吴赫，一个外表逗比内心细腻的码农，来自北京现在在巴黎工作。大学在北京工业大学读的计算机，参加了一个中法工程师的项目于是在大三结束来到了巴黎，在一个叫efrei的工程师学校读了1年本科和2年研究生。 出国前 和大多数学生一样，我是一个普通人，智商平平，也没有啥过人之处，爱好广发，好动。高考报志愿的时候看到一个可以出国的项目就报了，对计算机也没啥兴趣，国内边学边玩过了三年丰富多彩的生活。然">
 <meta property="og:locale" content="en_US">
@@ -130,7 +130,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/about/"/>
+  <link rel="canonical" href="https://wuhewuhe.github.io/’/about/"/>
 
 
 
@@ -561,7 +561,25 @@
 	}
 	siteTime()
 </script>
-
+<span id="busuanzi_value_site_pv"></span>
+<span id="busuanzi_value_site_uv"></span>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var int = setInterval(fixCount, 100);
+        var busuanziSiteOffset = parseInt(10000);
+        function fixCount() {
+            if ($("#busuanzi_container_site_pv").css("display") != "none") {
+                clearInterval(int);
+                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + busuanziSiteOffset);
+            }
+			if ($("#busuanzi_container_site_uv").css("display") != "none") {
+                clearInterval(int);
+                $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + busuanziSiteOffset);
+            }
+        }
+    });
+</script>
         
 <div class="busuanzi-count">
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
@@ -590,19 +608,7 @@
 
 
   
-    <span class="site-uv">
-      
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-      
-    </span>
-  
 
-  
-    <span class="site-pv">
-       
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-       
-    </span>
   
 <!--  不蒜子计数
   

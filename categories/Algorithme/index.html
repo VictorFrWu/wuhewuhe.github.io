@@ -597,6 +597,15 @@
 	}
 	siteTime()
 </script>
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+<span id="busuanzi_container_site_uv">
+  本站总人数<span id="busuanzi_value_site_uv"></span>人
+</span>
+<span id="busuanzi_container_page_pv">
+    本站总阅读数<span id="busuanzi_value_page_pv"></span>次
+</span>
         
 <div class="busuanzi-count">
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
@@ -615,39 +624,48 @@
             }
             if ($("#busuanzi_container_page_pv").css("display") != "none") {
                 clearInterval(int);
-                $("#busuanzi_value_page_pv").html(parseInt($("#busuanzi_value_page_pv").html()) + 10000);
+                $("#busuanzi_value_page_pv").html(parseInt($("#busuanzi_value_page_pv").html()) + 30000);
             }
         }
     });
 </script>
-<!--  不蒜子计数 -->
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span> 次
+</span>
+<span id="busuanzi_container_site_uv">
+  本站总人数<span id="busuanzi_value_site_uv"></span> 人
+</span>
+<span id="busuanzi_container_page_pv">
+    本站总阅读数<span id="busuanzi_value_page_pv"></span> 次
+</span>
+<!--  
   
     <span class="site-uv">
-      访客数
+      
       <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-      人
+      
     </span>
   
 
   
     <span class="site-pv">
-      总访问量 
+       
       <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-      次 
+       
     </span>
   
 
   
     <span class="page_pv">
-      阅读数 
+       
       <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
-      次 
+       
     </span>
   
 
 </div>
 
-
+不蒜子计数 -->
 
 
 

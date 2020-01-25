@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>sql高频概念</title>
+      <link href="/2020/01/25/sqlExecuteProcess/"/>
+      <url>/2020/01/25/sqlExecuteProcess/</url>
+      
+        <content type="html"><![CDATA[<h4 id="SQL">SQL</h4><blockquote><p>SQL is a domain-specific language used in programming and designed for managing data held in a relational database management system, or for stream processing in a relational data stream management system.</p></blockquote><h4 id="sql语法的分析是从右到左">sql语法的分析是从右到左</h4><p>1）语法分析，分析语句的语法是否符合规范，衡量语句中各表达式的意义。<br>2）语义分析，检查语句中涉及的所有数据库对象是否存在，且用户有相应的权限。<br>3）视图转换，将涉及视图的查询语句转换为相应的对基表查询语句。<br>4）表达式转换， 将复杂的 SQL 表达式转换为较简单的等效连接表达式。<br>5）选择优化器，不同的优化器一般产生不同的“执行计划”<br>6）选择连接方式， ORACLE 有三种连接方式，对多表连接 ORACLE 可选择适当的连接方式。<br>7）选择连接顺序， 对多表连接 ORACLE 选择哪一对表先连接，选择这两表中哪个表做为源数据表。<br>8）选择数据的搜索路径，根据以上条件选择合适的数据搜索路径，如是选用全表搜索还是利用索引或是其他的方式。<br>9）运行“执行计划”</p><h4 id="select-语句执行顺序">select 语句执行顺序</h4><p>1 from子句组装来自不同数据源的数据；</p><p>2 where子句基于指定的条件对记录行进行筛选；</p><p>3 group by子句将数据划分为多个分组；</p><p>4 使用聚集函数进行计算；</p><p>5 使用having子句筛选分组；</p><p>6 计算所有的表达式；</p><p>7 select 的字段；</p><p>8 使用order by对结果集进行排序。<br>SQL语言不同于其他编程语言的最明显特征是处理代码的顺序。在大多数据库语言中，代码按编码顺序被处理。但在SQL语句中，第一个被处理的子句式FROM，而不是第一出现的SELECT。SQL查询处理的步骤序号：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(8)SELECT (9) DISTINCT (11) &lt;TOP_specification&gt; &lt;select_list&gt;</span><br><span class="line">(1)  FROM &lt;left_table&gt;</span><br><span class="line">(3) &lt;join_type&gt; JOIN &lt;right_table&gt;</span><br><span class="line">(2) ON &lt;join_condition&gt;</span><br><span class="line">(4) WHERE &lt;where_condition&gt;</span><br><span class="line">(5) GROUP BY &lt;group_by_list&gt;</span><br><span class="line">(6) WITH &#123;CUBE | ROLLUP&#125;</span><br><span class="line">(7) HAVING &lt;having_condition&gt;</span><br><span class="line">(10) ORDER BY &lt;order_by_list&gt;</span><br></pre></td></tr></table></figure><h4 id="where与having的区别">where与having的区别</h4><p>对需要进行分组的数据进行限制，汇总函数不能用在 WHERE 子句中，而是要用HAVING 子句 。HAVING子句允许你将汇总函数作为条件。</p><h4 id="UNION与UNION-ALL合并">UNION与UNION ALL合并</h4><p>UNION将返回两个查询的结果并去除其中的重复部分，UNION ALL与UNION一样对表进行了合并，但是它不去掉重复的记录。</p><h4 id="数据定义语言">数据定义语言</h4><p>Data definition language</p><blockquote><p>A <strong>data definition</strong> or <strong>data description language</strong> (<strong>DDL</strong>) is a syntax similar to a computer <a href="https://en.wikipedia.org/wiki/Programming_language" target="_blank" rel="noopener">programming language</a> for defining <a href="https://en.wikipedia.org/wiki/Data_structure" target="_blank" rel="noopener">data structures</a>, especially <a href="https://en.wikipedia.org/wiki/Database_schema" target="_blank" rel="noopener">database schemas</a>. DDL statements create and modify database objects such as tables, indexes, and users. Common DDL statements are CREATE, ALTER, and DROP</p></blockquote><p>类似于我们编程的数据结构，用于定义数据库的三级结构，包括外模式、概念模式、内模式及其相互之间的映像，定义数据的完整性、安全控制等约束，DDL不需要commit.</p><h4 id="数据操作语言">数据操作语言</h4><p><strong>DML</strong>（<strong>Data Manipulation Language</strong>）<strong>数据操纵语言</strong>statements are used for managing data within schema objects.</p><p>由DBMS提供，用于让用户或程序员使用，实现对数据库中数据的操作。<br>DML分成交互型DML和嵌入型DML两类。<br>依据语言的级别，DML又可分成过程性DML和非过程性DML两种。<br>需要commit.<br>SELECT<br>INSERT<br>UPDATE<br>DELETE<br>MERGE<br>CALL<br>EXPLAIN PLAN<br>LOCK TABLE</p><h4 id="数据库控制语言"><strong>数据库控制语言</strong></h4><p><strong>DCL</strong>（<strong>Data Control Language</strong>）<strong>数据库控制语言</strong> 授权，角色控制等<br>GRANT 授权<br>REVOKE 取消授权</p><h4 id="TCL-（Transaction-Control-Language）-事务控制语言">TCL**（<strong>Transaction Control Language</strong>）**事务控制语言</h4><p>SAVEPOINT 设置保存点<br>ROLLBACK 回滚<br>SET TRANSACTION</p><h4 id="Turncate-和-drop">Turncate 和 drop</h4><p>turncate只删除表中的数据，不触碰表的结构。drop删除整个表，<strong>小心使用drop与turncate，因为他们是数据定义语言，不能roll back</strong></p><h4 id="MINUS相减">MINUS相减</h4><p>返回的记录是存在于第一个表中但不存在于第二个表中的记录。如果解释器不支持一般用table_name1 t2 LEFT OUTER JOIN table_name2 t2 WHERE t2.col_name IS NULL;</p><h4 id="关于空值【高频】"><strong>关于空值【高频】</strong></h4><p>SQL中的空值是NULL，空值是不能用等号来比较的，而是要用IS NULL或者IS NOT NULL来判断值是否为空值。</p><p>面试的时候往往需要在输出结果中对空值进行处理，这时候最好用的就是IFNULL函数和ISNULL函数了。<strong>IFNULL</strong>是当SQL查询某个字段为空的时候，查询结果中设置其值为默认值。<strong>ISNULL</strong>使用指定的替换值替换 NULL：<br>ISNULL (检查的对象, 如果为空值替换的值)</p><p>可惜，MySQL中ISNULL只是用来判断是否为空，不能实现替换功能，所以用IFNULL代替，语法和上面的ISNULL一样。</p><h4 id="返回前几行【高频】"><strong>返回前几行【高频】</strong></h4><p>MySQL的LIMIT+数字和TOP子句是等价的，并非所有的数据库系统都支持 TOP 子句。所以我们来简单看一下limit+offset的用法。以下这两句都合乎语法，但是有区别：</p><p>select * from table_name limit 3,1;        # 跳过前3条数据，从数据库中第4条开始查询，取一条数据，即第4条数据<br>select * from table_name limit 3 offset 1;   # 从数据库中的第2条数据开始查询3条数据，即第2条到第4条</p><p>记住这两句，再加上order by column_name (desc) 就能应付“消费第二多的客户”、“点击量第5到20名”之类的问题的。</p><h4 id="条件语句【中频】"><strong>条件语句【中频】</strong></h4><p>条件语句考得并不多，但是如果很久不用MySQL就容易忘记。MySQL里常用的条件语句是Case。Case语句分为两种：简单Case函数和Case搜索函数。</p><p>- 简单Case函数：<br>CASE gender WHEN ‘0’ THEN ‘male’ WHEN ‘1’ THEN ‘female’ ELSE ‘others’ END<br>- Case搜索函数：<br>CASE WHEN age &lt; 18 THEN ‘未成年人’ WHEN age &lt; 60 THEN ‘成年人’ ELSE ‘老年人’ END</p><p>Case语句只返回第一个符合条件的结果，剩下的条件会被自动忽略，比如上例中一个数据的age为16，那么它就在第一个case中被返回，不会进入第二个when中进行判断，因此返回’未成年人’而不是’成年人’。</p><h4 id="随机抽样【低频】"><strong>随机抽样【低频】</strong></h4><p>有时候面试会考到如何在SQL表中随机抽样，这时候就要用到RAND()函数。</p><p>通常被面试者的第一反应是：SELECT * FROM table ORDER BY RAND() LIMIT 10000，这样来抽取一万个样本。但是如果数据量很大，上述的做法太慢了：它对于每一行都用了RAND()函数，这一步复杂度是O(n)；然后再排序，这一步的复杂度O(nlogn)。</p><p>所以可以改用这个方法：SELECT * FROM table WHERE RAND() &lt;= .3，这样可以抽出约30%的数据，然后再用TOP或者LIMIT子句。</p><h4 id="自然连接和内链接区别">自然连接和内链接区别</h4><p>自然连接不用指定连接列，也不能使用ON语句，它默认比较两张表里相同的列，但是相同列的数量不能大于1</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Interview </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> sql </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>20道SQL 面试题帮你拿到第一个offer</title>
       <link href="/2020/01/25/sql20questions/"/>
       <url>/2020/01/25/sql20questions/</url>

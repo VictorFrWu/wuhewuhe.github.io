@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="blog," />
+  <meta name="keywords" content="sql," />
 
 
 
@@ -90,32 +90,24 @@
 
 
 
-<meta name="description" content="随着互联网浪潮的翻腾，国内外涌现出越来越多优秀的网站，自媒体人，blog。他们凭借这自己独到的见解，以及在某一方面的建树，瞬间圈粉，成为了我们所谓的网红。如果你是一个不甘寂寞的人，那么你可曾想过做一个属于自己的网站。 很多人觉着做一个网站是一个很繁琐的过程，从域名，到服务器，再到各种协议，前端，后台，数据库，测试，上线部署… . 以上都是大型的企业级项目，其实如果我们很好的借助现成的工具，那么无论">
+<meta name="description" content="基本语法 创建表 123456 CREATE TABLE table_name ( column1 datatype null or not null(optional), column2 datatype null or not null(optional), column3 datatype null or not null(optional),  ....); 删除表 1DROP TABLE">
 <meta property="og:type" content="article">
-<meta property="og:title" content="从零开始手把手教大家如何制作网站（基础版）">
-<meta property="og:url" content="https://wuhewuhe.github.io/2020/01/15/how-to-setup-site/index.html">
+<meta property="og:title" content="20道SQL 面试题帮你拿到第一个offer">
+<meta property="og:url" content="https://wuhewuhe.github.io/2020/01/25/sql20questions/index.html">
 <meta property="og:site_name" content="He WU">
-<meta property="og:description" content="随着互联网浪潮的翻腾，国内外涌现出越来越多优秀的网站，自媒体人，blog。他们凭借这自己独到的见解，以及在某一方面的建树，瞬间圈粉，成为了我们所谓的网红。如果你是一个不甘寂寞的人，那么你可曾想过做一个属于自己的网站。 很多人觉着做一个网站是一个很繁琐的过程，从域名，到服务器，再到各种协议，前端，后台，数据库，测试，上线部署… . 以上都是大型的企业级项目，其实如果我们很好的借助现成的工具，那么无论">
+<meta property="og:description" content="基本语法 创建表 123456 CREATE TABLE table_name ( column1 datatype null or not null(optional), column2 datatype null or not null(optional), column3 datatype null or not null(optional),  ....); 删除表 1DROP TABLE">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://wuhewuhe.github.io/2020/01/15/how-to-setup-site/Hexo.jpg">
-<meta property="og:image" content="https://wuhewuhe.github.io/2020/01/15/how-to-setup-site/github.png">
-<meta property="og:image" content="https://wuhewuhe.github.io/2020/01/15/how-to-setup-site/npm.png">
-<meta property="og:image" content="https://wuhewuhe.github.io/2020/01/15/how-to-setup-site/hexoinit.jpeg">
-<meta property="og:image" content="https://wuhewuhe.github.io/2020/01/15/how-to-setup-site/next.png">
-<meta property="og:image" content="https://wuhewuhe.github.io/2020/01/15/how-to-setup-site/title.png">
-<meta property="og:image" content="https://wuhewuhe.github.io/2020/01/15/how-to-setup-site/avatar.png">
-<meta property="og:image" content="https://wuhewuhe.github.io/2020/01/15/how-to-setup-site/tag.png">
-<meta property="og:image" content="https://wuhewuhe.github.io/2020/01/15/how-to-setup-site/words.png">
-<meta property="og:image" content="https://wuhewuhe.github.io/2020/01/15/how-to-setup-site/runtime.png">
-<meta property="og:image" content="https://wuhewuhe.github.io/2020/01/15/how-to-setup-site/search.png">
-<meta property="og:image" content="https://wuhewuhe.github.io/2020/01/15/how-to-setup-site/url.png">
-<meta property="og:image" content="https://wuhewuhe.github.io/2020/01/15/how-to-setup-site/githubUrl.png">
-<meta property="article:published_time" content="2020-01-15T22:13:40.000Z">
-<meta property="article:modified_time" content="2020-01-19T21:30:49.588Z">
+<meta property="og:image" content="https://wuhewuhe.github.io/2020/01/25/sql20questions/innerjoin.png">
+<meta property="og:image" content="https://wuhewuhe.github.io/2020/01/25/sql20questions/innerjoin.png">
+<meta property="og:image" content="https://wuhewuhe.github.io/2020/01/25/sql20questions/leftjoin.png">
+<meta property="og:image" content="https://wuhewuhe.github.io/2020/01/25/sql20questions/rightjoin.png">
+<meta property="og:image" content="https://wuhewuhe.github.io/2020/01/25/sql20questions/fulljoin.png">
+<meta property="article:published_time" content="2020-01-25T21:38:55.000Z">
+<meta property="article:modified_time" content="2020-01-25T21:41:50.711Z">
 <meta property="article:author" content="WU He">
-<meta property="article:tag" content="blog">
+<meta property="article:tag" content="sql">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://wuhewuhe.github.io/2020/01/15/how-to-setup-site/Hexo.jpg">
+<meta name="twitter:image" content="https://wuhewuhe.github.io/2020/01/25/sql20questions/innerjoin.png">
 
 
 
@@ -145,13 +137,13 @@
 
 
 
-  <link rel="canonical" href="https://wuhewuhe.github.io/2020/01/15/how-to-setup-site/"/>
+  <link rel="canonical" href="https://wuhewuhe.github.io/2020/01/25/sql20questions/"/>
 
 
 
 
 
-  <title>从零开始手把手教大家如何制作网站（基础版） | He WU</title>
+  <title>20道SQL 面试题帮你拿到第一个offer | He WU</title>
   
 
 
@@ -331,7 +323,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://wuhewuhe.github.io/2020/01/15/how-to-setup-site/">
+    <link itemprop="mainEntityOfPage" href="https://wuhewuhe.github.io/2020/01/25/sql20questions/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WU He">
@@ -348,7 +340,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">从零开始手把手教大家如何制作网站（基础版）</h1>
+          <h1 class="post-title" itemprop="name headline">20道SQL 面试题帮你拿到第一个offer</h1>
         
 
         <div class="post-meta">
@@ -360,8 +352,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-01-15T23:13:40+01:00">
-                2020-01-15
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-01-25T22:38:55+01:00">
+                2020-01-25
               </time>
             
 
@@ -383,8 +375,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Web/" itemprop="url" rel="index">
-                    <span itemprop="name">Web</span>
+                  <a href="/categories/Interview/" itemprop="url" rel="index">
+                    <span itemprop="name">Interview</span>
                   </a>
                 </span>
 
@@ -401,8 +393,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/01/15/how-to-setup-site/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2020/01/15/how-to-setup-site/" itemprop="commentsCount"></span>
+                <a href="/2020/01/25/sql20questions/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2020/01/25/sql20questions/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -429,7 +421,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  2.7k words
+                  1.4k words
                 </span>
               
 
@@ -445,7 +437,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  10 minutes
+                  6 minutes
                 </span>
               
             </div>
@@ -466,146 +458,125 @@
       
 
       
-        <p>随着互联网浪潮的翻腾，国内外涌现出越来越多优秀的网站，自媒体人，blog。他们凭借这自己独到的见解，以及在某一方面的建树，瞬间圈粉，成为了我们所谓的网红。如果你是一个不甘寂寞的人，那么你可曾想过做一个属于自己的网站。</p>
-<p>很多人觉着做一个网站是一个很繁琐的过程，从域名，到服务器，再到各种协议，前端，后台，数据库，测试，上线部署… . 以上都是大型的企业级项目，其实如果我们很好的借助现成的工具，那么无论你是不是计算机专业，懂不懂编代码，记住几条命令，改一些配置，不花一分钱，你就拥有属于自己的个性化网站。</p>
-<h4 id="工具">工具</h4>
-<p>hexo 框架, Next主题，github服务器，markdown编辑器</p>
-<p>以上这四个工具，就足够我们做出一个精美的网站。</p>
-<h4 id="Hexeo">Hexeo</h4>
-<img src="/2020/01/15/how-to-setup-site/Hexo.jpg" alt="Hexo" style="zoom:25%; ">
-<blockquote>
-<blockquote>
-<p><em>Hexo</em> is a fast, simple &amp; powerful <em>blog</em> framework powered by Node.js.</p>
-</blockquote>
-</blockquote>
-<p>这是hexo官网给出的简介，确实hexo是全球最大的同性恋网站，但是其也是一个由node js编写的，非常快捷好用的博客协同框架。其优点就是：</p>
-<ul>
-<li>部署简单 ： 一条指令就完成</li>
-<li>速度快： 快速生成文章，渲染几百个页面几秒钟搞定</li>
-<li>开源 ：非常多的插件，强大的api，庞大的讨论区</li>
-<li>支持markdow语法 ： 之前写过一期md语法的介绍，高效书写，很好的和github，简书兼容</li>
-</ul>
-<p>读完本文，实践作出一个属于自己的网站，你就会发现hexo的优点。</p>
-<h5 id="hexo-基本操作">hexo 基本操作</h5>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">hexo -version #查看版本</span><br><span class="line">hexo clean #清空</span><br><span class="line">hexo g #generate 生成</span><br><span class="line">hexo s #server 本地调试</span><br><span class="line">hexo d #deploy 部署</span><br><span class="line">hexo list &lt;type&gt; #列出资料 page，tags，categories</span><br><span class="line">hexo --save #安全模式 遇到问题重新执行</span><br><span class="line">hexo --debug #debug 显示log</span><br><span class="line">hexo --silent</span><br></pre></td></tr></table></figure>
-<h4 id="Github">Github</h4>
-<img src="/2020/01/15/how-to-setup-site/github.png" alt="github" style="zoom:20%; ">
-<p>Github，想起了一句忘记从哪里听到的话<strong>你和大神之间就只差一个github</strong>，他本来就是一个托管代码的大仓库，相信每一个程序的新手毕竟之路都是有github的陪伴，有了他我们再也不用担心不小心删了代码，或者把某一个地方改崩了，大家还能协同开发各司其职。同时git也是github的唯一版本库管理工具，我也专门做了一起git的使用从进阶到入门，感兴趣的小伙伴可以在往期内容查看。当然github也分为个人和企业，收费与免费版，github的初衷就是开源，大家都可以看到源代码，做出自己的贡献，有很多炙手可热，家喻户晓的项目都在github上开源：</p>
-<ul>
-<li>React ReactMobile （github仓库下载量贡献第一的repository，由facebook维护）</li>
-<li>Linux （操作系统之父）</li>
-<li>Swift （Apple 发布的原生编程语言）</li>
-</ul>
-<p>当然，初次之外，github还有很多其他的功能，比如我们今天用到的服务器域名。</p>
-<h4 id="搭建步骤">搭建步骤</h4>
-<h5 id="基本步骤">基本步骤</h5>
-<p>1 安装npm，node js</p>
-<p>2 下载 安装 hexo框架</p>
-<p>3 发布文章</p>
-<p>4 下载 Next主题</p>
-<p>5 修改配置（人性化图片，title，分类，标签）</p>
-<p>6 文章字数统计 阅读时间</p>
-<p>7 网站运行时间</p>
-<p>8 加入搜索功能</p>
-<p>9 Github 获取域名</p>
-<p>10 绑定域名 部署</p>
-<h5 id="附加选项">附加选项</h5>
-<p>1 动态背景</p>
-<p>2 鼠标点击气球爆炸效果</p>
-<p>3 右上角加加入github装横</p>
-<p>4 评论功能</p>
-<p>5 小图标链接</p>
-<p>6 加入微信 支付宝打赏</p>
-<p>7 RSS xml 全览</p>
-<p>8 文章底角加入微信公众号推送</p>
-<p>9 防止转载</p>
-<p>10 网站访问量人数和次数统计</p>
-<h5 id="安装npm-nodejs">安装npm nodejs</h5>
-<p><a href="https://www.npmjs.com/get-npm%E7%82%B9%E5%87%BB%E8%BF%9B%E5%85%A5%E9%93%BE%E6%8E%A5%EF%BC%8C%E5%86%8D%E7%82%B9%E5%87%BBdownload" target="_blank" rel="noopener">https://www.npmjs.com/get-npm点击进入链接，再点击download</a> node js and npm，勾选本地安装。安装结束后，打开终端，分别输入<strong>node -v</strong>和 <strong>npm -v</strong> 查看npm和node是否成功安装以及其对应版本。</p>
-<img src="/2020/01/15/how-to-setup-site/npm.png" alt="npm" style="zoom:50%; ">
-<h5 id="下载-安装-hexo框架">下载 安装 hexo框架</h5>
-<p>Hexo就是我们的个人博客网站的框架， 这里需要自己在电脑常里创建一个文件夹，命名为Blog_life，Hexo框架与以后你自己发布的网页都在这个文件夹中。创建好后，进入文件夹中，copy文件夹路径进入终端依次输入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli </span><br><span class="line">hexo init blog</span><br></pre></td></tr></table></figure>
-<p>执行完这两句话后，打开<strong>localhost：4000</strong>可以看到如下图所示</p>
-<img src="/2020/01/15/how-to-setup-site/hexoinit.jpeg" alt="hexoinit" style="zoom:100%; ">
-<h5 id="发布文章">发布文章</h5>
-<p>这里带大家熟悉一下hexo的几条常用命令，掌握这几条大家就可以基本完成文章的发布与删除</p>
-<p><code>hexo new &quot;gitTuto&quot;</code></p>
-<p>可以简写为 hexo n “文章题目”</p>
-<h5 id="下载next主题">下载next主题</h5>
-<p>本文默认大家电脑已经安装了git，如果需要熟悉安装<a href="https://wuhewuhe.github.io/2020/01/18/gitTuto/#more">git介绍，安装，基本操作</a>。hexo有100多个主题，大家可以在官网上看到挑选自己喜欢的，这里为大家展示Next主题，主要是因为其黑白风格简明耐看，而且社区庞大，及时更新，有问题好解决，而且next也是hexo最出名的主题之一。</p>
-<p>这里建议老鸟下载最新版，但是新手还是使用稳定版的比较好，我本人使用的5.1.4，如果为了避免错误大家可以全程和我同步。</p>
-<p><code>git clone https://github.com/iissnan/hexo-theme-next</code></p>
-<p>下载完成后，进入blog目录下的theme文件，发现多了一个next主题，进入根目录的_config.yml文件，将找到theme关键字修改问<strong>theme ：next</strong>注意空格，重新执行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo clean </span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-<p>然后大家后看到如下效果：</p>
-<img src="/2020/01/15/how-to-setup-site/next.png" alt="next" style="zoom:50%; ">
-<h5 id="修改配置">修改配置</h5>
-<p><strong>网站的titile 与 subttile</strong></p>
-<p>进入根目录下的*_config.yml*，编辑此文件，自定义title和subtitle</p>
-<img src="/2020/01/15/how-to-setup-site/title.png" alt="title" style="zoom:33%; ">
-<p><strong>编辑照片</strong></p>
-<p>找到一张我们想要的照片jpg，jpeg，png格式不限，调整大小至215*215 pixel放到themes/next/source/images下，进入next主题下的_config.yml, 查找关键字avatar编辑</p>
-<img src="/2020/01/15/how-to-setup-site/avatar.png" alt="avatar" style="zoom:33%; ">
-<p><strong>文章分类</strong></p>
-<p>分档归类，方便自己管理管理博客，同时也能方便读者阅读，这也是hexo的特性之一</p>
-<p>打开分类功能：</p>
-<p><code>hexo new page categories</code></p>
-<p>这说你的source目录下生成 categories/index.md 文件，我们将其打开，把它改成：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">type: &quot;categories&quot; </span><br><span class="line">comments: false</span><br></pre></td></tr></table></figure>
-<p>这时候你就可以给你的文章归类存档了，使用方式就是在你的文章的头部加上：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">categories:</span><br><span class="line"> - 分类1 </span><br><span class="line"> - 分类2</span><br></pre></td></tr></table></figure>
-<p>注意yml格式的文件编写是一定注意空格，否则不识别</p>
-<p><strong>文章标签</strong></p>
-<p>同上所示，首先大概标签功能，在对其md文件进行编辑，修改其类型和关闭评论功能，添加标签。</p>
-<p>注意这里大家为了区分标签和分类，可以定义自己熟悉的语法格式，比如我的分类都是首字母大写，标签首字母小写。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hexo new page tags</span><br><span class="line">type: &quot;categories&quot;  </span><br><span class="line">comments: false</span><br><span class="line">- tag1</span><br><span class="line">- tag2</span><br></pre></td></tr></table></figure>
-<p>最后回到根目录的*_config.yml*文件中检查，tag_dir和category_dir是否被激活，如下图所示</p>
-<img src="/2020/01/15/how-to-setup-site/tag.png" alt="tag" style="zoom:33%; ">
-<p>另外，Markdown 的语法是写作最优雅最简洁最简单的，如果之前没用过的建议去学一下<a href="https://wuhewuhe.github.io/2019/12/29/markdown/#more">Markdown语法简介</a>。</p>
-<h5 id="文章字数统计-阅读时间">文章字数统计 阅读时间</h5>
-<p>如果没有安装 hexo-wordcount 插件，先安装该插件：</p>
-<p><strong>npm i --save hexo-wordcount</strong></p>
-<p>next主题已经集成此功能，我们直接修改配置就好</p>
-<p>要在主题配置文件 _config.yml 中打开 wordcount 统计功能即可。如下所示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">post_wordcount:</span><br><span class="line">  item_text: true</span><br><span class="line">  wordcount: true         # 单篇 字数统计</span><br><span class="line">  min2read: true          # 单篇 阅读时长</span><br><span class="line">  totalcount: false       # 网站 字数统计</span><br><span class="line">  separated_meta: true</span><br></pre></td></tr></table></figure>
-<p><strong>效果</strong></p>
-<img src="/2020/01/15/how-to-setup-site/words.png" alt="words" style="zoom:33%; ">
-<h5 id="网站运行时间">网站运行时间</h5>
-<p>找到 \themes\next\layout_partials\ 下面的footer.swig文件</p>
-<p>找到<span id="sitetime">在其后面加入如下代码</span></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;script language&#x3D;&quot;javascript&quot;&gt;</span><br><span class="line"></span><br><span class="line">    function siteTime()&#123;</span><br><span class="line">        window.setTimeout(&quot;siteTime()&quot;, 1000);</span><br><span class="line">        var seconds &#x3D; 1000</span><br><span class="line">        var minutes &#x3D; seconds * 60</span><br><span class="line">        var hours &#x3D; minutes * 60</span><br><span class="line">        var days &#x3D; hours * 24</span><br><span class="line">        var years &#x3D; days * 365</span><br><span class="line">        var today &#x3D; new Date()</span><br><span class="line">        var todayYear &#x3D; today.getFullYear()</span><br><span class="line">        var todayMonth &#x3D; today.getMonth()</span><br><span class="line">        var todayDate &#x3D; today.getDate()</span><br><span class="line">        var todayHour &#x3D; today.getHours()</span><br><span class="line">        var todayMinute &#x3D; today.getMinutes()</span><br><span class="line">        var todaySecond &#x3D; today.getSeconds()</span><br><span class="line">        var t1 &#x3D; Date.UTC(2017,4,18,11,00,00)</span><br><span class="line">        var t2 &#x3D; Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond)</span><br><span class="line">        var diff &#x3D; t2-t1</span><br><span class="line"></span><br><span class="line">        var diffYears &#x3D; Math.floor(diff&#x2F;years)</span><br><span class="line">        var diffDays &#x3D; Math.floor((diff&#x2F;days)-diffYears*365)</span><br><span class="line">        var diffHours &#x3D; Math.floor((diff-(diffYears*365+diffDays)*days)&#x2F;hours)</span><br><span class="line">        var diffMinutes &#x3D; Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)&#x2F;minutes)</span><br><span class="line">        var diffSeconds &#x3D; Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)&#x2F;seconds)</span><br><span class="line">        document.getElementById(&quot;sitetime&quot;).innerHTML&#x3D;&quot; this site has runnned &quot;+diffYears+&quot; year &quot;+diffDays+&quot; day &quot;+diffHours+&quot; hour &quot;+diffMinutes+&quot; minute &quot;+diffSeconds+&quot; second&lt;br&gt;&quot;</span><br><span class="line">    &#125;</span><br><span class="line">    siteTime()</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-<p><strong>效果</strong></p>
-<img src="/2020/01/15/how-to-setup-site/runtime.png" alt="runtime" style="zoom:33%; ">
-<h5 id="搜索功能">搜索功能</h5>
-<p>安装搜索：在Hexo的根目录下，打开命令可执行窗口，执行如下命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure>
-<p>全局配置文件_config.yml，新增如下内容：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  format: html</span><br><span class="line">  limit: 10000</span><br></pre></td></tr></table></figure>
-<p>hexo主题配置文件（\themes\next_config.yml），修改local_search的enable为true：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># Local search</span><br><span class="line"># Dependencies: https:&#x2F;&#x2F;github.com&#x2F;flashlab&#x2F;hexo-generator-search</span><br><span class="line">local_search:</span><br><span class="line">  enable: true</span><br><span class="line">  # if auto, trigger search by changing input</span><br><span class="line">  # if manual, trigger search by pressing enter key or search button</span><br><span class="line">  trigger: auto</span><br><span class="line">  # show top n results per article, show all results by setting to -1</span><br><span class="line">  top_n_per_article: 1</span><br></pre></td></tr></table></figure>
-<p><strong>效果</strong></p>
-<img src="/2020/01/15/how-to-setup-site/search.png" alt="search" style="zoom:33%;">
-<h5 id="Github-获取域名">Github 获取域名</h5>
-<p>为了让全世界的人都可以访问到你的网站，接着创建一个public的仓库，比如我<strong><a href="http://wuhewuhe.github.io">wuhewuhe.github.io</a></strong>那么到时我就可以通过此网址来访问我的网站了。 创建完成之后，那么你就有自己的 Git 地址了。然后进入setting选项，找到github pages一栏</p>
-<p>这里为什么建议大家新建一个以自己github名字命名的仓库，这里我踩过雷，给大家提议个醒，因为在_config.yml中有一个选项</p>
-<img src="/2020/01/15/how-to-setup-site/url.png" alt="url" style="zoom:33%; ">
-<p>说的是如果我们建了一个二级仓库需要从新修改deploy的url</p>
-<img src="/2020/01/15/how-to-setup-site/githubUrl.png" alt="githubUrl" style="zoom:33%; ">
-<h5 id="绑定域名-部署">绑定域名 部署</h5>
-<p>从终端进入到blog根目录下，执行如下语句用于安装hexo-deploy-git插件</p>
-<p><code>npm install hexo-deployer-git --save</code></p>
-<p>修改根目录下的_config.yml下的deploy选下如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https:&#x2F;&#x2F;github.com&#x2F;wuhewuhe&#x2F;wuhewuhe.github.io</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-<p>安装成功后，进入到pack.json文件中可以到其版本</p>
-<p><code> &quot;hexo-deployer-git&quot;: &quot;^2.1.0&quot;,</code><br>
-重新执行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-<p>重新执行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-<p>成功后，访问到**<a href="https://wuhewuhe.github.io/**%E5%B0%B1%E5%AE%8C%E6%88%90%E4%BA%86%E6%88%91%E4%BB%AC%E8%87%AA%E5%B7%B1%E7%A7%81%E4%BA%BA%E7%9A%84%E7%BD%91%E7%AB%99%E5%8F%91%E5%B8%83">https://wuhewuhe.github.io/**就完成了我们自己私人的网站发布</a></p>
-<h4 id="总结">总结</h4>
-<p>到这里，我们就已经基本熟悉了hexo框架，next主题，github仓库的使用以及运作流程，如果大家感兴趣想添加更多的特效，是网站更加多姿多彩请看下一章<a href="https://wuhewuhe.github.io/2020/01/18/setupSiteImprove/#more">从零开始手把手教大家如何制作网站(进阶版)</a></p>
+        <h3 id="基本语法">基本语法</h3>
+<p><strong>创建表</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> CREATE TABLE table_name (</span><br><span class="line"> column1 datatype null or not null(optional),</span><br><span class="line"> column2 datatype null or not null(optional),</span><br><span class="line"> column3 datatype null or not null(optional),</span><br><span class="line">  ....</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p><strong>删除表</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP TABLE table_name;</span><br></pre></td></tr></table></figure>
+<p><strong>删除表中数据</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DELETE FROM table_name WHERE condition;</span><br></pre></td></tr></table></figure>
+<p><strong>修改：添加列，删除列，修改列名，数据类型</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">-- 添加列</span><br><span class="line">ALTER TABLE table_name</span><br><span class="line">ADD column_name datatype;</span><br><span class="line"></span><br><span class="line">-- 删除列</span><br><span class="line">ALTER TABLE Persons</span><br><span class="line">DROP COLUMN DateOfBirth;</span><br><span class="line"></span><br><span class="line">-- 修改列名</span><br><span class="line">alter table table_name </span><br><span class="line">rename column oldname to newname</span><br><span class="line"></span><br><span class="line">-- 修改列的数据类型</span><br><span class="line">ALTER TABLE table_name</span><br><span class="line">ALTER COLUMN column_name datatype;</span><br></pre></td></tr></table></figure>
+<h4 id="常见问题">常见问题</h4>
+<p><strong>1 查询姓“孟”老师的个数</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select count(教师号)</span><br><span class="line">from teacher</span><br><span class="line">where 教师姓名 like &#39;孟%&#39;;</span><br></pre></td></tr></table></figure>
+<p><strong>2 查询课程编号为“0002”的总成绩</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select sum(成绩)</span><br><span class="line">from score</span><br><span class="line">where 课程号 &#x3D; &#39;0002&#39;;</span><br></pre></td></tr></table></figure>
+<p><strong>3 查询选了课程的学生人数</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select count(distinct 学号) as 学生人数 </span><br><span class="line">from score;</span><br></pre></td></tr></table></figure>
+<h4 id="练习-分组">练习 分组</h4>
+<p><strong>4 查询各科成绩最高和最低的分， 以如下的形式显示：课程号，最高分，最低分</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select 课程号,max(成绩) as 最高分,min(成绩) as 最低分</span><br><span class="line">from score</span><br><span class="line">group by 课程号;</span><br></pre></td></tr></table></figure>
+<p><strong>5 查询每门课程被选修的学生</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select 课程号, count(学号)</span><br><span class="line">from score</span><br><span class="line">group by 课程号;</span><br></pre></td></tr></table></figure>
+<p><strong>6 查询男生、女生人数</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select 性别,count(*)</span><br><span class="line">from student</span><br><span class="line">group by 性别;</span><br></pre></td></tr></table></figure>
+<h4 id="分组结果的条件">分组结果的条件</h4>
+<p><strong>注意使用group by  having</strong></p>
+<p><strong>7 查询平均成绩大于60分学生的学号和平均成绩</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select 学号, avg(成绩)</span><br><span class="line">from score</span><br><span class="line">group by 学号</span><br><span class="line">having avg(成绩)&gt;60;</span><br></pre></td></tr></table></figure>
+<p><strong>8 查询student表中重名的学生，结果包含id和name，按name, id升序</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">select id,name</span><br><span class="line">from student</span><br><span class="line">where name in (</span><br><span class="line">select name from student group by name having(count(*) &gt; 1)</span><br><span class="line">) order by name;</span><br></pre></td></tr></table></figure>
+<p><strong>9 在student_course表中查询平均分不及格的学生，列出学生id和平均分</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select sid,avg(score) as avg_score</span><br><span class="line">from student_course</span><br><span class="line">group by sid having(avg_score&lt;60);</span><br></pre></td></tr></table></figure>
+<p><strong>10 查询至少选修两门课程的学生学号</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select 学号, count(课程号) as 选修课程数目</span><br><span class="line">from score</span><br><span class="line">group by 学号</span><br><span class="line">having count(课程号)&gt;&#x3D;2;</span><br></pre></td></tr></table></figure>
+<p><strong>11查询不及格的课程并按课程号从大到小排列</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select 课程号 </span><br><span class="line">from score </span><br><span class="line">where score &lt; 60 </span><br><span class="line">group by 课程号desc</span><br></pre></td></tr></table></figure>
+<p><strong>12 查询每门课程的平均成绩，结果按平均成绩升序排序，平均成绩相同时，按课程号降序排列</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select 课程号, avg(成绩) as 平均成绩</span><br><span class="line">from score</span><br><span class="line">group by 课程号</span><br><span class="line">order by 平均成绩 asc,课程号 desc;</span><br></pre></td></tr></table></figure>
+<p><strong>13 查询两门以上不及格课程的同学的学号及其平均成绩</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">select 学号， avg（成绩） as 平均成绩</span><br><span class="line">from score</span><br><span class="line">where score &lt; 60</span><br><span class="line">group by 学号</span><br><span class="line">having count(课程号)&gt;&#x3D;2;</span><br></pre></td></tr></table></figure>
+<h4 id="复杂查询-子查询">复杂查询 : 子查询</h4>
+<p><strong>14 查询所有课程成绩小于60分学生的学号、姓名</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">select 学号，姓名</span><br><span class="line">from student</span><br><span class="line">where 学号 in （ select 学号</span><br><span class="line">from student</span><br><span class="line">where score &lt; 60)</span><br></pre></td></tr></table></figure>
+<p><strong>15 查询没有学全所有课的学生的学号、姓名</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">select 学号，姓名</span><br><span class="line">from student</span><br><span class="line">where 学号 in(</span><br><span class="line">select 学号</span><br><span class="line">from score</span><br><span class="line">group by 学号</span><br><span class="line">having count(课程号) &lt; (select count(课程号) from course))</span><br></pre></td></tr></table></figure>
+<p><strong>16 查询出只选修了两门课程的全部学生的学号和姓名</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">select 学号，姓名</span><br><span class="line">from student</span><br><span class="line">where 学号 in(</span><br><span class="line">select 学号</span><br><span class="line">from course</span><br><span class="line">group by 学号</span><br><span class="line">having count(课程号)&#x3D;2）;</span><br></pre></td></tr></table></figure>
+<h4 id="多表查询">多表查询</h4>
+<h5 id="区分概念">区分概念</h5>
+<p>表A记录如下：</p>
+<p>aID　　　　　aNum<br>
+1　　　　　a20050111<br>
+2　　　　　a20050112<br>
+3　　　　　a20050113<br>
+4　　　　　a20050114<br>
+5　　　　　a20050115</p>
+<p>表B记录如下:<br>
+bID　　　　　bName<br>
+1　　　　　2006032401<br>
+2　　　　　2006032402<br>
+3　　　　　2006032403<br>
+4　　　　　2006032404<br>
+8　　　　　2006032408</p>
+<p><strong>nature join</strong></p>
+<img src="/2020/01/25/sql20questions/innerjoin.png" alt="innerjoin" style="zoom:33%; ">
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select * from A,B</span><br><span class="line">where A.aID &#x3D; B.bId</span><br></pre></td></tr></table></figure>
+<p>结果如下:<br>
+aID　　　　　aNum　　　　　bID　　　　　bName<br>
+1　　　　　a20050111　　　　1　　　　　2006032401<br>
+2　　　　　a20050112　　　　2　　　　　2006032402<br>
+3　　　　　a20050113　　　　3　　　　　2006032403<br>
+4　　　　　a20050114　　　　4　　　　　2006032404</p>
+<p><strong>inner join</strong></p>
+<img src="/2020/01/25/sql20questions/innerjoin.png" alt="innerjoin" style="zoom:33%; ">
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select * from A</span><br><span class="line">innerjoin B</span><br><span class="line">on A.aID &#x3D; B.bID</span><br></pre></td></tr></table></figure>
+<p>结果如下:<br>
+aID　　　　　aNum　　　　　bID　　　　　bName<br>
+1　　　　　a20050111　　　　1　　　　　2006032401<br>
+2　　　　　a20050112　　　　2　　　　　2006032402<br>
+3　　　　　a20050113　　　　3　　　　　2006032403<br>
+4　　　　　a20050114　　　　4　　　　　2006032404</p>
+<p><strong>left join</strong></p>
+<img src="/2020/01/25/sql20questions/leftjoin.png" alt="leftjoin" style="zoom:33%; ">
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select * from A</span><br><span class="line">left join B</span><br><span class="line">on A.aID &#x3D; B.bID</span><br></pre></td></tr></table></figure>
+<p>结果如下:<br>
+aID　　　　　aNum　　　　　bID　　　　　bName<br>
+1　　　　　a20050111　　　　1　　　　　2006032401<br>
+2　　　　　a20050112　　　　2　　　　　2006032402<br>
+3　　　　　a20050113　　　　3　　　　　2006032403<br>
+4　　　　　a20050114　　　　4　　　　　2006032404<br>
+5　　　　　a20050115　　　　NULL　　　　　NULL</p>
+<p><strong>right join</strong></p>
+<img src="/2020/01/25/sql20questions/rightjoin.png" alt="rightjoin" style="zoom:33%; ">
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select * from A</span><br><span class="line">right join B</span><br><span class="line">on A.aID &#x3D; B.bID</span><br></pre></td></tr></table></figure>
+<p>结果如下:<br>
+aID　　　　　aNum　　　　　bID　　　　　bName<br>
+1　　　　　a20050111　　　　1　　　　　2006032401<br>
+2　　　　　a20050112　　　　2　　　　　2006032402<br>
+3　　　　　a20050113　　　　3　　　　　2006032403<br>
+4　　　　　a20050114　　　　4　　　　　2006032404<br>
+NULL　　　　　NULL　　　　　8　　　　　2006032408</p>
+<p><strong>full join</strong></p>
+<img src="/2020/01/25/sql20questions/fulljoin.png" alt="fulljoin" style="zoom:33%; ">
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT *</span><br><span class="line">FROM A</span><br><span class="line">FULL OUTER JOIN B</span><br><span class="line">ON A.aID &#x3D; B.bID</span><br></pre></td></tr></table></figure>
+<p>aID　　　　　aNum　　　　　bID　　　　　bName<br>
+1　　　　　a20050111　　　　1　　　　　2006032401<br>
+2　　　　　a20050112　　　　2　　　　　2006032402<br>
+3　　　　　a20050113　　　　3　　　　　2006032403<br>
+4　　　　　a20050114　　　　4　　　　　2006032404<br>
+5　　　　　a20050115　　　　NULL　　　　　NULL　　　　　NULL　　　　NULL　　　　　8					2006032408</p>
+<p><strong>17 查询所有学生的学号、姓名、选课数、总成绩</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">selecta.学号,a.姓名,count(b.课程号) as 选课数,sum(b.成绩) as 总成绩</span><br><span class="line">from student as a </span><br><span class="line">left join score as b on a.学号 &#x3D; b.学号</span><br><span class="line">group by a.学号;</span><br></pre></td></tr></table></figure>
+<p><strong>18 查询平均成绩大于85的所有学生的学号、姓名和平均成绩</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">select a.学号,a.姓名, avg(b.成绩) as 平均成绩</span><br><span class="line">from student as a </span><br><span class="line">left join score as b on a.学号 &#x3D; b.学号</span><br><span class="line">group by a.学号</span><br><span class="line">having avg(b.成绩)&gt;85;</span><br></pre></td></tr></table></figure>
+<p><strong>19 查询学生的选课情况：学号，姓名，课程号，课程名称</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select a.学号, a.姓名, c.课程号,c.课程名称</span><br><span class="line">from student a inner join score b on a.学号&#x3D;b.学号</span><br><span class="line">inner join course c on b.课程号&#x3D;c.课程号;</span><br></pre></td></tr></table></figure>
+<p><strong>20 查询出每门课程的及格人数和不及格人数</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">-- 考察case表达式</span><br><span class="line">select 课程号,</span><br><span class="line">sum(case when 成绩&gt;&#x3D;60 then 1 </span><br><span class="line">	 else 0 </span><br><span class="line">    end) as 及格人数,</span><br><span class="line">sum(case when 成绩 &lt;  60 then 1 </span><br><span class="line">	 else 0 </span><br><span class="line">    end) as 不及格人数</span><br><span class="line">from score</span><br><span class="line">group by 课程号;</span><br></pre></td></tr></table></figure>
+<p>使用分段[100-85], [85-70], [70-60], [&lt;60]来统计各科成绩，分别统计：各分数段人数，课程号和课程名称</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">-- 考察case表达式</span><br><span class="line">select a.课程号,b.课程名称,</span><br><span class="line">sum(case when 成绩 between 85 and 100 </span><br><span class="line">	 then 1 else 0 end) as &#39;[100-85]&#39;,</span><br><span class="line">sum(case when 成绩 &gt;&#x3D;70 and 成绩&lt;85 </span><br><span class="line">	 then 1 else 0 end) as &#39;[85-70]&#39;,</span><br><span class="line">sum(case when 成绩&gt;&#x3D;60 and 成绩&lt;70  </span><br><span class="line">	 then 1 else 0 end) as &#39;[70-60]&#39;,</span><br><span class="line">sum(case when 成绩&lt;60 then 1 else 0 end) as &#39;[&lt;60]&#39;</span><br><span class="line">from score as a right join course as b </span><br><span class="line">on a.课程号&#x3D;b.课程号</span><br><span class="line">group by a.课程号,b.课程名称;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -663,7 +634,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link:</strong>
-    <a href="https://wuhewuhe.github.io/2020/01/15/how-to-setup-site/" title="从零开始手把手教大家如何制作网站（基础版）">https://wuhewuhe.github.io/2020/01/15/how-to-setup-site/</a>
+    <a href="https://wuhewuhe.github.io/2020/01/25/sql20questions/" title="20道SQL 面试题帮你拿到第一个offer">https://wuhewuhe.github.io/2020/01/25/sql20questions/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice: </strong>
@@ -678,7 +649,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/blog/" rel="tag"><i class="fa fa-tag"></i> blog</a>
+            <a href="/tags/sql/" rel="tag"><i class="fa fa-tag"></i> sql</a>
           
         </div>
       
@@ -691,8 +662,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/01/05/path-dp/" rel="next" title="有路径问题浅谈动态规划">
-                <i class="fa fa-chevron-left"></i> 有路径问题浅谈动态规划
+              <a href="/2020/01/18/setupSiteImprove/" rel="next" title="从零开始手把手教大家如何制作网站（进阶版）">
+                <i class="fa fa-chevron-left"></i> 从零开始手把手教大家如何制作网站（进阶版）
               </a>
             
           </div>
@@ -700,10 +671,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/01/18/setupSiteImprove/" rel="prev" title="从零开始手把手教大家如何制作网站（进阶版）">
-                从零开始手把手教大家如何制作网站（进阶版） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -893,7 +860,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#工具"><span class="nav-number">1.</span> <span class="nav-text">工具</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hexeo"><span class="nav-number">2.</span> <span class="nav-text">Hexeo</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#hexo-基本操作"><span class="nav-number">2.1.</span> <span class="nav-text">hexo 基本操作</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Github"><span class="nav-number">3.</span> <span class="nav-text">Github</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#搭建步骤"><span class="nav-number">4.</span> <span class="nav-text">搭建步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#基本步骤"><span class="nav-number">4.1.</span> <span class="nav-text">基本步骤</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#附加选项"><span class="nav-number">4.2.</span> <span class="nav-text">附加选项</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#安装npm-nodejs"><span class="nav-number">4.3.</span> <span class="nav-text">安装npm nodejs</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#下载-安装-hexo框架"><span class="nav-number">4.4.</span> <span class="nav-text">下载 安装 hexo框架</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#发布文章"><span class="nav-number">4.5.</span> <span class="nav-text">发布文章</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#下载next主题"><span class="nav-number">4.6.</span> <span class="nav-text">下载next主题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#修改配置"><span class="nav-number">4.7.</span> <span class="nav-text">修改配置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#文章字数统计-阅读时间"><span class="nav-number">4.8.</span> <span class="nav-text">文章字数统计 阅读时间</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#网站运行时间"><span class="nav-number">4.9.</span> <span class="nav-text">网站运行时间</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#搜索功能"><span class="nav-number">4.10.</span> <span class="nav-text">搜索功能</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Github-获取域名"><span class="nav-number">4.11.</span> <span class="nav-text">Github 获取域名</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#绑定域名-部署"><span class="nav-number">4.12.</span> <span class="nav-text">绑定域名 部署</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本语法"><span class="nav-number">1.</span> <span class="nav-text">基本语法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#常见问题"><span class="nav-number">1.1.</span> <span class="nav-text">常见问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#练习-分组"><span class="nav-number">1.2.</span> <span class="nav-text">练习 分组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分组结果的条件"><span class="nav-number">1.3.</span> <span class="nav-text">分组结果的条件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#复杂查询-子查询"><span class="nav-number">1.4.</span> <span class="nav-text">复杂查询 : 子查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多表查询"><span class="nav-number">1.5.</span> <span class="nav-text">多表查询</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#区分概念"><span class="nav-number">1.5.1.</span> <span class="nav-text">区分概念</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

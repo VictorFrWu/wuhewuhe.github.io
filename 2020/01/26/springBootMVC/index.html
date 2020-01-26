@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="spring," />
 
 
 
@@ -90,16 +90,17 @@
 
 
 
-<meta name="description" content="this is a real blog, no lying no frauding">
+<meta name="description" content="基本常识  使用Spring框架的好处是什么？**  **轻量：**Spring是轻量的，基本的版本大约2MB。 **控制反转：**Spring通过控制反转实现了松散耦合，对象们给出它们的依赖，而不是创建或查找依赖的对象们。 **面向切面的编程(AOP)：**Spring支持面向切面的编程，并且把应用业务逻辑和系统服务分开。 **容器：**Spring包含并管理应用中对象的生命周期和配置。 MVC">
 <meta property="og:type" content="article">
-<meta property="og:title" content="springBootMVC">
+<meta property="og:title" content="spring高频面试题">
 <meta property="og:url" content="https://wuhewuhe.github.io/2020/01/26/springBootMVC/index.html">
 <meta property="og:site_name" content="He WU">
-<meta property="og:description" content="this is a real blog, no lying no frauding">
+<meta property="og:description" content="基本常识  使用Spring框架的好处是什么？**  **轻量：**Spring是轻量的，基本的版本大约2MB。 **控制反转：**Spring通过控制反转实现了松散耦合，对象们给出它们的依赖，而不是创建或查找依赖的对象们。 **面向切面的编程(AOP)：**Spring支持面向切面的编程，并且把应用业务逻辑和系统服务分开。 **容器：**Spring包含并管理应用中对象的生命周期和配置。 MVC">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-01-26T16:36:59.000Z">
-<meta property="article:modified_time" content="2020-01-26T16:36:59.348Z">
+<meta property="article:modified_time" content="2020-01-26T17:21:21.616Z">
 <meta property="article:author" content="WU He">
+<meta property="article:tag" content="spring">
 <meta name="twitter:card" content="summary">
 
 
@@ -136,7 +137,7 @@
 
 
 
-  <title>springBootMVC | He WU</title>
+  <title>spring高频面试题 | He WU</title>
   
 
 
@@ -333,7 +334,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">springBootMVC</h1>
+          <h1 class="post-title" itemprop="name headline">spring高频面试题</h1>
         
 
         <div class="post-meta">
@@ -355,6 +356,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Interview/" itemprop="url" rel="index">
+                    <span itemprop="name">Interview</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -392,7 +415,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  0 words
+                  4.3k words
                 </span>
               
 
@@ -408,7 +431,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  1 minutes
+                  15 minutes
                 </span>
               
             </div>
@@ -429,7 +452,213 @@
       
 
       
-        
+        <h3 id="基本常识">基本常识</h3>
+<hr>
+<p>使用Spring框架的好处是什么？**</p>
+<ul>
+<li>**轻量：**Spring是轻量的，基本的版本大约2MB。</li>
+<li>**控制反转：**Spring通过控制反转实现了松散耦合，对象们给出它们的依赖，而不是创建或查找依赖的对象们。</li>
+<li>**面向切面的编程(AOP)：**Spring支持面向切面的编程，并且把应用业务逻辑和系统服务分开。</li>
+<li>**容器：**Spring包含并管理应用中对象的生命周期和配置。</li>
+<li><strong>MVC框架</strong>：Spring的WEB框架是个精心设计的框架，是Web框架的一个很好的替代品。</li>
+<li>**事务管理：**Spring提供一个持续的事务管理接口，可以扩展到上至本地事务下至全局事务（JTA）。</li>
+<li>**异常处理：**Spring提供方便的API把具体技术相关的异常（比如由JDBC，HibernateorJDO抛出的）转化为一致的unchecked异常。</li>
+</ul>
+<p><strong>Spring由哪些模块组成?</strong></p>
+<p>以下是Spring框架的基本模块：</p>
+<ul>
+<li>
+<p>Coremodule</p>
+<p>spring core模块是spring的核心容器，它实现了<strong>ioc</strong>模式，提供了spring框架的基础功能。此模块中包含的beanfactory类是spring的核心类，负责javabean的配置与管理。它采用factory模式实现了ioc即依赖注入。</p>
+</li>
+<li>
+<p>Beanmodule</p>
+<p>谈到javabean，它是一种 java 类，它遵从一定的设计模式，使它们易于和其他开发工具和组件一起使用。定义 javabean 是一种java 语言写成的可重用组件。要编写javabean，类必须是具体类和公共类，并且具有无参数的构造器。</p>
+</li>
+<li>
+<p>Contextmodule</p>
+<p>pring context模块继承beanfactory（或者说spring核心）类，并且添加了事件处理、国际化、资源装载、透明装载、以及数据校验等功能。它还提供了框架式的bean的访问方式和很多企业级的功能，如jndi访问、支持ejb、远程调用、集成模板框架、email和定时任务调度等。</p>
+</li>
+<li>
+<p>ExpressionLanguagemodule</p>
+</li>
+<li>
+<p>dao模块</p>
+</li>
+</ul>
+<p>dao是 data access object的缩写，dao模式思想是将业务逻辑代码与数据库交互代码分离，降低两者耦合。通过dao模式可以使结构变得更为清晰，代码更为简洁。dao模块提供了jdbc的抽象层，简化了数据库厂商的异常错误（不再从sqlexception继承大批代码），大幅度减少代码的编写，并且提供了对声明式事务和编程式事务的支持。</p>
+<ul>
+<li>orm映射模块</li>
+</ul>
+<p>spring orm 模块提供了对现有orm框架的支持，各种流行的orm框架已经做得非常成熟，并且拥有大规模的市场，spring没有必要开发新的orm工具，它对hibernate提供了完美的整合功能，同时也支持其他orm工具。注意这里spring是提供各类的接口（support），目前比较流行的下层数据库封闭映射框架，如 ibatis, hibernate等</p>
+<p><strong>为什么说Spring是一个容器？</strong></p>
+<p>因为用来形容它用来存储单例的bean对象这个特性。</p>
+<p><strong>Spring配置文件</strong></p>
+<p>Spring配置文件是个XML文件，这个文件包含了类信息，描述了如何配置它们，以及如何相互调用。</p>
+<p><strong>什么是SpringIOC容器？</strong></p>
+<p>SpringIOC负责创建对象，管理对象（通过依赖注入（DI），装配对象，配置对象，并且管理这些对象的整个生命周期。</p>
+<p><strong>IOC的优点是什么？</strong></p>
+<p>IOC或依赖注入把应用的代码量降到最低。它使应用容易测试，单元测试不再需要单例和JNDI查找机制。最小的代价和最小的侵入性使松散耦合得以实现。IOC容器支持加载服务时的饿汉式初始化和懒加载。</p>
+<p><strong>ApplicationContext通常的实现是什么?</strong></p>
+<ul>
+<li>**FileSystemXmlApplicationContext：**此容器从一个XML文件中加载beans的定义，XMLBean配置文件的全路径名必须提供给它的构造函数。</li>
+<li>**ClassPathXmlApplicationContext：**此容器也从一个XML文件中加载beans的定义，这里，你需要正确设置classpath因为这个容器将在classpath里找bean配置。</li>
+<li>**WebXmlApplicationContext：**此容器加载一个XML文件，此文件定义了一个WEB应用的所有bean。</li>
+</ul>
+<h3 id="依赖注入">依赖注入</h3>
+<hr>
+<p>什么是Spring的依赖注入？**</p>
+<p>依赖注入，是IOC的一个方面，是个通常的概念，它有多种解释。这概念是说你不用创建对象，而只需要描述它如何被创建。你不在代码里直接组装你的组件和服务，但是要在配置文件里描述哪些组件需要哪些服务，之后一个容器（IOC容器）负责把他们组装起来。</p>
+<ul>
+<li>
+<p>**构造器依赖注入：**构造器依赖注入通过容器触发一个类的构造器来实现的，该类有一系列参数，每个参数代表一个对其他类的依赖。 强制依赖</p>
+</li>
+<li>
+<p>**Setter方法注入：**Setter方法注入是容器通过调用无参构造器或无参static工厂方法实例化bean之后，调用该bean的setter方法，即实现了基于setter的依赖注入。 可选依赖</p>
+</li>
+</ul>
+<h3 id="Springbeans">Springbeans</h3>
+<hr>
+<p><strong>什么是Springbeans?</strong></p>
+<p>Springbeans是那些形成Spring应用的主干的java对象。它们被SpringIOC容器初始化，装配，和管理。这些beans通过容器中配置的元数据创建。比如，以XML文件中<bean>的形式定义。</bean></p>
+<p>Spring框架定义的beans都是单件beans。在beantag中有个属性”singleton”，如果它被赋为TRUE，bean就是单件，否则就是一个prototypebean。默认是TRUE，所以所有在Spring框架中的beans缺省都是单件。</p>
+<p><strong>Spring框架中的单例bean是线程安全的吗?</strong></p>
+<p>不，Spring框架中的单例bean不是线程安全的。</p>
+<p><strong>解释Spring框架中bean的生命周期。</strong></p>
+<ul>
+<li>Spring容器从XML文件中读取bean的定义，并实例化bean。</li>
+<li>Spring根据bean的定义填充所有的属性。</li>
+<li>如果bean实现了BeanNameAware接口，Spring传递bean的ID到setBeanName方法。</li>
+<li>如果Bean实现了BeanFactoryAware接口，Spring传递beanfactory给setBeanFactory方法。</li>
+<li>如果有任何与bean相关联的BeanPostProcessors，Spring会在postProcesserBeforeInitialization()方法内调用它们。</li>
+<li>如果bean实现IntializingBean了，调用它的afterPropertySet方法，如果bean声明了初始化方法，调用此初始化方法。</li>
+<li>如果有BeanPostProcessors和bean关联，这些bean的postProcessAfterInitialization()方法将被调用。</li>
+<li>如果bean实现了DisposableBean，它将调用destroy()方法。</li>
+</ul>
+<p><strong>哪些是重要的bean生命周期方法？你能重载它们吗？</strong></p>
+<p>有两个重要的bean生命周期方法，第一个是setup，它是在容器加载bean的时候被调用。第二个方法是teardown它是在容器卸载类的时候被调用。</p>
+<p>Thebean标签有两个重要的属性（init-method和destroy-method）。用它们你可以自己定制初始化和注销方法。它们也有相应的注解（@PostConstruct和@PreDestroy）。</p>
+<p><strong>什么是Spring的内部bean？</strong></p>
+<p>当一个bean仅被用作另一个bean的属性时，它能被声明为一个内部bean，为了定义innerbean，在Spring的基于XML的配置元数据中，可以在<property>或<constructor-arg>元素内使用<bean>元素，内部bean通常是匿名的，它们的Scope一般是prototype。</bean></constructor-arg></property></p>
+<p><strong>在Spring中如何注入一个java集合？</strong></p>
+<p>Spring提供以下几种集合的配置元素：</p>
+<ul>
+<li><list>类型用于注入一列值，允许有相同的值。</list></li>
+<li><set>类型用于注入一组值，不允许有相同的值。</set></li>
+<li><map>类型用于注入一组键值对，键和值都可以为任意类型。</map></li>
+<li><props>类型用于注入一组键值对，键和值都只能为String类型。</props></li>
+</ul>
+<p><strong>什么是bean装配?</strong></p>
+<p>装配，或bean装配是指在Spring容器中把bean组装到一起，前提是容器需要知道bean的依赖关系，如何通过依赖注入来把它们装配到一起。</p>
+<p><strong>什么是bean的自动装配？</strong></p>
+<p>Spring容器能够自动装配相互合作的bean，这意味着容器不需要<constructor-arg>和<property>配置，能通过Bean工厂自动处理bean之间的协作。</property></constructor-arg></p>
+<p><strong>自动装配有哪些局限性?</strong></p>
+<p>自动装配的局限性是：</p>
+<p><strong>重写</strong>：你仍需用<constructor-arg>和<property>配置来定义依赖，意味着总要重写自动装配。</property></constructor-arg></p>
+<p><strong>基本数据类型</strong>：你不能自动装配简单的属性，如基本数据类型，String字符串，和类。</p>
+<p>**模糊特性：**自动装配不如显式装配精确，如果有可能，建议使用显式装配。</p>
+<p><strong>解释不同方式的自动装配。</strong></p>
+<p>有五种自动装配的方式，可以用来指导Spring容器用自动装配方式来进行依赖注入。</p>
+<ul>
+<li><strong>no</strong>：默认的方式是不进行自动装配，通过显式设置ref属性来进行装配。</li>
+<li>**byName：**通过参数名自动装配，Spring容器在配置文件中发现bean的autowire属性被设置成byname，之后容器试图匹配、装配和该bean的属性具有相同名字的bean。</li>
+<li>**byType:：**通过参数类型自动装配，Spring容器在配置文件中发现bean的autowire属性被设置成byType，之后容器试图匹配、装配和该bean的属性具有相同类型的bean。如果有多个bean符合条件，则抛出错误。</li>
+<li><strong>constructor：这个方式类似于</strong>byType，但是要提供给构造器参数，如果没有确定的带参数的构造器参数类型，将会抛出异常。</li>
+<li>**autodetect：**首先尝试使用constructor来自动装配，如果无法工作，则使用byType方式。</li>
+</ul>
+<h3 id="Spring-注解">Spring 注解</h3>
+<hr>
+<p><strong>什么是基于Java的Spring注解配置? 给一些注解的例子.</strong></p>
+<p>基于Java的配置，允许你在少量的Java注解的帮助下，进行你的大部分Spring配置而非通过XML文件。</p>
+<p>以@Configuration注解为例，它用来标记类可以当做一个bean的定义，被SpringIOC容器使用。另一个例子是@Bean注解，它表示此方法将要返回一个对象，作为一个bean注册进Spring应用上下文。</p>
+<p><strong>什么是基于注解的容器配置?</strong></p>
+<p>相对于XML文件，注解型的配置依赖于通过字节码元数据装配组件，而非尖括号的声明。</p>
+<p>开发者通过在相应的类，方法或属性上使用注解的方式，直接组件类中进行配置，而不是使用xml表述bean的装配关系。</p>
+<p><strong>怎样开启注解装配？</strong></p>
+<p>注解装配在默认情况下是不开启的，为了使用注解装配，我们必须在Spring配置文件中配置<a href="context:annotation-config/">context:annotation-config/</a>元素。</p>
+<p><strong>@Required注解</strong></p>
+<p>这个注解表明bean的属性必须在配置的时候设置，通过一个bean定义的显式的属性值或通过自动装配，若@Required注解的bean属性未被设置，容器将抛出BeanInitializationException。</p>
+<p><strong>@Autowired注解</strong></p>
+<p>@Autowired注解提供了更细粒度的控制，包括在何处以及如何完成自动装配。它的用法和@Required一样，修饰setter方法、构造器、属性或者具有任意名称和/或多个参数的PN方法。</p>
+<p><strong>@Qualifier注解</strong></p>
+<p>当有多个相同类型的bean却只有一个需要自动装配时，将@Qualifier注解和@Autowire注解结合使用以消除这种混淆，指定需要装配的确切的bean。</p>
+<h3 id="Spring-数据访问">Spring 数据访问</h3>
+<hr>
+<p><strong>在Spring框架中如何更有效地使用JDBC?</strong></p>
+<p>使用SpringJDBC框架，资源管理和错误处理的代价都会被减轻。所以开发者只需写statements和queries从数据存取数据，JDBC也可以在Spring框架提供的模板类的帮助下更有效地被使用，这个模板叫JdbcTemplate</p>
+<p>Add jDBC dependency -&gt; Instance class -&gt; DaoInterface -&gt; JDBCObjectImp</p>
+<p><strong>JdbcTemplate</strong></p>
+<p>JdbcTemplate类提供了很多便利的方法解决诸如把数据库数据转变成基本数据类型或对象，执行写好的或可调用的数据库操作语句，提供自定义的数据错误处理。</p>
+<p><strong>pring对DAO的支持</strong></p>
+<p>Spring对数据访问对象（DAO）的支持旨在简化它和数据访问技术如JDBC，HibernateorJDO结合使用。这使我们可以方便切换持久层。编码时也不用担心会捕获每种技术特有的异常。</p>
+<p><strong>使用Spring通过什么方式访问Hibernate?</strong></p>
+<p>在Spring中有两种方式访问Hibernate：</p>
+<p>控制反转HibernateTemplate和Callback。</p>
+<p>继承HibernateDAOSupport提供一个AOP拦截器。</p>
+<p><strong>Spring支持的ORM</strong></p>
+<p>Spring支持以下ORM：</p>
+<ul>
+<li>Hibernate</li>
+<li>iBatis</li>
+<li>JPA(JavaPersistenceAPI)</li>
+<li>TopLink</li>
+<li>JDO(JavaDataObjects)</li>
+<li>OJB</li>
+</ul>
+<p><strong>Spring支持的事务管理类型</strong></p>
+<p>Spring支持两种类型的事务管理：</p>
+<p>· <strong>编程式事务管理</strong>：这意味你通过编程的方式管理事务，给你带来极大的灵活性，但是难维护。</p>
+<p>· **声明式事务管理：**这意味着你可以将业务代码和事务管理分离，你只需用注解和XML配置来管理事务。</p>
+<p><strong>你更倾向用那种事务管理类型？</strong></p>
+<p>大多数Spring框架的用户选择声明式事务管理，因为它对应用代码的影响最小，因此更符合一个无侵入的轻量级容器的思想。声明式事务管理要优于编程式事务管理，虽然比编程式事务管理（这种方式允许你通过代码控制事务）少了一点灵活性。</p>
+<h4 id="Spring面向切面编程（AOP）"><strong>Spring面向切面编程（AOP）</strong></h4>
+<hr>
+<p><strong>解释AOP</strong></p>
+<p>面向切面的编程，或AOP，是一种编程技术，允许程序模块化横向切割关注点，或横切典型的责任划分，如日志和事务管理。</p>
+<p><strong>Aspect切面</strong></p>
+<p>AOP核心就是切面，它将多个类的通用行为封装成可重用的模块，该模块含有一组API提供横切功能。比如，一个日志模块可以被称作日志的AOP切面。根据需求的不同，一个应用程序可以有若干切面。在SpringAOP中，切面通过带有@Aspect注解的类实现。</p>
+<p><strong>在SpringAOP中，关注点和横切关注的区别是什么？</strong></p>
+<p>关注点是应用中一个模块的行为，一个关注点可能会被定义成一个我们想实现的一个功能。<br>
+横切关注点是一个关注点，此关注点是整个应用都会使用的功能，并影响整个应用，比如日志，安全和数据传输，几乎应用的每个模块都需要的功能。因此这些都属于横切关注点。</p>
+<p><strong>通知</strong></p>
+<p>通知是个在方法执行前或执行后要做的动作，实际上是程序执行时要通过SpringAOP框架触发的代码段。</p>
+<p>Spring切面可以应用五种类型的通知：</p>
+<p><strong>before</strong>：前置通知，在一个方法执行前被调用。</p>
+<p>**after:**在方法执行之后调用的通知，无论方法执行是否成功。</p>
+<p>**after-returning:**仅当方法成功完成后执行的通知。</p>
+<p>**after-throwing:**在方法抛出异常退出时执行的通知。</p>
+<p>**around:**在方法执行之前和之后调用的通知。</p>
+<p><strong>什么是代理?</strong></p>
+<p>代理是通知目标对象后创建的对象。从客户端的角度看，代理对象和目标对象是一样的</p>
+<p><strong>解释基于XMLSchema方式的切面实现。</strong></p>
+<p>在这种情况下，切面由常规类以及基于XML的配置实现。</p>
+<h4 id="Spring的MVC"><strong>Spring的MVC</strong></h4>
+<hr>
+<p><strong>什么是Spring的MVC框架？</strong></p>
+<p>Spring配备构建Web应用的全功能MVC框架。Spring可以很便捷地和其他MVC框架集成，如Struts，Spring的MVC框架用控制反转把业务对象和控制逻辑清晰地隔离。它也允许以声明的方式把请求参数和业务对象绑定。</p>
+<p><strong>DispatcherServlet</strong></p>
+<p>Spring的MVC框架是围绕DispatcherServlet来设计的，它用来处理所有的HTTP请求和响应。</p>
+<p><strong>WebApplicationContext</strong></p>
+<p>WebApplicationContext继承了ApplicationContext并增加了一些WEB应用必备的特有功能，它不同于一般的ApplicationContext，因为它能处理主题，并找到被关联的servlet。</p>
+<p><strong>什么是SpringMVC框架的控制器？</strong></p>
+<p>控制器提供一个访问应用程序的行为，此行为通常通过服务接口实现。控制器解析用户输入并将其转换为一个由视图呈现给用户的模型。Spring用一个非常抽象的方式实现了一个控制层，允许用户创建多种用途的控制器。</p>
+<p><strong>@Controller注解</strong></p>
+<p>该注解表明该类扮演控制器的角色，Spring不需要你继承任何其他控制器基类或引用ServletAPI。</p>
+<p><strong>@RequestMapping注解</strong></p>
+<p>该注解是用来映射一个URL到一个类或一个特定的方处理法上。</p>
+<p><strong>返回Json用什么注解？</strong></p>
+<p>@ResponseBody</p>
+<h4 id="Spring事务支持的隔离级别">Spring事务支持的隔离级别</h4>
+<hr>
+<p>Spring 事务上提供以下的隔离级别:</p>
+<ul>
+<li>ISOLATION_DEFAULT: 使用后端数据库默认的隔离级别</li>
+<li>ISOLATION_READ_UNCOMMITTED　: 允许读取未提交的数据变更，可能会导致脏读，幻读或不可重复读</li>
+<li>ISOLATION_READ_COMMITTD : 允许读取为提交数据, 可以阻止脏读，当时幻读或不可重复读仍可能发生</li>
+<li>ISOLATION_REPEATABLE_READ: 对统一字段多次读取结果是一致的，除非数据是被本事务自己修改．可以阻止脏读，不可重复读，但幻读可能发生</li>
+<li>ISOLATION_SERIALIZABLE :　完全服从ACID</li>
+</ul>
+
       
     </div>
     
@@ -486,7 +715,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link:</strong>
-    <a href="https://wuhewuhe.github.io/2020/01/26/springBootMVC/" title="springBootMVC">https://wuhewuhe.github.io/2020/01/26/springBootMVC/</a>
+    <a href="https://wuhewuhe.github.io/2020/01/26/springBootMVC/" title="spring高频面试题">https://wuhewuhe.github.io/2020/01/26/springBootMVC/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice: </strong>
@@ -498,6 +727,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/spring/" rel="tag"><i class="fa fa-tag"></i> spring</a>
+          
+        </div>
       
 
       
@@ -575,8 +810,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -617,7 +861,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -687,6 +931,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本常识"><span class="nav-number">1.</span> <span class="nav-text">基本常识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#依赖注入"><span class="nav-number">2.</span> <span class="nav-text">依赖注入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Springbeans"><span class="nav-number">3.</span> <span class="nav-text">Springbeans</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-注解"><span class="nav-number">4.</span> <span class="nav-text">Spring 注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-数据访问"><span class="nav-number">5.</span> <span class="nav-text">Spring 数据访问</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring面向切面编程（AOP）"><span class="nav-number">5.1.</span> <span class="nav-text">Spring面向切面编程（AOP）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring的MVC"><span class="nav-number">5.2.</span> <span class="nav-text">Spring的MVC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring事务支持的隔离级别"><span class="nav-number">5.3.</span> <span class="nav-text">Spring事务支持的隔离级别</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

@@ -90,15 +90,15 @@
 
 
 
-<meta name="description" content="this is a real blog, no lying no frauding">
+<meta name="description" content="浅谈spring springMVC Springboot三者  The Spring Framework is an application framework and inversion of control container for the Java platform. The framework’s core features can be used by any Java applic">
 <meta property="og:type" content="article">
-<meta property="og:title" content="spring">
+<meta property="og:title" content="Spring, Spring MVC, SpringBoot介绍">
 <meta property="og:url" content="https://wuhewuhe.github.io/2020/01/26/spring/index.html">
 <meta property="og:site_name" content="He WU">
-<meta property="og:description" content="this is a real blog, no lying no frauding">
+<meta property="og:description" content="浅谈spring springMVC Springboot三者  The Spring Framework is an application framework and inversion of control container for the Java platform. The framework’s core features can be used by any Java applic">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-01-25T23:00:04.000Z">
-<meta property="article:modified_time" content="2020-01-25T23:00:04.937Z">
+<meta property="article:modified_time" content="2020-01-26T16:36:40.371Z">
 <meta property="article:author" content="WU He">
 <meta name="twitter:card" content="summary">
 
@@ -136,7 +136,7 @@
 
 
 
-  <title>spring | He WU</title>
+  <title>Spring, Spring MVC, SpringBoot介绍 | He WU</title>
   
 
 
@@ -333,7 +333,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">spring</h1>
+          <h1 class="post-title" itemprop="name headline">Spring, Spring MVC, SpringBoot介绍</h1>
         
 
         <div class="post-meta">
@@ -392,7 +392,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  0 words
+                  2k words
                 </span>
               
 
@@ -408,7 +408,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  1 minutes
+                  9 minutes
                 </span>
               
             </div>
@@ -429,7 +429,52 @@
       
 
       
-        
+        <p>浅谈spring springMVC Springboot三者</p>
+<blockquote>
+<p>The <strong>Spring Framework</strong> is an application framework and inversion of control container for the Java platform. The framework’s core features can be used by any Java application, but there are extensions for building web applications on top of the Java EE (Enterprise Edition) platform. Although the framework does not impose any specific programming model, it has become popular in the Java community as an addition to, or even replacement for the Enterprise JavaBeans (EJB) model. The Spring Framework is open source.</p>
+</blockquote>
+<h4 id="什么是Spring">什么是Spring</h4>
+<p>我们说到Spring，一般指代的是Spring Framework，它是一个开源的应用程序框架，提供了一个简易的开发方式，<strong>通过这种开发方式，将避免那些可能致使代码变得繁杂混乱的大量的业务/工具对象，说的更通俗一点就是由框架来帮你管理这些对象，包括它的创建，销毁等</strong>，比如基于Spring的项目里经常能看到的 <code>Bean</code> ，它代表的就是由Spring管辖的对象。</p>
+<p>而在被管理对象与业务逻辑之间，Spring通过IOC（控制反转）架起使用的桥梁，IOC也可以看做Spring最核心最重要的思想，通过IOC能带来什么好处呢？首先来看一个实际开发中的典型应用场景，假设我们有一个基于MVC分层结构的应用，通过controller层对外提供接口，而通过service层提供具体的实现，在service层中有一个 <code>WelcomeService</code> 服务接口，一般情况下都是通过 <code>WelcomeService service = new WelcomeServiceImpl();</code> 创建实例并进行调用：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WelcomeController</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> WelcomeService service = <span class="keyword">new</span> WelcomeServiceImpl();</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/welcome"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">welcome</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> service.retrieveWelcomeMessage();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>调用后发现一切正常，此时，功能提交，需要进行测试，而由于实际应用环境与测试环境有所区别，需要替换 <code>WelcomeServiceImpl</code> 为一个 <code>MockWelcomeServiceImpl</code> ，以方便测试，怎么办？没有其他办法，只有改代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WelcomeController</span> &#123;</span></span><br><span class="line">    <span class="keyword">private</span> WelcomeService service = <span class="keyword">new</span> MockWelcomeServiceImpl();</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试OK后再将代码改回去，这种方式太过于繁琐，且对代码的侵入性很强；<br>
+下面看通过Spring的IOC如何实现，首先将 <code>WelcomeService</code> 交由Spring管理：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean name=<span class="string">"WelcomeService"</span> <span class="keyword">class</span>=<span class="string">"XXX.XXX.XXX.service.impl.WelcomeServiceImpl"</span>/&gt;</span><br></pre></td></tr></table></figure>
+<p>然后在业务代码处通过Spring IOC拿到具体对象：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WelcomeController</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> WelcomeService service;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(<span class="meta-string">"/welcome"</span>)</span></span><br><span class="line">    <span class="keyword">public</span> String welcome() &#123;</span><br><span class="line">        <span class="keyword">return</span> service.retrieveWelcomeMessage();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试的时候，只需要更改配置文件，将 <code>WelcomeService</code> 对应的实现改为 <code>MockWelcomeServiceImpl</code> 即可：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean name=<span class="string">"WelcomeService"</span> <span class="keyword">class</span>=<span class="string">"XXX.XXX.XXX.service.impl.MockWelcomeServiceImpl"</span>/&gt;</span><br></pre></td></tr></table></figure>
+<p>这种方式对业务代码没有任何侵入，<strong>它有效的实现松耦合</strong>，大家都知道紧耦合的代码是业务发展的噩梦；同时，Spring IOC提供的远不止这些，如通过单例减少创建无用的对象，通过延迟加载优化初始化成本等</p>
+<p><strong>纵览Spring的结构，你会发现Spring Framework 本身并未提供太多具体的功能，它主要专注于让你的项目代码组织更加优雅，使其具有极好的灵活性和扩展性，同时又能通过Spring集成业界优秀的解决方案</strong></p>
+<h4 id="什么是Spring-MVC？">什么是Spring MVC？</h4>
+<p>Spring MVC是Spring的一部分，Spring 出来以后，大家觉得很好用，于是按照这种模式设计了一个 MVC框架（一些用Spring 解耦的组件），<strong>主要用于开发WEB应用和网络接口，它是Spring的一个模块，通过Dispatcher Servlet, ModelAndView 和 View Resolver，让应用开发变得很容易</strong>，一个典型的Spring MVC应用开发分为下面几步：<br>
+首先通过配置文件声明Dispatcher Servlet：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>com.qgd.oms.web.common.mvc.OmsDispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>/WEB-INF/applicationContext.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">load-on-startup</span>&gt;</span>1<span class="tag">&lt;/<span class="name">load-on-startup</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>通过配置文件声明servlet详情，如MVC resource，data source，bean等</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mvc:resources</span> <span class="attr">mapping</span>=<span class="string">"/css/**/*"</span> <span class="attr">location</span>=<span class="string">"/static/css/"</span> <span class="attr">cache-period</span>=<span class="string">"21600"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mvc:resources</span> <span class="attr">mapping</span>=<span class="string">"/js/**/*"</span> <span class="attr">location</span>=<span class="string">"/static/js/"</span> <span class="attr">cache-period</span>=<span class="string">"21600"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mvc:resources</span> <span class="attr">mapping</span>=<span class="string">"/views/**/*.html"</span> <span class="attr">location</span>=<span class="string">"/static/views/"</span> <span class="attr">cache-period</span>=<span class="string">"21600"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mvc:resources</span> <span class="attr">mapping</span>=<span class="string">"/fonts/**/*"</span> <span class="attr">location</span>=<span class="string">"/static/fonts/"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mvc:resources</span> <span class="attr">mapping</span>=<span class="string">"/ueditor/**/*"</span> <span class="attr">location</span>=<span class="string">"/static/js/lib/ueditor/"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mvc:resources</span> <span class="attr">mapping</span>=<span class="string">"/img/**/*"</span> <span class="attr">location</span>=<span class="string">"/static/img/"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"dataSource"</span> <span class="attr">class</span>=<span class="string">"org.apache.commons.dbcp2.BasicDataSource"</span> <span class="attr">destroy-method</span>=<span class="string">"close"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driverClassName"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.driver&#125;"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.url&#125;"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.username&#125;"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.password&#125;"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"validationQuery"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.validationQuery&#125;"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"maxTotal"</span> <span class="attr">value</span>=<span class="string">"10"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"minIdle"</span> <span class="attr">value</span>=<span class="string">"5"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"maxIdle"</span> <span class="attr">value</span>=<span class="string">"10"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"defaultAutoCommit"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"testWhileIdle"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"testOnBorrow"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"poolPreparedStatements"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"maxOpenPreparedStatements"</span> <span class="attr">value</span>=<span class="string">"50"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"configService"</span> <span class="attr">class</span>=<span class="string">"com.qgd.oms.web.common.service.ConfigService"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"configStore"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"com.qgd.oms.web.common.service.impl.DbConfigStore"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataSource"</span> <span class="attr">ref</span>=<span class="string">"dataSource"</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"taskScheduler"</span> <span class="attr">ref</span>=<span class="string">"defaultScheduler"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"refreshInterval"</span> <span class="attr">value</span>=<span class="string">"30000"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>若需添加其它功能，如security，则需添加对应配置：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">http</span> <span class="attr">pattern</span>=<span class="string">"/css/**/*"</span> <span class="attr">security</span>=<span class="string">"none"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">http</span> <span class="attr">pattern</span>=<span class="string">"/js/**/*"</span> <span class="attr">security</span>=<span class="string">"none"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">http</span> <span class="attr">pattern</span>=<span class="string">"/views/**/*.html"</span> <span class="attr">security</span>=<span class="string">"none"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">http</span> <span class="attr">pattern</span>=<span class="string">"/fonts/**/*"</span> <span class="attr">security</span>=<span class="string">"none"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">http</span> <span class="attr">pattern</span>=<span class="string">"/ueditor/**/*"</span> <span class="attr">security</span>=<span class="string">"none"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">http</span> <span class="attr">pattern</span>=<span class="string">"/img/**/*"</span> <span class="attr">security</span>=<span class="string">"none"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">http</span> <span class="attr">use-expressions</span>=<span class="string">"true"</span> <span class="attr">entry-point-ref</span>=<span class="string">"omsAuthenticationEntryPoint"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">logout</span> <span class="attr">logout-url</span>=<span class="string">"/omsmc/authentication/logout/*"</span> <span class="attr">success-handler-ref</span>=<span class="string">"omsLogoutSuccessHandler"</span>&gt;</span><span class="tag">&lt;/<span class="name">logout</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">intercept-url</span> <span class="attr">pattern</span>=<span class="string">'/omsmc/authentication/login*'</span> <span class="attr">access</span>=<span class="string">"permitAll"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">intercept-url</span> <span class="attr">pattern</span>=<span class="string">'/ms/**/*'</span> <span class="attr">access</span>=<span class="string">"permitAll"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">intercept-url</span> <span class="attr">pattern</span>=<span class="string">'/**'</span> <span class="attr">access</span>=<span class="string">"authenticated"</span> /&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--&lt;security:form-login /&gt;--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">custom-filter</span> <span class="attr">ref</span>=<span class="string">"omsUsernamePasswordAuthenticationFilter"</span> <span class="attr">position</span>=<span class="string">"FORM_LOGIN_FILTER"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">remember-me</span> <span class="attr">services-ref</span>=<span class="string">"omsRememberMeServices"</span> <span class="attr">key</span>=<span class="string">"yfboms"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">csrf</span> <span class="attr">disabled</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">http</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>增加业务代码，如controller，service，model等，最后生成war包，通过容器进行启动</p>
+<h4 id="什么是Spring-Boot？">什么是Spring Boot？</h4>
+<p>初期的Spring通过代码加配置的形式为项目提供了良好的灵活性和扩展性，但随着Spring越来越庞大，其配置文件也越来越繁琐，太多复杂的xml文件也一直是Spring被人诟病的地方，特别是近些年其他简洁的WEB方案层出不穷，如基于Python或Node. Js，几行代码就能实现一个WEB服务器，对比起来，大家渐渐觉得Spring那一套太过繁琐，此时，Spring社区推出了Spring Boot，它的目的在于<strong>实现自动配置，降低项目搭建的复杂度</strong>，如需要搭建一个接口服务，通过Spring Boot，几行代码即可实现，请看代码示例：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//引入spring-boot-starter-web依赖</span></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;<span class="regexp">/groupId&gt;</span></span><br><span class="line"><span class="regexp">    &lt;artifactId&gt;spring-boot-starter-web&lt;/</span>artifactId&gt;</span><br><span class="line">&lt;<span class="regexp">/dependency&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//声明Spring Boot应用，直接写业务逻辑即可</span></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MockServerApplication</span> </span>&#123;</span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/hi"</span>)</span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="function">String <span class="title">home</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"how are you!"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(MockServerApplication<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>你甚至都不用额外的WEB容器，直接生成jar包执行即可，因为 <code>spring-boot-starter-web</code> 模块中包含有一个内置tomcat，可以直接提供容器使用；基于Spring Boot，不是说原来的配置没有了，而是Spring Boot有一套默认配置，我们可以把它看做比较通用的约定，而Spring Boot遵循的也是<strong>约定优于配置</strong>原则，同时，如果你需要使用到Spring以往提供的各种复杂但功能强大的配置功能，Spring Boot一样支持</p>
+<p>在Spring Boot中，你会发现你引入的所有包都是<em>starter</em>形式，如：</p>
+<ul>
+<li><code>spring-boot-starter-web-services</code> ，针对SOAP Web Services</li>
+<li><code>spring-boot-starter-web</code> ，针对Web应用与网络接口</li>
+<li><code>spring-boot-starter-jdbc</code> ，针对JDBC</li>
+<li><code>spring-boot-starter-data-jpa</code> ，基于hibernate的持久层框架</li>
+<li><code>spring-boot-starter-cache</code> ，针对缓存支持</li>
+</ul>
+<p>Spring Boot对starter的解释如下：</p>
+<blockquote>
+<p>Starters are a set of convenient dependency descriptors that you can include in your application. You get a one-stop-shop for all the Spring and related technology that you need, without having to hunt through sample code and copy paste loads of dependency descriptors. For example, if you want to get started using Spring and JPA for database access, just include the spring-boot-starter-data-jpa dependency in your project, and you are good to go</p>
+</blockquote>
+
       
     </div>
     
@@ -486,7 +531,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link:</strong>
-    <a href="https://wuhewuhe.github.io/2020/01/26/spring/" title="spring">https://wuhewuhe.github.io/2020/01/26/spring/</a>
+    <a href="https://wuhewuhe.github.io/2020/01/26/spring/" title="Spring, Spring MVC, SpringBoot介绍">https://wuhewuhe.github.io/2020/01/26/spring/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice: </strong>
@@ -579,8 +624,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -599,7 +653,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -691,6 +745,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是Spring"><span class="nav-number">1.</span> <span class="nav-text">什么是Spring</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是Spring-MVC？"><span class="nav-number">2.</span> <span class="nav-text">什么是Spring MVC？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是Spring-Boot？"><span class="nav-number">3.</span> <span class="nav-text">什么是Spring Boot？</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

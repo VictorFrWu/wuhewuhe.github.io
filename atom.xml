@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wuhewuhe.github.io/"/>
-  <updated>2020-01-26T17:21:21.616Z</updated>
+  <updated>2020-01-26T21:20:34.949Z</updated>
   <id>https://wuhewuhe.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>docker vs VM 与 web url的关系</title>
+    <link href="https://wuhewuhe.github.io/2020/01/26/computerwebadnresources/"/>
+    <id>https://wuhewuhe.github.io/2020/01/26/computerwebadnresources/</id>
+    <published>2020-01-26T21:18:49.000Z</published>
+    <updated>2020-01-26T21:20:34.949Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="1-What-Happens-When-You-Type-in-a-URL">1 What Happens When You Type in a URL?</h3><p>1 enter url in browser</p><p>2 browser look up ip address of domaine via dns</p><p>3 browser send a request to server</p><p>4 server returns a http response</p><p>5 browser rends html</p><p>6 browser need css js images then repeat 3-5</p><p>7 finish loading, send futur async request</p><h3 id="2-How-Web-Browsers-and-Web-Servers-Communicate">2 How Web Browsers and Web Servers Communicate?</h3><p>Web browsers and servers communicate using TCP/IP. Hypertext Transfer Protocol is the standard application protocol on top of TCP/IP supporting web browser requests and server responses</p><p>Web browsers also rely on DNSto work with URLs. These protocol standards enable different brands of web browsers to communicate with different brands of web servers without requiring special logic for each combination.</p><p>1 A person specifies a URL in a browser.</p><p>2  The browser initiates a TCP connection to the web server or server pool (using port 80 by default). As part of this process, the browser also makes DNS lookup requests to convert the URL to an IP address.</p><p>3 After the server completes acknowledgment of its side of the TCP connection, the browser sends HTTP requests to the server to retrieve the content.</p><p>4 after the server replies with content for the page, the browser retrieves it from the HTTP packets and displays it accordingly. Content can include embedded URLs for advertising banners or other external content, that in turn triggers the browser to issue new TCP connection requests to those locations. The browser may also save temporary information about its connections to local files on the client computer called <em>cookies</em>.</p><p>5 Any errors encountered during the request for the content might be shown as http status error line</p><h3 id="3-what-is-microservice-architecture">3 what is microservice architecture?</h3><p>A microservices architecture takes this same approach and extends it to the loosely coupled services which can be developed, deployed, and maintained independently. Each of these services is responsible for discrete task and can communicate with other services through simple APIs to solve a larger complex business problem.</p><p>Once developed, these services can also be deployed independently of each other and hence its easy to identify hot services and scale them independent of whole application. Microservices also offer improved fault isolation whereby in the case of an error in one service the whole application doesn’t necessarily stop functioning. When the error is fixed, it can be deployed only for the respective service instead of redeploying an entire application.</p><p>Another advantage which a microservices architecture brings to the table is making it easier to choose the technology stack (programming languages, databases, etc.) which is best suited for the required functionality (service) instead of being required to take a more standardized, one-size-fits-all approach.</p><h3 id="4-Difference-between-docker-and-vm">4 Difference between docker and vm?</h3><p>Docker is virtual machine that was more lightweight, economical, and scalable. Docker is a container-based technology that lets you develop distributed applications</p><p>**A virtual machine is a system which acts exactly like a computer.**In simple terms, it makes it possible to run what appears to be on many separate computers on hardware, that is one computer. Each virtual machine requires its underlying operating system, and then the hardware is virtualized.</p><p>**Docker is a tool that uses containers to make creation, deployment, and running of application a lot easier. It binds application and its dependencies inside a container</p><p><strong>. Docker is a tool that uses containers to make creation, deployment, and running of application a lot easier. It binds application and its dependencies inside a container.</strong></p><img src="https://geekflare.com/wp-content/uploads/2019/09/traditional-vs-new-gen.png" alt="Traditional vs New Gen" style="zoom:60%; "><p>The operating system support of Virtual machine and Docker container is very different. From the image above, you can see each virtual machine has its guest operating system above the host operating system, which makes virtual machines heavy. While on the other hand, Docker containers share the host operating system, and that is why they are lightweight.</p><p>Sharing the host operating system between the containers make them very light and helps them to boot up in just a few seconds. Hence, the overhead to manage the container system is very low compared to that of virtual machines.</p><p>The docker containers are suited for situations where you want to run multiple applications over a single operating system kernel.<strong>But if you have applications or servers that need to run on different operating system flavors, then virtual machines are required.</strong></p><p><strong>Security</strong></p><p>The virtual machine does no share operating system, and there is strong isolation in the host kernel. Hence, they are more secure as compared to Containers. A container have a lot of security risks, and vulnerabilities as the containers have shared host kernel.</p><p><strong>Portability</strong></p><p>Docker containers are easily portable because they do not have separate operating systems. A container can be ported to a different OS, and it can start immediately. On the other hand, virtual machines have separate OS, so porting a virtual machine is difficult as compared to containers, and it also takes a lot of time to port a virtual machine because of its size.</p><p>For development purposes where the applications must be developed and tested in different platforms, Docker containers are the ideal choice.</p><p><strong>Performance</strong></p><p>Comparing Virtual machines and Docker Containers would not be fair because they both are used for different purposes. But the lightweight architecture of docker its less resource-intensive feature makes it a better choice than a virtual machine. As a result, of which containers can startup very fast compared to that of virtual machines, and the resource usage varies depending on the load or traffic in it.</p><p>Unlike the case of virtual machines, there is no need to allocate resources permanently to containers. Scaling up and duplicating the containers is also an easy task compared to that of virtual machines, as there is no need to install an operating system in them.</p><table><thead><tr><th><strong>Virtual Machine</strong></th><th><strong>Docker Container</strong></th></tr></thead><tbody><tr><td>Hardware-level process isolation</td><td>OS level process isolation</td></tr><tr><td>Each VM has a separate OS</td><td>Each container can share OS</td></tr><tr><td>Boots in minutes</td><td>Boots in seconds</td></tr><tr><td>VMs are of few GBs</td><td>Containers are lightweight (KBs/MBs)</td></tr><tr><td>Ready-made VMs are difficult to find</td><td>Pre-built docker containers are easily available</td></tr><tr><td>VMs can move to new host easily</td><td>Containers are destroyed and re-created rather than moving</td></tr><tr><td>Creating VM takes a relatively longer time</td><td>Containers can be created in seconds</td></tr><tr><td>More resource usage</td><td>Less resource usage</td></tr></tbody></table>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;1-What-Happens-When-You-Type-in-a-URL&quot;&gt;1 What Happens When You Type in a URL?&lt;/h3&gt;
+&lt;p&gt;1 enter url in browser&lt;/p&gt;
+&lt;p&gt;2 browser look u
+      
+    
+    </summary>
+    
+    
+      <category term="Interview" scheme="https://wuhewuhe.github.io/categories/Interview/"/>
+    
+    
+      <category term="docker" scheme="https://wuhewuhe.github.io/tags/docker/"/>
+    
+      <category term="network" scheme="https://wuhewuhe.github.io/tags/network/"/>
+    
+  </entry>
   
   <entry>
     <title>spring高频面试题</title>

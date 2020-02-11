@@ -4,6 +4,64 @@
   
     
     <entry>
+      <title>面试高频HashMap VS HashTable</title>
+      <link href="/2020/02/11/hashmapVsHashtable/"/>
+      <url>/2020/02/11/hashmapVsHashtable/</url>
+      
+        <content type="html"><![CDATA[<p>在Java 2以前，一般使用Hashtable来映射键值和元素。为了使用Java集合框架，Java对Hashtable进行了重新设计，但是，为了向后兼容保留了所有的方法。Hashtable实现了Map接口，除了Hashtable具有同步功能之外，它与HashMap的用法是一样的。·<br>在使用时一般是用ArrayList代替Vector，LinkedList代替Stack，HashMap代替HashTable，即使在多线程中需要同步，也是用同步包装类。<br>另外在使用上还有一些小的差异，比如：</p><ul><li><p>HashTable的key和value都不允许为null值，而HashMap的key和value则都是允许null值的。这个其实没有好坏之分，只是Sun为了统一Collection的操作特性而改进的。</p></li><li><p>HashTable有一个contains(Object value)方法，功能上与containsValue(Object value)一样，但是在实现上花销更大，现在已不推荐使用。而HashMap只有containsValue(Object value)方法。</p></li><li><p>HashTable使用Enumeration，HashMap使用Iterator。Iterator其实与Enmeration功能上很相似，只是多了删除的功能。用Iterator不过是在名字上变得更为贴切一些。模式的另外一个很重要的功用，就是能够形成一种交流的语言（或者说文化）。有时候，你说Enumeration大家都不明白，说Iterator就都明白了。</p></li></ul><p><strong>不同点</strong></p><h4 id="接口">接口</h4><p><img src="https://pic3.zhimg.com/80/v2-12c49eba132902bbea990a4d77ecce37_hd.jpg" alt="img" style="zoom:50%;"><img src="https://pic3.zhimg.com/80/v2-d7d5449c9638ec4955288a3aa2ba9f13_hd.jpg" alt="img"><img src="https://pic3.zhimg.com/80/v2-12c49eba132902bbea990a4d77ecce37_hd.jpg" alt="img" style="zoom:50%;"><img src="https://pic3.zhimg.com/80/v2-d7d5449c9638ec4955288a3aa2ba9f13_hd.jpg" alt="img"></p><p>HashMap和Hashtable不仅作者不同，而且连父类也是不一样的。HashMap是继承自AbstractMap类，而HashTable是继承自Dictionary类。不过它们都实现了同时实现了map、Cloneable（可复制）、Serializable（可序列化）这三个接口</p><p>Dictionary类是一个已经被废弃的类（见其源码中的注释）。父类都被废弃，自然而然也没人用它的子类Hashtable了。</p><h4 id="线程安全">线程安全</h4><p>线程安全性不同</p><p>Hashtable是线程安全的，它的每个方法中都加入了Synchronize方法。在多线程并发的环境下，可以直接使用Hashtable，不需要自己为它的方法实现同步</p><p>HashMap不是线程安全的，在多线程并发的环境下，可能会产生死锁等问题。具体的原因在下一篇文章中会详细进行分析。使用HashMap时就必须要自己增加同步处理，</p><p>虽然HashMap不是线程安全的，但是它的效率会比Hashtable要好很多。这样设计是合理的。在我们的日常使用当中，大部分时间是单线程操作的。HashMap把这部分操作解放出来了。当需要多线程操作的时候可以使用线程安全的ConcurrentHashMap。ConcurrentHashMap虽然也是线程安全的，但是它的效率比Hashtable要高好多倍。因为ConcurrentHashMap使用了分段锁，并不对整个数据进行锁定。</p><h4 id="初始容量大小和每次扩充容量大小的不同">初始容量大小和每次扩充容量大小的不同</h4><p>Hashtable默认的初始大小为11，之后每次扩充，容量变为原来的2n+1。HashMap默认的初始化大小为16。之后每次扩充，容量变为原来的2倍。</p><p>创建时，如果给定了容量初始值，那么Hashtable会直接使用你给定的大小，而HashMap会将其扩充为2的幂次方大小。也就是说Hashtable会尽量使用素数、奇数。而HashMap则总是使用2的幂作为哈希表的大小。</p><h4 id="计算hash值的方法不同">计算hash值的方法不同</h4><p>为了得到元素的位置，首先需要根据元素的 KEY计算出一个hash值，然后再用这个hash值来计算得到最终的位置。</p><p>Hashtable直接使用对象的hashCode。hashCode是JDK根据对象的地址或者字符串或者数字算出来的int类型的数值。然后再使用除留余数发来获得最终的位置。</p><p><img src="https://pic4.zhimg.com/50/v2-df830c3a8054ee1a9f482dc3ccd66bf3_hd.jpg" alt="img"><img src="https://pic4.zhimg.com/80/v2-df830c3a8054ee1a9f482dc3ccd66bf3_hd.jpg" alt="img"></p><p>Hashtable在计算元素的位置时需要进行一次除法运算，而除法运算是比较耗时的。</p><p>HashMap为了提高计算效率，将哈希表的大小固定为了2的幂，这样在取模预算时，不需要做除法，只需要做位运算。位运算比除法的效率要高很多。</p><p>HashMap的效率虽然提高了，但是hash冲突却也增加了。因为它得出的hash值的低位相同的概率比较高，而计算位运算</p><p>为了解决这个问题，HashMap重新根据hashcode计算hash值后，又对hash值做了一些运算来打散数据。使得取得的位置更加分散，从而减少了hash冲突。当然了，为了高效，HashMap只做了一些简单的位处理。从而不至于把使用2 的幂次方带来的效率提升给抵消掉。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java </category>
+          
+          <category> Interview </category>
+          
+          <category> Collections </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hashmap </tag>
+            
+            <tag> hashtable </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>2分钟说清楚shell和batch文件</title>
+      <link href="/2020/02/11/shellandbatch/"/>
+      <url>/2020/02/11/shellandbatch/</url>
+      
+        <content type="html"><![CDATA[<p><img src="https://www.linuxnix.com/wp-content/uploads/2010/01/windows-os-vs-linux-os.jpg" alt="Batch Programming (Dos Scripting) VS Shell Scripting" style="zoom:50%; ">Batch file</p><p>batch programming vs shell programming</p><p><img src="http://www.gonet.com.cn/~editor/eweditor/uploadfile/20171027141729471.png" alt="区别"></p><p>由于我们普通人接触UNIX的比较少，就不在多说。今天主要来说说WINDOWS系统和LINUX及苹果操作系统的区别。首先这三个系统设计上有本质的区别。最大的区别在于WINDOWS是一个成熟的商业操作系统，拿过来就能用，而LINUX不同，它是指一个内核，苹果操作系统是UNIX的一个衍生品。</p><img src="https://img-blog.csdn.net/20180619102423833?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xvdmVfQXlt/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="表格" style="zoom:%; "><p>When I started my career in IT field, I have landed into windows world, as I know that no companies give chance to a fresher to work on production Linux/Unix servers. Its a good experience to work on <strong>DOS scripts(aka Batch programming).</strong> There are many <strong>similarities/differences/advantages/disadvantages</strong> between <strong>Batch programming</strong> and <strong>Shell scripting</strong>. Lets see what they are.</p><p><strong>Similarities</strong></p><table><thead><tr><th>Sl. No</th><th>Batch programming</th><th>Shell script</th></tr></thead><tbody><tr><td>1</td><td>Sequential execution of group commands in a batch file</td><td>Sequential execution of group command in shell scripts</td></tr><tr><td>2</td><td>Can read inputs from users</td><td>Can read inputs from users</td></tr><tr><td>3</td><td>Has control structures such as for, if, while, switch for better automating/scripting</td><td>Has control structures such as for, if, while, switch for better automating/scripting</td></tr><tr><td>4</td><td>Supports advanced features such as Functions and Arrays</td><td>Supports advanced features such as Functions and Arrays</td></tr><tr><td>5</td><td>Supports regular expressions(using findstr)</td><td>Supports regular expressions</td></tr><tr><td>6</td><td>Can include other programming codes such as perl(ie…in middle of dos script we can include some other programming language code for effective scripting to get our desired output)</td><td>Can include other programming codes such as Perl, AWK, SED etc.</td></tr></tbody></table><p><strong>Differences</strong></p><table><thead><tr><th>Sl. No</th><th>Batch programming</th><th>Shell script</th></tr></thead><tbody><tr><td>1</td><td>Lack of richness of tools/commands</td><td>Have good number of tools(as of my knowledge there are more than 75000 commands in Linux/Unix)</td></tr><tr><td>2</td><td>Supports only one vendor(i.e.windows)</td><td>Supports for number of vendors such as Sun/apple/IBM AIX/HP-UX/GNU Linux etc.</td></tr><tr><td>3</td><td>No other variants for DOS</td><td>There are number of variants such as bash, ksh, csh, zsh etc…</td></tr><tr><td>4</td><td>Low capabilities of integrating with other programming code in batch scripting</td><td>Good capabilities of integrating other programming code in shell script</td></tr><tr><td>5</td><td>Cannot handle complex regular expressions</td><td>Can handle complex regular expressions.</td></tr><tr><td>6</td><td>A batch file should always end with .bat</td><td>There is no such concept like file extension, but a shell script file permission should be set to executable.</td></tr><tr><td>7</td><td>To execute a batch program just enter the file name at CLI</td><td>To execute a shell script, here are the ways to execute it 1)chmod +x <a href="http://shellscript.sh" target="_blank" rel="noopener">shellscript.sh</a>; ./shellscript.sh 2)sh <a href="http://shellscript.sh" target="_blank" rel="noopener">shellscript.sh</a></td></tr></tbody></table>]]></content>
+      
+      
+      <categories>
+          
+          <category> OS </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> shell </tag>
+            
+            <tag> batch </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>由String浅谈Immutable不可变对象设计模式</title>
       <link href="/2020/02/11/java-immutable/"/>
       <url>/2020/02/11/java-immutable/</url>

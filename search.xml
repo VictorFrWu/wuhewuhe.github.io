@@ -4,11 +4,24 @@
   
     
     <entry>
+      <title>hashcode, equals区别与联系</title>
+      <link href="/2020/02/12/hashcode-equal/"/>
+      <url>/2020/02/12/hashcode-equal/</url>
+      
+        <content type="html"><![CDATA[<p>有面试官会问：你重写过 hashcode 和 equals 么，为什么重写equals时必须重写hashCode方法？equals和hashCode都是Object对象中的非final方法，它们设计的目的就是被用来覆盖(override)的，所以在程序设计中还是经常需要处理这两个方法。下面我们一起来看一下，它们到底有什么区别，总结一波！</p><p>01、hashCode介绍<br>hashCode() 的作用是获取哈希码，也称为散列码；它实际上是返回一个int整数。这个哈希码的作用是确定该对象在哈希表中的索引位置。hashCode() 定义在JDK的Object.java中，这就意味着Java中的任何类都包含有hashCode() 函数。</p><p>举个例子</p><p>public class DemoTest {</p><pre><code>public static void main(String[] args) {Object obj = new Object();System.out.println(obj.hashCode());}</code></pre><p>}<br>通过调用hashCode()方法获取对象的hash值。</p><p>02、equals介绍<br>equals它的作用也是判断两个对象是否相等，如果对象重写了equals()方法，比较两个对象的内容是否相等；如果没有重写，比较两个对象的地址是否相同，价于“==”。同样的，equals()定义在JDK的Object.java中，这就意味着Java中的任何类都包含有equals()函数。</p><p>举个例子</p><p>public class DemoTest {</p><pre><code>public static void main(String[] args) {Object obj = new Object();System.out.println(obj.equals(obj));}</code></pre><p>}<br>03、hashCode() 和 equals() 有什么关系？<br>接下面，我们讨论另外一个话题。网上很多文章将 hashCode() 和 equals 关联起来，有的讲的不透彻，有误导读者的嫌疑。在这里，我们梳理了一下 “hashCode() 和 equals()的关系”。我们以“类的用途”来将“hashCode() 和 equals()的关系”分2种情况来说明。</p><p>3.1、不会创建“类对应的散列表”<br>这里所说的“不会创建类对应的散列表”是说：我们不会在HashSet, HashTable, HashMap等等这些本质是散列表的数据结构中，用到该类。例如，不会创建该类的HashSet集合。</p><p>在这种情况下，该类的“hashCode() 和 equals() ”没有半毛钱关系的！</p><p>equals() 用来比较该类的两个对象是否相等，而hashCode() 则根本没有任何作用，所以，不用理会hashCode()。 举个例子</p><p>public class DemoNormalTest {</p><pre><code>public static void main(String[] args) {// 新建2个相同内容的Person对象，// 再用equals比较它们是否相等Person p1 = new Person(&quot;eee&quot;, 100);Person p2 = new Person(&quot;eee&quot;, 100);Person p3 = new Person(&quot;aaa&quot;, 200);System.out.printf(&quot;p1.equals(p2) : %s; p1(%d) p2(%d)\n&quot;, p1.equals(p2), p1.hashCode(), p2.hashCode());System.out.printf(&quot;p1.equals(p3) : %s; p1(%d) p3(%d)\n&quot;, p1.equals(p3), p1.hashCode(), p3.hashCode());}private static class Person {private String name;private int age;public Person(String name, int age) {super();this.name = name;this.age = age;}/** * 重写equals方法 */@Overridepublic boolean equals(Object obj) {if (obj == null) {return false;}// 如果是同一个对象返回true，反之返回falseif (this == obj) {return true;}// 判断是否类型相同if (this.getClass() != obj.getClass()) {return false;}Person person = (Person) obj;return name.equals(person.name) &amp;&amp; age == person.age;}}</code></pre><p>}<br>运行结果：</p><p>p1.equals(p2) : true; p1(2018699554) p2(1311053135)<br>p1.equals(p3) : false; p1(2018699554) p3(1735600054)<br>从结果也可以看出：p1和p2相等的情况下，hashCode()也不一定相等。</p><p>3.2、会创建“类对应的散列表”<br>这里所说的“会创建类对应的散列表”是说：我们会在HashSet, HashTable, HashMap等等这些本质是散列表的数据结构中，用到该类。例如，创建该类的HashSet集合。</p><p>在这种情况下，该类的“hashCode() 和 equals() ”是有关系的:</p><p>如果两个对象相等，那么它们的hashCode()值一定相同。这里的相等是指，通过equals()比较两个对象时返回true。<br>如果两个对象hashCode()相等，它们并不一定相等。因为在散列表中，hashCode()相等，即两个键值对的哈希值相等。然而哈希值相等，并不一定能得出键值对相等，此时就出现所谓的哈希冲突场景。<br>举个例子</p><p>public class DemoConflictTest {</p><pre><code>public static void main(String[] args) {// 新建Person对象，    Person p1 = new Person(&quot;eee&quot;, 100);    Person p2 = new Person(&quot;eee&quot;, 100);    Person p3 = new Person(&quot;aaa&quot;, 200);    // 新建HashSet对象     HashSet&lt;Person&gt; set = new HashSet&lt;&gt;();    set.add(p1);    set.add(p2);    set.add(p3);    // 比较p1 和 p2， 并打印它们的hashCode()    System.out.printf(&quot;p1.equals(p2) : %s; p1(%d) p2(%d)\n&quot;, p1.equals(p2), p1.hashCode(), p2.hashCode());     // 打印set    System.out.printf(&quot;set:%s\n&quot;, set); }private static class Person {private String name;private int age;public Person(String name, int age) {super();this.name = name;this.age = age;}/** * 重写toString方法 */@Overridepublic String toString() {return &quot;(&quot;+name + &quot;, &quot; +age+&quot;)&quot;;}/** * 重写equals方法 */@Overridepublic boolean equals(Object obj) {if (obj == null) {return false;}// 如果是同一个对象返回true，反之返回falseif (this == obj) {return true;}// 判断是否类型相同if (this.getClass() != obj.getClass()) {return false;}Person person = (Person) obj;return name.equals(person.name) &amp;&amp; age == person.age;}}</code></pre><p>}<br>运行结果：</p><p>p1.equals(p2) : true; p1(2018699554) p2(1311053135)<br>set:[(eee, 100), (aaa, 200), (eee, 100)]<br>结果分析：</p><p>我们重写了Person的equals()。但是，很奇怪的发现：HashSet中仍然有重复元素：p1 和 p2。为什么会出现这种情况呢？</p><p>这是因为虽然p1 和 p2的内容相等，但是它们的hashCode()不等；所以，HashSet在添加p1和p2的时候，认为它们不相等。</p><p>举个例子，我们同时覆盖equals() 和 hashCode()方法。</p><p>public class DemoConflictTest {</p><pre><code>public static void main(String[] args) {// 新建Person对象，Person p1 = new Person(&quot;eee&quot;, 100);Person p2 = new Person(&quot;eee&quot;, 100);Person p3 = new Person(&quot;aaa&quot;, 200);Person p4 = new Person(&quot;EEE&quot;, 100);// 新建HashSet对象HashSet&lt;Person&gt; set = new HashSet&lt;&gt;();set.add(p1);set.add(p2);set.add(p3);set.add(p4);// 比较p1 和 p2， 并打印它们的hashCode()System.out.printf(&quot;p1.equals(p2) : %s; p1(%d) p2(%d)\n&quot;, p1.equals(p2), p1.hashCode(), p2.hashCode());// 比较p1 和 p4， 并打印它们的hashCode()System.out.printf(&quot;p1.equals(p4) : %s; p1(%d) p4(%d)\n&quot;, p1.equals(p4), p1.hashCode(), p4.hashCode());// 打印setSystem.out.printf(&quot;set:%s\n&quot;, set);}private static class Person {private String name;private int age;public Person(String name, int age) {super();this.name = name;this.age = age;}/** * 重写toString方法 */@Overridepublic String toString() {return &quot;(&quot; + name + &quot;, &quot; + age + &quot;)&quot;;}/** * 重写equals方法 */@Overridepublic boolean equals(Object obj) {if (obj == null) {return false;}// 如果是同一个对象返回true，反之返回falseif (this == obj) {return true;}// 判断是否类型相同if (this.getClass() != obj.getClass()) {return false;}Person person = (Person) obj;return name.equals(person.name) &amp;&amp; age == person.age;}/** * 重写hashCode方法 */@Overridepublic int hashCode() {int nameHash = name.toUpperCase().hashCode();return nameHash ^ age;}}</code></pre><p>}<br>运行结果：</p><p>p1.equals(p2) : true; p1(68545) p2(68545)<br>p1.equals(p4) : false; p1(68545) p4(68545)<br>set:[(eee, 100), (EEE, 100), (aaa, 200)]</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>set家族的对比</title>
       <link href="/2020/02/12/set-hashset-treeset-linkedset/"/>
       <url>/2020/02/12/set-hashset-treeset-linkedset/</url>
       
-        <content type="html"><![CDATA[<p>一. HashSet<br>特点：</p><ol><li><p>HashSet中不能有相同的元素，可以有一个Null元素，存入的元素是无序的。</p></li><li><p>HashSet如何保证唯一性？</p></li></ol><p>1). HashSet底层数据结构是哈希表，哈希表就是存储唯一系列的表，而哈希值是由对象的hashCode()方法生成。</p><p>2). 确保唯一性的两个方法：hashCode()和equals()方法。</p><ol start="3"><li><p>添加、删除操作时间复杂度都是O(1)。</p></li><li><p>非线程安全</p></li></ol><p>二. LinkedHashSet<br>特点：</p><ol><li><p>LinkedHashSet中不能有相同元素，可以有一个Null元素，元素严格按照放入的顺序排列。</p></li><li><p>LinkedHashSet如何保证有序和唯一性？</p></li></ol><p>1). 底层数据结构由哈希表和链表组成。</p><p>2). 链表保证了元素的有序即存储和取出一致，哈希表保证了元素的唯一性。</p><ol start="3"><li><p>添加、删除操作时间复杂度都是O(1)。</p></li><li><p>非线程安全</p></li></ol><p>三. TreeSet<br>特点：</p><ol><li><p>TreeSet是中不能有相同元素，不可以有Null元素，根据元素的自然顺序进行排序。</p></li><li><p>TreeSet如何保证元素的排序和唯一性？</p></li></ol><p>底层的数据结构是红黑树(一种自平衡二叉查找树)</p><ol start="3"><li><p>添加、删除操作时间复杂度都是O(log(n))</p></li><li><p>非线程安全</p></li></ol><p>四. 总结：<br>通过以上特点可以分析出，三者都保证了元素的唯一性，如果无排序要求可以选用HashSet；如果想取出元素的顺序和放入元素的顺序相同，那么可以选用LinkedHashSet。如果想插入、删除立即排序或者按照一定规则排序可以选用TreeSet。</p>]]></content>
+        <content type="html"><![CDATA[<p>Set接口<br>Set 接口与 List 接口相比没有那么多操作方法，比如：</p><p>1、List 接口能直接设置或获取某个元素的值，而Set接口不能。</p><p>2、List 接口能直接在指定位置删除、增加元素，而Set接口不能。</p><p>3、List 接口有 listIterator 方法，可以获得 ListIterator 对象，而 Set 接口不能。Set 只能通过 iterator 迭代的方式获取元素。</p><p>对比一下Set接口和Collection接口就知道，其实Set接口仅仅对Collection所有方法进行继承而已，而自己没有扩展任何方法，Set接口与Collection接口一样，都是15个方法。</p><img src="/2020/02/12/set-hashset-treeset-linkedset/set.jpg" alt="set" style="zoom:100%; ">Set不允许包含相同的元素，如果试图把两个相同元素加入同一个集合中，add方法返回false。这里说的相同元素指的是用 equals() 方法比价后返回 true，当然了如果用 == 也返回true，那肯定也是相同的。一. HashSet特点：<ol><li><p>HashSet中不能有相同的元素，可以有一个Null元素，存入的元素是无序的。</p></li><li><p>HashSet如何保证唯一性？</p></li></ol><p>1). HashSet底层数据结构是哈希表，哈希表就是存储唯一系列的表，而哈希值是由对象的hashCode()方法生成。</p><p>2). 确保唯一性的两个方法：hashCode()和equals()方法。</p><ol start="3"><li><p>添加、删除操作时间复杂度都是O(1)。</p></li><li><p>非线程安全</p></li></ol><p>二. LinkedHashSet<br>特点：</p><ol><li><p>LinkedHashSet中不能有相同元素，可以有一个Null元素，元素严格按照放入的顺序排列。</p></li><li><p>LinkedHashSet如何保证有序和唯一性？</p></li></ol><p>1). 底层数据结构由哈希表和链表组成。</p><p>2). 链表保证了元素的有序即存储和取出一致，哈希表保证了元素的唯一性。</p><ol start="3"><li><p>添加、删除操作时间复杂度都是O(1)。</p></li><li><p>非线程安全</p></li></ol><p>三. TreeSet<br>特点：</p><ol><li><p>TreeSet是中不能有相同元素，不可以有Null元素，根据元素的自然顺序进行排序。</p></li><li><p>TreeSet如何保证元素的排序和唯一性？</p></li></ol><p>底层的数据结构是红黑树(一种自平衡二叉查找树)</p><ol start="3"><li><p>添加、删除操作时间复杂度都是O(log(n))</p></li><li><p>非线程安全</p></li></ol><p>四. 总结：<br>通过以上特点可以分析出，三者都保证了元素的唯一性，如果无排序要求可以选用HashSet；如果想取出元素的顺序和放入元素的顺序相同，那么可以选用LinkedHashSet。如果想插入、删除立即排序或者按照一定规则排序可以选用TreeSet。</p>]]></content>
       
       
       <categories>
@@ -538,9 +551,9 @@
       
         <tags>
             
-            <tag> game </tag>
-            
             <tag> jframe </tag>
+            
+            <tag> game </tag>
             
             <tag> thread </tag>
             
@@ -567,9 +580,9 @@
       
         <tags>
             
-            <tag> game </tag>
-            
             <tag> jframe </tag>
+            
+            <tag> game </tag>
             
             <tag> thread </tag>
             
@@ -596,9 +609,9 @@
       
         <tags>
             
-            <tag> game </tag>
-            
             <tag> jframe </tag>
+            
+            <tag> game </tag>
             
             <tag> thread </tag>
             
@@ -625,9 +638,9 @@
       
         <tags>
             
-            <tag> game </tag>
-            
             <tag> jframe </tag>
+            
+            <tag> game </tag>
             
             <tag> timer </tag>
             

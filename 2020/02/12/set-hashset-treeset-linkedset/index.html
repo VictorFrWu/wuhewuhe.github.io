@@ -90,20 +90,22 @@
 
 
 
-<meta name="description" content="一. HashSet 特点：   HashSet中不能有相同的元素，可以有一个Null元素，存入的元素是无序的。   HashSet如何保证唯一性？   1). HashSet底层数据结构是哈希表，哈希表就是存储唯一系列的表，而哈希值是由对象的hashCode()方法生成。 2). 确保唯一性的两个方法：hashCode()和equals()方法。   添加、删除操作时间复杂度都是O(1)。">
+<meta name="description" content="Set接口 Set 接口与 List 接口相比没有那么多操作方法，比如： 1、List 接口能直接设置或获取某个元素的值，而Set接口不能。 2、List 接口能直接在指定位置删除、增加元素，而Set接口不能。 3、List 接口有 listIterator 方法，可以获得 ListIterator 对象，而 Set 接口不能。Set 只能通过 iterator 迭代的方式获取元素。 对比一下Se">
 <meta property="og:type" content="article">
 <meta property="og:title" content="set家族的对比">
 <meta property="og:url" content="https://wuhewuhe.github.io/2020/02/12/set-hashset-treeset-linkedset/index.html">
 <meta property="og:site_name" content="He WU">
-<meta property="og:description" content="一. HashSet 特点：   HashSet中不能有相同的元素，可以有一个Null元素，存入的元素是无序的。   HashSet如何保证唯一性？   1). HashSet底层数据结构是哈希表，哈希表就是存储唯一系列的表，而哈希值是由对象的hashCode()方法生成。 2). 确保唯一性的两个方法：hashCode()和equals()方法。   添加、删除操作时间复杂度都是O(1)。">
+<meta property="og:description" content="Set接口 Set 接口与 List 接口相比没有那么多操作方法，比如： 1、List 接口能直接设置或获取某个元素的值，而Set接口不能。 2、List 接口能直接在指定位置删除、增加元素，而Set接口不能。 3、List 接口有 listIterator 方法，可以获得 ListIterator 对象，而 Set 接口不能。Set 只能通过 iterator 迭代的方式获取元素。 对比一下Se">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wuhewuhe.github.io/2020/02/12/set-hashset-treeset-linkedset/set.jpg">
 <meta property="article:published_time" content="2020-02-12T06:57:33.000Z">
-<meta property="article:modified_time" content="2020-02-12T06:59:17.496Z">
+<meta property="article:modified_time" content="2020-02-12T07:04:04.558Z">
 <meta property="article:author" content="WU He">
 <meta property="article:tag" content="hashset">
 <meta property="article:tag" content="linkedhashset">
 <meta property="article:tag" content="treeset">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wuhewuhe.github.io/2020/02/12/set-hashset-treeset-linkedset/set.jpg">
 
 
 
@@ -439,7 +441,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  407 words
+                  644 words
                 </span>
               
 
@@ -455,7 +457,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  1 minutes
+                  2 minutes
                 </span>
               
             </div>
@@ -476,8 +478,16 @@
       
 
       
-        <p>一. HashSet<br>
-特点：</p>
+        <p>Set接口<br>
+Set 接口与 List 接口相比没有那么多操作方法，比如：</p>
+<p>1、List 接口能直接设置或获取某个元素的值，而Set接口不能。</p>
+<p>2、List 接口能直接在指定位置删除、增加元素，而Set接口不能。</p>
+<p>3、List 接口有 listIterator 方法，可以获得 ListIterator 对象，而 Set 接口不能。Set 只能通过 iterator 迭代的方式获取元素。</p>
+<p>对比一下Set接口和Collection接口就知道，其实Set接口仅仅对Collection所有方法进行继承而已，而自己没有扩展任何方法，Set接口与Collection接口一样，都是15个方法。</p>
+<img src="/2020/02/12/set-hashset-treeset-linkedset/set.jpg" alt="set" style="zoom:100%; ">
+Set不允许包含相同的元素，如果试图把两个相同元素加入同一个集合中，add方法返回false。这里说的相同元素指的是用 equals() 方法比价后返回 true，当然了如果用 == 也返回true，那肯定也是相同的。
+一. HashSet
+特点：
 <ol>
 <li>
 <p>HashSet中不能有相同的元素，可以有一个Null元素，存入的元素是无序的。</p>
@@ -636,6 +646,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2020/02/12/hashcode-equal/" rel="prev" title="hashcode, equals区别与联系">
+                hashcode, equals区别与联系 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -713,7 +727,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

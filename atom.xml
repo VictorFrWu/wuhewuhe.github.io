@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wuhewuhe.github.io/"/>
-  <updated>2020-02-12T06:59:17.496Z</updated>
+  <updated>2020-02-12T07:28:31.639Z</updated>
   <id>https://wuhewuhe.github.io/</id>
   
   <author>
@@ -17,29 +17,45 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>set家族的对比</title>
-    <link href="https://wuhewuhe.github.io/2020/02/12/set-hashset-treeset-linkedset/"/>
-    <id>https://wuhewuhe.github.io/2020/02/12/set-hashset-treeset-linkedset/</id>
-    <published>2020-02-12T06:57:33.000Z</published>
-    <updated>2020-02-12T06:59:17.496Z</updated>
+    <title>hashcode, equals区别与联系</title>
+    <link href="https://wuhewuhe.github.io/2020/02/12/hashcode-equal/"/>
+    <id>https://wuhewuhe.github.io/2020/02/12/hashcode-equal/</id>
+    <published>2020-02-12T07:05:28.000Z</published>
+    <updated>2020-02-12T07:28:31.639Z</updated>
     
-    <content type="html"><![CDATA[<p>一. HashSet<br>特点：</p><ol><li><p>HashSet中不能有相同的元素，可以有一个Null元素，存入的元素是无序的。</p></li><li><p>HashSet如何保证唯一性？</p></li></ol><p>1). HashSet底层数据结构是哈希表，哈希表就是存储唯一系列的表，而哈希值是由对象的hashCode()方法生成。</p><p>2). 确保唯一性的两个方法：hashCode()和equals()方法。</p><ol start="3"><li><p>添加、删除操作时间复杂度都是O(1)。</p></li><li><p>非线程安全</p></li></ol><p>二. LinkedHashSet<br>特点：</p><ol><li><p>LinkedHashSet中不能有相同元素，可以有一个Null元素，元素严格按照放入的顺序排列。</p></li><li><p>LinkedHashSet如何保证有序和唯一性？</p></li></ol><p>1). 底层数据结构由哈希表和链表组成。</p><p>2). 链表保证了元素的有序即存储和取出一致，哈希表保证了元素的唯一性。</p><ol start="3"><li><p>添加、删除操作时间复杂度都是O(1)。</p></li><li><p>非线程安全</p></li></ol><p>三. TreeSet<br>特点：</p><ol><li><p>TreeSet是中不能有相同元素，不可以有Null元素，根据元素的自然顺序进行排序。</p></li><li><p>TreeSet如何保证元素的排序和唯一性？</p></li></ol><p>底层的数据结构是红黑树(一种自平衡二叉查找树)</p><ol start="3"><li><p>添加、删除操作时间复杂度都是O(log(n))</p></li><li><p>非线程安全</p></li></ol><p>四. 总结：<br>通过以上特点可以分析出，三者都保证了元素的唯一性，如果无排序要求可以选用HashSet；如果想取出元素的顺序和放入元素的顺序相同，那么可以选用LinkedHashSet。如果想插入、删除立即排序或者按照一定规则排序可以选用TreeSet。</p>]]></content>
+    <content type="html"><![CDATA[<p>有面试官会问：你重写过 hashcode 和 equals 么，为什么重写equals时必须重写hashCode方法？equals和hashCode都是Object对象中的非final方法，它们设计的目的就是被用来覆盖(override)的，所以在程序设计中还是经常需要处理这两个方法。下面我们一起来看一下，它们到底有什么区别，总结一波！</p><p>01、hashCode介绍<br>hashCode() 的作用是获取哈希码，也称为散列码；它实际上是返回一个int整数。这个哈希码的作用是确定该对象在哈希表中的索引位置。hashCode() 定义在JDK的Object.java中，这就意味着Java中的任何类都包含有hashCode() 函数。</p><p>举个例子</p><p>public class DemoTest {</p><pre><code>public static void main(String[] args) {Object obj = new Object();System.out.println(obj.hashCode());}</code></pre><p>}<br>通过调用hashCode()方法获取对象的hash值。</p><p>02、equals介绍<br>equals它的作用也是判断两个对象是否相等，如果对象重写了equals()方法，比较两个对象的内容是否相等；如果没有重写，比较两个对象的地址是否相同，价于“==”。同样的，equals()定义在JDK的Object.java中，这就意味着Java中的任何类都包含有equals()函数。</p><p>举个例子</p><p>public class DemoTest {</p><pre><code>public static void main(String[] args) {Object obj = new Object();System.out.println(obj.equals(obj));}</code></pre><p>}<br>03、hashCode() 和 equals() 有什么关系？<br>接下面，我们讨论另外一个话题。网上很多文章将 hashCode() 和 equals 关联起来，有的讲的不透彻，有误导读者的嫌疑。在这里，我们梳理了一下 “hashCode() 和 equals()的关系”。我们以“类的用途”来将“hashCode() 和 equals()的关系”分2种情况来说明。</p><p>3.1、不会创建“类对应的散列表”<br>这里所说的“不会创建类对应的散列表”是说：我们不会在HashSet, HashTable, HashMap等等这些本质是散列表的数据结构中，用到该类。例如，不会创建该类的HashSet集合。</p><p>在这种情况下，该类的“hashCode() 和 equals() ”没有半毛钱关系的！</p><p>equals() 用来比较该类的两个对象是否相等，而hashCode() 则根本没有任何作用，所以，不用理会hashCode()。 举个例子</p><p>public class DemoNormalTest {</p><pre><code>public static void main(String[] args) {// 新建2个相同内容的Person对象，// 再用equals比较它们是否相等Person p1 = new Person(&quot;eee&quot;, 100);Person p2 = new Person(&quot;eee&quot;, 100);Person p3 = new Person(&quot;aaa&quot;, 200);System.out.printf(&quot;p1.equals(p2) : %s; p1(%d) p2(%d)\n&quot;, p1.equals(p2), p1.hashCode(), p2.hashCode());System.out.printf(&quot;p1.equals(p3) : %s; p1(%d) p3(%d)\n&quot;, p1.equals(p3), p1.hashCode(), p3.hashCode());}private static class Person {private String name;private int age;public Person(String name, int age) {super();this.name = name;this.age = age;}/** * 重写equals方法 */@Overridepublic boolean equals(Object obj) {if (obj == null) {return false;}// 如果是同一个对象返回true，反之返回falseif (this == obj) {return true;}// 判断是否类型相同if (this.getClass() != obj.getClass()) {return false;}Person person = (Person) obj;return name.equals(person.name) &amp;&amp; age == person.age;}}</code></pre><p>}<br>运行结果：</p><p>p1.equals(p2) : true; p1(2018699554) p2(1311053135)<br>p1.equals(p3) : false; p1(2018699554) p3(1735600054)<br>从结果也可以看出：p1和p2相等的情况下，hashCode()也不一定相等。</p><p>3.2、会创建“类对应的散列表”<br>这里所说的“会创建类对应的散列表”是说：我们会在HashSet, HashTable, HashMap等等这些本质是散列表的数据结构中，用到该类。例如，创建该类的HashSet集合。</p><p>在这种情况下，该类的“hashCode() 和 equals() ”是有关系的:</p><p>如果两个对象相等，那么它们的hashCode()值一定相同。这里的相等是指，通过equals()比较两个对象时返回true。<br>如果两个对象hashCode()相等，它们并不一定相等。因为在散列表中，hashCode()相等，即两个键值对的哈希值相等。然而哈希值相等，并不一定能得出键值对相等，此时就出现所谓的哈希冲突场景。<br>举个例子</p><p>public class DemoConflictTest {</p><pre><code>public static void main(String[] args) {// 新建Person对象，    Person p1 = new Person(&quot;eee&quot;, 100);    Person p2 = new Person(&quot;eee&quot;, 100);    Person p3 = new Person(&quot;aaa&quot;, 200);    // 新建HashSet对象     HashSet&lt;Person&gt; set = new HashSet&lt;&gt;();    set.add(p1);    set.add(p2);    set.add(p3);    // 比较p1 和 p2， 并打印它们的hashCode()    System.out.printf(&quot;p1.equals(p2) : %s; p1(%d) p2(%d)\n&quot;, p1.equals(p2), p1.hashCode(), p2.hashCode());     // 打印set    System.out.printf(&quot;set:%s\n&quot;, set); }private static class Person {private String name;private int age;public Person(String name, int age) {super();this.name = name;this.age = age;}/** * 重写toString方法 */@Overridepublic String toString() {return &quot;(&quot;+name + &quot;, &quot; +age+&quot;)&quot;;}/** * 重写equals方法 */@Overridepublic boolean equals(Object obj) {if (obj == null) {return false;}// 如果是同一个对象返回true，反之返回falseif (this == obj) {return true;}// 判断是否类型相同if (this.getClass() != obj.getClass()) {return false;}Person person = (Person) obj;return name.equals(person.name) &amp;&amp; age == person.age;}}</code></pre><p>}<br>运行结果：</p><p>p1.equals(p2) : true; p1(2018699554) p2(1311053135)<br>set:[(eee, 100), (aaa, 200), (eee, 100)]<br>结果分析：</p><p>我们重写了Person的equals()。但是，很奇怪的发现：HashSet中仍然有重复元素：p1 和 p2。为什么会出现这种情况呢？</p><p>这是因为虽然p1 和 p2的内容相等，但是它们的hashCode()不等；所以，HashSet在添加p1和p2的时候，认为它们不相等。</p><p>举个例子，我们同时覆盖equals() 和 hashCode()方法。</p><p>public class DemoConflictTest {</p><pre><code>public static void main(String[] args) {// 新建Person对象，Person p1 = new Person(&quot;eee&quot;, 100);Person p2 = new Person(&quot;eee&quot;, 100);Person p3 = new Person(&quot;aaa&quot;, 200);Person p4 = new Person(&quot;EEE&quot;, 100);// 新建HashSet对象HashSet&lt;Person&gt; set = new HashSet&lt;&gt;();set.add(p1);set.add(p2);set.add(p3);set.add(p4);// 比较p1 和 p2， 并打印它们的hashCode()System.out.printf(&quot;p1.equals(p2) : %s; p1(%d) p2(%d)\n&quot;, p1.equals(p2), p1.hashCode(), p2.hashCode());// 比较p1 和 p4， 并打印它们的hashCode()System.out.printf(&quot;p1.equals(p4) : %s; p1(%d) p4(%d)\n&quot;, p1.equals(p4), p1.hashCode(), p4.hashCode());// 打印setSystem.out.printf(&quot;set:%s\n&quot;, set);}private static class Person {private String name;private int age;public Person(String name, int age) {super();this.name = name;this.age = age;}/** * 重写toString方法 */@Overridepublic String toString() {return &quot;(&quot; + name + &quot;, &quot; + age + &quot;)&quot;;}/** * 重写equals方法 */@Overridepublic boolean equals(Object obj) {if (obj == null) {return false;}// 如果是同一个对象返回true，反之返回falseif (this == obj) {return true;}// 判断是否类型相同if (this.getClass() != obj.getClass()) {return false;}Person person = (Person) obj;return name.equals(person.name) &amp;&amp; age == person.age;}/** * 重写hashCode方法 */@Overridepublic int hashCode() {int nameHash = name.toUpperCase().hashCode();return nameHash ^ age;}}</code></pre><p>}<br>运行结果：</p><p>p1.equals(p2) : true; p1(68545) p2(68545)<br>p1.equals(p4) : false; p1(68545) p4(68545)<br>set:[(eee, 100), (EEE, 100), (aaa, 200)]</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;一. HashSet&lt;br&gt;
-特点：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;HashSet中不能有相同的元素，可以有一个Null元素，存入的元素是无序的。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;HashSet如何保证唯一性？&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;1). Hash
+        &lt;p&gt;有面试官会问：你重写过 hashcode 和 equals 么，为什么重写equals时必须重写hashCode方法？equals和hashCode都是Object对象中的非final方法，它们设计的目的就是被用来覆盖(override)的，所以在程序设计中还是经常需要处理
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>set家族的对比</title>
+    <link href="https://wuhewuhe.github.io/2020/02/12/set-hashset-treeset-linkedset/"/>
+    <id>https://wuhewuhe.github.io/2020/02/12/set-hashset-treeset-linkedset/</id>
+    <published>2020-02-12T06:57:33.000Z</published>
+    <updated>2020-02-12T07:04:04.558Z</updated>
+    
+    <content type="html"><![CDATA[<p>Set接口<br>Set 接口与 List 接口相比没有那么多操作方法，比如：</p><p>1、List 接口能直接设置或获取某个元素的值，而Set接口不能。</p><p>2、List 接口能直接在指定位置删除、增加元素，而Set接口不能。</p><p>3、List 接口有 listIterator 方法，可以获得 ListIterator 对象，而 Set 接口不能。Set 只能通过 iterator 迭代的方式获取元素。</p><p>对比一下Set接口和Collection接口就知道，其实Set接口仅仅对Collection所有方法进行继承而已，而自己没有扩展任何方法，Set接口与Collection接口一样，都是15个方法。</p><img src="/2020/02/12/set-hashset-treeset-linkedset/set.jpg" alt="set" style="zoom:100%; ">Set不允许包含相同的元素，如果试图把两个相同元素加入同一个集合中，add方法返回false。这里说的相同元素指的是用 equals() 方法比价后返回 true，当然了如果用 == 也返回true，那肯定也是相同的。一. HashSet特点：<ol><li><p>HashSet中不能有相同的元素，可以有一个Null元素，存入的元素是无序的。</p></li><li><p>HashSet如何保证唯一性？</p></li></ol><p>1). HashSet底层数据结构是哈希表，哈希表就是存储唯一系列的表，而哈希值是由对象的hashCode()方法生成。</p><p>2). 确保唯一性的两个方法：hashCode()和equals()方法。</p><ol start="3"><li><p>添加、删除操作时间复杂度都是O(1)。</p></li><li><p>非线程安全</p></li></ol><p>二. LinkedHashSet<br>特点：</p><ol><li><p>LinkedHashSet中不能有相同元素，可以有一个Null元素，元素严格按照放入的顺序排列。</p></li><li><p>LinkedHashSet如何保证有序和唯一性？</p></li></ol><p>1). 底层数据结构由哈希表和链表组成。</p><p>2). 链表保证了元素的有序即存储和取出一致，哈希表保证了元素的唯一性。</p><ol start="3"><li><p>添加、删除操作时间复杂度都是O(1)。</p></li><li><p>非线程安全</p></li></ol><p>三. TreeSet<br>特点：</p><ol><li><p>TreeSet是中不能有相同元素，不可以有Null元素，根据元素的自然顺序进行排序。</p></li><li><p>TreeSet如何保证元素的排序和唯一性？</p></li></ol><p>底层的数据结构是红黑树(一种自平衡二叉查找树)</p><ol start="3"><li><p>添加、删除操作时间复杂度都是O(log(n))</p></li><li><p>非线程安全</p></li></ol><p>四. 总结：<br>通过以上特点可以分析出，三者都保证了元素的唯一性，如果无排序要求可以选用HashSet；如果想取出元素的顺序和放入元素的顺序相同，那么可以选用LinkedHashSet。如果想插入、删除立即排序或者按照一定规则排序可以选用TreeSet。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Set接口&lt;br&gt;
+Set 接口与 List 接口相比没有那么多操作方法，比如：&lt;/p&gt;
+&lt;p&gt;1、List 接口能直接设置或获取某个元素的值，而Set接口不能。&lt;/p&gt;
+&lt;p&gt;2、List 接口能直接在指定位置删除、增加元素，而Set接口不能。&lt;/p&gt;
+&lt;p&gt;3、List
       
     
     </summary>
@@ -574,36 +590,6 @@
       <category term="markdown" scheme="https://wuhewuhe.github.io/tags/markdown/"/>
     
       <category term="writing skill" scheme="https://wuhewuhe.github.io/tags/writing-skill/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>LRU</title>
-    <link href="https://wuhewuhe.github.io/2019/12/28/LRU/"/>
-    <id>https://wuhewuhe.github.io/2019/12/28/LRU/</id>
-    <published>2019-12-28T19:54:40.000Z</published>
-    <updated>2019-12-29T20:37:31.225Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="LRU-Least-Recently-Used-页面置换算法">LRU(Least Recently Used) 页面置换算法</h2><p>本篇文章阅读时间 5 分钟， 技术实现 java， javascript。</p><h4 id="概述">概述</h4><p>这一周本来是想将Mario（马里奥）做完，但是周三晚上下班看了一眼React，于是一发不可收拾，之前是听同学，朋友，同事说react的香，一直没有感觉到，真是自己从头学了一下才感受到他火确实是有道理。因为自己的学习笔记还没有整理完，mario的进度推迟了。正巧在自己做网站的时候，看到react-router里面有一个封装好的内置类history，自己在写的时候遇到了浏览记录的问题。正巧室友说在国内面试时被问到这个问题。这期，临时决定写一写这个LRU页面置换算法。</p><h4 id="算法缘由">算法缘由</h4><p>第一次听到这个页面置换算法应该是大三的操作系统课，但是当时也就是考试复习随便瞟一眼，也没仔细看。字如其名，其本质就是选择调出用户想要的页面，好的页面置换算法应有较低的页面更换频率，也就是说，应将以后不会再访问或者以后较长时间内不会再访问的页面先调出。这是官方给出的解释，白话说，假如浏览器只能同时加载显示三个页面，那么我们应该通过一种最合理的方式显示出我们最常用的三个，而将不常用的替换掉。常见的置换算法像是OPT，FIFO，CLOCK，LRU。我自己认为LRU是最贴近现实生活，同时也是最常考到。</p><h4 id="例题展示">例题展示</h4><p>为了更好的讲述这个题，我就从leetcode上面直接拔下来一个题。</p><img src="/2019/12/28/LRU/Screenshot 2019-12-22 at 21.24.22.png" alt="Screenshot 2019-12-22 at 21.24.22" style="zoom:25%; "><p>题目说的什么意思呢，就是让我们自己通过数据结构设计一个类并指定缓存的最大存储量，类表示的就是我们浏览器的缓存，类里面有两个方法，分别为get和put。get的意思就是，如果此时缓存记录里有我要找的东西，那么直接返回结果。没有就输出一个-1。put的意思就是，每次我们访问一个新的网页，将这个网页放入到我们的缓存中，如果该网页已经存在于缓存中，则对其内容进行替换。若不存在，加入到缓存中。</p><p>他这里有一个follow up：问我们怎么能够用常数的时间复杂度完成所有的操作。（就是优的解决方案）</p><h4 id="分析：">分析：</h4><p>首先读完这个题目，并结合我们的我们的生活常识，很快，我就想到根据我们需要用一个固定长度的数据结构去存储用户的访问记录。然后再看到put方法key，value键值对，我想到了hashtable。我们可以用hashtable的key设置为数字，代表用户的浏览记录标示；value作为内容。并且hashtable的查找时间复杂度为O（1）。再之后，我们会发现这个题单纯一个hashmap数据结构还不能满足我们的所有需求，比如从技术层面出发，我们知道hashmap的添加和删除操作都是o（logn）的时间复杂度。应用层面上，单纯只用hashmap，我们怎么做到对内容的更新与调度。于是，在这里我们可以在引入一个双向节点，这里有很多做法比如用deque，linkedlist。我是从题目本身出发，自己写了一个Node类，他有四个属性，分别是prev（前一个节点），next（下一个节点），key（页面表示），value（内容）。这样设计的好处就是，我们在执行添加和删除的操作时，只需要改变指针的方向不需要便利整个list到达了最优的时间复杂度。</p><p>这里，可能文字还是有些拗口，尤其是针对分计算机专业的童鞋们，我付上一个图片更能清晰直观的描述设计思路，以及运行过程。</p><p><strong>模型</strong></p><table><thead><tr><th><strong>Hash table - capacity</strong>**（<strong><strong>2</strong></strong>）****- head(0, 0)**</th></tr></thead><tbody><tr><td>Node 1 key = 1, value = 1, prev = head, next = Node2</td></tr><tr><td>Node 2 key = 1, value = 1, prev = Node1, next = tail</td></tr></tbody></table><img src="/2019/12/28/LRU/Screenshot 2019-12-22 at 21.45.19.png" alt="Screenshot 2019-12-22 at 21.45.19" style="zoom:25%; "><p>假设我们模拟执行 例题中给的几步</p><h5 id="Step-1-LRUCache-cache-new-LRUCache-2-cache-put-1-1">Step 1 : LRUCache cache = new LRUCache(2); cache.put(1, 1);</h5><p>首先我们初始化了一个缓存对象，并设置他的最大容量为2。</p><p>此时我们将第一个元素放进来。</p><img src="/2019/12/28/LRU/Screenshot 2019-12-29 at 00.26.27.png" alt="Screenshot 2019-12-29 at 00.26.27" style="zoom:25%; "><h5 id="Step2-cache-put-2-2">Step2 : cache.put(2, 2);</h5><p>检测是否超过最大容量。再将第二元素放到队伍头节点</p><img src="/2019/12/28/LRU/Screenshot 2019-12-29 at 00.26.30.png" alt="Screenshot 2019-12-29 at 00.26.30" style="zoom:25%; "><h5 id="Step3-cache-get-1">Step3 : cache.get(1);</h5><p>检测缓存中是否有id为1的内容，对节点队列进行遍历。发现有则返回value。并交换节点（2，2）和（1，1）的位置。</p><img src="/2019/12/28/LRU/Screenshot 2019-12-29 at 00.26.34.png" alt="Screenshot 2019-12-29 at 00.26.34" style="zoom:25%; "><h5 id="Step4-cache-put-3-3">Step4 : cache.put(3, 3);</h5><p>检测已经超过最大容量，因为我们将队尾的节点（2，2）删除，再把新的节点（3，3）放到头部</p><img src="/2019/12/28/LRU/Screenshot 2019-12-29 at 00.26.38.png" alt="Screenshot 2019-12-29 at 00.26.38" style="zoom:25%; "><h5 id="Step5-cache-get-2">Step5 : cache.get(2);</h5><p>检测缓存中是否有id为2的内容，对节点队列进行遍历。没有返回-1</p><img src="/2019/12/28/LRU/Screenshot 2019-12-29 at 00.26.41.png" alt="Screenshot 2019-12-29 at 00.26.41" style="zoom:25%; "><h5 id="Step6-cache-put-4-4">Step6 : cache.put(4, 4);</h5><p>检测已经超过最大容量，因为我们将队尾的节点（1，1）删除，再把新的节点（4，4）放到头部</p><img src="/2019/12/28/LRU/Screenshot 2019-12-29 at 00.26.44.png" alt="Screenshot 2019-12-29 at 00.26.44" style="zoom:25%; "><h5 id="Step7-cache-get-1">Step7 : cache.get(1);</h5><p>检测缓存中是否有id为1的内容，对节点队列进行遍历。没有返回-1</p><img src="/2019/12/28/LRU/Screenshot 2019-12-29 at 00.26.48.png" alt="Screenshot 2019-12-29 at 00.26.48" style="zoom:25%; "><h5 id="Step8-cache-get-3">Step8 :cache.get(3);</h5><p>检测缓存中是否有课id为3的内容，对节点队列进行遍历。发现有则返回value</p><img src="/2019/12/28/LRU/Screenshot 2019-12-29 at 00.26.52.png" alt="Screenshot 2019-12-29 at 00.26.52" style="zoom:25%; "><h5 id="Step9-cache-get-4">Step9 : cache.get(4);</h5><p>检测缓存中是否有课id为3的内容，对节点队列进行遍历。发现有则返回value。并交换节点（4，4）和（3，3）的位置。</p><img src="/2019/12/28/LRU/Screenshot 2019-12-29 at 00.26.55.png" alt="Screenshot 2019-12-29 at 00.26.55" style="zoom:25%; "><h4 id="代码实现">代码实现</h4><img src="/2019/12/28/LRU/Screenshot 2019-12-22 at 22.04.26.png" alt="Screenshot 2019-12-22 at 22.04.26" style="zoom:25%; "><p>为了方便编程，避免空指针，便于调试。我自己设置了一个头节点和尾节点。在LRU里面自定义一个内部节点类。LRU的结构为hashmap套node。</p><img src="/2019/12/28/LRU/Screenshot 2019-12-22 at 22.07.26.png" alt="Screenshot 2019-12-22 at 22.07.26" style="zoom:25%; "><p>添加到头部，因为是双向所以需要改变两次。这里要插入头部，所以先保存一下原有的头节点，再让原有的头节点与新添加节点做操作。1 新添加节点的下一个指向原有头节点。2 head的下一个指向新添加节点。3 原有头节点的上一个指向新添加节点。 4新添加节点的上一个指向head。 建议大家在做指针指向问题的时候画草图，并且想改变好一个方向再去改变另外的方向。</p><p>删除，也是把前一个节点的下一个节点指向要删除节点的下一个。再把删除节点下一个的前一个指向删除节点的前一个。<img src="/2019/12/28/LRU/Screenshot 2019-12-22 at 22.15.39.png" alt="Screenshot 2019-12-22 at 22.15.39" style="zoom:25%; "></p><p>get 操作：检测hashmap是否含有key值。若存在，取出node节点，删除原有的node节点，再从新插入到头部。返回value。没有直接返回-1。</p><p>put操作 ：检测hashmap是否含有key值，若存在，取出node节点。取出node节点，删除原有的node节点，再从新插入到头部。若没有，先判断，hashmap是否达到自己的最大容量，若达到，删除队尾节点，在将新节点插入头部。如没达到容量直接插入。</p><h4 id="测试结果">测试结果</h4><img src="/2019/12/28/LRU/Screenshot 2019-12-22 at 22.03.57.png" alt="Screenshot 2019-12-22 at 22.03.57" style="zoom:25%; "><h4 id="源码仓库：">源码仓库：</h4><p><a href="https://github.com/wuhewuhe/LeetcodeNotes/tree/master/src/RealLifeProblem" target="_blank" rel="noopener">https://github.com/wuhewuhe/LeetcodeNotes/tree/master/src/RealLifeProblem</a></p><h4 id="总结">总结</h4><p><strong>LRU</strong>最近最久未使用页面置换算法，无论是在面试中作为一个程序设计题的高频出现，还是其cache思想贴近实际生活都是我认为很重要的一个点。希望自己的见解都初学者有帮助，对非it领域算是一个扩展知识的文章。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;LRU-Least-Recently-Used-页面置换算法&quot;&gt;LRU(Least Recently Used) 页面置换算法&lt;/h2&gt;
-&lt;p&gt;本篇文章阅读时间 5 分钟， 技术实现 java， javascript。&lt;/p&gt;
-&lt;h4 id=&quot;概述&quot;&gt;概述&lt;/h4
-      
-    
-    </summary>
-    
-    
-      <category term="Algorithme" scheme="https://wuhewuhe.github.io/categories/Algorithme/"/>
-    
-    
-      <category term="page replacement" scheme="https://wuhewuhe.github.io/tags/page-replacement/"/>
-    
-      <category term="lru" scheme="https://wuhewuhe.github.io/tags/lru/"/>
     
   </entry>
   

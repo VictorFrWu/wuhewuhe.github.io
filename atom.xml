@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wuhewuhe.github.io/"/>
-  <updated>2020-02-11T20:22:35.670Z</updated>
+  <updated>2020-02-12T06:59:17.496Z</updated>
   <id>https://wuhewuhe.github.io/</id>
   
   <author>
@@ -15,6 +15,50 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>set家族的对比</title>
+    <link href="https://wuhewuhe.github.io/2020/02/12/set-hashset-treeset-linkedset/"/>
+    <id>https://wuhewuhe.github.io/2020/02/12/set-hashset-treeset-linkedset/</id>
+    <published>2020-02-12T06:57:33.000Z</published>
+    <updated>2020-02-12T06:59:17.496Z</updated>
+    
+    <content type="html"><![CDATA[<p>一. HashSet<br>特点：</p><ol><li><p>HashSet中不能有相同的元素，可以有一个Null元素，存入的元素是无序的。</p></li><li><p>HashSet如何保证唯一性？</p></li></ol><p>1). HashSet底层数据结构是哈希表，哈希表就是存储唯一系列的表，而哈希值是由对象的hashCode()方法生成。</p><p>2). 确保唯一性的两个方法：hashCode()和equals()方法。</p><ol start="3"><li><p>添加、删除操作时间复杂度都是O(1)。</p></li><li><p>非线程安全</p></li></ol><p>二. LinkedHashSet<br>特点：</p><ol><li><p>LinkedHashSet中不能有相同元素，可以有一个Null元素，元素严格按照放入的顺序排列。</p></li><li><p>LinkedHashSet如何保证有序和唯一性？</p></li></ol><p>1). 底层数据结构由哈希表和链表组成。</p><p>2). 链表保证了元素的有序即存储和取出一致，哈希表保证了元素的唯一性。</p><ol start="3"><li><p>添加、删除操作时间复杂度都是O(1)。</p></li><li><p>非线程安全</p></li></ol><p>三. TreeSet<br>特点：</p><ol><li><p>TreeSet是中不能有相同元素，不可以有Null元素，根据元素的自然顺序进行排序。</p></li><li><p>TreeSet如何保证元素的排序和唯一性？</p></li></ol><p>底层的数据结构是红黑树(一种自平衡二叉查找树)</p><ol start="3"><li><p>添加、删除操作时间复杂度都是O(log(n))</p></li><li><p>非线程安全</p></li></ol><p>四. 总结：<br>通过以上特点可以分析出，三者都保证了元素的唯一性，如果无排序要求可以选用HashSet；如果想取出元素的顺序和放入元素的顺序相同，那么可以选用LinkedHashSet。如果想插入、删除立即排序或者按照一定规则排序可以选用TreeSet。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;一. HashSet&lt;br&gt;
+特点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;HashSet中不能有相同的元素，可以有一个Null元素，存入的元素是无序的。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;HashSet如何保证唯一性？&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;1). Hash
+      
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="https://wuhewuhe.github.io/categories/Java/"/>
+    
+      <category term="Collections" scheme="https://wuhewuhe.github.io/categories/Java/Collections/"/>
+    
+      <category term="Set" scheme="https://wuhewuhe.github.io/categories/Java/Collections/Set/"/>
+    
+    
+      <category term="hashset" scheme="https://wuhewuhe.github.io/tags/hashset/"/>
+    
+      <category term="linkedhashset" scheme="https://wuhewuhe.github.io/tags/linkedhashset/"/>
+    
+      <category term="treeset" scheme="https://wuhewuhe.github.io/tags/treeset/"/>
+    
+  </entry>
   
   <entry>
     <title>讲清楚Vector vs ArrayList vs LinkedList</title>
@@ -560,38 +604,6 @@
       <category term="page replacement" scheme="https://wuhewuhe.github.io/tags/page-replacement/"/>
     
       <category term="lru" scheme="https://wuhewuhe.github.io/tags/lru/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>tetris</title>
-    <link href="https://wuhewuhe.github.io/2019/12/28/tetris/"/>
-    <id>https://wuhewuhe.github.io/2019/12/28/tetris/</id>
-    <published>2019-12-28T19:54:27.000Z</published>
-    <updated>2019-12-29T20:38:03.739Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="俄罗斯方块Tetris">俄罗斯方块Tetris</h2><h4 id="背景回顾">背景回顾:</h4><p>我觉俄罗斯方块在游戏领域的地位，有点像乔丹打篮球。为什么这么说，EA对过去30年的游戏评点，俄罗斯方块这样一个仅在当时老毛子开发出来做检测效率的东西，列在榜单首位。在那个遥远寒冷的西伯利亚，俄罗斯工程师发布这个名为Tetris后，在那个人口还没有爆炸增长，电脑还没普及的时候，先后有5亿人对此游戏下载。甚至毫不夸张的说，很多人第一次听到俄罗斯就是通过俄罗斯方块这个小游戏。时至今日，俄罗斯方块早已下架，但是以任然保持着9项吉尼斯世界纪录，同样也在影视，医疗领域做出了不小的贡献。</p><h4 id="程序界面设计-：">程序界面设计 ：</h4><img src="/2019/12/28/tetris/Screenshot 2019-12-25 at 17.31.12.png" alt="Screenshot 2019-12-25 at 17.31.12" style="zoom:25%; "><h4 id="程序开发设计：">程序开发设计：</h4><h5 id="创建主题窗口，设置游戏界面，画边框">创建主题窗口，设置游戏界面，画边框</h5><p>同其他类型小游戏一样，我们第一步要做的就是创建一个frame设置其大小，是否可见，相对位置。然后在主体frame中插入一个jpanel，实现游戏的所有逻辑细节。可能对于不同的游戏项目，我们可能需要上网找资源，但是俄罗斯方块我们可以直接用java自带的graphic包里面的drawRect方法来绘制正方体就足矣。因为之前已经写过如何设置推算调试窗体大小，这里就不过多赘述。</p><p>我设置每个小方框的边长为20pxl，主题窗口的宽为400pxl，高度为500pxl。游戏界面，容器的高度为21行，宽度为12行。其中第一列和最后一列还有最后一行是墙壁。唯一一点需要考虑的是用什么去存出游戏的地图，这里我看网上有的人有list，map，我更倾向于2位数组。原因很简单，长度固定，数组的访问修改快，通过一些边界条件，程序效率也高。因此在我的程序里，二维数组第一位代表列，就是对应二维坐标系的x；第二维代表行，就是二维坐标系的y。准备工作都做好后，我们初始化地图，设置边框。</p><p>来看一下第一步结束的效果图：</p><img src="/2019/12/28/tetris/Step1.png" alt="Step1" style="zoom:25%; "><h5 id="方块的绘制">方块的绘制:</h5><p>俄罗斯方块从字面意义上我们就知道方块是这游戏的操作的主体，所以我认为这一步也是整个游戏开发中最重要的环节。首先我们需要确定游戏中有多少种基本形状，这个我就上网google了一下。随后我们要确定用什么样的数据结构去存储和表示方块的形状。因为我们知道方块是可以旋转的；每次旋转完之后形状由于方向的改变，所以图形也变化。</p><p>这里我们首先先列出俄罗斯方块的7本基本形状，然后再去进行下一步的detail：</p><p>I字形</p><img src="/2019/12/28/tetris/shapei.png" alt="shapei" style="zoom:25%; "><p>田字形</p><img src="/2019/12/28/tetris/shapeSquare.png" alt="shapeSquare" style="zoom:25%; "><p>Z字形</p><img src="/2019/12/28/tetris/shapeZ.png" alt="shapeZ" style="zoom:25%; "><p>S字形</p><img src="/2019/12/28/tetris/shapes.png" alt="shapes" style="zoom:25%; "><p>T字形</p><img src="/2019/12/28/tetris/shapeT.png" alt="shapeT" style="zoom:25%; "><p>L字形<br><img src="/2019/12/28/tetris/shapeL.png" alt="shapeL" style="zoom:25%; "></p><p>J字形</p><img src="/2019/12/28/tetris/shapeJ.png" alt="shapeJ" style="zoom:25%; "><p>从图片中我们就可以观察到，I形状的长或宽等于四，是这里最长的。所以我们的目的是用一个数据结构表示所有的图形，因此我想到可以使用4<em>4的一个二维数组。0表示空闲，1表示填充，如果把二维数组平铺下来就是一个长度为16的一维数组。然后我们就要考虑到方块的旋转引起形状的变化，所以我们还需要分析，每个形状经过旋转好最多能产生几种不同的形状。举个例子，比如田字形无论怎么旋转都是同样的形状，但是L或者J字形就可以产生4种不同的状态，因此我们可以用4</em>16的数组代表每个图形的所有变化。</p><h5 id="举例-L">举例 L</h5><img src="/2019/12/28/tetris/Screenshot 2019-12-25 at 17.48.27.png" alt="Screenshot 2019-12-25 at 17.48.27" style="zoom:25%; "><p>而一种方块的所有变形体的信息可以用二维数组来存储，依旧拿L形方块举例，它的所有形态可以存储为</p><p>{</p><p>{ 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0 },</p><p>{ 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 },</p><p>{ 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 },</p><p>{ 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }</p><p>},</p><p>由于二维数组只能存储一种方块的所有变形体信息，故要存储七种方块的所有变体信息则要使用三维数组来进行存储。</p><h4 id="3方块-初始化-左右移动-旋转-下落-：">3方块 初始化-&gt;左右移动-&gt;旋转-&gt;下落 ：</h4><p>一提到移动，可以说完变不离其宗，对于java来讲就两个大方向thread或者timer，通过图形坐标的改变，其定时的刷新来重新绘制panel。可能两者存在细微差别，但是对我来讲可能就像是方法改个名字比如thread要重写runner方法。而timer是重写actionlistener。（这两个东西很重要，可能简单的也说不清楚，因为他不是文章的主题，我们就跳过了）。之前的falppy bird和小恐龙跳跃我都用的是thread。这一次俄罗斯方块我就使用timer方法。</p><p>我们的要在这一步实现的功能是方块自然下落，左右可以移动，并且下落过程中可以旋转。那么一步一步来，第一步方块的初始化。</p><h5 id="1-create-rectangle">1 create rectangle</h5><p>这里我先设置一个固定的x，y坐标代表每次当一个方块落地后，下一个方块就会从这里重新出现一个新的，我默认的是左上角就是x=1, y=0。然后设置2个随机数，取值范围为1-7和1-4，分别对应哪一个图形，和图形具体的哪一种状态。</p><h5 id="2-左右移动">2 左右移动</h5><p>因为这里用户可以通过键盘的左右键来操作图形的移动。每当表示每种行为状态的变化时，我们就要引入事件的监听。左右移动顾名思义就是在y轴坐标不变的条件下，移动x。向右移动x变大，向左移动x减小。最后再重新绘制图片。但是这里有我们需要写一个函数，来判断图形是否还可以继续移动，当图形向右移动到最右边触碰到墙壁的时候此时就不能再向右移动，反之亦然。因此我们可以用两个for循环对图像的每个点遍历，当有一个点碰到墙壁则返回false。</p><h5 id="3-旋转">3 旋转</h5><p>就是改变图形的状态，在已知图形的种类和初始状态的条件下，每点击一次按钮就旋转90度。这里我们还需要判定是否可以旋转，当图形已经碰到了另外的图形，则此时不能在放生状态改变。就是我们在绘制地图时，默认0为空，1为已填充图形，2为墙壁。同样还是对当前图形状态的每一个点做遍历，若图形已经碰到最底部的墙壁或者两个图形出现相重叠部分，那么也不能旋转。这两个条件，我也是借鉴了网上的代码。</p><h5 id="4-下落">4 下落</h5><p>默认如何图形可以移动，那么每次timer重新刷新界面y坐标就会自动加1。如何碰到地面或者两个图形重叠，那么下落停止。</p><h4 id="5-重绘界面-设置分数">5 重绘界面 设置分数</h4><p>首先我们设定一个全局变量反应当前游戏得分，每消除一行则加10分。我们设定timer线程每隔一段时间重新绘制界面，每次当一个方块落地后无法移动时。我们会将其加入到map地图中，就是对图形的x，y坐标对应到map中，将原来是0的地方填充为1。然后我们还需要检查是否出现方块填满一整行的情况。这里就是对map进行遍历，两层循环，外层遍历行（从最后一行开始），里层循环遍历列（从第一列开始），设置一个变量来记录每一行已填充的方块数量，如果填充的方块数量刚好等于，游戏容器的宽度减2（墙壁）。于是我们将此行上面的所有行向下移动一行。</p><p>做到这一步：我们游戏就已经见成效了，在这里做一个小的演示：</p><img src="/2019/12/28/tetris/Screenshot 2019-12-25 at 18.44.12.png" alt="Screenshot 2019-12-25 at 18.44.12" style="zoom:25%; "><h4 id="6-完善游戏体验与调试">6 完善游戏体验与调试</h4><p>其实每次最后一步就对游戏进行一个简单的测试，检查是否出现bug。完善一些小功能，修改一下UI设计。</p><h5 id="游戏结束-分数记录-暂定-重新开始-下一个图形">游戏结束 分数记录 暂定 重新开始 下一个图形</h5><p>游戏结束条件就是我们的方块累计到达了顶部，这个我我们可以写一个方法，判断在最顶上一行是否出现填充的方块，如出现，游戏结束。然后我们需要对比当前得分与游戏最高得分做对比，若当前得分高于最高得分，则更新。</p><p>游戏重新开始，就是将分数清0，然后重新绘制地图，墙壁，初始化方块。</p><p>游戏暂停与继续，对timer线程调用api，start/stop。这里我们用JMenu做了一个分级菜单，菜单里我们可以退出，暂定，继续游戏。别切阅读游戏玩法提示。</p><p>下一个图形，这个玩过俄罗斯方块的都知道每当一个图形初始化后，右侧界面都会出现的下一次图形的提示。这里我们就是新建两个随机数，分别代表图形种类和状态。然后在每次每次初始化新图形，重新绘制面板时，在界面右侧绘制下一次将要出现的图形。</p><p>最后给大家看一个完整版的效果图：</p><img src="/2019/12/28/tetris/Screenshot 2019-12-29 at 00.11.28.png" alt="Screenshot 2019-12-29 at 00.11.28" style="zoom:25%; "><h4 id="建议阅读时间-8分钟，-程序实现-java，-源代码">建议阅读时间 8分钟， 程序实现 java， 源代码:</h4><p><a href="https://github.com/wuhewuhe/AlgorithmeSource/tree/master/BlogNotes/src/main/java/Tetris" target="_blank" rel="noopener">https://github.com/wuhewuhe/AlgorithmeSource/tree/master/BlogNotes/src/main/java/Tetris</a></p><h4 id="总结：">总结：</h4><p>大概用了7个小时去进行程序整体设计，编程实现，调试，代码优化。然后4个小时去写文档。基本上完成俄罗斯方块的复刻，当然，还有细节做的不够好，比如背景音乐，方块颜色……</p><p>最后想说一说最近编程的一些感想，编程可能语言在不停的变，但是面向对象的思想没变，数据结构没变。我觉学习一门技术最重要的不是看概念，而是不停的实践，理论基础是在实践中总结出来才能记得更牢固。任何一个框架，技术都有自己的套路，当我们熟悉它之后，学会用计算机的思维方式去思考的时候，那么我们才能做到学以致用。（说远了，我也是差的还很远）</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;俄罗斯方块Tetris&quot;&gt;俄罗斯方块Tetris&lt;/h2&gt;
-&lt;h4 id=&quot;背景回顾&quot;&gt;背景回顾:&lt;/h4&gt;
-&lt;p&gt;我觉俄罗斯方块在游戏领域的地位，有点像乔丹打篮球。为什么这么说，EA对过去30年的游戏评点，俄罗斯方块这样一个仅在当时老毛子开发出来做检测效率的东西
-      
-    
-    </summary>
-    
-    
-      <category term="Java" scheme="https://wuhewuhe.github.io/categories/Java/"/>
-    
-    
-      <category term="jframe" scheme="https://wuhewuhe.github.io/tags/jframe/"/>
-    
-      <category term="game" scheme="https://wuhewuhe.github.io/tags/game/"/>
-    
-      <category term="thread" scheme="https://wuhewuhe.github.io/tags/thread/"/>
     
   </entry>
   

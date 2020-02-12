@@ -4,6 +4,39 @@
   
     
     <entry>
+      <title>set家族的对比</title>
+      <link href="/2020/02/12/set-hashset-treeset-linkedset/"/>
+      <url>/2020/02/12/set-hashset-treeset-linkedset/</url>
+      
+        <content type="html"><![CDATA[<p>一. HashSet<br>特点：</p><ol><li><p>HashSet中不能有相同的元素，可以有一个Null元素，存入的元素是无序的。</p></li><li><p>HashSet如何保证唯一性？</p></li></ol><p>1). HashSet底层数据结构是哈希表，哈希表就是存储唯一系列的表，而哈希值是由对象的hashCode()方法生成。</p><p>2). 确保唯一性的两个方法：hashCode()和equals()方法。</p><ol start="3"><li><p>添加、删除操作时间复杂度都是O(1)。</p></li><li><p>非线程安全</p></li></ol><p>二. LinkedHashSet<br>特点：</p><ol><li><p>LinkedHashSet中不能有相同元素，可以有一个Null元素，元素严格按照放入的顺序排列。</p></li><li><p>LinkedHashSet如何保证有序和唯一性？</p></li></ol><p>1). 底层数据结构由哈希表和链表组成。</p><p>2). 链表保证了元素的有序即存储和取出一致，哈希表保证了元素的唯一性。</p><ol start="3"><li><p>添加、删除操作时间复杂度都是O(1)。</p></li><li><p>非线程安全</p></li></ol><p>三. TreeSet<br>特点：</p><ol><li><p>TreeSet是中不能有相同元素，不可以有Null元素，根据元素的自然顺序进行排序。</p></li><li><p>TreeSet如何保证元素的排序和唯一性？</p></li></ol><p>底层的数据结构是红黑树(一种自平衡二叉查找树)</p><ol start="3"><li><p>添加、删除操作时间复杂度都是O(log(n))</p></li><li><p>非线程安全</p></li></ol><p>四. 总结：<br>通过以上特点可以分析出，三者都保证了元素的唯一性，如果无排序要求可以选用HashSet；如果想取出元素的顺序和放入元素的顺序相同，那么可以选用LinkedHashSet。如果想插入、删除立即排序或者按照一定规则排序可以选用TreeSet。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java </category>
+          
+          <category> Collections </category>
+          
+          <category> Set </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hashset </tag>
+            
+            <tag> linkedhashset </tag>
+            
+            <tag> treeset </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>讲清楚Vector vs ArrayList vs LinkedList</title>
       <link href="/2020/02/11/vector-arraylist-linkedlist/"/>
       <url>/2020/02/11/vector-arraylist-linkedlist/</url>
@@ -505,9 +538,9 @@
       
         <tags>
             
-            <tag> jframe </tag>
-            
             <tag> game </tag>
+            
+            <tag> jframe </tag>
             
             <tag> thread </tag>
             
@@ -534,9 +567,9 @@
       
         <tags>
             
-            <tag> jframe </tag>
-            
             <tag> game </tag>
+            
+            <tag> jframe </tag>
             
             <tag> thread </tag>
             
@@ -563,9 +596,9 @@
       
         <tags>
             
-            <tag> jframe </tag>
-            
             <tag> game </tag>
+            
+            <tag> jframe </tag>
             
             <tag> thread </tag>
             
@@ -592,9 +625,9 @@
       
         <tags>
             
-            <tag> jframe </tag>
-            
             <tag> game </tag>
+            
+            <tag> jframe </tag>
             
             <tag> timer </tag>
             

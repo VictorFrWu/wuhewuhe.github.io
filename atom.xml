@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wuhewuhe.github.io/"/>
-  <updated>2020-02-11T20:06:46.537Z</updated>
+  <updated>2020-02-11T20:22:35.670Z</updated>
   <id>https://wuhewuhe.github.io/</id>
   
   <author>
@@ -17,13 +17,48 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>讲清楚Vector vs ArrayList vs LinkedList</title>
+    <link href="https://wuhewuhe.github.io/2020/02/11/vector-arraylist-linkedlist/"/>
+    <id>https://wuhewuhe.github.io/2020/02/11/vector-arraylist-linkedlist/</id>
+    <published>2020-02-11T20:10:29.000Z</published>
+    <updated>2020-02-11T20:22:35.670Z</updated>
+    
+    <content type="html"><![CDATA[<p>首先看这两类都实现List接口，而List接口一共有三个实现类，分别是ArrayList、Vector和LinkedList。List用于存放多个元素，能够维护元素的次序，并且允许元素的重复。3个具体实现类的相关区别如下：</p><ol><li><p>ArrayList是最常用的List实现类，内部是通过数组实现的，它允许对元素进行快速随机访问。数组的缺点是每个元素之间不能有间隔，当数组大小不满足时需要增加存储能力，就要讲已经有数组的数据复制到新的存储空间中。当从ArrayList的中间位置插入或者删除元素时，需要对数组进行复制、移动、代价比较高。因此，它适合随机查找和遍历，不适合插入和删除。</p></li><li><p>Vector与ArrayList一样，也是通过数组实现的，不同的是它支持线程的同步，即某一时刻只有一个线程能够写Vector，避免多线程同时写而引起的不一致性，但实现同步需要很高的花费，因此，访问它比访问ArrayList慢。</p></li><li><p>LinkedList是用链表结构存储数据的，很适合数据的动态插入和删除，随机访问和遍历速度比较慢。另外，他还提供了List接口中没有定义的方法，专门用于操作表头和表尾元素，可以当作堆栈、队列和双向队列使用。</p></li><li><p>vector是线程（Thread）同步（Synchronized）的，所以它也是线程安全的，而Arraylist是线程异步（ASynchronized）的，是不安全的。如果不考虑到线程的安全因素，一般用Arraylist效率比较高。</p></li><li><p>如果集合中的元素的数目大于目前集合数组的长度时，vector增长率为目前数组长度的100%,而arraylist增长率为目前数组长度的50%.如过在集合中使用数据量比较大的数据，用vector有一定的优势。</p></li><li><p>如果查找一个指定位置的数据，vector和arraylist使用的时间是相同的，都是0(1),这个时候使用vector和arraylist都可以。而如果移动一个指定位置的数据花费的时间为0(n-i)n为总长度，这个时候就应该考虑到使用Linkedlist,因为它移动一个指定位置的数据所花费的时间为0(1),而查询一个指定位置的数据时花费的时间为0(i)。ArrayList 和Vector是采用数组方式存储数据，此数组元素数大于实际存储的数据以便增加和插入元素，都允许直接序号索引元素，但是插入数据要设计到数组元素移动 等内存操作，所以索引数据快插入数据慢，Vector由于使用了synchronized方法（线程安全）所以性能上比ArrayList要差，LinkedList使用双向链表实现存储，按序号索引数据需要进行向前或向后遍历，但是插入数据时只需要记录本项的前后项即可，所以插入数度较快！</p></li><li><p>笼统来说：LinkedList：增删改快，ArrayList：查询快（有索引的存在）</p></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;首先看这两类都实现List接口，而List接口一共有三个实现类，分别是ArrayList、Vector和LinkedList。List用于存放多个元素，能够维护元素的次序，并且允许元素的重复。3个具体实现类的相关区别如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;ArrayLis
+      
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="https://wuhewuhe.github.io/categories/Java/"/>
+    
+      <category term="Collections" scheme="https://wuhewuhe.github.io/categories/Java/Collections/"/>
+    
+    
+      <category term="vector" scheme="https://wuhewuhe.github.io/tags/vector/"/>
+    
+      <category term="arraylist" scheme="https://wuhewuhe.github.io/tags/arraylist/"/>
+    
+      <category term="linkedlist" scheme="https://wuhewuhe.github.io/tags/linkedlist/"/>
+    
+  </entry>
+  
+  <entry>
     <title>面试高频HashMap VS HashTable</title>
     <link href="https://wuhewuhe.github.io/2020/02/11/hashmapVsHashtable/"/>
     <id>https://wuhewuhe.github.io/2020/02/11/hashmapVsHashtable/</id>
     <published>2020-02-11T20:05:27.000Z</published>
-    <updated>2020-02-11T20:06:46.537Z</updated>
+    <updated>2020-02-11T20:07:51.252Z</updated>
     
-    <content type="html"><![CDATA[<p>在Java 2以前，一般使用Hashtable来映射键值和元素。为了使用Java集合框架，Java对Hashtable进行了重新设计，但是，为了向后兼容保留了所有的方法。Hashtable实现了Map接口，除了Hashtable具有同步功能之外，它与HashMap的用法是一样的。·<br>在使用时一般是用ArrayList代替Vector，LinkedList代替Stack，HashMap代替HashTable，即使在多线程中需要同步，也是用同步包装类。<br>另外在使用上还有一些小的差异，比如：</p><ul><li><p>HashTable的key和value都不允许为null值，而HashMap的key和value则都是允许null值的。这个其实没有好坏之分，只是Sun为了统一Collection的操作特性而改进的。</p></li><li><p>HashTable有一个contains(Object value)方法，功能上与containsValue(Object value)一样，但是在实现上花销更大，现在已不推荐使用。而HashMap只有containsValue(Object value)方法。</p></li><li><p>HashTable使用Enumeration，HashMap使用Iterator。Iterator其实与Enmeration功能上很相似，只是多了删除的功能。用Iterator不过是在名字上变得更为贴切一些。模式的另外一个很重要的功用，就是能够形成一种交流的语言（或者说文化）。有时候，你说Enumeration大家都不明白，说Iterator就都明白了。</p></li></ul><p><strong>不同点</strong></p><h4 id="接口">接口</h4><p><img src="https://pic3.zhimg.com/80/v2-12c49eba132902bbea990a4d77ecce37_hd.jpg" alt="img" style="zoom:50%;"><img src="https://pic3.zhimg.com/80/v2-d7d5449c9638ec4955288a3aa2ba9f13_hd.jpg" alt="img"><img src="https://pic3.zhimg.com/80/v2-12c49eba132902bbea990a4d77ecce37_hd.jpg" alt="img" style="zoom:50%;"><img src="https://pic3.zhimg.com/80/v2-d7d5449c9638ec4955288a3aa2ba9f13_hd.jpg" alt="img"></p><p>HashMap和Hashtable不仅作者不同，而且连父类也是不一样的。HashMap是继承自AbstractMap类，而HashTable是继承自Dictionary类。不过它们都实现了同时实现了map、Cloneable（可复制）、Serializable（可序列化）这三个接口</p><p>Dictionary类是一个已经被废弃的类（见其源码中的注释）。父类都被废弃，自然而然也没人用它的子类Hashtable了。</p><h4 id="线程安全">线程安全</h4><p>线程安全性不同</p><p>Hashtable是线程安全的，它的每个方法中都加入了Synchronize方法。在多线程并发的环境下，可以直接使用Hashtable，不需要自己为它的方法实现同步</p><p>HashMap不是线程安全的，在多线程并发的环境下，可能会产生死锁等问题。具体的原因在下一篇文章中会详细进行分析。使用HashMap时就必须要自己增加同步处理，</p><p>虽然HashMap不是线程安全的，但是它的效率会比Hashtable要好很多。这样设计是合理的。在我们的日常使用当中，大部分时间是单线程操作的。HashMap把这部分操作解放出来了。当需要多线程操作的时候可以使用线程安全的ConcurrentHashMap。ConcurrentHashMap虽然也是线程安全的，但是它的效率比Hashtable要高好多倍。因为ConcurrentHashMap使用了分段锁，并不对整个数据进行锁定。</p><h4 id="初始容量大小和每次扩充容量大小的不同">初始容量大小和每次扩充容量大小的不同</h4><p>Hashtable默认的初始大小为11，之后每次扩充，容量变为原来的2n+1。HashMap默认的初始化大小为16。之后每次扩充，容量变为原来的2倍。</p><p>创建时，如果给定了容量初始值，那么Hashtable会直接使用你给定的大小，而HashMap会将其扩充为2的幂次方大小。也就是说Hashtable会尽量使用素数、奇数。而HashMap则总是使用2的幂作为哈希表的大小。</p><h4 id="计算hash值的方法不同">计算hash值的方法不同</h4><p>为了得到元素的位置，首先需要根据元素的 KEY计算出一个hash值，然后再用这个hash值来计算得到最终的位置。</p><p>Hashtable直接使用对象的hashCode。hashCode是JDK根据对象的地址或者字符串或者数字算出来的int类型的数值。然后再使用除留余数发来获得最终的位置。</p><p><img src="https://pic4.zhimg.com/50/v2-df830c3a8054ee1a9f482dc3ccd66bf3_hd.jpg" alt="img"><img src="https://pic4.zhimg.com/80/v2-df830c3a8054ee1a9f482dc3ccd66bf3_hd.jpg" alt="img"></p><p>Hashtable在计算元素的位置时需要进行一次除法运算，而除法运算是比较耗时的。</p><p>HashMap为了提高计算效率，将哈希表的大小固定为了2的幂，这样在取模预算时，不需要做除法，只需要做位运算。位运算比除法的效率要高很多。</p><p>HashMap的效率虽然提高了，但是hash冲突却也增加了。因为它得出的hash值的低位相同的概率比较高，而计算位运算</p><p>为了解决这个问题，HashMap重新根据hashcode计算hash值后，又对hash值做了一些运算来打散数据。使得取得的位置更加分散，从而减少了hash冲突。当然了，为了高效，HashMap只做了一些简单的位处理。从而不至于把使用2 的幂次方带来的效率提升给抵消掉。</p>]]></content>
+    <content type="html"><![CDATA[<p>在Java 2以前，一般使用Hashtable来映射键值和元素。为了使用Java集合框架，Java对Hashtable进行了重新设计，但是，为了向后兼容保留了所有的方法。Hashtable实现了Map接口，除了Hashtable具有同步功能之外，它与HashMap的用法是一样的。·<br>在使用时一般是用ArrayList代替Vector，LinkedList代替Stack，HashMap代替HashTable，即使在多线程中需要同步，也是用同步包装类。<br>另外在使用上还有一些小的差异，比如：</p><ul><li><p>HashTable的key和value都不允许为null值，而HashMap的key和value则都是允许null值的。这个其实没有好坏之分，只是Sun为了统一Collection的操作特性而改进的。</p></li><li><p>HashTable有一个contains(Object value)方法，功能上与containsValue(Object value)一样，但是在实现上花销更大，现在已不推荐使用。而HashMap只有containsValue(Object value)方法。</p></li><li><p>HashTable使用Enumeration，HashMap使用Iterator。Iterator其实与Enmeration功能上很相似，只是多了删除的功能。用Iterator不过是在名字上变得更为贴切一些。模式的另外一个很重要的功用，就是能够形成一种交流的语言（或者说文化）。有时候，你说Enumeration大家都不明白，说Iterator就都明白了。</p></li></ul><p><strong>不同点</strong></p><h4 id="接口">接口</h4><p><img src="https://pic3.zhimg.com/80/v2-12c49eba132902bbea990a4d77ecce37_hd.jpg" alt="img" style="zoom:50%;"><img src="https://pic3.zhimg.com/80/v2-d7d5449c9638ec4955288a3aa2ba9f13_hd.jpg" alt="img"></p><p>HashMap和Hashtable不仅作者不同，而且连父类也是不一样的。HashMap是继承自AbstractMap类，而HashTable是继承自Dictionary类。不过它们都实现了同时实现了map、Cloneable（可复制）、Serializable（可序列化）这三个接口</p><p>Dictionary类是一个已经被废弃的类（见其源码中的注释）。父类都被废弃，自然而然也没人用它的子类Hashtable了。</p><h4 id="线程安全">线程安全</h4><p>线程安全性不同</p><p>Hashtable是线程安全的，它的每个方法中都加入了Synchronize方法。在多线程并发的环境下，可以直接使用Hashtable，不需要自己为它的方法实现同步</p><p>HashMap不是线程安全的，在多线程并发的环境下，可能会产生死锁等问题。具体的原因在下一篇文章中会详细进行分析。使用HashMap时就必须要自己增加同步处理，</p><p>虽然HashMap不是线程安全的，但是它的效率会比Hashtable要好很多。这样设计是合理的。在我们的日常使用当中，大部分时间是单线程操作的。HashMap把这部分操作解放出来了。当需要多线程操作的时候可以使用线程安全的ConcurrentHashMap。ConcurrentHashMap虽然也是线程安全的，但是它的效率比Hashtable要高好多倍。因为ConcurrentHashMap使用了分段锁，并不对整个数据进行锁定。</p><h4 id="初始容量大小和每次扩充容量大小的不同">初始容量大小和每次扩充容量大小的不同</h4><p>Hashtable默认的初始大小为11，之后每次扩充，容量变为原来的2n+1。HashMap默认的初始化大小为16。之后每次扩充，容量变为原来的2倍。</p><p>创建时，如果给定了容量初始值，那么Hashtable会直接使用你给定的大小，而HashMap会将其扩充为2的幂次方大小。也就是说Hashtable会尽量使用素数、奇数。而HashMap则总是使用2的幂作为哈希表的大小。</p><h4 id="计算hash值的方法不同">计算hash值的方法不同</h4><p>为了得到元素的位置，首先需要根据元素的 KEY计算出一个hash值，然后再用这个hash值来计算得到最终的位置。</p><p>Hashtable直接使用对象的hashCode。hashCode是JDK根据对象的地址或者字符串或者数字算出来的int类型的数值。然后再使用除留余数发来获得最终的位置。</p><p><img src="https://pic4.zhimg.com/50/v2-df830c3a8054ee1a9f482dc3ccd66bf3_hd.jpg" alt="img"><img src="https://pic4.zhimg.com/80/v2-df830c3a8054ee1a9f482dc3ccd66bf3_hd.jpg" alt="img"></p><p>Hashtable在计算元素的位置时需要进行一次除法运算，而除法运算是比较耗时的。</p><p>HashMap为了提高计算效率，将哈希表的大小固定为了2的幂，这样在取模预算时，不需要做除法，只需要做位运算。位运算比除法的效率要高很多。</p><p>HashMap的效率虽然提高了，但是hash冲突却也增加了。因为它得出的hash值的低位相同的概率比较高，而计算位运算</p><p>为了解决这个问题，HashMap重新根据hashcode计算hash值后，又对hash值做了一些运算来打散数据。使得取得的位置更加分散，从而减少了hash冲突。当然了，为了高效，HashMap只做了一些简单的位处理。从而不至于把使用2 的幂次方带来的效率提升给抵消掉。</p>]]></content>
     
     <summary type="html">
     
@@ -544,37 +579,6 @@
         &lt;h2 id=&quot;俄罗斯方块Tetris&quot;&gt;俄罗斯方块Tetris&lt;/h2&gt;
 &lt;h4 id=&quot;背景回顾&quot;&gt;背景回顾:&lt;/h4&gt;
 &lt;p&gt;我觉俄罗斯方块在游戏领域的地位，有点像乔丹打篮球。为什么这么说，EA对过去30年的游戏评点，俄罗斯方块这样一个仅在当时老毛子开发出来做检测效率的东西
-      
-    
-    </summary>
-    
-    
-      <category term="Java" scheme="https://wuhewuhe.github.io/categories/Java/"/>
-    
-    
-      <category term="jframe" scheme="https://wuhewuhe.github.io/tags/jframe/"/>
-    
-      <category term="game" scheme="https://wuhewuhe.github.io/tags/game/"/>
-    
-      <category term="thread" scheme="https://wuhewuhe.github.io/tags/thread/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>flappy bird</title>
-    <link href="https://wuhewuhe.github.io/2019/12/28/flappy-bird/"/>
-    <id>https://wuhewuhe.github.io/2019/12/28/flappy-bird/</id>
-    <published>2019-12-28T19:54:17.000Z</published>
-    <updated>2019-12-29T20:38:35.074Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="Flappy-Bird-仿写">Flappy Bird 仿写</h2><p>通过之前做贪吃蛇和小恐龙跳跃，对jframe，swing和awt的基础已经回顾的差不多了，因此这篇文章就不再一一赘述我已经写过的细节。讲讲大体上实现思路，设计模式还有哪些点需要注意。惯例，还是把所有素材和源码放到github上。</p><p>Flappy bird这个游戏是2014年一个在美国工作的越南裔移动端游戏工程师（Dong Nguyen ）开发的，然后在apple商店推出后就瞬间爆火，然后其自己突然让游戏下架。我在youtube上看了一些视频，据说此事与dark net相关（也不知真的假的）。后来，过来一段时间，他又从新上架这这款游戏，可是已经没有了当时的人气。因为我也认识当事人，也不知道事情的来龙去脉，所以今天我只是从技术的角度去复习这款游戏。</p><h4 id="技术选用与涉及技术：">技术选用与涉及技术：</h4><p>java8， eclipse IDE, jframe，awt，swing，thread</p><h4 id="思路">思路:</h4><p>由于我从事的领域并不是游戏开发，这只能算是我的爱好也是对技术的温故知新，所以我只是讲讲我对其的认识。我发现市场很多游戏都是单页面应用，我所指的单页面就是玩家对于操作对象始终停留在一个窗口中，我们通过不停的变化背景，生成障碍物去让游戏继续。对于这些单页面的应用，我通常的实现步骤就是先创建一个叫app的class，此类包含main函数，就是程序的入口，在这里面预设一个固定大小的主窗口初始化，加入监听器，然后再新建一个gamepanel类，所有的逻辑都会在这个类中完成。并将此类在app中事例化。然后分别对此程序中涉及到的所有对象创建class，比如小鸟（bird），管道（pipe），线程（thread），游戏本身所有的规则（game）。我本人的开发习惯是喜欢单独建一个辅助类（helper），存放所有的辅助函数，比如想图片的读取，声音的播放之类的。这些大概的轮廓搞好后，然后我们开始写程序。</p><h4 id="1寻找素材-调整合适大小">1寻找素材 调整合适大小</h4><p>这里我听取网友的建议然后进行过测试</p><p>小鸟3张 翅膀平行，下落，上升  管道2张（朝上和朝下） 背景图片一站 陆地一张</p><p>小鸟尺寸为 45 * 32 pixel</p><p>管道为为 66*400 pixel</p><p>大地和背景都为 500*500 pixel</p><h4 id="2-绘制背景，管道-，小鸟">2 绘制背景，管道 ，小鸟</h4><p>首先绘制背景，分别加载两张背景图片，注意顺序，当图片累加时会有重叠的问题。</p><p>然后是小鸟，给小鸟一个初始化的位置，作为游戏的起点。最后是管道。管道分为朝上和朝下，管道的宽度是固定的，也是给定一个初始值。</p><p>完成这一步，效果就是大概这样的：</p><img src="/2019/12/28/flappy-bird/Screenshot 2019-12-15 at 01.23.53.png" alt="Screenshot 2019-12-15 at 01.23.53" style="zoom:25%; "><h4 id="3-让小鸟跳跃-移动-挥舞翅膀">3 让小鸟跳跃 移动 挥舞翅膀</h4><h5 id="Step1-小鸟移动">Step1 小鸟移动</h5><p>实现这个功能，我需要预设一个jump为小鸟的单次上升高度。还有一个gravity引力系数，常识由于有地心引力的存在下降速度总是比上升速度快，我预设一个0.5，就是在我这个游戏中下降速度是上升速度的两倍。这里还有一点需要注意就是按键，如果按了空格键，小鸟位置上升，不按空格键，小鸟则直接下降，通过不停的点击空格键是可以让小鸟的高度累加。为了更贴近现实，我加入了一个图片旋转的功能，就是上升时，小鸟的头部会向上倾斜，反之亦然。此时我们可以通过awt的内置类affinetransform对图片进行一定幅度的旋转。</p><h5 id="Step2-小鸟跳跃">Step2 小鸟跳跃</h5><p>与小恐龙制作相差无几，我们可以让背景以一定的速度从右向左移动就可以达到一种小鸟在移动的感觉。此时我们需要用到线程，每隔一定的时间，重新绘制背景。我预设一个25ms，每25ms线程就会更新一次小鸟以及背景的位置。然后对键盘键监听，按空格键则小鸟位置上升，松开空格键则位置下落。</p><h5 id="Step3-挥舞翅膀">Step3 挥舞翅膀</h5><p>找到三张不同的图片是小鸟翅膀的位置分别在上中下，然后每隔25ms，单线程调用时累加游戏时间除以100再对3取余数，就达到了每100ms小鸟的翅膀就移动一次位置。</p><h4 id="4-管道的出现-移动">4 管道的出现 移动</h4><p>因为我们每隔25ms线程会去重新刷新界面，所以我们给定管道一个初始速度3。每25ms，管道向左移动3pixel。然后取一个在50-200之间取一个随机值，代表在接下来的50-200pixel会出现下一个管道。对于管道的y坐标，需要多考虑一点，因为小鸟的高度是32pixel，然后管道的高度是400pixel所以管道只是在界面中显示一段，我对于游戏的设计就是朝上的管道和朝下的管道总是成对出现，然后为了保证小鸟可以顺利通过管道，我给两个管道中间预留了50-120的pixel，然后再去推理出朝上和朝下管道具体的y轴值。</p><p>完成这一步，游戏也就实现了60%，效果如下：</p><img src="/2019/12/28/flappy-bird/Screenshot 2019-12-15 at 02.02.16.png" alt="img" style="zoom:25%; "><h4 id="5-碰撞检测">5 碰撞检测</h4><p>首先先新建一个arraylist用于存放出现的管道。奇数代表朝下，偶数朝上。用一个i记录当前管道。与小恐龙撞仙人掌相同，如何判定小鸟是否可以通过管道，我们需要对小鸟进行碰撞检测。每一组碰撞检测可以分为四个方面，我用两张图片向大家更好的讲解。</p><img src="/2019/12/28/flappy-bird/Screenshot 2019-12-15 at 02.03.46.png" alt="Screenshot 2019-12-15 at 02.03.46" style="zoom:25%; "><img src="/2019/12/28/flappy-bird/Screenshot 2019-12-28 at 23.54.44.png" alt="Screenshot 2019-12-28 at 23.54.44" style="zoom:25%; "><p>我们取到小鸟的头部检测小鸟有没有碰到管道的两个前沿，以及小鸟分过管道后是否碰到管道的后沿。当然是存在一定可能小鸟会碰到管道的中间，但在我这个游戏中，我已经计算过，线程25ms刷新一次，如果小鸟在进入管道前没有撞到管道，小鸟在跳跃或者下降，因为宽度固定，所以小鸟已经走到管道外。因此我只需要检测管道的头和尾。与小鸟的头和尾即可。</p><p>当然，我们还需要检测小鸟的位置使其置于大地和天空之间，如果超出范围也是碰撞。</p><h4 id="6-游戏暂停-结束-重新开始">6 游戏暂停 结束 重新开始</h4><p>暂停：设置一个全局变量pause，初始值为false。点击p时则pause变为true，此时游戏暂停。在界面中写出提示语，点击p键继续游戏。我们需要暂时让线程停止工作，从而使画面不刷新。</p><p>结束：设置一个全局变量death，初始值为false。当小鸟碰到大地，天空，管道时，death为true。在界面给出提示语，游戏结束，点击R键从新开始游戏</p><p>重新开始 ： 从新初始化小鸟的位置，分数，清空管道的list。</p><h4 id="7-分数统计-记录">7 分数统计 记录</h4><p>在主窗体底下设置一个长矩形，分别代表当前得分和记录，没通过一对管道增加1分，当游戏结束时，比较当前得分与最高得分。若当前得分高则更新记录。</p><p>最后呈现一下最终效果：</p><h4 id="源代码：">源代码：</h4><p><a href="https://github.com/wuhewuhe/AlgorithmeSource/tree/master/BlogNotes/src/main/java/FlappyBird" target="_blank" rel="noopener">https://github.com/wuhewuhe/AlgorithmeSource/tree/master/BlogNotes/src/main/java/FlappyBird</a></p><h4 id="总结：">总结：</h4><p>通过此次的flappy bird的开发，相比于前两次无论是开发时间，思路，完成度从自己的角度出发都有了一定程度的提升。同时也学到了一些新的写法和awt的用法，比如图片旋转；把游戏逻辑单写成一个类来封装；对于按键监听的press，release双操作。下一次，我想复写一下马里奥（mario），以此结束Jframe这个模块。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;Flappy-Bird-仿写&quot;&gt;Flappy Bird 仿写&lt;/h2&gt;
-&lt;p&gt;通过之前做贪吃蛇和小恐龙跳跃，对jframe，swing和awt的基础已经回顾的差不多了，因此这篇文章就不再一一赘述我已经写过的细节。讲讲大体上实现思路，设计模式还有哪些点需要注意。惯例
       
     
     </summary>

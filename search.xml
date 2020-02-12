@@ -4,11 +4,42 @@
   
     
     <entry>
+      <title>讲清楚Vector vs ArrayList vs LinkedList</title>
+      <link href="/2020/02/11/vector-arraylist-linkedlist/"/>
+      <url>/2020/02/11/vector-arraylist-linkedlist/</url>
+      
+        <content type="html"><![CDATA[<p>首先看这两类都实现List接口，而List接口一共有三个实现类，分别是ArrayList、Vector和LinkedList。List用于存放多个元素，能够维护元素的次序，并且允许元素的重复。3个具体实现类的相关区别如下：</p><ol><li><p>ArrayList是最常用的List实现类，内部是通过数组实现的，它允许对元素进行快速随机访问。数组的缺点是每个元素之间不能有间隔，当数组大小不满足时需要增加存储能力，就要讲已经有数组的数据复制到新的存储空间中。当从ArrayList的中间位置插入或者删除元素时，需要对数组进行复制、移动、代价比较高。因此，它适合随机查找和遍历，不适合插入和删除。</p></li><li><p>Vector与ArrayList一样，也是通过数组实现的，不同的是它支持线程的同步，即某一时刻只有一个线程能够写Vector，避免多线程同时写而引起的不一致性，但实现同步需要很高的花费，因此，访问它比访问ArrayList慢。</p></li><li><p>LinkedList是用链表结构存储数据的，很适合数据的动态插入和删除，随机访问和遍历速度比较慢。另外，他还提供了List接口中没有定义的方法，专门用于操作表头和表尾元素，可以当作堆栈、队列和双向队列使用。</p></li><li><p>vector是线程（Thread）同步（Synchronized）的，所以它也是线程安全的，而Arraylist是线程异步（ASynchronized）的，是不安全的。如果不考虑到线程的安全因素，一般用Arraylist效率比较高。</p></li><li><p>如果集合中的元素的数目大于目前集合数组的长度时，vector增长率为目前数组长度的100%,而arraylist增长率为目前数组长度的50%.如过在集合中使用数据量比较大的数据，用vector有一定的优势。</p></li><li><p>如果查找一个指定位置的数据，vector和arraylist使用的时间是相同的，都是0(1),这个时候使用vector和arraylist都可以。而如果移动一个指定位置的数据花费的时间为0(n-i)n为总长度，这个时候就应该考虑到使用Linkedlist,因为它移动一个指定位置的数据所花费的时间为0(1),而查询一个指定位置的数据时花费的时间为0(i)。ArrayList 和Vector是采用数组方式存储数据，此数组元素数大于实际存储的数据以便增加和插入元素，都允许直接序号索引元素，但是插入数据要设计到数组元素移动 等内存操作，所以索引数据快插入数据慢，Vector由于使用了synchronized方法（线程安全）所以性能上比ArrayList要差，LinkedList使用双向链表实现存储，按序号索引数据需要进行向前或向后遍历，但是插入数据时只需要记录本项的前后项即可，所以插入数度较快！</p></li><li><p>笼统来说：LinkedList：增删改快，ArrayList：查询快（有索引的存在）</p></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java </category>
+          
+          <category> Collections </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> vector </tag>
+            
+            <tag> arraylist </tag>
+            
+            <tag> linkedlist </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>面试高频HashMap VS HashTable</title>
       <link href="/2020/02/11/hashmapVsHashtable/"/>
       <url>/2020/02/11/hashmapVsHashtable/</url>
       
-        <content type="html"><![CDATA[<p>在Java 2以前，一般使用Hashtable来映射键值和元素。为了使用Java集合框架，Java对Hashtable进行了重新设计，但是，为了向后兼容保留了所有的方法。Hashtable实现了Map接口，除了Hashtable具有同步功能之外，它与HashMap的用法是一样的。·<br>在使用时一般是用ArrayList代替Vector，LinkedList代替Stack，HashMap代替HashTable，即使在多线程中需要同步，也是用同步包装类。<br>另外在使用上还有一些小的差异，比如：</p><ul><li><p>HashTable的key和value都不允许为null值，而HashMap的key和value则都是允许null值的。这个其实没有好坏之分，只是Sun为了统一Collection的操作特性而改进的。</p></li><li><p>HashTable有一个contains(Object value)方法，功能上与containsValue(Object value)一样，但是在实现上花销更大，现在已不推荐使用。而HashMap只有containsValue(Object value)方法。</p></li><li><p>HashTable使用Enumeration，HashMap使用Iterator。Iterator其实与Enmeration功能上很相似，只是多了删除的功能。用Iterator不过是在名字上变得更为贴切一些。模式的另外一个很重要的功用，就是能够形成一种交流的语言（或者说文化）。有时候，你说Enumeration大家都不明白，说Iterator就都明白了。</p></li></ul><p><strong>不同点</strong></p><h4 id="接口">接口</h4><p><img src="https://pic3.zhimg.com/80/v2-12c49eba132902bbea990a4d77ecce37_hd.jpg" alt="img" style="zoom:50%;"><img src="https://pic3.zhimg.com/80/v2-d7d5449c9638ec4955288a3aa2ba9f13_hd.jpg" alt="img"><img src="https://pic3.zhimg.com/80/v2-12c49eba132902bbea990a4d77ecce37_hd.jpg" alt="img" style="zoom:50%;"><img src="https://pic3.zhimg.com/80/v2-d7d5449c9638ec4955288a3aa2ba9f13_hd.jpg" alt="img"></p><p>HashMap和Hashtable不仅作者不同，而且连父类也是不一样的。HashMap是继承自AbstractMap类，而HashTable是继承自Dictionary类。不过它们都实现了同时实现了map、Cloneable（可复制）、Serializable（可序列化）这三个接口</p><p>Dictionary类是一个已经被废弃的类（见其源码中的注释）。父类都被废弃，自然而然也没人用它的子类Hashtable了。</p><h4 id="线程安全">线程安全</h4><p>线程安全性不同</p><p>Hashtable是线程安全的，它的每个方法中都加入了Synchronize方法。在多线程并发的环境下，可以直接使用Hashtable，不需要自己为它的方法实现同步</p><p>HashMap不是线程安全的，在多线程并发的环境下，可能会产生死锁等问题。具体的原因在下一篇文章中会详细进行分析。使用HashMap时就必须要自己增加同步处理，</p><p>虽然HashMap不是线程安全的，但是它的效率会比Hashtable要好很多。这样设计是合理的。在我们的日常使用当中，大部分时间是单线程操作的。HashMap把这部分操作解放出来了。当需要多线程操作的时候可以使用线程安全的ConcurrentHashMap。ConcurrentHashMap虽然也是线程安全的，但是它的效率比Hashtable要高好多倍。因为ConcurrentHashMap使用了分段锁，并不对整个数据进行锁定。</p><h4 id="初始容量大小和每次扩充容量大小的不同">初始容量大小和每次扩充容量大小的不同</h4><p>Hashtable默认的初始大小为11，之后每次扩充，容量变为原来的2n+1。HashMap默认的初始化大小为16。之后每次扩充，容量变为原来的2倍。</p><p>创建时，如果给定了容量初始值，那么Hashtable会直接使用你给定的大小，而HashMap会将其扩充为2的幂次方大小。也就是说Hashtable会尽量使用素数、奇数。而HashMap则总是使用2的幂作为哈希表的大小。</p><h4 id="计算hash值的方法不同">计算hash值的方法不同</h4><p>为了得到元素的位置，首先需要根据元素的 KEY计算出一个hash值，然后再用这个hash值来计算得到最终的位置。</p><p>Hashtable直接使用对象的hashCode。hashCode是JDK根据对象的地址或者字符串或者数字算出来的int类型的数值。然后再使用除留余数发来获得最终的位置。</p><p><img src="https://pic4.zhimg.com/50/v2-df830c3a8054ee1a9f482dc3ccd66bf3_hd.jpg" alt="img"><img src="https://pic4.zhimg.com/80/v2-df830c3a8054ee1a9f482dc3ccd66bf3_hd.jpg" alt="img"></p><p>Hashtable在计算元素的位置时需要进行一次除法运算，而除法运算是比较耗时的。</p><p>HashMap为了提高计算效率，将哈希表的大小固定为了2的幂，这样在取模预算时，不需要做除法，只需要做位运算。位运算比除法的效率要高很多。</p><p>HashMap的效率虽然提高了，但是hash冲突却也增加了。因为它得出的hash值的低位相同的概率比较高，而计算位运算</p><p>为了解决这个问题，HashMap重新根据hashcode计算hash值后，又对hash值做了一些运算来打散数据。使得取得的位置更加分散，从而减少了hash冲突。当然了，为了高效，HashMap只做了一些简单的位处理。从而不至于把使用2 的幂次方带来的效率提升给抵消掉。</p>]]></content>
+        <content type="html"><![CDATA[<p>在Java 2以前，一般使用Hashtable来映射键值和元素。为了使用Java集合框架，Java对Hashtable进行了重新设计，但是，为了向后兼容保留了所有的方法。Hashtable实现了Map接口，除了Hashtable具有同步功能之外，它与HashMap的用法是一样的。·<br>在使用时一般是用ArrayList代替Vector，LinkedList代替Stack，HashMap代替HashTable，即使在多线程中需要同步，也是用同步包装类。<br>另外在使用上还有一些小的差异，比如：</p><ul><li><p>HashTable的key和value都不允许为null值，而HashMap的key和value则都是允许null值的。这个其实没有好坏之分，只是Sun为了统一Collection的操作特性而改进的。</p></li><li><p>HashTable有一个contains(Object value)方法，功能上与containsValue(Object value)一样，但是在实现上花销更大，现在已不推荐使用。而HashMap只有containsValue(Object value)方法。</p></li><li><p>HashTable使用Enumeration，HashMap使用Iterator。Iterator其实与Enmeration功能上很相似，只是多了删除的功能。用Iterator不过是在名字上变得更为贴切一些。模式的另外一个很重要的功用，就是能够形成一种交流的语言（或者说文化）。有时候，你说Enumeration大家都不明白，说Iterator就都明白了。</p></li></ul><p><strong>不同点</strong></p><h4 id="接口">接口</h4><p><img src="https://pic3.zhimg.com/80/v2-12c49eba132902bbea990a4d77ecce37_hd.jpg" alt="img" style="zoom:50%;"><img src="https://pic3.zhimg.com/80/v2-d7d5449c9638ec4955288a3aa2ba9f13_hd.jpg" alt="img"></p><p>HashMap和Hashtable不仅作者不同，而且连父类也是不一样的。HashMap是继承自AbstractMap类，而HashTable是继承自Dictionary类。不过它们都实现了同时实现了map、Cloneable（可复制）、Serializable（可序列化）这三个接口</p><p>Dictionary类是一个已经被废弃的类（见其源码中的注释）。父类都被废弃，自然而然也没人用它的子类Hashtable了。</p><h4 id="线程安全">线程安全</h4><p>线程安全性不同</p><p>Hashtable是线程安全的，它的每个方法中都加入了Synchronize方法。在多线程并发的环境下，可以直接使用Hashtable，不需要自己为它的方法实现同步</p><p>HashMap不是线程安全的，在多线程并发的环境下，可能会产生死锁等问题。具体的原因在下一篇文章中会详细进行分析。使用HashMap时就必须要自己增加同步处理，</p><p>虽然HashMap不是线程安全的，但是它的效率会比Hashtable要好很多。这样设计是合理的。在我们的日常使用当中，大部分时间是单线程操作的。HashMap把这部分操作解放出来了。当需要多线程操作的时候可以使用线程安全的ConcurrentHashMap。ConcurrentHashMap虽然也是线程安全的，但是它的效率比Hashtable要高好多倍。因为ConcurrentHashMap使用了分段锁，并不对整个数据进行锁定。</p><h4 id="初始容量大小和每次扩充容量大小的不同">初始容量大小和每次扩充容量大小的不同</h4><p>Hashtable默认的初始大小为11，之后每次扩充，容量变为原来的2n+1。HashMap默认的初始化大小为16。之后每次扩充，容量变为原来的2倍。</p><p>创建时，如果给定了容量初始值，那么Hashtable会直接使用你给定的大小，而HashMap会将其扩充为2的幂次方大小。也就是说Hashtable会尽量使用素数、奇数。而HashMap则总是使用2的幂作为哈希表的大小。</p><h4 id="计算hash值的方法不同">计算hash值的方法不同</h4><p>为了得到元素的位置，首先需要根据元素的 KEY计算出一个hash值，然后再用这个hash值来计算得到最终的位置。</p><p>Hashtable直接使用对象的hashCode。hashCode是JDK根据对象的地址或者字符串或者数字算出来的int类型的数值。然后再使用除留余数发来获得最终的位置。</p><p><img src="https://pic4.zhimg.com/50/v2-df830c3a8054ee1a9f482dc3ccd66bf3_hd.jpg" alt="img"><img src="https://pic4.zhimg.com/80/v2-df830c3a8054ee1a9f482dc3ccd66bf3_hd.jpg" alt="img"></p><p>Hashtable在计算元素的位置时需要进行一次除法运算，而除法运算是比较耗时的。</p><p>HashMap为了提高计算效率，将哈希表的大小固定为了2的幂，这样在取模预算时，不需要做除法，只需要做位运算。位运算比除法的效率要高很多。</p><p>HashMap的效率虽然提高了，但是hash冲突却也增加了。因为它得出的hash值的低位相同的概率比较高，而计算位运算</p><p>为了解决这个问题，HashMap重新根据hashcode计算hash值后，又对hash值做了一些运算来打散数据。使得取得的位置更加分散，从而减少了hash冲突。当然了，为了高效，HashMap只做了一些简单的位处理。从而不至于把使用2 的幂次方带来的效率提升给抵消掉。</p>]]></content>
       
       
       <categories>

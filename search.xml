@@ -4,6 +4,39 @@
   
     
     <entry>
+      <title>composite and aggrevgation</title>
+      <link href="/2020/02/16/composite-and-aggrevgation/"/>
+      <url>/2020/02/16/composite-and-aggrevgation/</url>
+      
+        <content type="html"><![CDATA[<ul><li>inheritance and delegate</li></ul><p>both of them are the reuse technique in java, and they are importance design in our daily coding, inheritance is represented by Lioskv, his operations and attributes are inherite by subclass from parent class in the context, which is called super class.</p><p><strong>Delegation</strong> is simply passing a duty off to someone/something else.</p><p>Delegation can be an alternative to inheritance.<br>Delegation means that you use an object of another class as an instance variable, and forward messages to the instance.<br>It is better than inheritance for many cases because it makes you to think about each message you forward, because the instance is of a known class, rather than a new class, and because it doesn’t force you to accept all the methods of the super class: you can provide only the methods that really make sense.<br>Delegation can be viewed as a relationship between objects where one object forwards certain method calls to another object, called its delegate.</p><ul><li>difference between delegate and inheritance?</li></ul><p>inheitance vise to class, bur delegate vise to object</p><ul><li>Why use delegate?</li></ul><p>it can be an alternative way of inheritance, but the primary advantage of delegate is that it’s flexible and change in run time, it doesn’t force you to accept all method of a super class, you just provide some mthod make you sense</p><ul><li>When to use inheritance?</li></ul><p>You want to express relationship (is-a) then you want to use Inheritance.</p><p>You want to be able to pass your class to an existing API expecting A’s then you need to use inheritance.</p><ul><li>when to use delegate?</li></ul><p>You want to enhance A, but A is final and can no further be sub-classed then you need to use <a href="https://www.geeksforgeeks.org/association-composition-aggregation-java/" target="_blank" rel="noopener">composition</a> and delegation.</p><p>In this example, there is an Institute which has no. of departments like CSE, EE. Every department has no. of students. So, we make a Institute class which has a reference to Object or no. of Objects (i.e. List of Objects) of the Department class. That means Institute class is associated with Department class through its Object(s). And Department class has also a reference to Object or Objects (i.e. List of Objects) of Student class means it is associated with Student class through its Object(s).<br>It represents a <strong>Has-A</strong> relationship.<br><a href="https://www.geeksforgeeks.org/media.geeksforgeeks.org/wp-content/uploads/Reference.png" target="_blank" rel="noopener"><img src="https://media.geeksforgeeks.org/wp-content/uploads/Reference.png" alt="Aggregation_1"></a></p><p>Composition is a restricted form of Aggregation in which two entities are highly dependent on each other.</p><ul><li>It represents <strong>part-of</strong> relationship.</li><li>In composition, both the entities are dependent on each other.</li><li>When there is a composition between two entities, the composed object <strong>cannot exist</strong> without the other entity.</li></ul><p>In above example a library can have no. of <strong>books</strong> on same or different subjects. So, If Library gets destroyed then All books within that particular library will be destroyed. i.e. book can not exist without library. That’s why it is composition.</p><p><strong>Aggregation vs Composition</strong></p><ol><li><strong>Dependency:</strong> Aggregation implies a relationship where the child <strong>can exist independently</strong> of the parent. For example, Bank and Employee, delete the Bank and the Employee still exist. whereas Composition implies a relationship where the child <strong>cannot exist independent</strong> of the parent. Example: Human and heart, heart don’t exist separate to a Human</li><li><strong>Type of Relationship:</strong> Aggregation relation is <strong>“has-a”</strong> and composition is <strong>“part-of”</strong> relation.</li><li><strong>Type of association:</strong> Composition is a <strong>strong</strong> Association whereas Aggregation is a <strong>weak</strong> Association.</li></ol><p>In case of aggregation, the Car also performs its functions through an Engine. but the Engine is not always an internal part of the Car. An engine can be swapped out or even can be removed from the car. That’ why we make The Engine type field non-final.</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java </category>
+          
+          <category> Design pattern </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> deglate </tag>
+            
+            <tag> inheritance </tag>
+            
+            <tag> comoposite </tag>
+            
+            <tag> aggrevgation </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>SOLID Object Orient Programming pinciples</title>
       <link href="/2020/02/15/solid/"/>
       <url>/2020/02/15/solid/</url>

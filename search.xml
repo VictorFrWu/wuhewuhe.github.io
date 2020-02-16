@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>Exception处理</title>
+      <link href="/2020/02/16/exceptionChec-k/"/>
+      <url>/2020/02/16/exceptionChec-k/</url>
+      
+        <content type="html"><![CDATA[<p>Java把异常作为一种类，当做对象来处理。所有异常类的基类是Throwable类，两大子类分别是Error和Exception。</p><p>error表示系统级的错误，是java运行环境内部错误或者硬件问题，不能指望程序来处理这样的问题，除了退出运行外别无选择，它是Java虚拟机抛出的。</p><p>exception 表示程序需要捕捉、需要处理的异常，是由与程序设计的不完善而出现的问题，程序必须处理的问题</p><ul><li>先来看看java中异常的体系结构图解</li></ul><img src="/2020/02/16/exceptionChec-k/../Desktop/屏幕快照 2020-02-16 20.07.13.png" alt="屏幕快照 2020-02-16 20.07.13" style="zoom:50%; "><p>首先说明一点，java中的Exception类的子类不仅仅只是像上图所示只包含IOException和RuntimeException这两大类，事实上Exception的子类很多很多，主要可概括为：运行时异常与非运行时异常。</p><p><strong>运行时异常和非运行时异常</strong><br>运行时异常都是RuntimeException类及其子类异常，如NullPointerException、IndexOutOfBoundsException等，这些异常是不检查异常，程序中可以选择在运行时捕获处理，也可以不处理。这些异常一般是由程序逻辑错误引起的，程序应该从逻辑角度尽可能避免这类异常的发生。</p><p>CheckedException成为编译时异常，类型上都属于Exception类及其子类。从程序语法角度讲是必须进行处理的异常，如果不处理，程序就不能编译通过。如IOException、SQLException等以及用户自定义的Exception异常，一般情况下不自定义检查异常。</p><p><strong>Java中异常处理机制的原理</strong></p><p>Java通过面向对象的方式对异常进行处理，Java把异常按照不同的类型进行分类，并提供了良好的接口。在Java中，每个异常都是一个对象，它都是Throwable</p><p>或其子类的实例。当一个方法出现异常后就会抛出一个异常对象，该对象中包含有异常信息，调用这个对象的方法可以捕获到这个异常并对异常进行处理。Java的</p><p>异常处理是通过5个关键词来实现的：try catch  throw throws finally。</p><p>一般情况下是用try来执行一段程序，如果出现异常，系统会抛出（throws），我们可以通过它的类型来捕捉它，或最后由缺省处理器来处理它（finally）。</p><p>try：用来指定一块预防所有异常的程序</p><p>catch：紧跟在try后面，用来捕获异常</p><p>throw：用来明确的抛出一个异常</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; throw </span><br><span class="line">public class throwException &#123;</span><br><span class="line">static void checkAge(int age) &#123;</span><br><span class="line">if (age &lt; 18) &#123;</span><br><span class="line">throw new ArithmeticException(&quot;Access denied - You must be at least 18 years old.&quot;);</span><br><span class="line">&#125; else &#123;</span><br><span class="line">System.out.println(&quot;Access granted - You are old enough!&quot;);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">checkAge(15); &#x2F;&#x2F; Set age to 15 (which is below 18...)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>throws：用来标明一个成员函数可能抛出的各种异常</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args)throws InterruptedException </span><br><span class="line">    &#123; </span><br><span class="line">        Thread.sleep(100); </span><br><span class="line">        System.out.println(&quot;Hello Geeks&quot;); </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><p>finally：确保一段代码无论发生什么异常都会被执行的一段代码。</p><p><strong>final、finally、finalize的区别</strong></p><p>（1）、final用于声明变量、方法和类的，分别表示变量值不可变，方法不可覆盖，类不可以继承</p><p>（2）、finally是异常处理中的一个关键字，表示finally{}里面的代码一定要执行</p><p>（3）、finalize是Object类的一个方法，在垃圾回收的时候会调用被回收对象的此方法。</p><p><strong>try()里面有一个return语句，那么后面的finally{}里面的code会不会被执行，什么时候执行，是在return前还是return后？</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">int a &#x3D; 1 &#x2F; 0;</span><br><span class="line">return 1;</span><br><span class="line">&#125; catch (Exception e) &#123;</span><br><span class="line">return 2;</span><br><span class="line">&#125; finally &#123;</span><br><span class="line">return 3;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>结果为3</p><p><strong>请写出你最常见的5个RuntimeException</strong></p><p>NullPointer;</p><p>ClassNotFound;</p><p>IndexOutOfBounds;</p><p>ClassCast; NoClassDef;</p><p>IllgealArgument;</p><p>NumberFormat;</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java </category>
+          
+          <category> Throwable </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> try catch finally </tag>
+            
+            <tag> Error </tag>
+            
+            <tag> Exception </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>java 浅谈多线程的通讯方式</title>
       <link href="/2020/02/16/mutlithread/"/>
       <url>/2020/02/16/mutlithread/</url>
@@ -872,9 +903,9 @@
       
         <tags>
             
-            <tag> game </tag>
-            
             <tag> jframe </tag>
+            
+            <tag> game </tag>
             
             <tag> thread </tag>
             
@@ -901,9 +932,9 @@
       
         <tags>
             
-            <tag> game </tag>
-            
             <tag> jframe </tag>
+            
+            <tag> game </tag>
             
             <tag> thread </tag>
             
@@ -930,9 +961,9 @@
       
         <tags>
             
-            <tag> game </tag>
-            
             <tag> jframe </tag>
+            
+            <tag> game </tag>
             
             <tag> thread </tag>
             
@@ -959,9 +990,9 @@
       
         <tags>
             
-            <tag> game </tag>
-            
             <tag> jframe </tag>
+            
+            <tag> game </tag>
             
             <tag> timer </tag>
             

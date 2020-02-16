@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>reflect</title>
+      <link href="/2020/02/16/reflect/"/>
+      <url>/2020/02/16/reflect/</url>
+      
+        <content type="html"><![CDATA[<p>反射之中包含了一个「反」字，所以想要解释反射就必须先从「正」开始解释。</p><p>一般情况下，我们使用某个类时必定知道它是什么类，是用来做什么的。于是我们直接对这个类进行实例化，之后使用这个类对象进行操作。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Apple apple &#x3D; new Apple(); &#x2F;&#x2F;直接初始化，「正射」</span><br><span class="line">apple.setPrice(4);</span><br></pre></td></tr></table></figure><p>上面这样子进行类对象的初始化，我们可以理解为「正」。</p><p>而反射则是一开始并不知道我要初始化的类对象是什么，自然也无法使用 new 关键字来创建对象了。</p><p>这时候，我们使用 JDK 提供的反射 API 进行反射调用：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Class clz &#x3D; Class.forName(&quot;com.chenshuyi.reflect.Apple&quot;);</span><br><span class="line">Method method &#x3D; clz.getMethod(&quot;setPrice&quot;, int.class);</span><br><span class="line">Constructor constructor &#x3D; clz.getConstructor();</span><br><span class="line">Object object &#x3D; constructor.newInstance();</span><br><span class="line">method.invoke(object, 4);</span><br></pre></td></tr></table></figure><p>上面两段代码的执行结果，其实是完全一样的。但是其思路完全不一样，第一段代码在未运行时就已经确定了要运行的类（Apple），而第二段代码则是在运行时通过字符串值才得知要运行的类（com.chenshuyi.reflect. Apple）。</p><p>所以说什么是反射？</p><p><strong>反射就是在运行时才知道要操作的类是什么，并且可以在运行时获取类的完整构造，并调用对应的方法。</strong></p><h2 id="一个简单的例子">一个简单的例子</h2><p>上面提到的示例程序，其完整的程序代码如下：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">public class Apple &#123;</span><br><span class="line"></span><br><span class="line">    private int price;</span><br><span class="line"></span><br><span class="line">    public int getPrice() &#123;</span><br><span class="line">        return price;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setPrice(int price) &#123;</span><br><span class="line">        this.price &#x3D; price;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) throws Exception&#123;</span><br><span class="line">        &#x2F;&#x2F;正常的调用</span><br><span class="line">        Apple apple &#x3D; new Apple();</span><br><span class="line">        apple.setPrice(5);</span><br><span class="line">        System.out.println(&quot;Apple Price:&quot; + apple.getPrice());</span><br><span class="line">        &#x2F;&#x2F;使用反射调用</span><br><span class="line">        Class clz &#x3D; Class.forName(&quot;com.chenshuyi.api.Apple&quot;);</span><br><span class="line">        Method setPriceMethod &#x3D; clz.getMethod(&quot;setPrice&quot;, int.class);</span><br><span class="line">        Constructor appleConstructor &#x3D; clz.getConstructor();</span><br><span class="line">        Object appleObj &#x3D; appleConstructor.newInstance();</span><br><span class="line">        setPriceMethod.invoke(appleObj, 14);</span><br><span class="line">        Method getPriceMethod &#x3D; clz.getMethod(&quot;getPrice&quot;);</span><br><span class="line">        System.out.println(&quot;Apple Price:&quot; + getPriceMethod.invoke(appleObj));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>从代码中可以看到我们使用反射调用了 setPrice 方法，并传递了 14 的值。之后使用反射调用了 getPrice 方法，输出其价格。上面的代码整个的输出结果是：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Apple Price:5</span><br><span class="line">Apple Price:14</span><br></pre></td></tr></table></figure><p>从这个简单的例子可以看出，一般情况下我们使用反射获取一个对象的步骤：</p><ul><li>获取类的 Class 对象实例</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Class clz &#x3D; Class.forName(&quot;com.zhenai.api.Apple&quot;);</span><br></pre></td></tr></table></figure><ul><li>根据 Class 对象实例获取 Constructor 对象</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Constructor appleConstructor &#x3D; clz.getConstructor();</span><br></pre></td></tr></table></figure><ul><li>使用 Constructor 对象的 newInstance 方法获取反射类对象</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Object appleObj &#x3D; appleConstructor.newInstance();</span><br></pre></td></tr></table></figure><p>而如果要调用某一个方法，则需要经过下面的步骤：</p><ul><li>获取方法的 Method 对象</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Method setPriceMethod &#x3D; clz.getMethod(&quot;setPrice&quot;, int.class);</span><br></pre></td></tr></table></figure><ul><li>利用 invoke 方法调用方法</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setPriceMethod.invoke(appleObj, 14);</span><br></pre></td></tr></table></figure><p>到这里，我们已经能够掌握反射的基本使用。但如果要进一步掌握反射，还需要对反射的常用 API 有更深入的理解。</p><p>在 JDK 中，反射相关的 API 可以分为下面几个方面：获取反射的 Class 对象、通过反射创建类对象、通过反射获取类属性方法及构造器。</p><h2 id="反射常用API">反射常用API</h2><h3 id="获取反射中的Class对象">获取反射中的Class对象</h3><p>在反射中，要获取一个类或调用一个类的方法，我们首先需要获取到该类的 Class 对象。</p><p>在 Java API 中，获取 Class 类对象有三种方法：</p><p>**第一种，使用 Class.forName 静态方法。**当你知道该类的全路径名时，你可以使用该方法获取 Class 类对象。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Class clz &#x3D; Class.forName(&quot;java.lang.String&quot;);</span><br></pre></td></tr></table></figure><p><strong>第二种，使用 .class 方法。</strong></p><p>这种方法只适合在编译前就知道操作的 Class。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Class clz &#x3D; String.class;</span><br></pre></td></tr></table></figure><p><strong>第三种，使用类对象的 getClass() 方法。</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String str &#x3D; new String(&quot;Hello&quot;);</span><br><span class="line">Class clz &#x3D; str.getClass();</span><br></pre></td></tr></table></figure><h3 id="通过反射创建类对象">通过反射创建类对象</h3><p>通过反射创建类对象主要有两种方式：通过 Class 对象的 newInstance() 方法、通过 Constructor 对象的 newInstance() 方法。</p><p>第一种：通过 Class 对象的 newInstance() 方法。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Class clz &#x3D; Apple.class;</span><br><span class="line">Apple apple &#x3D; (Apple)clz.newInstance();</span><br></pre></td></tr></table></figure><p>第二种：通过 Constructor 对象的 newInstance() 方法</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Class clz &#x3D; Apple.class;</span><br><span class="line">Constructor constructor &#x3D; clz.getConstructor();</span><br><span class="line">Apple apple &#x3D; (Apple)constructor.newInstance();</span><br></pre></td></tr></table></figure><p>通过 Constructor 对象创建类对象可以选择特定构造方法，而通过 Class 对象则只能使用默认的无参数构造方法。下面的代码就调用了一个有参数的构造方法进行了类对象的初始化。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Class clz &#x3D; Apple.class;</span><br><span class="line">Constructor constructor &#x3D; clz.getConstructor(String.class, int.class);</span><br><span class="line">Apple apple &#x3D; (Apple)constructor.newInstance(&quot;红富士&quot;, 15);</span><br></pre></td></tr></table></figure><h3 id="通过反射获取类属性、方法、构造器">通过反射获取类属性、方法、构造器</h3><p>我们通过 Class 对象的 getFields() 方法可以获取 Class 类的属性，但无法获取私有属性。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Class clz &#x3D; Apple.class;</span><br><span class="line">Field[] fields &#x3D; clz.getFields();</span><br><span class="line">for (Field field : fields) &#123;</span><br><span class="line">    System.out.println(field.getName());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>输出结果是：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">price</span><br></pre></td></tr></table></figure><p>而如果使用 Class 对象的 getDeclaredFields() 方法则可以获取包括私有属性在内的所有属性：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Class clz &#x3D; Apple.class;</span><br><span class="line">Field[] fields &#x3D; clz.getDeclaredFields();</span><br><span class="line">for (Field field : fields) &#123;</span><br><span class="line">    System.out.println(field.getName());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>输出结果是：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">name</span><br><span class="line">price</span><br></pre></td></tr></table></figure><p>与获取类属性一样，当我们去获取类方法、类构造器时，如果要获取私有方法或私有构造器，则必须使用有 declared 关键字的方法。</p><p>Method 类的 invoke 方法整个流程可以表示成如下的时序图：</p><p><img src="https://img2018.cnblogs.com/blog/595137/201903/595137-20190324000247330-1279629878.png" alt="img"></p><p>讲到这里，我们了解了 Method 类的 invoke 方法的具体实现方式。知道了原来 invoke 方法内部有两种实现方式，一种是 native 原生的实现方式，一种是 Java 实现方式，这两种各有千秋。而为了最大化性能优势，JDK 源码使用了代理的设计模式去实现最大化性能</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java </category>
+          
+          <category> Delegate </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> reflect </tag>
+            
+            <tag> invoke </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>composite and aggrevgation</title>
       <link href="/2020/02/16/composite-and-aggrevgation/"/>
       <url>/2020/02/16/composite-and-aggrevgation/</url>
@@ -685,9 +714,9 @@
       
         <tags>
             
-            <tag> game </tag>
-            
             <tag> jframe </tag>
+            
+            <tag> game </tag>
             
             <tag> thread </tag>
             
@@ -714,9 +743,9 @@
       
         <tags>
             
-            <tag> game </tag>
-            
             <tag> jframe </tag>
+            
+            <tag> game </tag>
             
             <tag> thread </tag>
             
@@ -743,9 +772,9 @@
       
         <tags>
             
-            <tag> game </tag>
-            
             <tag> jframe </tag>
+            
+            <tag> game </tag>
             
             <tag> thread </tag>
             
@@ -772,9 +801,9 @@
       
         <tags>
             
-            <tag> game </tag>
-            
             <tag> jframe </tag>
+            
+            <tag> game </tag>
             
             <tag> timer </tag>
             

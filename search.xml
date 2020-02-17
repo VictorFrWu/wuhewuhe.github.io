@@ -4,6 +4,120 @@
   
     
     <entry>
+      <title>tomcat刨析</title>
+      <link href="/2020/02/17/tomcat/"/>
+      <url>/2020/02/17/tomcat/</url>
+      
+        <content type="html"><![CDATA[<p>Tomcat:</p><ul><li>1 modify tomcat port</li></ul><ol><li>找到Tomcat目录下的conf文件夹</li><li>进入conf文件夹里面找到server.xml文件</li><li>打开server.xml文件</li><li>在server.xml文件里面找到下列信息</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;Service name&#x3D;&quot;Catalina&quot;&gt;</span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">    &lt;Connector port&#x3D;&quot;8080&quot; protocol&#x3D;&quot;HTTP&#x2F;1.1&quot; </span><br><span class="line">               connectionTimeout&#x3D;&quot;20000&quot; </span><br><span class="line">               redirectPort&#x3D;&quot;8443&quot; &#x2F;&gt;</span><br></pre></td></tr></table></figure><ul><li>how many method to connect tomcats?</li></ul><p>bio blocking i/o 同步阻塞</p><p>nio <strong>同步阻塞或同步非阻塞IO</strong></p><p>aio(nio.2): <strong>JDK7开始支持，异步非阻塞IO</strong></p><p>apr(apache portable runtime): Tomcat将以JNI的形式调用Apache HTTP服务器的核心动态链接库来处理文件读取或网络传输操作，从而大大地 <strong>提高Tomcat对静态文件的处理性能</strong></p><h2 id="Tomcat有几种部署方式">Tomcat有几种部署方式</h2><ol><li>直接把Web项目放在webapps下，Tomcat会自动将其部署</li><li>在server.xml文件上配置``节点，设置相关的属性即可</li><li>通过Catalina来进行配置:进入到conf\Catalina\localhost文件下，创建一个xml文件，该文件的名字就是站点的名字。编写XML的方式来进行设置。</li></ol><h2 id="Tomcat有几种部署方式-2">Tomcat有几种部署方式</h2><ol><li>直接把Web项目放在webapps下，Tomcat会自动将其部署</li><li>在server.xml文件上配置``节点，设置相关的属性即可</li><li>通过Catalina来进行配置:进入到conf\Catalina\localhost文件下，创建一个xml文件，该文件的名字就是站点的名字。编写XML的方式来进行设置。</li></ol><h2 id="部署方式第二点：">部署方式第二点：</h2><ul><li>在其他盘符下创建一个web站点目录，并创建WEB-INF目录和一个html文件。</li></ul><p><img src="https://pic3.zhimg.com/80/v2-4bf007b65aa9ed8d5cb9508ee064674e_hd.jpg" alt="img"></p><ul><li>找到Tomcat目录下/conf/server.xml文件</li></ul><p><img src="https://pic3.zhimg.com/80/v2-44643fbf206dacfee7debbfdb24ce08a_hd.jpg" alt="img"></p><ul><li>在server.xml中的节点下添加如下代码。<strong>path表示的是访问时输入的web项目名，docBase表示的是站点目录的绝对路径</strong></li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Context path&#x3D;&quot;&#x2F;web1&quot; docBase&#x3D;&quot;D:\web1&quot;&#x2F;&gt;</span><br></pre></td></tr></table></figure><p><img src="https://pic4.zhimg.com/80/v2-660c2e9f1bf3f36736234a7e139e2543_hd.jpg" alt="img"></p><ul><li>访问配置好的web站点</li></ul><p><img src="https://pic3.zhimg.com/80/v2-b2a5a2a2af98b4057c818cc8b4ee711a_hd.jpg" alt="img"></p><h2 id="部署方式第三点：">部署方式第三点：</h2><ul><li>进入到conf\Catalina\localhost文件下，创建一个xml文件，<strong>该文件的名字就是站点的名字。</strong></li></ul><p><img src="https://pic3.zhimg.com/80/v2-39eeec1d1d3a5109f6b746f62b357a12_hd.jpg" alt="img"></p><ul><li>xml文件的代码如下，<strong>docBase是你web站点的绝对路径</strong></li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;UTF-8&quot;?&gt; </span><br><span class="line">&lt;Context </span><br><span class="line">    docBase&#x3D;&quot;D:\web1&quot; </span><br><span class="line">    reloadable&#x3D;&quot;true&quot;&gt; </span><br><span class="line">&lt;&#x2F;Context&gt;</span><br></pre></td></tr></table></figure><ul><li>访问web站点下的html资源</li></ul><p><img src="https://pic1.zhimg.com/80/v2-31ff7b7871c2354b783043371075e07c_hd.jpg" alt="img"></p><h2 id="Servlet面试题">Servlet面试题</h2><h2 id="Servlet生命周期">Servlet生命周期</h2><blockquote><p>Servlet生命周期?</p></blockquote><ol><li><strong>加载Servlet</strong>。当Tomcat第一次访问Servlet的时候，<strong>Tomcat会负责创建Servlet的实例</strong></li><li><strong>初始化</strong>。当Servlet被实例化后，Tomcat会<strong>调用init()方法初始化这个对象</strong></li><li><strong>处理服务</strong>。当浏览器<strong>访问Servlet</strong>的时候，Servlet <strong>会调用service()方法处理请求</strong></li><li><strong>销毁</strong>。当Tomcat关闭时或者检测到Servlet要从Tomcat删除的时候会自动调用destroy()方法，<strong>让该实例释放掉所占的资源</strong>。一个Servlet如果长时间不被使用的话，也会被Tomcat自动销毁</li><li><strong>卸载</strong>。当Servlet调用完destroy()方法后，等待垃圾回收。如果<strong>有需要再次使用这个Servlet，会重新调用init()方法进行初始化操作</strong>。</li></ol><ul><li>简单总结：<strong>只要访问Servlet，service()就会被调用。init()只有第一次访问Servlet的时候才会被调用。destroy()只有在Tomcat关闭的时候才会被调用。</strong></li></ul><h2 id="get方式和post方式有何区别">get方式和post方式有何区别</h2><ul><li><p>GET方式一般用来获取数据</p></li><li><p>POST方式一般用来提交数据</p></li><li><ul><li>原因:</li></ul><ul><li><ul><li>首先是因为GET方式携带的数据量比较小，无法带过去很大的数量</li><li>POST方式提交的参数后台更加容易解析(使用POST方式提交的中文数据，后台也更加容易解决)</li><li>GET方式比POST方式要快</li></ul></li></ul></li></ul><h2 id="Servlet相关-API">Servlet相关 API</h2><blockquote><p>doGet与doPost方法的两个参数是什么</p></blockquote><ol><li>HttpServletRequest：封装了与请求相关的信息</li><li>HttpServletResponse：封装了与响应相关的信息</li></ol><blockquote><p>获取页面的元素的值有几种方式，分别说一下</p></blockquote><ol><li>request.getParameter() 返回客户端的请求参数的值</li><li>request.getParameterNames() 返回所有可用属性名的枚举</li><li>request.getParameterValues() 返回包含参数的所有值的数组</li></ol><blockquote><p>request.getAttribute()和request.getParameter()区别</p></blockquote><p>用途上:</p><ul><li>request.getAttribute()， <strong>一般用于获取request域对象的数据</strong>(在跳转之前把数据使用setAttribute来放到request对象上)</li><li>request.getParameter()， <strong>一般用于获取客户端提交的参数</strong></li></ul><p>存储数据上:</p><ul><li>request.getAttribute()可以获取Objcet对象</li><li>request.getParameter()只能获取字符串(这也是为什么它一般用于获取客户端提交的参数)</li></ul><h2 id="forward和redirect的区别">forward和redirect的区别</h2><blockquote><p>forward和redirect的区别</p></blockquote><p>forward is server</p><p>redirect is navigator</p><h2 id="tomcat容器是如何创建servlet类实例？用到了什么原理？">tomcat容器是如何创建servlet类实例？用到了什么原理？</h2><blockquote><p>tomcat容器是如何创建servlet类实例？用到了什么原理</p></blockquote><ol><li>当容器启动时，会读取在webapps目录下所有的web应用中的web.xml文件，然后对 <strong>xml文件进行解析，并读取servlet注册信息</strong>。然后，将每个应用中注册的servlet类都进行加载，并通过 <strong>反射的方式实例化</strong>。（有时候也是在第一次请求时实例化）</li><li>在servlet注册时加上1如果为正数，则在一开始就实例化，如果不写或为负数，则第一次请求实例化。</li></ol><h2 id="Servlet安全性问题">Servlet安全性问题</h2><p>由于Servlet是单例的，当多个用户访问Servlet的时候，<strong>服务器会为每个用户创建一个线程</strong>。当多个用户并发访问Servlet共享资源的时候就会出现线程安全问题。</p><p>原则：</p><ol><li><p>如果一个<strong>变量需要多个用户共享</strong>，则应当在访问该变量的时候，<strong>加同步机制synchronized (对象){}</strong></p></li><li><p>如果一个变量<strong>不需要共享</strong>，则<strong>直接在 doGet() 或者 doPost()定义</strong>.这样不会存在线程安全问题</p><h3 id="Tomcat顶层架构小结：">Tomcat顶层架构小结：</h3></li></ol><p>Tomcat中只有一个Server，一个Server可以有多个Service，一个Service可以有多个Connector和一个Container；</p><p>（2） Server掌管着整个Tomcat的生死大权；</p><p>（4）Service 是对外提供服务的；</p><p>（5）Connector用于接受请求并将请求封装成Request和Response来具体处理；</p><p>（6）Container用于封装和管理Servlet，以及具体处理request请求；</p><h3 id="connector-and-container">connector and container</h3><p>由上述内容我们大致可以知道一个请求发送到Tomcat之后，首先经过Service然后会交给我们的Connector，Connector用于接收请求并将接收的请求封装为Request和Response来具体处理，Request和Response封装完之后再交由Container进行处理，Container处理完请求之后再返回给Connector，最后在由Connector通过Socket将处理的结果返回给客户端</p><p>Connector最底层使用的是Socket来进行连接的，Request和Response是按照HTTP协议来封装的，所以Connector同时需要实现TCP/IP协议和HTTP协议</p><h3 id="Connector架构分析">Connector架构分析</h3><p>Connector用于接受请求并将请求封装成Request和Response，然后交给Container进行处理，Container处理完之后在交给Connector返回给客户端。</p><p>我们可以把Connector分为四个方面进行理解：</p><p>（1）Connector如何接受请求的？</p><p>（2）如何将请求封装成Request和Response的？</p><p>（3）封装完之后的Request和Response如何交给Container进行处理的？</p><p>（4）Container处理完之后如何交给Connector并返回给客户端的？</p><p><img src="https://www.javazhiyin.com/wp-content/uploads/2019/03/java6-1553178913.png" alt="Tomcat相关面试题，看这篇就够了！"></p><p>Connector就是使用ProtocolHandler来处理请求的，不同的ProtocolHandler代表不同的连接类型，比如：Http11Protocol使用的是普通Socket来连接的，Http11NioProtocol使用的是NioSocket来连接的。</p><p>其中ProtocolHandler由包含了三个部件：Endpoint、Processor、Adapter。</p><p>Endpoint用来处理底层Socket的网络连接，Processor用于将Endpoint接收到的Socket封装成Request，Adapter用于将Request交给Container进行具体的处理</p><p>Endpoint由于是处理底层的Socket网络连接，因此Endpoint是用来实现TCP/IP协议的，而Processor用来实现HTTP协议的，Adapter将请求适配到Servlet容器进行具体的处理。</p><p>Endpoint的抽象实现AbstractEndpoint里面定义的Acceptor和AsyncTimeout两个内部类和一个Handler接口。Acceptor用于监听请求，AsyncTimeout用于检查异步Request的超时，Handler用于处理接收到的Socket，在内部调用Processor进行处理。</p><h3 id="Container架构分析">Container架构分析</h3><h3 id></h3><p><img src="https://www.javazhiyin.com/wp-content/uploads/2019/03/java1-1553178914.png" alt="Tomcat相关面试题，看这篇就够了！"></p><p>Engine：引擎，用来管理多个站点，一个Service最多只能有一个Engine；</p><p>（2）Host：代表一个站点，也可以叫虚拟主机，通过配置Host就可以添加站点；</p><p>（3）Context：代表一个应用程序，对应着平时开发的一套程序，或者一个WEB-INF目录以及下面的web.xml文件；</p><p>（4）Wrapper：每一Wrapper封装着一个Servlet；</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Webservice </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> tomcat </tag>
+            
+            <tag> connector </tag>
+            
+            <tag> container </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Java中BIO, NIO, AIO的理解</title>
+      <link href="/2020/02/17/bionioaio/"/>
+      <url>/2020/02/17/bionioaio/</url>
+      
+        <content type="html"><![CDATA[<p>在高能的IO体系设计中，有几个名词概念常常会使我们感到迷惑不解。具体如下：</p><p>1 什么是同步？<br>2 什么是异步？<br>3 什么是阻塞？<br>4 什么是非阻塞？<br>5 什么是同步阻塞？<br>6 什么是同步非阻塞？<br>7 什么是异步阻塞？<br>8 什么是异步非阻塞？</p><p>先来举个实例生活中的例子：</p><p>如果你想吃一份宫保鸡丁盖饭：</p><p>同步阻塞：你到饭馆点餐，然后在那等着，还要一边喊：好了没啊！</p><p>同步非阻塞：在饭馆点完餐，就去遛狗了。不过溜一会儿，就回饭馆喊一声：好了没啊！</p><p>异步阻塞：遛狗的时候，接到饭馆电话，说饭做好了，让您亲自去拿。</p><p>异步非阻塞：饭馆打电话说，我们知道您的位置，一会给你送过来，安心遛狗就可以了。</p><p>在弄清楚上面的几个问题之前，我们首先得明白什么是同步，异步，阻塞，非阻塞，只有这几个单个概念理解清楚了，然后在组合理解起来，就相对比较容易了。</p><p>1, 同步和异步是针对应用程序和内核的交互而言的。</p><p>2, 阻塞和非阻塞是针对于进程在访问数据的时候，根据IO操作的就绪状态来采取的不同方式，说白了是一种读取或者写入操作函数的实现方式，阻塞方式下读取或者写入函数将一直等待，而非阻塞方式下，读取或者写入函数会立即返回一个状态值。</p><p>由上描述基本可以总结一句简短的话，同步和异步是目的，阻塞和非阻塞是实现方式。</p><ol><li>同步：指的是用户进程触发IO操作并等待或者轮询的去查看IO操作是否就绪。自己上街买衣服，自己亲自干这件事，别的事干不了。</li><li>异步：异步是指用户进程触发IO操作以后便开始做自己的事情，而当IO操作已经完成的时候会得到IO完成的通知（异步的特点就是通知） 告诉朋友自己合适衣服的尺寸，大小，颜色，让朋友委托去卖，然后自己可以去干别的事。（使用异步IO时，Java将IO读写委托给OS处理，需要将数据缓冲区地址和大小传给OS）</li><li>阻塞：所谓阻塞方式的意思是指, 当试图对该文件描述符进行读写时, 如果当时没有东西可读, 或者暂时不可写, 程序就进入等待 状态, 直到有东西可读或者可写为止 去公交站充值，发现这个时候，充值员不在（可能上厕所去了），然后我们就在这里等待，一直等到充值员回来为止。（当然现实社会，可不是这样，但是在计算机里确实如此。）</li><li>非阻塞：非阻塞状态下, 如果没有东西可读, 或者不可写, 读写函数马上返回, 而不会等待， 银行里取款办业务时，领取一张小票，领取完后我们自己可以玩玩手机，或者与别人聊聊天，当轮我们时，银行的喇叭会通知，这时候我们就可以去了。</li></ol><p>一个IO操作其实分成了两个步骤：发起IO请求和实际的IO操作。</p><p>同步IO和异步IO的区别就在于第二个步骤是否阻塞，如果实际的IO读写阻塞请求进程，那么就是同步IO。<br>阻塞IO和非阻塞IO的区别在于第一步，发起IO请求是否会被阻塞，如果阻塞直到完成那么就是传统的阻塞IO，如果不阻塞，那么就是非阻塞IO。</p><p>同步和异步是针对应用程序和内核的交互而言的，同步指的是用户进程触发IO操作并等待或者轮询的去查看IO操作是否就绪，而异步是指用户进程触发IO操作以后便开始做自己的事情，而当IO操作已经完成的时候会得到IO完成的通知。而阻塞和非阻塞是针对于进程在访问数据的时候，根据IO操作的就绪状态来采取的不同方式，说白了是一种读取或者写入操作函数的实现方式，阻塞方式下读取或者写入函数将一直等待，而非阻塞方式下，读取或者写入函数会立即返回一个状态值。<br>所以, IO操作可以分为3类：同步阻塞（即早期的BIO操作）、同步非阻塞（NIO）、异步非阻塞（AIO）。</p><p>同步阻塞(BIO)：<br>在此种方式下，用户进程在发起一个IO操作以后，必须等待IO操作的完成，只有当真正完成了IO操作以后，用户进程才能运行。JAVA传统的IO模型属于此种方式。<br>同步非阻塞(NIO)：<br>在此种方式下，用户进程发起一个IO操作以后便可返回做其它事情，但是用户进程需要时不时的询问IO操作是否就绪，这就要求用户进程不停的去询问，从而引入不必要的CPU资源浪费。其中目前JAVA的NIO就属于同步非阻塞IO。<br>异步非阻塞(AIO)：</p><p>此种方式下是指应用发起一个IO操作以后，不等待内核IO操作的完成，等内核完成IO操作以后会通知应用程序。</p><p>同步阻塞IO（JAVA BIO）：<br>同步并阻塞，服务器实现模式为一个连接一个线程，即客户端有连接请求时服务器端就需要启动一个线程进行处理，如果这个连接不做任何事情会造成不必要的线程开销，当然可以通过线程池机制改善。</p><p>同步非阻塞IO(Java NIO)：同步非阻塞，服务器实现模式为一个请求一个线程，即客户端发送的连接请求都会注册到多路复用器上，多路复用器轮询到连接有I/O请求时才启动一个线程进行处理。用户进程也需要时不时的询问IO操作是否就绪，这就要求用户进程不停的去询问。</p><p>异步阻塞IO（Java NIO）：<br>此种方式下是指应用发起一个IO操作以后，不等待内核IO操作的完成，等内核完成IO操作以后会通知应用程序，这其实就是同步和异步最关键的区别，同步必须等待或者主动的去询问IO是否完成，那么为什么说是阻塞的呢？因为此时是通过select系统调用来完成的，而select函数本身的实现方式是阻塞的，而采用select函数有个好处就是它可以同时监听多个文件句柄（如果从UNP的角度看，select属于同步操作。因为select之后，进程还需要读写数据），从而提高系统的并发性！</p><p>（Java AIO(NIO.2)）异步非阻塞IO:<br>在此种模式下，用户进程只需要发起一个IO操作然后立即返回，等IO操作真正的完成以后，应用程序会得到IO操作完成的通知，此时用户进程只需要对数据进行处理就好了，不需要进行实际的IO读写操作，因为真正的IO读取或者写入操作已经由内核完成了。</p><p>BIO、NIO、AIO适用场景分析:</p><pre><code>BIO方式适用于连接数目比较小且固定的架构，这种方式对服务器资源要求比较高，并发局限于应用中，JDK1.4以前的唯一选择，但程序直观简单易理解。 NIO方式适用于连接数目多且连接比较短（轻操作）的架构，比如聊天服务器，并发局限于应用中，编程比较复杂，JDK1.4开始支持。 AIO方式使用于连接数目多且连接比较长（重操作）的架构，比如相册服务器，充分调用OS参与并发操作，编程比较复杂，JDK7开始支持。</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Webservice </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> bio </tag>
+            
+            <tag> aio </tag>
+            
+            <tag> nio </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>JBoss 面试高频</title>
+      <link href="/2020/02/17/jboss/"/>
+      <url>/2020/02/17/jboss/</url>
+      
+        <content type="html"><![CDATA[<p><strong>Q1. What is JBOSS?</strong><br>JBoss is a popular open source application server based on JEE technology. Being JEE based, the JBoss supports cross-platform java applications. It was embedded with Apache Tomcat web server. It runs under any JVM of 1.3 or later versions. JBoss supports JNDI, Servlet/JSP (Tomcat or Jetty), EJB, JTS/JTA, JCA, JMS, Clustering (JavaGroups), Web Services (Axis), and IIOP integration (JacORB).</p><p><strong>What’s the difference between Standalone mode and Domain mode ?</strong><br>When configured in Standalone mode each distribution starts a single JVM process with its own configuration, management instruments and deployments. When configured in Domain mode, multiple servers are managed from a centralized point called Domain Controller which maintain the configuration and provisions applications for deployment on the single nodes which are part of the Domain</p><p><strong>What do you need to set-up a cluster with JBoss ?</strong><br>Basically starting JBoss with the “all” configuration contains everything needed for clustering:<br>It has all the libraries for clustering:<br>JGroups.jar, jboss-cache.jar<br>Clustered beans (cluster-service.xml)<br>HA-JNDI<br>HTTP session replications (tc5-cluster-service.xml)<br>Farming<br>HA-JMS</p><p><strong>. How do you monitor JBoss and detect the bottleneck of an application?</strong><br>Different components of the application are to be measured. This step is to find where the degradation is, whether it is external or internal and where is the appliciation spending all the time. Using Joss JMX agents and monitoring the deployed components to the application server involves in the first step.<br>After finding the most of the time spent by specific components or libraries or most of the resources, one can use Jprobe a specialized tool for examining the single object or the objects loaded in the memory.</p><p><strong>Does Seam run on other application servers besides JBoss ?</strong><br>Seam(jboss 3) runs beautifully on other application servers – just like everything else the Hibernate team does, this is not a JBoss-only thing.</p><p><strong>Which Hibernate object wraps the JDBC Connection?</strong><br>The Session interface wraps a JDBC Connection. This interface is a single threaded object which represents a single unit of work with application and persistent database. It’s retrieved by the SessionFactory’s openSession() method</p><p><strong>How can you start a JTA transaction from a Servlet deployed on JBoss?</strong><br>JBoss registers in the JNDI tree a JTA UserTransaction Object which can be user to manage a distributed transaction.</p><h3 id="What’s-the-default-port-to-access-Administration-Console-in-JBoss-7">What’s the default port to access Administration Console in JBoss 7?</h3><p>9990 is the default port. If it’s installed on <strong>server1</strong> then you need to access like:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;server1:9990&#x2F;admin-console</span><br></pre></td></tr></table></figure><h3 id="Which-component-is-responsible-for-handling-clustering">Which component is responsible for handling clustering?</h3><p>JBoss clustering is on top of JGroups toolkit which helps to create, delete, membership detection, notification, <a href="http://etc.in" target="_blank" rel="noopener">etc.in</a> the cluster.</p><h3 id="What-is-difference-between-validate-on-match-and-background-validation">What is difference between <validate-on-match> and <background-validation>?</background-validation></validate-on-match></h3><p>&lt;<strong>validate-on-match</strong>&gt; validate the database connection every time, and if a connection is not valid, it will write a warning in the logs.</p><p>Having “validate-on-match” configured may have a little high load on the database as it may create lots of requests.</p><p>&lt;<strong>background-validation</strong>&gt; validate the connection periodically based on what frequency is configured for “background-validation-millis”. The default configuration is set to zero means disabled.</p><p>Having “ background-validation” set to true will create fewer database connections and it’s side-effects would be not detecting immediately if dead connections.</p><h3 id="What-are-the-file-types-you-can-deploy-in-JBoss">What are the file types you can deploy in JBoss?</h3><p>You can deploy almost any kind of Java/J2EE application, and it supports the following file format.</p><ul><li>WAR – Web application archive</li><li>SAR – Service archive</li><li>JAR – Java Archive</li><li>EAR – Enterprise application archive</li></ul><h3 id="How-can-you-deploy-an-application">How can you deploy an application?</h3><p>There are three possible ways to deploy an application in JBoss application server.</p><ol><li>Admin Console – you can deploy the necessary application files through the administration console.</li><li>Auto-deploy – leverage file system deployment scanner to auto deploy files from deployments folder.</li><li>Automation – use automation tool/ant/scripting to deploy an application.</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> Webservice </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Serverlet </tag>
+            
+            <tag> Jboss </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>session，cookie和token究竟是什么</title>
+      <link href="/2020/02/17/sessionCookieToken/"/>
+      <url>/2020/02/17/sessionCookieToken/</url>
+      
+        <content type="html"><![CDATA[<h2 id="简述">简述</h2><p>我在写之前看了很多篇session，cookie的文章，有的人说先有了cookie，后有了session。也有人说先有session，后有cookie。感觉都没有讲的很清楚，泛泛而谈。希望本篇文章对大家有所帮助<br>注：本文需要读者有cookie，session，token的相关基础知识。</p><h2 id="http是一个无状态协议">http是一个无状态协议</h2><p>什么是无状态呢？就是说这一次请求和上一次请求是没有任何关系的，互不认识的，没有关联的。这种无状态的的好处是快速。坏处是假如我们想要把 <code>www.zhihu.com/login.html</code> 和 <code>www.zhihu.com/index.html</code> 关联起来，必须使用某些手段和工具</p><h2 id="cookie和session">cookie和session</h2><p>由于http的无状态性，为了使某个域名下的所有网页能够共享某些数据，session和cookie出现了。客户端访问服务器的流程如下</p><ul><li>首先，客户端会发送一个http请求到服务器端。</li><li>服务器端接受客户端请求后，建立一个session，并发送一个http响应到客户端，这个响应头，其中就包含Set-Cookie头部。该头部包含了sessionId。Set-Cookie格式如下，具体请看<a href="http://bubkoo.com/2014/04/21/http-cookies-explained/" target="_blank" rel="noopener">Cookie详解</a></li></ul><p><code>Set-Cookie: value[; expires=date][; domain=domain][; path=path][; secure]</code></p><ul><li>在客户端发起的第二次请求，假如服务器给了set-Cookie，浏览器会自动在请求头中添加cookie</li><li>服务器接收请求，分解cookie，验证信息，核对成功后返回response给客户端</li></ul><p><img src="https://segmentfault.com/img/bVbmYbQ?w=400&amp;h=200" alt="请求流程"></p><h3 id="注意">注意</h3><ul><li>cookie只是实现session的其中一种方案。虽然是最常用的，但并不是唯一的方法。禁用cookie后还有其他方法存储，比如放在url中</li><li>现在大多都是Session + Cookie，但是只用session不用cookie，或是只用cookie，不用session在理论上都可以保持会话状态。可是实际中因为多种原因，一般不会单独使用</li><li>用session只需要在客户端保存一个id，实际上大量数据都是保存在服务端。如果全部用cookie，数据量大的时候客户端是没有那么多空间的。</li><li>如果只用cookie不用session，那么账户信息全部保存在客户端，一旦被劫持，全部信息都会泄露。并且客户端数据量变大，网络传输的数据量也会变大</li></ul><h3 id="小结">小结</h3><p><strong>简而言之, session 有如用户信息档案表, 里面包含了用户的认证信息和登录状态等信息. 而 cookie 就是用户通行证</strong></p><h2 id="oken">oken</h2><p>token 也称作令牌，由uid+time+sign[+固定参数]<br>token 的认证方式类似于<strong>临时的证书签名</strong>, 并且是一种服务端无状态的认证方式, 非常适合于 REST API 的场景. 所谓无状态就是服务端并不会保存身份认证相关的数据。</p><h3 id="组成">组成</h3><ul><li>uid: 用户唯一身份标识</li><li>time: 当前时间的时间戳</li><li>sign: 签名, 使用 hash/encrypt 压缩成定长的十六进制字符串，以防止第三方恶意拼接</li><li>固定参数(可选): 将一些常用的固定参数加入到 token 中是为了避免重复查库</li></ul><h3 id="存放">存放</h3><p>token在客户端一般存放于localStorage，cookie，或sessionStorage中。在服务器一般存于数据库中</p><h3 id="token认证流程">token认证流程</h3><p>token 的认证流程与cookie很相似</p><ul><li>用户登录，成功后服务器返回Token给客户端。</li><li>客户端收到数据后保存在客户端</li><li>客户端再次访问服务器，将token放入headers中</li><li>服务器端采用filter过滤器校验。校验成功则返回请求数据，校验失败则返回错误码</li></ul><h2 id="token可以抵抗csrf-cross-site-request-forgrey-，cookie-session不行">token可以抵抗csrf(cross site request forgrey)，cookie+session不行</h2><p>假如用户正在登陆银行网页，同时登陆了攻击者的网页，并且银行网页未对csrf攻击进行防护。攻击者就可以在网页放一个表单，该表单提交src为 <code>http://www.bank.com/api/transfer</code> ，body为 <code>count=1000&amp;to=Tom</code> 。倘若是session+cookie，用户打开网页的时候就已经转给Tom1000元了. 因为form 发起的 POST 请求并不受到浏览器同源策略的限制，因此可以任意地使用其他域的 Cookie 向其他域发送 POST 请求，形成 CSRF 攻击。在post请求的瞬间，cookie会被浏览器自动添加到请求头中。但token不同，token是开发者为了防范csrf而特别设计的令牌，浏览器不会自动添加到headers里，攻击者也无法访问用户的token，所以提交的表单无法通过服务器过滤，也就无法形成攻击。</p><p>我们已经知道session时有状态的，一般存于服务器内存或硬盘中，当服务器采用分布式或集群时，session就会面对负载均衡问题。</p><ul><li>负载均衡多服务器的情况，不好确认当前用户是否登录，因为多服务器不共享session。这个问题也可以将session存在一个服务器中来解决，但是就不能完全达到负载均衡的效果。</li></ul><p>而token是无状态的，token字符串里就保存了所有的用户信息</p><ul><li>客户端登陆传递信息给服务端，服务端收到后把用户信息加密（token）传给客户端，客户端将token存放于localStroage等容器中。客户端每次访问都传递token，服务端解密token，就知道这个用户是谁了。通过cpu加解密，服务端就不需要存储session占用存储空间，就很好的解决负载均衡多服务器的问题了。这个方法叫做[JWT(Json Web Token)](<a href="https://huanqiang.wang/2017/12/28/JWT" target="_blank" rel="noopener">https://huanqiang.wang/2017/12/28/JWT</a> 介绍/)</li></ul><h2 id="总结">总结</h2><ul><li>session存储于服务器，可以理解为一个状态列表，拥有一个唯一识别符号sessionId，通常存放于cookie中。服务器收到cookie后解析出sessionId，再去session列表中查找，才能找到相应session。依赖cookie</li><li>cookie类似一个令牌，装有sessionId，存储在客户端，浏览器通常会自动添加。</li><li>token也类似一个令牌，无状态，用户信息都被加密到token中，服务器收到token后解密就可知道是哪个用户。需要开发者手动添加。</li><li>jwt只是一个跨域认证的方案</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Webservice </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> cookie </tag>
+            
+            <tag> session </tag>
+            
+            <tag> token </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Exception处理</title>
       <link href="/2020/02/16/exceptionChec-k/"/>
       <url>/2020/02/16/exceptionChec-k/</url>

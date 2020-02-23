@@ -93,7 +93,7 @@
 <meta name="description" content="this is a real blog, no lying no frauding">
 <meta property="og:type" content="website">
 <meta property="og:title" content="He WU">
-<meta property="og:url" content="https://wuhewuhe.github.io/categories/Java/index.html">
+<meta property="og:url" content="https://wuhewuhe.github.io/categories/JAVA/index.html">
 <meta property="og:site_name" content="He WU">
 <meta property="og:description" content="this is a real blog, no lying no frauding">
 <meta property="og:locale" content="en_US">
@@ -128,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="https://wuhewuhe.github.io/categories/Java/"/>
+  <link rel="canonical" href="https://wuhewuhe.github.io/categories/JAVA/"/>
 
 
 
 
 
-  <title>Category: Java | He WU</title>
+  <title>Category: JAVA | He WU</title>
   
 
 
@@ -307,7 +307,7 @@
 
     <div id="posts" class="posts-collapse">
       <div class="collection-title">
-        <h1>Java<small>Category</small>
+        <h1>JAVA<small>Category</small>
         </h1>
       </div>
 
@@ -319,37 +319,9 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2020/02/16/exceptionChec-k/" itemprop="url">
+            <a class="post-title-link" href="/2020/02/16/mutlithread/" itemprop="url">
               
-                <span itemprop="name">Exception处理</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-02-16T20:40:25+01:00"
-              content="2020-02-16" >
-          02-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2020/02/16/volatile/" itemprop="url">
-              
-                <span itemprop="name">volatile</span>
+                <span itemprop="name">java 浅谈多线程的通讯方式</span>
               
             </a>
         
@@ -357,91 +329,7 @@
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
-              datetime="2020-02-16T16:43:16+01:00"
-              content="2020-02-16" >
-          02-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2020/02/16/entry-reflect/" itemprop="url">
-              
-                <span itemprop="name">entry reflect</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-02-16T10:53:19+01:00"
-              content="2020-02-16" >
-          02-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2020/02/16/mthod-area/" itemprop="url">
-              
-                <span itemprop="name">JVM Method area</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-02-16T10:47:10+01:00"
-              content="2020-02-16" >
-          02-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2020/02/16/reflect/" itemprop="url">
-              
-                <span itemprop="name">reflect</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-02-16T10:17:09+01:00"
+              datetime="2020-02-16T16:56:46+01:00"
               content="2020-02-16" >
           02-16
         </time>
@@ -460,10 +348,6 @@
   
 
   
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/categories/Java/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/categories/Java/page/4/">4</a><a class="extend next" rel="next" href="/categories/Java/page/2/">-&gt;</a>
-  </nav>
-
 
 
 
@@ -512,7 +396,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-count">44</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1131,6 +1015,118 @@
               })
             };
             if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+") {
               resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
             } else if (resultItems.length === 0) {
               resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'

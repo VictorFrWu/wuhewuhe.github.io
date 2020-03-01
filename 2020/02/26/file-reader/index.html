@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="read," />
 
 
 
@@ -90,16 +90,17 @@
 
 
 
-<meta name="description" content="this is a real blog, no lying no frauding">
+<meta name="description" content="Reader Reader 是Java的IO库提供的另一个输入流接口。和 InputStream 的区别是， InputStream 是一个字节流，即以 byte 为单位读取，而 Reader 是一个字符流，即以 char 为单位读取：    InputStream Reader     字节流，以 byte 为单位 字符流，以 char 为单位   读取字节（-1，0~255）： int rea">
 <meta property="og:type" content="article">
-<meta property="og:title" content="file reader">
+<meta property="og:title" content="File Reader">
 <meta property="og:url" content="https://wuhewuhe.github.io/2020/02/26/file-reader/index.html">
 <meta property="og:site_name" content="He WU">
-<meta property="og:description" content="this is a real blog, no lying no frauding">
+<meta property="og:description" content="Reader Reader 是Java的IO库提供的另一个输入流接口。和 InputStream 的区别是， InputStream 是一个字节流，即以 byte 为单位读取，而 Reader 是一个字符流，即以 char 为单位读取：    InputStream Reader     字节流，以 byte 为单位 字符流，以 char 为单位   读取字节（-1，0~255）： int rea">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-02-26T20:23:28.000Z">
-<meta property="article:modified_time" content="2020-02-26T20:23:28.164Z">
+<meta property="article:modified_time" content="2020-03-01T09:19:13.010Z">
 <meta property="article:author" content="WU He">
+<meta property="article:tag" content="read">
 <meta name="twitter:card" content="summary">
 
 
@@ -136,7 +137,7 @@
 
 
 
-  <title>file reader | He WU</title>
+  <title>File Reader | He WU</title>
   
 
 
@@ -333,7 +334,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">file reader</h1>
+          <h1 class="post-title" itemprop="name headline">File Reader</h1>
         
 
         <div class="post-meta">
@@ -355,6 +356,39 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/IO/" itemprop="url" rel="index">
+                    <span itemprop="name">IO</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -392,7 +426,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  0 words
+                  424 words
                 </span>
               
 
@@ -429,7 +463,40 @@
       
 
       
-        
+        <p>Reader</p>
+<p><code>Reader</code> 是Java的IO库提供的另一个输入流接口。和 <code>InputStream</code> 的区别是， <code>InputStream</code> 是一个字节流，即以 <code>byte</code> 为单位读取，而 <code>Reader</code> 是一个字符流，即以 <code>char</code> 为单位读取：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">InputStream</th>
+<th style="text-align:left">Reader</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">字节流，以 <code>byte</code> 为单位</td>
+<td style="text-align:left">字符流，以 <code>char</code> 为单位</td>
+</tr>
+<tr>
+<td style="text-align:left">读取字节（-1，0~255）： <code>int read()</code></td>
+<td style="text-align:left">读取字符（-1，0~65535）： <code>int read()</code></td>
+</tr>
+<tr>
+<td style="text-align:left">读到字节数组： <code>int read(byte[] b)</code></td>
+<td style="text-align:left">读到字符数组： <code>int read(char[] c)</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>java.io.Reader</code> 是所有字符输入流的超类，它最主要的方法是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public int read() throws IOException;</span><br></pre></td></tr></table></figure>
+<p>这个方法读取字符流的下一个字符，并返回字符表示的 <code>int</code> ，范围是 <code>0</code> ~ <code>65535</code> 。如果已读到末尾，返回 <code>-1</code> 。</p>
+<p>FileReader</p>
+<p><code>FileReader</code> 是 <code>Reader</code> 的一个子类，它可以打开文件并获取 <code>Reader</code> 。下面的代码演示了如何完整地读取一个 <code>FileReader</code> 的所有字符：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public void readFile() throws IOException &#123;</span><br><span class="line">    &#x2F;&#x2F; 创建一个FileReader对象:</span><br><span class="line">    Reader reader &#x3D; new FileReader(&quot;src&#x2F;readme.txt&quot;); &#x2F;&#x2F; 字符编码是???</span><br><span class="line">    for (;;) &#123;</span><br><span class="line">        int n &#x3D; reader.read(); &#x2F;&#x2F; 反复调用read()方法，直到返回-1</span><br><span class="line">        if (n &#x3D;&#x3D; -1) &#123;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println((char)n); &#x2F;&#x2F; 打印char</span><br><span class="line">    &#125;</span><br><span class="line">    reader.close(); &#x2F;&#x2F; 关闭流</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果我们读取一个纯ASCII编码的文本文件，上述代码工作是没有问题的。但如果文件中包含中文，就会出现乱码，因为 <code>FileReader</code> 默认的编码与系统相关，例如，Windows系统的默认编码可能是 <code>GBK</code> ，打开一个 <code>UTF-8</code> 编码的文本文件就会出现乱码。</p>
+<p>要避免乱码问题，我们需要在创建 <code>FileReader</code> 时指定编码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Reader reader &#x3D; new FileReader(&quot;src&#x2F;readme.txt&quot;, StandardCharsets.UTF_8);</span><br></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -486,7 +553,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link:</strong>
-    <a href="https://wuhewuhe.github.io/2020/02/26/file-reader/" title="file reader">https://wuhewuhe.github.io/2020/02/26/file-reader/</a>
+    <a href="https://wuhewuhe.github.io/2020/02/26/file-reader/" title="File Reader">https://wuhewuhe.github.io/2020/02/26/file-reader/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice: </strong>
@@ -498,6 +565,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/read/" rel="tag"><i class="fa fa-tag"></i> read</a>
+          
+        </div>
       
 
       
@@ -517,6 +590,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/02/29/jms/" rel="prev" title="JMS">
+                JMS <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -595,7 +672,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-count">56</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -606,7 +683,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -617,7 +694,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">81</span>
+                  <span class="site-state-item-count">112</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

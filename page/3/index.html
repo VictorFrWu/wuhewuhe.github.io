@@ -315,7 +315,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://wuhewuhe.github.io/2020/02/16/volatile/">
+    <link itemprop="mainEntityOfPage" href="https://wuhewuhe.github.io/2020/02/29/jms/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WU He">
@@ -334,7 +334,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/02/16/volatile/" itemprop="url">volatile</a></h1>
+                <a class="post-title-link" href="/2020/02/29/jms/" itemprop="url">JMS</a></h1>
         
 
         <div class="post-meta">
@@ -346,8 +346,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-16T16:43:16+01:00">
-                2020-02-16
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-29T16:34:12+01:00">
+                2020-02-29
               </time>
             
 
@@ -369,19 +369,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/Cache/" itemprop="url" rel="index">
-                    <span itemprop="name">Cache</span>
+                  <a href="/categories/JMS/" itemprop="url" rel="index">
+                    <span itemprop="name">JMS</span>
                   </a>
                 </span>
 
@@ -411,7 +400,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1.2k words
+                  1.1k words
                 </span>
               
 
@@ -427,7 +416,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  4 minutes
+                  6 minutes
                 </span>
               
             </div>
@@ -452,14 +441,18 @@
         
         
           
-          深入浅出java中volatile
-这周处理ticket的时候发现，我们经常会把数据加载到cache，然后去生明voltile，于是我就梳理了一下知识点，可能有点冷门，但是还是有其用到的地方
-volatile定义
-如果一个字段被声明为volatile，java线程内存模型确保所有线程看到这个变量的值
+          JMS itself isn’t a message broker, just an API to an existing broker.
+
+
+
+
+JMS
+
+JMS means Java Messaging Service. It is the new standard for inter clie
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/02/16/volatile/#more" rel="contents">
+            <a class="btn" href="/2020/02/29/jms/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -510,7 +503,7 @@ volatile定义
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://wuhewuhe.github.io/2020/02/16/entry-reflect/">
+    <link itemprop="mainEntityOfPage" href="https://wuhewuhe.github.io/2020/02/26/file-reader/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WU He">
@@ -529,7 +522,7 @@ volatile定义
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/02/16/entry-reflect/" itemprop="url">entry reflect</a></h1>
+                <a class="post-title-link" href="/2020/02/26/file-reader/" itemprop="url">File Reader</a></h1>
         
 
         <div class="post-meta">
@@ -541,8 +534,8 @@ volatile定义
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-16T10:53:19+01:00">
-                2020-02-16
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-26T21:23:28+01:00">
+                2020-02-26
               </time>
             
 
@@ -566,6 +559,17 @@ volatile定义
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/Java/" itemprop="url" rel="index">
                     <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/IO/" itemprop="url" rel="index">
+                    <span itemprop="name">IO</span>
                   </a>
                 </span>
 
@@ -595,7 +599,7 @@ volatile定义
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  741 words
+                  424 words
                 </span>
               
 
@@ -611,7 +615,7 @@ volatile定义
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  2 minutes
+                  1 minutes
                 </span>
               
             </div>
@@ -636,12 +640,22 @@ volatile定义
         
         
           
-          首先我们了解一下JVM，什么是JVM，Java的虚拟机，java之所以能跨平台就是因为这个东西，你可以理解成一个进程，程序，只不过他的作用是用来跑你的代码的。上图是java的内存模型，我们关注的点，一个方法区，一个栈，一个堆，初学的时候老师不深入的话只告诉你java的内存分为堆和栈，易懂点吧！
-假如
+          Reader
+Reader 是Java的IO库提供的另一个输入流接口。和 InputStream 的区别是， InputStream 是一个字节流，即以 byte 为单位读取，而 Reader 是一个字符流，即以 char 为单位读取：
+
+
+
+InputStream
+Reader
+
+
+
+
+字节流，以
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/02/16/entry-reflect/#more" rel="contents">
+            <a class="btn" href="/2020/02/26/file-reader/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -692,7 +706,7 @@ volatile定义
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://wuhewuhe.github.io/2020/02/16/mthod-area/">
+    <link itemprop="mainEntityOfPage" href="https://wuhewuhe.github.io/2020/02/23/graph/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WU He">
@@ -711,7 +725,7 @@ volatile定义
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/02/16/mthod-area/" itemprop="url">JVM Method area</a></h1>
+                <a class="post-title-link" href="/2020/02/23/graph/" itemprop="url">图类算法入门</a></h1>
         
 
         <div class="post-meta">
@@ -723,8 +737,8 @@ volatile定义
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-16T10:47:10+01:00">
-                2020-02-16
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-23T20:46:50+01:00">
+                2020-02-23
               </time>
             
 
@@ -757,8 +771,8 @@ volatile定义
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/JVM/" itemprop="url" rel="index">
-                    <span itemprop="name">JVM</span>
+                  <a href="/categories/Java/Data-structure/" itemprop="url" rel="index">
+                    <span itemprop="name">Data structure</span>
                   </a>
                 </span>
 
@@ -788,7 +802,7 @@ volatile定义
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  2.4k words
+                  2.8k words
                 </span>
               
 
@@ -804,7 +818,7 @@ volatile定义
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  9 minutes
+                  11 minutes
                 </span>
               
             </div>
@@ -829,15 +843,14 @@ volatile定义
         
         
           
-          
-java是基于一门虚拟机的语言，所以了解并且熟知虚拟机运行原理非常重要。
+          在开始解析这道题之前，我们先对图的结构进行分类，在实际实现过程中，有以下几种基本的方式可以来表示图。
 
-方法区
-方法区，Method Area， 对于习惯在HotSpot虚拟机上开发和部署程序的开发者来说，很多人愿意把方法区称为“永久代”（Permanent Generation），本质上两者并不等价，仅仅是因为HotSpo
+邻接矩阵：对于较小或者中等规模的图的构造较为适用，因为需要V*V大小的空间。
+邻接表数组, 较为常用，使用一个以顶点为索引的数组，数组每个元素都是和该顶点相邻的顶点列表，这种数组占空间相对于邻接矩
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/02/16/mthod-area/#more" rel="contents">
+            <a class="btn" href="/2020/02/23/graph/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -888,7 +901,7 @@ java是基于一门虚拟机的语言，所以了解并且熟知虚拟机运行�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://wuhewuhe.github.io/2020/02/16/reflect/">
+    <link itemprop="mainEntityOfPage" href="https://wuhewuhe.github.io/2020/02/17/tomcat/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WU He">
@@ -907,7 +920,7 @@ java是基于一门虚拟机的语言，所以了解并且熟知虚拟机运行�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/02/16/reflect/" itemprop="url">reflect</a></h1>
+                <a class="post-title-link" href="/2020/02/17/tomcat/" itemprop="url">tomcat刨析</a></h1>
         
 
         <div class="post-meta">
@@ -919,8 +932,8 @@ java是基于一门虚拟机的语言，所以了解并且熟知虚拟机运行�
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-16T10:17:09+01:00">
-                2020-02-16
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-17T23:19:25+01:00">
+                2020-02-17
               </time>
             
 
@@ -942,19 +955,8 @@ java是基于一门虚拟机的语言，所以了解并且熟知虚拟机运行�
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/Delegate/" itemprop="url" rel="index">
-                    <span itemprop="name">Delegate</span>
+                  <a href="/categories/Webservice/" itemprop="url" rel="index">
+                    <span itemprop="name">Webservice</span>
                   </a>
                 </span>
 
@@ -984,7 +986,7 @@ java是基于一门虚拟机的语言，所以了解并且熟知虚拟机运行�
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1.5k words
+                  2.1k words
                 </span>
               
 
@@ -1000,7 +1002,7 @@ java是基于一门虚拟机的语言，所以了解并且熟知虚拟机运行�
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  5 minutes
+                  7 minutes
                 </span>
               
             </div>
@@ -1025,13 +1027,21 @@ java是基于一门虚拟机的语言，所以了解并且熟知虚拟机运行�
         
         
           
-          反射之中包含了一个「反」字，所以想要解释反射就必须先从「正」开始解释。
-一般情况下，我们使用某个类时必定知道它是什么类，是用来做什么的。于是我们直接对这个类进行实例化，之后使用这个类对象进行操作。
-12Apple apple &#x3D; new Apple(); &#x2F;&#x2F;直接初始化
+          Tomcat:
+
+1 modify tomcat port
+
+
+找到Tomcat目录下的conf文件夹
+进入conf文件夹里面找到server.xml文件
+打开server.xml文件
+在server.xml文件里面找到下列信息
+
+123456&lt;Service name&#x3D;&quot;
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/02/16/reflect/#more" rel="contents">
+            <a class="btn" href="/2020/02/17/tomcat/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -1082,7 +1092,7 @@ java是基于一门虚拟机的语言，所以了解并且熟知虚拟机运行�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://wuhewuhe.github.io/2020/02/16/composite-and-aggrevgation/">
+    <link itemprop="mainEntityOfPage" href="https://wuhewuhe.github.io/2020/02/17/bionioaio/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WU He">
@@ -1101,7 +1111,7 @@ java是基于一门虚拟机的语言，所以了解并且熟知虚拟机运行�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/02/16/composite-and-aggrevgation/" itemprop="url">composite and aggrevgation</a></h1>
+                <a class="post-title-link" href="/2020/02/17/bionioaio/" itemprop="url">Java中BIO, NIO, AIO的理解</a></h1>
         
 
         <div class="post-meta">
@@ -1113,8 +1123,8 @@ java是基于一门虚拟机的语言，所以了解并且熟知虚拟机运行�
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-16T10:05:49+01:00">
-                2020-02-16
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-17T23:18:32+01:00">
+                2020-02-17
               </time>
             
 
@@ -1136,19 +1146,8 @@ java是基于一门虚拟机的语言，所以了解并且熟知虚拟机运行�
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/Design-pattern/" itemprop="url" rel="index">
-                    <span itemprop="name">Design pattern</span>
+                  <a href="/categories/Webservice/" itemprop="url" rel="index">
+                    <span itemprop="name">Webservice</span>
                   </a>
                 </span>
 
@@ -1178,7 +1177,7 @@ java是基于一门虚拟机的语言，所以了解并且熟知虚拟机运行�
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  613 words
+                  2.1k words
                 </span>
               
 
@@ -1194,7 +1193,7 @@ java是基于一门虚拟机的语言，所以了解并且熟知虚拟机运行�
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  3 minutes
+                  7 minutes
                 </span>
               
             </div>
@@ -1219,14 +1218,22 @@ java是基于一门虚拟机的语言，所以了解并且熟知虚拟机运行�
         
         
           
-          
-inheritance and delegate
+          在高能的IO体系设计中，有几个名词概念常常会使我们感到迷惑不解。具体如下：
+1 什么是同步？
+2 什么是异步？
+3 什么是阻塞？
+4 什么是非阻塞？
+5 什么是同步阻塞？
+6 什么是同步非阻塞？
+7 什么是异步阻塞？
+8 什么是异步非阻塞？
+先来举个实例生活中的例子：
+如果你想吃一份宫保鸡丁盖饭：
 
-both of them are the reuse technique in java, and they are importance design in our daily coding, inheritance is represente
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/02/16/composite-and-aggrevgation/#more" rel="contents">
+            <a class="btn" href="/2020/02/17/bionioaio/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -1268,7 +1275,7 @@ both of them are the reuse technique in java, and they are importance design in 
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/">&lt;-</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/4/">-&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/2/">&lt;-</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/4/">-&gt;</a>
   </nav>
 
 
@@ -1318,7 +1325,7 @@ both of them are the reuse technique in java, and they are importance design in 
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-count">56</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1329,7 +1336,7 @@ both of them are the reuse technique in java, and they are importance design in 
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -1340,7 +1347,7 @@ both of them are the reuse technique in java, and they are importance design in 
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">81</span>
+                  <span class="site-state-item-count">112</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

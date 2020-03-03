@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="master,failover," />
+  <meta name="keywords" content="master,slave,failover," />
 
 
 
@@ -98,9 +98,10 @@
 <meta property="og:description" content="How it works It uses Apache ZooKeeper to coordinate which node in the cluster becomes the master. The elected master broker node starts and accepts client connections. The other nodes go into slave mo">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-03-01T20:50:30.000Z">
-<meta property="article:modified_time" content="2020-03-01T21:13:12.374Z">
+<meta property="article:modified_time" content="2020-03-01T21:19:39.576Z">
 <meta property="article:author" content="WU He">
 <meta property="article:tag" content="master">
+<meta property="article:tag" content="slave">
 <meta property="article:tag" content="failover">
 <meta name="twitter:card" content="summary">
 
@@ -466,13 +467,13 @@
       
         <p>How it works</p>
 <p>It uses <a href="http://zookeeper.apache.org/" target="_blank" rel="noopener">Apache ZooKeeper</a> to coordinate which node in the cluster becomes the master. The elected master broker node starts and accepts client connections. The other nodes go into slave mode and connect the the master and synchronize their persistent state /w it. The slave nodes do not accept client connections. All persistent operations are replicated to the connected slaves. If the master dies, the slaves with the latest update gets promoted to become the master. The failed node can then be brought back online and it will go into slave mode.</p>
-<p>All messaging operations which require a sync to disk will wait for the update to be replicated to a quorum of the nodes before completing. So if you configure the store with <code>replicas=&quot;3&quot;</code> then the quorum size is <code>(3/2+1)=2</code>. The master will store the update locally and wait for 1 other slave to store the update before reporting success. Another way to think about it is that store will do synchronous replication to a quorum of the replication nodes and asynchronous replication replication to any additional nodes.</p>
+<p>All messaging operations which require a sync to disk will wait for the update to be replicated to a quorum of the nodes before completing. So if you configure the store with <code>replicas=&quot;3&quot;</code> then the quorum size is <code>(3/2+1)=2</code> . The master will store the update locally and wait for 1 other slave to store the update before reporting success. Another way to think about it is that store will do synchronous replication to a quorum of the replication nodes and asynchronous replication replication to any additional nodes.</p>
 <p>When a new master is elected, you also need at least a quorum of nodes online to be able to find a node with the lastest updates. The node with the lastest updates will become the new master. Therefore, it’s recommend that you run with at least 3 replica nodes so that you can take one down without</p>
 <hr>
 <p>one master two slaves, when master is down, elected a new master</p>
 <p>1 jdk, apache, linux</p>
 <p>2 close firewall</p>
-<p>3 zookeeper cluster : zk01,zk02,zk03</p>
+<p>3 zookeeper cluster : zk01, zk02, zk03</p>
 <p>4 集群部署规划表</p>
 <p>Hostname : 1361 1362 1363</p>
 <p>Zookeeper port : 2191 2192 2193</p>
@@ -563,6 +564,8 @@
           
             <a href="/tags/master/" rel="tag"><i class="fa fa-tag"></i> master</a>
           
+            <a href="/tags/slave/" rel="tag"><i class="fa fa-tag"></i> slave</a>
+          
             <a href="/tags/failover/" rel="tag"><i class="fa fa-tag"></i> failover</a>
           
         </div>
@@ -585,6 +588,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/01/jdbc/" rel="prev" title="Java Driver Base Connection">
+                Java Driver Base Connection <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -663,7 +670,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-count">60</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -674,7 +681,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">43</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -685,7 +692,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">112</span>
+                  <span class="site-state-item-count">122</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

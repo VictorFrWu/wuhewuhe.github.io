@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="hql,qbc,cache,state," />
 
 
 
@@ -90,17 +90,24 @@
 
 
 
-<meta name="description" content="this is a real blog, no lying no frauding">
+<meta name="description" content="大家好，这一期呢，我们谈一下Java hibernate相关的面试题。 第1题，什么是hibernate？ hibernate是一个架构, 用来对应Java对象数据库表对象。使用一个xml文件来配置。 第2题， 什么是orm？ object relational mapping。它是hibernate的基础概念。用来对应数据库表跟Java对象。 第3题, Java类属性是如何跟表的列进行对应的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hibernateInterview">
+<meta property="og:title" content="Hibernate Interview">
 <meta property="og:url" content="https://wuhewuhe.github.io/2020/03/03/hibernateInterview/index.html">
 <meta property="og:site_name" content="He WU">
-<meta property="og:description" content="this is a real blog, no lying no frauding">
+<meta property="og:description" content="大家好，这一期呢，我们谈一下Java hibernate相关的面试题。 第1题，什么是hibernate？ hibernate是一个架构, 用来对应Java对象数据库表对象。使用一个xml文件来配置。 第2题， 什么是orm？ object relational mapping。它是hibernate的基础概念。用来对应数据库表跟Java对象。 第3题, Java类属性是如何跟表的列进行对应的">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-4552ce098693b9221474a8dd825a43ce_720w.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-97558ff79de611a00eea8a3b07a3c35e_720w.jpg">
 <meta property="article:published_time" content="2020-03-03T06:16:10.000Z">
-<meta property="article:modified_time" content="2020-03-03T06:16:10.197Z">
+<meta property="article:modified_time" content="2020-03-04T05:41:59.172Z">
 <meta property="article:author" content="WU He">
+<meta property="article:tag" content="hql">
+<meta property="article:tag" content="qbc">
+<meta property="article:tag" content="cache">
+<meta property="article:tag" content="state">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic3.zhimg.com/80/v2-4552ce098693b9221474a8dd825a43ce_720w.jpg">
 
 
 
@@ -136,7 +143,7 @@
 
 
 
-  <title>hibernateInterview | He WU</title>
+  <title>Hibernate Interview | He WU</title>
   
 
 
@@ -333,7 +340,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">hibernateInterview</h1>
+          <h1 class="post-title" itemprop="name headline">Hibernate Interview</h1>
         
 
         <div class="post-meta">
@@ -355,6 +362,39 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hibernate/" itemprop="url" rel="index">
+                    <span itemprop="name">Hibernate</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hibernate/ORM/" itemprop="url" rel="index">
+                    <span itemprop="name">ORM</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -392,7 +432,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  0 words
+                  3k words
                 </span>
               
 
@@ -408,7 +448,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  1 minutes
+                  11 minutes
                 </span>
               
             </div>
@@ -429,7 +469,212 @@
       
 
       
-        
+        <p><img src="https://pic3.zhimg.com/80/v2-4552ce098693b9221474a8dd825a43ce_720w.jpg" alt="img"></p>
+<p><img src="https://pic3.zhimg.com/80/v2-97558ff79de611a00eea8a3b07a3c35e_720w.jpg" alt="img"></p>
+<p>大家好，这一期呢，我们谈一下Java hibernate相关的面试题。</p>
+<p>第1题，什么是hibernate？</p>
+<p>hibernate是一个架构, 用来对应Java对象数据库表对象。使用一个xml文件来配置。</p>
+<p>第2题， 什么是orm？</p>
+<p>object relational mapping。它是hibernate的基础概念。用来对应数据库表跟Java对象。</p>
+<p>第3题, Java类属性是如何跟表的列进行对应的?</p>
+<p>在定义这个Java类的时候要声明跟哪个表关联，然后在定义属性的时候，加上column注解。</p>
+<p>第4题，如何创建session factory？</p>
+<p>首先使用configuration加载xml文件。然后用configuration对象来创建session factory.</p>
+<p>第5题，什么是pojos?</p>
+<p>plain old Java objects. 指的是一个Java class中的每个成员都有getter, setter。</p>
+<p>第6题, 什么是hql?</p>
+<p>Hql是在hibernate中使用的查询语言。它是sql的扩展。不需要书写非常复杂的数据库查询语句，你就可以做很多事情。</p>
+<p>第7题, 在hibernate中我们如何调用stored procedures?</p>
+<p>你可以通过在xml中定义下面代码的方法来调用stored procedures.&lt;sql-query … &gt;… </p>
+<p>第8题, 什么是criteria api?</p>
+<p>Criteria api通过设定一些条件来获取数据库的数据的简单而又强大的API。</p>
+<p>第9题，使用hibernate template的好处有什么？</p>
+<p>Session的关闭是自动的。</p>
+<p>简化了与session的交互。</p>
+<p>异常处理是自动的。</p>
+<p>在服务类中使用repository注解。</p>
+<p>第10题，我们如何查看hibernate生成的sql语句?</p>
+<p>在hibernate的配置文件中，添加下面这一行:</p>
+<p><property name="show_sql">true</property>。</p>
+<p>第11题，在hibernate中有哪两种Collections?</p>
+<p>一种是sorted collection, 这个是运行在jvm上的，一种是order collection, 这个是运行在数据库上的。</p>
+<p>第12题，session save method和save or update method的区别是什么？</p>
+<p>Save负责插入一条不存在的记录。</p>
+<p>Save or update, 如果记录不存在就插入，如果存在就更新。</p>
+<p>第13题, 跟jdbc相比hibernate的优势在哪里?</p>
+<p>hibernate你不需要再写具体的sql语句了。</p>
+<p>行，jdbc的话，你可能会写很多sql语句，并且有可能会很复杂。</p>
+<p>使用hinernate, 你不需要再关心数据库的连接池的问题。</p>
+<p>第14题, 如何获取hibernate的statistics?</p>
+<p>我们可以调用session factory 的 get statistics方法。</p>
+<p>第15题， 什么是hibernate中的transient实例状态?</p>
+<p>Trnaisent的实例状态是指没有任何关联性的上下文的状态。</p>
+<p>第16题， 如何减少数据库写操作的时间?</p>
+<p>Hibernate 有 dirty check这个机制，它可以减少数据库的写时间。</p>
+<p>这个机制起作用时，就是只会更新那些被修改的域，而不会修改其他没有修改的域。</p>
+<p>第17题，在hibernate中callback接口是干什么的？</p>
+<p>从对象来接收事件信息，就使用call back接口。比如当一个对象的某个属性发生改变的时候，可以通过callback来通知调用者。</p>
+<p>第18题，什么时候实例会处于解除状态?</p>
+<p>如果实例跟一个表处于一种连接状态的时候，然后又断开，这种状态称为解除状态。</p>
+<p>第19题，Hibernate中4种ORM的等级?</p>
+<p>纯粹的关系型。</p>
+<p>初级对象映射。</p>
+<p>中级对象映射。</p>
+<p>全对象映射</p>
+<p>第20题，事务管理是怎么进行的?</p>
+<p>事务管理是用来管理一系列的语句或者命令。在Hibernate中事务管理是通过事务接口来管理的。</p>
+<p>第21题，Hibernate配置的两种方法?</p>
+<p>一种是通过xml来配置。</p>
+<p>一种是通过代码来配置。</p>
+<p>第22题，缺省的二级缓冲服务是什么？</p>
+<p>缺省的二级缓冲服务是ehcache, 此外还有oscache, swarmcache和treecache。</p>
+<p>第23题, 有哪几种关系映射?</p>
+<p>一种是1对1，一种1对多，一种是多对多。</p>
+<p>第24题，hibernate中的qbc API是干什么用的？</p>
+<p>Hibernate query by criteria api 用来在运行时创建使用criteria对象的查询.</p>
+<p>第25题, 有几种从数据库获取数据的方法?</p>
+<p>Hql.</p>
+<p>Identifier.</p>
+<p>Criteria api.</p>
+<p>Standard sql.</p>
+<p>第26题, 主键是怎么创建的?</p>
+<p>数据库的主键在配置文件hbm.xml中指定. Generator也可以被用来指定主键的创建方式。</p>
+<p>第27题，如何re attach已经解除的对象 ?</p>
+<p>可以通过session merge方法来re attach已经解除的对象。</p>
+<p>第28题, 有几种方法使hibernate二级cache失效?</p>
+<p>set use_second_level_cache as false.</p>
+<p>CACHEMODE. IGNORE</p>
+<p>NOCACHEPROVIDER</p>
+<p>第29题，什么是orm metadata?</p>
+<p>所有的对应关系包括类和表之间，属性和列之间，Java类型和sql类型之间，都定义在orm的meta data中。</p>
+<p>第30题, 缺省的事务factory是哪个?</p>
+<p>jdbc transaction factory.</p>
+<p>第31题，jmx的作用是什么?</p>
+<p>jmx提供了开发有效和稳定的网络应用方案的工具。</p>
+<p>第32题, 如何把session factory绑定到jndi上?</p>
+<p>在hibernate config file里面。</p>
+<p>第33题, 对象判断有几种方法?</p>
+<p>用等号儿操作符。</p>
+<p>用equals方法。</p>
+<p>使用数据库标识。是不是在同一行？</p>
+<p>第34题，有多少种获取策略?</p>
+<p>Join获取，批量获取， 选择获取， 部分选择获取。</p>
+<p>第35题，Java对象映射是怎么做的?</p>
+<p>一种方法是用xml定义对应关系。</p>
+<p>另一种方法是用注解。</p>
+<p>第36题, 什么是派生属性?</p>
+<p>派生属性是指没有任何数据列对应的属性。通常是一些类似表达式的，或者辅助性的属性。</p>
+<p>第37题，那些有名字的sql查询是怎么回事？怎么使用它?</p>
+<p>在映射文件中定义的那些查询，一般都有一个名字，这种查询被称为有名字的查询。</p>
+<p>使用get named query.</p>
+<p>第38题，方法load和get的区别是什么?</p>
+<p>如果数据不存在的话, load会扔出一个异常, Get会返回空。</p>
+<p>第39题, 版本属性的用处是什么?</p>
+<p>完美属性的用处主要是来判断这个对象是短暂状态还是解除状态。</p>
+<p>第40题，什么是面向属性的编程?</p>
+<p>在hibernate中面向属性编程由xdoclet这个引擎来控制, 允许程序员向Java代码中添加meta data。</p>
+<p>第41题, Session lock方法是干什么用的?</p>
+<p>这个方法主要是为了re attach 一个已经解除的对象。这个方法不会检查数据的同步，所以有可能会出现数据不同步的现象。</p>
+<p>第42题, Hibernate是否支持多态?</p>
+<p>是的。多态查询和多态关联，在hibernate之中适用于所有的映射策略。</p>
+<p>第43题, 有哪三种继承模型?</p>
+<p>Tables per concrete class.</p>
+<p>Tables per class hierarchy.</p>
+<p>Tables per sub class.</p>
+<p>第44题, 我们如何来映射一个不可修改的类?</p>
+<p>设定mutable等于false。</p>
+<p>第45题，在数据库管理系统中，通常的hibernate流程是怎样的?</p>
+<p>加载配置文件，创建配置对象。</p>
+<p>配置对象创建session factory对象。</p>
+<p>从session factory获取一个session。</p>
+<p>创建hql查询。</p>
+<p>执行hql查询并返回结果。</p>
+<p>结果会是一个列表。</p>
+<p>第46题, 什么是light Object mapping?</p>
+<p>使用手工的方式来映射Entity数据对象和表对象。</p>
+<p>第47题，管理的关联和hibernate关联有什么区别?</p>
+<p>管理的关联是双向的，而hinernate的关联是单向的。</p>
+<p>第48题, Hibernate 架构中比较重要的接口有哪些?</p>
+<p>Session factory.</p>
+<p>Session.</p>
+<p>Transaction.</p>
+<p>第49题，在hibernate映射中有哪些重要的注解？</p>
+<p>Entity. Table. Access. ID.embeddedID. Column. Generatedvalue. One to one. Cascade. Primary key join column.</p>
+<p>第50题, Session factory是线程安全的吗?</p>
+<p>是的。session factory是不可修改的，所以是线程安全的。</p>
+<p>第51题，session是线程安全的吗？</p>
+<p>不是。各自的线程，在使用完自己的session以后一定要关掉。</p>
+<p>第52题，open session和get current session的区别是什么？</p>
+<p>你需要在section factory的配置文件中配置才能够使用get current session. 它是跟当前的context相关联的。</p>
+<p>Open session每次都会打开一个新的session，我们需要自己关闭它。</p>
+<p>在多线程的环境中，对于每一个请求，我们应该使用open session。</p>
+<p>还有一个方法叫open stateless session，会返回一个无状态的session。</p>
+<p>第53题, 什么是hibernate的caching，解释一下，first level cache是什么。</p>
+<p>Hibernate cash机制会使我们查询数据更快。First level cache是跟session对象关联的。这是缺省选项无法取消。但是我们有hibernate方法删除对象。</p>
+<p>第54题，entity bean的不同状态有哪些？</p>
+<p>Transient. 可以通过如下方法save, save or update, persistent 进入persistent状态, 通过delete，再返回到transient状态。</p>
+<p>Persistent. 从get和load返回的就是persistent实例，与一个唯一的session相关联。</p>
+<p>Detached. 之前曾经是presistent，但是现在没有关联任何session的状态叫做detached.</p>
+<p>可以通过update，save or update, lock, replicate再转成persistent。</p>
+<p>merge可以transient, detached转成一个新persistent实例。</p>
+<p>第55题， Save， save or update和persist的区别是什么?</p>
+<p>Save是添加一条新的记录。并快速返回ID.</p>
+<p>Persist, 跟save的功能差不多，但是它不会立即返回生成的ID。</p>
+<p>Save or update. 如果记录不存在，就添加一条记录，如果记录存在的话就更新该记录。</p>
+<p>第56题，如果entity bean没有空构造函数, 会发生什么?</p>
+<p>如果没有空构造的函数的话，会产生一个hibernate exception。</p>
+<p>第57题，hibernate里面的collection类型有哪些？</p>
+<p>Bag, set, list, array, map.</p>
+<p>58题，在hibernate中如何使用joins？</p>
+<p>有几种方法:</p>
+<p>使用1 to 1, 或者one to many关联。</p>
+<p>在hql中使用join关键字。John fetch使用eager loading, 不是lazy loading。</p>
+<p>或者直接使用标准的sql查询语句，加上join关键字。</p>
+<p>第59题，为什么我们不应该让Entity class变成final?</p>
+<p>Lazy loading是通过扩展现有的Entity class来做到的。</p>
+<p>如果entity class变成final, lazy loading就不可能实现了。性能上会大打折扣。</p>
+<p>第60题, 什么是cascading？有几种类型的cascading?</p>
+<p>当我们处理两个Entity之间的关系的时候，我们需要来定义，他们之间的操作是怎么互相影响的。这个方面是通过cascading来定义的。</p>
+<p>有如下类型:</p>
+<p>None</p>
+<p>all</p>
+<p>save_update</p>
+<p>delete</p>
+<p>detach, merge, persist, refresh, remove</p>
+<p>lock</p>
+<p>replicate</p>
+<p>第61题, 如何集成log4j?</p>
+<p>添加log4j的依赖。</p>
+<p>创建xml配置文件，或者log4j的properties文件，并放到class path里面。</p>
+<p>。</p>
+<p>在standalone工程里面用dom configurator, property configurator。</p>
+<p>在网络应用中, 使用servlet context listener去配置它。</p>
+<p>第62题, 如何集成hibernate和spring框架?</p>
+<p>添加hibernate Entity manager，hibernate core, spring orm依赖。</p>
+<p>创建模型类和对应的dao实现类来操作数据库。</p>
+<p>Dao实现类用来操作session factory。</p>
+<p>local session factory bean需要被配置。</p>
+<p>如果我们用transactional注解的话，我们就不需要关心事务管理了。</p>
+<p>第63题, Hibernate如何跟servlet或者struts2进行集成?</p>
+<p>通过servlet context listener.</p>
+<p>第64题，hibernate框架使用了哪些design patterns？</p>
+<p>Domain model pattern, 模型中包含行为和数据.</p>
+<p>Data mapper. 提供数据类跟数据库表对象的关联。</p>
+<p>Proxy pattern. 用来做lazy loading。</p>
+<p>Factory pattern. 比如session factory.</p>
+<p>第65题, Hibernate的最好的实践有哪些?</p>
+<p>. 始终检查主键的访问， 如果是数据库自动生成的，那么就不应该有setter。</p>
+<p>. 缺省的， hibernate是直接对域进行设置的，如果你想使用setter的话，要加access注解.</p>
+<p>. 不要同时在成员变量和get方法上加注解。</p>
+<p>. 除非hql做不到才使用标准的sql。</p>
+<p>. 要使用order list，而不是使用sorted list.</p>
+<p>. Named的query，只用于通用的情况。特别的query仅限于Entity本身。</p>
+<p>. 对网络应用来说，要使用jndi，而不是直接去配置数据库连接。</p>
+<p>. 避免多对多的关系。使用一对多和多对一来化解。</p>
+<p>. 只用collection时，使用list，maps和sets，尽量不用array， 因为array不能做lazy loading。</p>
+<p>. 当发生exception时，回退事务，关掉session。</p>
+<p>. 尽量使用lazy fetching.</p>
+
       
     </div>
     
@@ -486,7 +731,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link:</strong>
-    <a href="https://wuhewuhe.github.io/2020/03/03/hibernateInterview/" title="hibernateInterview">https://wuhewuhe.github.io/2020/03/03/hibernateInterview/</a>
+    <a href="https://wuhewuhe.github.io/2020/03/03/hibernateInterview/" title="Hibernate Interview">https://wuhewuhe.github.io/2020/03/03/hibernateInterview/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice: </strong>
@@ -498,6 +743,18 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/hql/" rel="tag"><i class="fa fa-tag"></i> hql</a>
+          
+            <a href="/tags/qbc/" rel="tag"><i class="fa fa-tag"></i> qbc</a>
+          
+            <a href="/tags/cache/" rel="tag"><i class="fa fa-tag"></i> cache</a>
+          
+            <a href="/tags/state/" rel="tag"><i class="fa fa-tag"></i> state</a>
+          
+        </div>
       
 
       
@@ -599,7 +856,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-count">62</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -610,7 +867,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-count">45</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -621,7 +878,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">122</span>
+                  <span class="site-state-item-count">129</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

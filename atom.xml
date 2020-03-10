@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wuhewuhe.github.io/"/>
-  <updated>2020-03-10T21:46:14.733Z</updated>
+  <updated>2020-03-10T22:05:46.087Z</updated>
   <id>https://wuhewuhe.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ASCII, UNICODE, UTF-8来龙去脉</title>
+    <link href="https://wuhewuhe.github.io/2020/03/10/asciiHistory/"/>
+    <id>https://wuhewuhe.github.io/2020/03/10/asciiHistory/</id>
+    <published>2020-03-10T22:02:15.000Z</published>
+    <updated>2020-03-10T22:05:46.087Z</updated>
+    
+    <content type="html"><![CDATA[<p>将人在键盘上敲入的字符（数字、字母、特殊符号等）转换成机器能够识别的二进制数，并且每个字符唯一确定一个ASCII码，形象地说，它就是人跟计算机交流时使用的键盘语言通过“翻译”转换成的计算机能够识别的语言。</p><p><strong>ASCII 码</strong><br>我们知道，计算机内部，所有信息最终都是一个二进制值。每一个二进制位（bit）有0和1两种状态，因此八个二进制位就可以组合出256种状态，这被称为一个字节（byte）。也就是说，一个字节一共可以用来表示256种不同的状态，每一个状态对应一个符号，就是256个符号，从00000000到11111111。</p><p>上个世纪60年代，美国制定了一套字符编码，对英语字符与二进制位之间的关系，做了统一规定。这被称为 ASCII 码，一直沿用至今。</p><p>ASCII 码一共规定了128个字符的编码，比如空格SPACE是32（二进制00100000），大写的字母A是65（二进制01000001）。这128个符号（包括32个不能打印出来的控制符号），只占用了一个字节的后面7位，最前面的一位统一规定为0。</p><p><strong>非 ASCII 编码</strong><br>英语用128个符号编码就够了，但是用来表示其他语言，128个符号是不够的。比如，在法语中，字母上方有注音符号，它就无法用 ASCII 码表示。于是，一些欧洲国家就决定，利用字节中闲置的最高位编入新的符号。比如，法语中的é的编码为130（二进制10000010）。这样一来，这些欧洲国家使用的编码体系，可以表示最多256个符号。</p><p>但是，这里又出现了新的问题。不同的国家有不同的字母，因此，哪怕它们都使用256个符号的编码方式，代表的字母却不一样。比如，130在法语编码中代表了é，在希伯来语编码中却代表了字母Gimel (ג)，在俄语编码中又会代表另一个符号。但是不管怎样，所有这些编码方式中，0–127表示的符号是一样的，不一样的只是128–255的这一段。</p><p>至于亚洲国家的文字，使用的符号就更多了，汉字就多达10万左右。一个字节只能表示256种符号，肯定是不够的，就必须使用多个字节表达一个符号。比如，简体中文常见的编码方式是 GB2312，使用两个字节表示一个汉字，所以理论上最多可以表示 256 x 256 = 65536 个符号。</p><p>中文编码的问题需要专文讨论，这篇笔记不涉及。这里只指出，虽然都是用多个字节表示一个符号，但是GB类的汉字编码与后文的 Unicode 和 UTF-8 是毫无关系的。</p><p><strong>Unicode</strong><br>正如上一节所说，世界上存在着多种编码方式，同一个二进制数字可以被解释成不同的符号。因此，要想打开一个文本文件，就必须知道它的编码方式，否则用错误的编码方式解读，就会出现乱码。为什么电子邮件常常出现乱码？就是因为发信人和收信人使用的编码方式不一样。</p><p>可以想象，如果有一种编码，将世界上所有的符号都纳入其中。每一个符号都给予一个独一无二的编码，那么乱码问题就会消失。这就是 Unicode，就像它的名字都表示的，这是一种所有符号的编码。</p><p>Unicode 当然是一个很大的集合，现在的规模可以容纳100多万个符号。每个符号的编码都不一样，比如，U+0639表示阿拉伯字母Ain，U+0041表示英语的大写字母A，U+4E25表示汉字严。具体的符号对应表，<a href="http://xn--unicode-hc5kp88abk4csz4e.org" target="_blank" rel="noopener">可以查询unicode.org</a>，或者专门的汉字对应表。</p><p><strong>Unicode 的问题</strong><br>需要注意的是，Unicode 只是一个符号集，它只规定了符号的二进制代码，却没有规定这个二进制代码应该如何存储。</p><p>比如，汉字严的 Unicode 是十六进制数4E25，转换成二进制数足足有15位（100111000100101），也就是说，这个符号的表示至少需要2个字节。表示其他更大的符号，可能需要3个字节或者4个字节，甚至更多。</p><p>这里就有两个严重的问题，第一个问题是，如何才能区别 Unicode 和 ASCII ？计算机怎么知道三个字节表示一个符号，而不是分别表示三个符号呢？第二个问题是，我们已经知道，英文字母只用一个字节表示就够了，如果 Unicode 统一规定，每个符号用三个或四个字节表示，那么每个英文字母前都必然有二到三个字节是0，这对于存储来说是极大的浪费，文本文件的大小会因此大出二三倍，这是无法接受的。</p><p>它们造成的结果是：1）出现了 Unicode 的多种存储方式，也就是说有许多种不同的二进制格式，可以用来表示 Unicode。2）Unicode 在很长一段时间内无法推广，直到互联网的出现。</p><p><strong>UTF-8</strong><br>互联网的普及，强烈要求出现一种统一的编码方式。UTF-8 就是在互联网上使用最广的一种 Unicode 的实现方式。其他实现方式还包括 UTF-16（字符用两个字节或四个字节表示）和 UTF-32（字符用四个字节表示），不过在互联网上基本不用。重复一遍，这里的关系是，UTF-8 是 Unicode 的实现方式之一。</p><p>UTF-8 最大的一个特点，就是它是一种变长的编码方式。它可以使用1~4个字节表示一个符号，根据不同的符号而变化字节长度。</p><p>UTF-8 的编码规则很简单，只有二条：</p><p>1）对于单字节的符号，字节的第一位设为0，后面7位为这个符号的 Unicode 码。因此对于英语字母，UTF-8 编码和 ASCII 码是相同的。</p><p>2）对于n字节的符号（n &gt; 1），第一个字节的前n位都设为1，第n + 1位设为0，后面字节的前两位一律设为10。剩下的没有提及的二进制位，全部为这个符号的 Unicode 码。</p><p>下表总结了编码规则，字母x表示可用编码的位。</p><p>Unicode符号范围     |        UTF-8编码方式<br>(十六进制)        |              （二进制）<br>----------------------±--------------------------------------------<br>0000 0000-0000 007F | 0xxxxxxx<br>0000 0080-0000 07FF | 110xxxxx 10xxxxxx<br>0000 0800-0000 FFFF | 1110xxxx 10xxxxxx 10xxxxxx<br>0001 0000-0010 FFFF | 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx<br>跟据上表，解读 UTF-8 编码非常简单。如果一个字节的第一位是0，则这个字节单独就是一个字符；如果第一位是1，则连续有多少个1，就表示当前字符占用多少个字节。</p><p>下面，还是以汉字严为例，演示如何实现 UTF-8 编码。</p><p>严的 Unicode 是4E25（100111000100101），根据上表，可以发现4E25处在第三行的范围内（0000 0800 - 0000 FFFF），因此严的 UTF-8 编码需要三个字节，即格式是1110xxxx 10xxxxxx 10xxxxxx。然后，从严的最后一个二进制位开始，依次从后向前填入格式中的x，多出的位补0。这样就得到了，严的 UTF-8 编码是11100100 10111000 10100101，转换成十六进制就是E4B8A5。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;将人在键盘上敲入的字符（数字、字母、特殊符号等）转换成机器能够识别的二进制数，并且每个字符唯一确定一个ASCII码，形象地说，它就是人跟计算机交流时使用的键盘语言通过“翻译”转换成的计算机能够识别的语言。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ASCII 码&lt;/strong&gt;&lt;br
+      
+    
+    </summary>
+    
+    
+      <category term="ASCII" scheme="https://wuhewuhe.github.io/categories/ASCII/"/>
+    
+      <category term="UNICODE" scheme="https://wuhewuhe.github.io/categories/ASCII/UNICODE/"/>
+    
+      <category term="UTF-8" scheme="https://wuhewuhe.github.io/categories/ASCII/UNICODE/UTF-8/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>制表符</title>
@@ -134,11 +163,11 @@ VT (Vertical Tab)	垂直制表符&lt;/p&gt;
       <category term="Hibernate" scheme="https://wuhewuhe.github.io/categories/Hibernate/"/>
     
     
+      <category term="class" scheme="https://wuhewuhe.github.io/tags/class/"/>
+    
       <category term="first level" scheme="https://wuhewuhe.github.io/tags/first-level/"/>
     
       <category term="second level" scheme="https://wuhewuhe.github.io/tags/second-level/"/>
-    
-      <category term="class" scheme="https://wuhewuhe.github.io/tags/class/"/>
     
       <category term="query" scheme="https://wuhewuhe.github.io/tags/query/"/>
     
@@ -480,11 +509,11 @@ Byte是计算机操作数据的最小单位由8
       <category term="SpringBoot" scheme="https://wuhewuhe.github.io/categories/Broker/Spring/SpringBoot/"/>
     
     
-      <category term="bean" scheme="https://wuhewuhe.github.io/tags/bean/"/>
-    
       <category term="queue" scheme="https://wuhewuhe.github.io/tags/queue/"/>
     
       <category term="topic" scheme="https://wuhewuhe.github.io/tags/topic/"/>
+    
+      <category term="bean" scheme="https://wuhewuhe.github.io/tags/bean/"/>
     
       <category term="producer" scheme="https://wuhewuhe.github.io/tags/producer/"/>
     
@@ -648,42 +677,11 @@ RDB 持久化是指在指定的时间间隔内将内存中的数据集快照写�
       <category term="RabbitMq" scheme="https://wuhewuhe.github.io/categories/ActiveMq/RabbitMq/"/>
     
     
-      <category term="asynchronous" scheme="https://wuhewuhe.github.io/tags/asynchronous/"/>
-    
       <category term="decoupling" scheme="https://wuhewuhe.github.io/tags/decoupling/"/>
     
-      <category term="Peak cliping" scheme="https://wuhewuhe.github.io/tags/Peak-cliping/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JMS</title>
-    <link href="https://wuhewuhe.github.io/2020/02/29/jms/"/>
-    <id>https://wuhewuhe.github.io/2020/02/29/jms/</id>
-    <published>2020-02-29T15:34:12.000Z</published>
-    <updated>2020-02-29T15:38:41.656Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>JMS itself isn’t a message broker, just an API to an existing broker.</strong></p><p><img src="https://www.javatpoint.com/ejbpages/images/jms-publisher-subscriber-model.png" alt="jms point to point model"></p><p><img src="https://www.javatpoint.com/ejbpages/images/jms-point-to-point-model.png" alt="jms point to point model"></p><p><img src="https://www.javatpoint.com/ejbpages/images/jms-programming-model.png" alt="jms programming model"></p><ul><li>JMS</li></ul><p>JMS means Java Messaging Service. It is the new standard for inter client communication. It allows the J2EE application component to create, send, read and receive the messages.</p><ul><li><strong>What type of messaging is provided by JMS?</strong></li></ul><p>synchronous and asynchronous</p><ul><li><p><strong>What do you mean by Synchronous and Asynchronous type of messaging?</strong></p><p>Synchronous: In this type of messaging, client waits for the server to respond to a message. Ex: Telephone call, two way radio communication.</p><p>Asynchronous: In this type of messaging, client does not wait for a message from the server, but automatically an event is created to trigger a message from a server. Ex: email, text messaging, blog posting.</p></li><li><p><strong>How many types of messaging model do JMS provide for and what are they?</strong></p></li></ul><p>There are two types of messaging models that JMS provides –</p><p>Point to point queuing</p><p>Second one is publish and subscribe</p><ul><li><p><strong>Explain the difference between topic and queue?</strong></p><p>Queue technique is used for one to one messaging, and it supports point to point messaging. While topic is typically used for one to many messaging and it supports public subscribe model of messaging.</p></li><li><p><strong>What is the role of the JMS provider?</strong></p></li></ul><p>The JMS provider handles data conversion, security of the messages and the client triggering. It specifies the level of encryption, security level of the message and the best-data type for the non-JMS client.</p><ul><li><strong>What are the components of JMS?</strong></li></ul><p>JMS provide; client; Message:</p><ul><li><strong>Give an example of using point to point model in JMS?</strong></li></ul><p>Example for point to point model, would be a print out. When you select a print-out option, your system sends the message to the server, and once the print-out is taken out, again this server will send the message back to you. Point to point model is used, when the information is specific to a single client.</p><ul><li><p><strong>For JMS-enabled application, what are the core JMS-related objects required?</strong></p><ul><li>The core JMS-related objects that are required are –</li><li>The connection object</li><li>One or more sessions within a connection that provides a context for message sending and receiving.</li><li>A topic or queue object within a session representing the destination within the message broker.</li><li>Appropriate sender or publisher or receiver within a session.</li></ul></li><li><p><strong>What is JMS administered object?</strong></p><p>JMS administered object is a pre-configured JMS object that is created by an administrator for the use of JMS clients and placed in JNDI namespace</p></li><li><p><strong>What is the important part of JMS applications?</strong></p></li></ul><p>connection factory - &gt; connection -&gt; session -&gt; message , message producer, message consumer</p><ul><li><p><strong>What is JMS session?</strong></p><p>A JMS session is a single-threaded context for sending and receiving JMS messages. A JMS session could be a locally transacted, non-transacted or distributed transacted.</p></li><li><p><strong>Mention the difference between durable and non-durable subscription?</strong></p><p>Durable subscription gives a subscriber the freedom of receiving all messages from a topic, while a non-durable subscription does not make any guarantees about messages sent by others when a client get disconnected by others</p></li><li><p><strong>What is Byte Message?</strong></p></li></ul><p>Byte message is a stream of uninterrupted bytes. It contains an array of primitive bytes in its payload. For the transfer of data between two applications in their native format, byte message is used, which may be not possible with other message types.</p><ul><li><strong>Mention different types of messages available in JMS API?</strong></li></ul><p>The different types of messages available in JMS API are Message, TextMessage, BytesMessage, ObjectMessage and MapMessage.</p><ul><li><p><strong>What is the difference between the P2P (Peer to Peer) model and subscribe model?</strong></p><p>P2P model is highly reliable and it is used in a one-to-one situation, while subscribe model is used in one-to-many situation. It is very fast but less reliable.</p></li><li><p><strong>What is a JMS client?</strong></p><p>JMS client is a language program that sends or receives messages.</p></li><li><p><strong>Can we send e-mail messages using JMS?</strong></p><p>JMS has no inherent support for email operations.</p></li><li><p><strong>Explain how Application server handles the JMS Connection?</strong></p></li></ul><p>With the help of Application server, the server session is created and it stores them in a pool</p><p>To put messages in JMS session, connection consumer, uses the Server session</p><p>Server session is the one that creates the JMS session</p><p>Application written by Application programmers creates the message listener.</p><ul><li><strong>What is the difference between JMS and RPC (Remote Procedure Call)?</strong></li></ul><p>The basic difference between JMS and RPC lies in the way they message. JMS uses asynchronous messaging type while, RPC creates synchronous messaging type. The method invoker in RPC, waits for the method to finish execution and return back the control to the invoker. In JMS the message sender just sends the message to the destination and continues its own processing.</p><ul><li><p><strong>Explain how does the JMS work with the J2EE?</strong></p><p>The application client like enterprise JavaBeans components and web components can send or receive JMS message synchronously. In addition, the application clients can also receive message asynchronously. With the help of message-driven beans, JMS provider can optionally implement the processing of messages. Message-driven beans are a type of enterprise bean that enables the asynchronous consumption of messages.</p><p>The operation of sending and receiving message is carried out in distributed operation, which allows JMS operations and database accesses within a single transaction.</p></li><li><p><strong>What is MOM in reference to JMS?</strong></p><p>The MOM ( Message Oriented Middleware) is a software that works as an intermediate between two communicating components. It is placed between the client and server, MOM provides the facility of passing message by using the technique queuing. Until the client does not request to read the message, the messages will be stored in queue. By using this technique, the software component can work independently of time.</p></li><li><p><strong>How you can deliver a java message to a non-java client?</strong></p></li></ul><p>First of all, after receiving the message from Topic or Queue, the message has to be converted into a non-java client according to their specification. The message once converted to non-java client, it can be delivered.</p><ul><li><strong>For sending messages through JMS, what encryption options are there?</strong></li></ul><p>The encryption and decryption of the messages is handled by JMS provider and not JMS specifications. Sonic MQ by Progress Software is a leading JMS provider and they do encryption through encryption mechanisms called Quality of Protection.</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;strong&gt;JMS itself isn’t a message broker, just an API to an existing broker.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.javatpoint.com/ejbpag
-      
-    
-    </summary>
-    
-    
-      <category term="JMS" scheme="https://wuhewuhe.github.io/categories/JMS/"/>
-    
-    
-      <category term="queue" scheme="https://wuhewuhe.github.io/tags/queue/"/>
-    
-      <category term="topic" scheme="https://wuhewuhe.github.io/tags/topic/"/>
-    
       <category term="asynchronous" scheme="https://wuhewuhe.github.io/tags/asynchronous/"/>
+    
+      <category term="Peak cliping" scheme="https://wuhewuhe.github.io/tags/Peak-cliping/"/>
     
   </entry>
   

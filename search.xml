@@ -4,6 +4,93 @@
   
     
     <entry>
+      <title>制表符</title>
+      <link href="/2020/03/10/tabAndVertical/"/>
+      <url>/2020/03/10/tabAndVertical/</url>
+      
+        <content type="html"><![CDATA[<p>HT (Horizontal Tab)水平制表符<br>VT (Vertical Tab)垂直制表符</p><p>水平制表符（‘\t’）</p><pre><code>   相信大家对‘\t’还是比较熟悉的。一般来说，其在终端和文件中的输出显示相当于按下键盘TAB键效果。一般系统中，显示水平制表符将占8列。同时水平制表符开始占据的初始位</code></pre><p>置是第8*n列（第一列的下标为0）。例如：</p><pre><code>   puts(&quot;0123456\txx&quot;);   puts(&quot;0123456t\txx&quot;);</code></pre><p>在终端的输出为<img src="https://pic2.zhimg.com/50/v2-183e3f5127e5f5445085b7161f6632ca_hd.jpg" data-rawwidth="332" data-rawheight="45" class="content_image" width="332"><br>垂直制表符（‘\v’）</p><pre><code>  垂直制表符不常用。它的作用是让‘\v’后面的字符从下一行开始输出，且开始的列数为“\v”前一个字符所在列后面一列。例如：   puts(&quot;01\v2345&quot;);</code></pre><p>在终端输出为<img src="https://pic4.zhimg.com/50/v2-f77575ddf7648e9307d577a83fca041f_hd.jpg" data-rawwidth="265" data-rawheight="45" class="content_image" width="265"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> ASCII </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> vertical </tag>
+            
+            <tag> horizontal </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>换行与回车</title>
+      <link href="/2020/03/10/carriagereturn/"/>
+      <url>/2020/03/10/carriagereturn/</url>
+      
+        <content type="html"><![CDATA[<p>会车英语carriage return， 法语 retour chariot</p><p>换行英语new line or feed line，法语 ligne d’alimentaion</p><p>关于换行和回车其实平时我们不太在意，所以关于两者的区别也不太清楚，在平时开发时可能会遇到一些文件处理的问题，放到不同的操作系统上出现各种坑。那么回车和换行到底有哪些区别呢？今天咱们就来总结一下。</p><h3 id="1-由来">1. 由来</h3><p>在计算机还没有出现之前，有一种叫做电传打字机（Teletype Model 33）的机械打字机，每秒钟可以打10个字符。但是它有一个问题，就是打完一行换行的时候，要用去0.2秒，正好可以打两个字符。要是在这0.2秒里面，又有新的字符传过来，那么这个字符将丢失。</p><p>于是，研制人员想了个办法解决这个问题，就是在每行后面加两个表示结束的字符。一个叫做“回车”，告诉打字机把打印头定位在左边界，不卷动滚筒；另一个叫做“换行”，告诉打字机把滚筒卷一格，不改变水平位置。</p><p>这就是“换行”和“回车”的由来。</p><h3 id="2-使用">2. 使用</h3><p>后来，计算机发明了，这两个概念也就被般到了计算机上。那时，存储器很贵，一些科学家认为在每行结尾加两个字符太浪费了，加一个就可以。于是，就出现了分歧。</p><p>回车 \r 本义是光标重新回到本行开头，r的英文return，控制字符可以写成CR，即Carriage Return</p><p>换行 \n 本义是光标往下一行（不一定到下一行行首），n的英文newline，控制字符可以写成LF，即Line Feed</p><p>符号   ASCII码    意义</p><p>\n     10     换行NL</p><p>\r     13     回车CR</p><p>在不同的操作系统这几个字符表现不同，比如在WIN系统下，这两个字符就是表现的本义，在UNIX类系统，换行\n就表现为光标下一行并回到行首，在MAC上，\r就表现为回到本行开头并往下一行，至于ENTER键的定义是与操作系统有关的。通常用的Enter是两个加起来。</p><p>不同操作系统下的含义：</p><p>\n:  UNIX 系统行末结束符</p><p>\r\n: window 系统行末结束符</p><p>\r:  MAC OS 系统行末结束符</p><p>我们经常遇到的一个问题就是，Unix/Mac系统下的文件在Windows里打开的话，所有文字会变成一行；而Windows里的文件在Unix/Mac下打开的话，在每行的结尾可能会多出一个^M符号。</p><h3 id="3-软回车和硬回车">3. 软回车和硬回车</h3><p>再扩展一下回车的一些知识。</p><p>硬回车就是普通我们按回车产生的，它在换行的同时也起着段落分隔的作用。</p><p>软回车是用 Shift + Enter 产生的，它换行，但是并不换段，即前后两段文字在 Word 中属于同一“段”。在应用格式时你会体会到这一点。</p><p>软回车能使前后两行的行间距大幅度缩小，因为它不是段落标记，要和法定的段落标记——硬回车区别出来。硬回车的html代码是</p><p>…</p>，段落的内容就夹在里面，而软回车的代码很精悍：<br>。网页的文字如果复制到word中，则硬回车变为弯曲的箭头，软回车变为向下的箭头。<p></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> OS </category>
+          
+          <category> ASCII </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> carriageReturn </tag>
+            
+            <tag> newLine </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>ASCII表</title>
+      <link href="/2020/03/10/ascii/"/>
+      <url>/2020/03/10/ascii/</url>
+      
+        <content type="html"><![CDATA[<p>ASCII（American Standard Code for Information Interchange，美国信息互换标准代码）是一套基于拉丁字母的字符编码，共收录了 128 个字符，用一个字节就可以存储，它等同于国际标准 ISO/IEC 646。</p><p>ASCII 规范于 1967 年第一次发布，最后一次更新是在 1986 年，它包含了 33 个控制字符（具有某些特殊功能但是无法显示的字符）和 95 个可显示字符。</p><p>ASCII 码对照表<br>二进制十进制十六进制缩写/字符解释<br>00000000000NUL (NULL)空字符<br>00000001101SOH (Start Of Headling)标题开始<br>00000010202STX (Start Of Text)正文开始<br>00000011303ETX (End Of Text)正文结束<br>00000100404EOT (End Of Transmission)传输结束<br>00000101505ENQ (Enquiry)请求<br>00000110606ACK (Acknowledge)回应/响应/收到通知<br>00000111707BEL (Bell)响铃<br>00001000808BS (Backspace)退格<br>00001001909HT (Horizontal Tab)水平制表符<br>00001010100ALF/NL(Line Feed/New Line)换行键<br>00001011110BVT (Vertical Tab)垂直制表符<br>00001100120CFF/NP (Form Feed/New Page)换页键<br>00001101130DCR (Carriage Return)回车键<br>00001110140ESO (Shift Out)不用切换<br>00001111150FSI (Shift In)启用切换<br>000100001610DLE (Data Link Escape)数据链路转义<br>000100011711DC1/XON (Device Control 1/Transmission On)设备控制1/传输开始<br>000100101812DC2 (Device Control 2)设备控制2<br>000100111913DC3/XOFF (Device Control 3/Transmission Off)设备控制3/传输中断<br>000101002014DC4 (Device Control 4)设备控制4<br>000101012115NAK (Negative Acknowledge)无响应/非正常响应/拒绝接收<br>000101102216SYN (Synchronous Idle)同步空闲<br>000101112317ETB (End of Transmission Block)传输块结束/块传输终止<br>000110002418CAN (Cancel)取消<br>000110012519EM (End of Medium)已到介质末端/介质存储已满/介质中断<br>00011010261ASUB (Substitute)替补/替换<br>00011011271BESC (Escape)逃离/取消<br>00011100281CFS (File Separator)文件分割符<br>00011101291DGS (Group Separator)组分隔符/分组符<br>00011110301ERS (Record Separator)记录分离符<br>00011111311FUS (Unit Separator)单元分隔符<br>001000003220(Space)空格<br>001000013321!<br>001000103422&quot;<br>001000113523#<br>001001003624$<br>001001013725%<br>001001103826&amp;<br>001001113927’<br>001010004028(<br>001010014129)<br>00101010422A*<br>00101011432B+<br>00101100442C, <br>00101101452D-<br>00101110462E.<br>00101111472F/<br>0011000048300<br>0011000149311<br>0011001050322<br>0011001151333<br>0011010052344<br>0011010153355<br>0011011054366<br>0011011155377<br>0011100056388<br>0011100157399<br>00111010583A:<br>00111011593B; <br>00111100603C&lt;<br>00111101613D=<br>00111110623E&gt;<br>00111111633F?<br>010000006440@<br>010000016541A<br>010000106642B<br>010000116743C<br>010001006844D<br>010001016945E<br>010001107046F<br>010001117147G<br>010010007248H<br>010010017349I<br>01001010744AJ<br>01001011754BK<br>01001100764CL<br>01001101774DM<br>01001110784EN<br>01001111794FO<br>010100008050P<br>010100018151Q<br>010100108252R<br>010100118353S<br>010101008454T<br>010101018555U<br>010101108656V<br>010101118757W<br>010110008858X<br>010110018959Y<br>01011010905AZ<br>01011011915B[<br>01011100925C\<br>01011101935D]<br>01011110945E^<br>01011111955F_<br>011000009660`<br>011000019761a<br>011000109862b<br>011000119963c<br>0110010010064d<br>0110010110165e<br>0110011010266f<br>0110011110367g<br>0110100010468h<br>0110100110569i<br>011010101066Aj<br>011010111076Bk<br>011011001086Cl<br>011011011096Dm<br>011011101106En<br>011011111116Fo<br>0111000011270p<br>0111000111371q<br>0111001011472r<br>0111001111573s<br>0111010011674t<br>0111010111775u<br>0111011011876v<br>0111011111977w<br>0111100012078x<br>0111100112179y<br>011110101227Az<br>011110111237B{<br>011111001247C|<br>011111011257D}<br>011111101267E~<br>011111111277FDEL (Delete)删除<br>对控制字符的解释<br>ASCII 编码中第 0~31 个字符（开头的 32 个字符）以及第 127 个字符（最后一个字符）都是不可见的（无法显示），但是它们都具有一些特殊功能，所以称为控制字符（ Control Character）或者功能码（Function Code）。</p><p>这 33 个控制字符大都与通信、数据存储以及老式设备有关，有些在现代电脑中的含义已经改变了。</p><p>但是作为一个开发人员，需要我们对ASCII有个烂熟于心的了解，比如从48-57对应数字0-9，65-92对应大写字母A-Z，95-122对应小写字母a-z</p><p>下面列出了部分控制字符的具体功能：<br>NUL (0)<br>NULL，空字符。空字符起初本意可以看作为 NOP（中文意为空操作，就是啥都不做的意思），此位置可以忽略一个字符。</p><p>之所以有这个空字符，主要是用于计算机早期的记录信息的纸带，此处留个 NUL 字符，意思是先占这个位置，以待后用，比如你哪天想起来了，在这个位置在放一个别的啥字符之类的。</p><p>后来呢，NUL 被用于C语言中，表示字符串的结束，当一个字符串中间出现 NUL 时，就意味着这个是一个字符串的结尾了。这样就方便按照自己需求去定义字符串，多长都行，当然只要你内存放得下，然后最后加一个\0，即空字符，意思是当前字符串到此结束。<br>SOH (1)<br>Start Of Heading，标题开始。如果信息沟通交流主要以命令和消息的形式的话，SOH 就可以用于标记每个消息的开始。</p><p>1963年，最开始 ASCII 标准中，把此字符定义为 Start of Message，后来又改为现在的 Start Of Heading。</p><p>现在，这个 SOH 常见于主从（master-slave）模式的 RS232 的通信中，一个主设备，以 SOH 开头，和从设备进行通信。这样方便从设备在数据传输出现错误的时候，在下一次通信之前，去实现重新同步（resynchronize）。如果没有一个清晰的类似于 SOH 这样的标记，去标记每个命令的起始或开头的话，那么重新同步，就很难实现了。<br>STX (2) 和 ETX (3)<br>STX 表示 Start Of Text，意思是“文本开始”；ETX 表示 End Of Text，意思是“文本结束”。</p><p>通过某种通讯协议去传输的一个数据（包），称为一帧的话，常会包含一个帧头，包含了寻址信息，即你是要发给谁，要发送到目的地是哪里，其后跟着真正要发送的数据内容。</p><p>而 STX，就用于标记这个数据内容的开始。接下来是要传输的数据，最后是 ETX，表明数据的结束。</p><p>而中间具体传输的数据内容，ASCII 并没有去定义，它和你所用的传输协议有关。<br>帧头数据或文本内容<br>SOH（表明帧头开始）… （帧头信息，比如包含了目的地址，表明你发送给谁等等）STX（表明数据开始）… （真正要传输的数据）ETX（表明数据结束<br>BEL (7)<br>BELl，响铃。在 ASCII 编码中，BEL 是个比较有意思的东西。BEL 用一个可以听得见的声音来吸引人们的注意，既可以用于计算机，也可以用于周边设备（比如打印机）。</p><p>注意，BEL 不是声卡或者喇叭发出的声音，而是蜂鸣器发出的声音，主要用于报警，比如硬件出现故障时就会听到这个声音，有的计算机操作系统正常启动也会听到这个声音。蜂鸣器没有直接安装到主板上，而是需要连接到主板上的一种外设，现代很多计算机都不安装蜂鸣器了，即使输出 BEL 也听不到声音，这个时候 BEL 就没有任何作用了。<br>BS (8)<br>BackSpace，退格键。退格键的功能，随着时间变化，意义也变得不同了。</p><p>退格键起初的意思是，在打印机和电传打字机上，往回移动一格光标，以起到强调该字符的作用。比如你想要打印一个 a，然后加上退格键后，就成了 aBS^。在机械类打字机上，此方法能够起到实际的强调字符的作用，但是对于后来的 CTR 下时期来说，就无法起到对应效果了。</p><p>而现代所用的退格键，不仅仅表示光标往回移动了一格，同时也删除了移动后该位置的字符。<br>HT (9)<br>Horizontal Tab，水平制表符，相当于 Table/Tab 键。</p><p>水平制表符的作用是用于布局，它控制输出设备前进到下一个表格去处理。而制表符 Table/Tab 的宽度也是灵活不固定的，只不过在多数设备上制表符 Tab 都预定义为 4 个空格的宽度。</p><p>水平制表符 HT 不仅能减少数据输入者的工作量，对于格式化好的文字来说，还能够减少存储空间，因为一个Tab键，就代替了 4 个空格。<br>LF (10)<br>Line Feed，直译为“给打印机等喂一行”，也就是“换行”的意思。LF 是 ASCII 编码中常被误用的字符之一。</p><p>LF 的最原始的含义是，移动打印机的头到下一行。而另外一个 ASCII 字符，CR（Carriage Return）才是将打印机的头移到最左边，即一行的开始（行首）。很多串口协议和 MS-DOS 及 Windows 操作系统，也都是这么实现的。</p><p>而C语言和 Unix 操作系统将 LF 的含义重新定义为“新行”，即 LF 和 CR 的组合效果，也就是回车且换行的意思。</p><p>从程序的角度出发，C语言和 Unix 对 LF 的定义显得更加自然，而 MS-DOS 的实现更接近于 LF 的本意。</p><p>现在人们常将 LF 用做“新行（newline）”的功能，大多数文本编辑软件也都可以处理单个 LF 或者 CR/LF 的组合了。<br>VT (11)<br>Vertical Tab，垂直制表符。它类似于水平制表符 Tab，目的是为了减少布局中的工作，同时也减少了格式化字符时所需要存储字符的空间。VT 控制符用于跳到下一个标记行。</p><p>说实话，还真没看到有些地方需要用 VT，因为一般在换行的时候都是用 LF 代替 VT 了。<br>FF (12)<br>Form Feed，换页。设计换页键，是用来控制打印机行为的。当打印机收到此键码的时候，打印机移动到下一页。</p><p>不同的设备的终端对此控制符所表现的行为各不同，有些会清除屏幕，有些只是显示^L字符，有些只是新换一行而已。例如，Unix/Linux 下的 Bash Shell 和 Tcsh 就把 FF 看做是一个清空屏幕的命令。<br>CR (13)<br>Carriage return，回车，表示机器的滑动部分（或者底座）返回。</p><p>CR 回车的原意是让打印头回到左边界，并没有移动到下一行的意思。随着时间的流逝，后来人们把 CR 的意思弄成了 Enter 键，用于示意输入完毕。</p><p>在数据以屏幕显示的情况下，人们按下 Enter 的同时，也希望把光标移动到下一行，因此C语言和 Unix 重新定义了 CR 的含义，将其表示为移动到下一行。当输入 CR 时，系统也常常隐式地将其转换为LF。<br>SO (14) 和 SI (15)<br>SO，Shift Out，不用切换；SI，Shift In，启用切换。</p><p>早在 1960s 年代，设计 ASCII 编码的美国人就已经想到了，ASCII 编码不仅仅能用于英文，也要能用于外文字符集，这很重要，定义 Shift In 和 Shift Out 正是考虑到了这点。</p><p>最开始，其意为在西里尔语和拉丁语之间切换。西里尔语 ASCII（也即 KOI-7 编码）将 Shift 作为一个普通字符，而拉丁语 ASCII（也就是我们通常所说的 ASCII）用 Shift 去改变打印机的字体，它们完全是两种含义。</p><p>在拉丁语 ASCII 中，SO 用于产生双倍宽度的字符（类似于全角），而用 SI 打印压缩的字体（类似于半角）。<br>DLE (16)<br>Data Link Escape，数据链路转义。</p><p>有时候我们需要在通信过程中发送一些控制字符，但是总有一些情况下，这些控制字符被看成了普通的数据流，而没有起到对应的控制效果，ASCII 编码引入 DLE 来解决这类问题。</p><p>如果数据流中检测到了 DLE，数据接收端会对数据流中接下来的字符另作处理。但是具体如何处理，ASCII 规范中并没有定义，只是弄了个 DLE 去打断正常的数据流，告诉接下来的数据要特殊对待。<br>DC1 (17)<br>Device Control 1，或者 XON – Transmission on。</p><p>这个 ASCII 控制符尽管原先定义为 DC1， 但是现在常表示为 XON，用于串行通信中的软件流控制。其主要作用为，在通信被控制符 XOFF 中断之后，重新开始信息传输。</p><p>用过串行终端的人应该还记得，当有时候数据出错了，按 Ctrl+Q（等价于XON）有时候可以起到重新传输的效果。这是因为，此 Ctrl+Q 键盘序列实际上就是产生 XON 控制符，它可以将那些由于终端或者主机方面，由于偶尔出现的错误的 XOFF 控制符而中断的通信解锁，使其正常通信。<br>DC3 (19)<br>Device Control 3，或者 XOFF（Transmission off，传输中断）。<br>EM (25)<br>End of Medium，已到介质末端，介质存储已满。</p><p>EM 用于，当数据存储到达串行存储介质末尾的时候，就像磁带或磁头滚动到介质末尾一样。其用于表述数据的逻辑终点，即不必非要是物理上的达到数据载体的末尾。<br>FS(28)<br>File Separator，文件分隔符。FS 是个很有意思的控制字符，它可以让我们看到 1960s 年代的计算机是如何组织的。</p><p>我们现在习惯于随机访问一些存储介质，比如 RAM、磁盘等，但是在设计 ASCII 编码的那个年代，大部分数据还是顺序的、串行的，而不是随机访问的。此处所说的串行，不仅仅指的是串行通信，还指的是顺序存储介质，比如穿孔卡片、纸带、磁带等。</p><p>在串行通信的时代，设计这么一个用于表示文件分隔的控制字符，用于分割两个单独的文件，是一件很明智的事情。<br>GS(29)<br>Group Separator，分组符。</p><p>ASCII 定义控制字符的原因之一就是考虑到了数据存储。</p><p>大部分情况下，数据库的建立都和表有关，表包含了多条记录。同一个表中的所有记录属于同一类型，不同的表中的记录属于不同的类型。</p><p>而分组符 GS 就是用来分隔串行数据存储系统中的不同的组。值得注意的是，当时还没有使用 Excel 表格，ASCII 时代的人把它叫做组。<br>RS(30)<br>Record Separator，记录分隔符，用于分隔一个组或表中的多条记录。<br>US(31)<br>Unit Separator，单元分隔符。</p><p>在 ASCII 定义中，数据库中所存储的最小的数据项叫做单元（Unit）。而现在我们称其字段（Field）。单元分隔符 US 用于分割串行数据存储环境下的不同单元。</p><p>现在的数据库实现都要求大部分类型都拥有固定的长度，尽管有时候可能用不到，但是对于每一个字段，却都要分配足够大的空间，用于存放最大可能的数据。</p><p>这种做法的弊端就是占用了大量的存储空间，而 US 控制符允许字段具有可变的长度。在 1960s 年代，数据存储空间很有限，用 US 将不同单元分隔开，能节省很多空间。<br>DEL (127)<br>Delete，删除。</p><p>有人也许会问，为何 ASCII 编码中其它控制字符的值都很小（即 0~31），而 DEL 的值却很大呢（为 127）？</p><p>这是由于这个特殊的字符是为纸带而定义的。在那个年代，绝大多数的纸带都是用7个孔洞去编码数据的。而 127 这个值所对应的二进制值为111 1111（所有 7 个比特位都是1），将 DEL 用在现存的纸带上时，所有的洞就都被穿孔了，就把已经存在的数据都擦除掉了，就起到了删除的作用</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> ASCII </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> nul </tag>
+            
+            <tag> soh </tag>
+            
+            <tag> stx </tag>
+            
+            <tag> tex </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>hiberntae Cache</title>
       <link href="/2020/03/04/hiberntaeCache/"/>
       <url>/2020/03/04/hiberntaeCache/</url>
@@ -35,7 +122,7 @@
     
     
     <entry>
-      <title>hinernateTuto</title>
+      <title>hibernate tutorial</title>
       <link href="/2020/03/04/hinernateTuto/"/>
       <url>/2020/03/04/hinernateTuto/</url>
       
@@ -43,17 +130,33 @@
       
       
       
+        <tags>
+            
+            <tag> hbm.cfg.xml </tag>
+            
+            <tag> ddl2auto </tag>
+            
+            <tag> fetch </tag>
+            
+        </tags>
+      
     </entry>
     
     
     
     <entry>
-      <title>java_generic</title>
+      <title>范型</title>
       <link href="/2020/03/03/java-generic/"/>
       <url>/2020/03/03/java-generic/</url>
       
         <content type="html"><![CDATA[<p>java geneircs</p><p>1Java中的泛型是什么 ? 使用泛型的好处是什么?</p><p>集合中存储对象并在使用前进行类型转换是多么的不方便</p><p>它提供了编译期的类型安全，确保你只能把正确类型的对象放入集合中，避免了在运行时出现ClassCastException。</p><ol start="2"><li>Java的泛型是如何工作的 ? 什么是类型擦除 ?</li></ol><p>这是一道更好的泛型面试题。泛型是通过类型擦除来实现的，编译器在编译时擦除了所有类型相关的信息，所以在运行时不存在任何类型相关的信息。例如List<String>在运行时仅用一个List来表示。这样做的目的，是确保能和Java 5之前的版本开发二进制类库进行兼容。你无法在运行时访问到类型参数，因为编译器已经把泛型类型转换成了原始类型</String></p><ol start="3"><li>什么是泛型中的限定通配符和非限定通配符 ?</li></ol><p>这是另一个非常流行的Java泛型面试题。限定通配符对类型进行了限制。有两种限定通配符，一种是<? extends T>它通过确保类型必须是T的子类来设定类型的上界，另一种是<? super T>它通过确保类型必须是T的父类来设定类型的下界。泛型类型必须用限定内的类型来进行初始化，否则会导致编译错误。另一方面<?>表示了非限定通配符，因为&lt;?&gt;可以用任意类型来替代</p><ol start="4"><li>List&lt;? extends T&gt;和List &lt;? super T&gt;之间有什么区别 ?</li></ol><p>这和上一个面试题有联系，有时面试官会用这个问题来评估你对泛型的理解，而不是直接问你什么是限定通配符和非限定通配符。这两个List的声明都是限定通配符的例子，List&lt;? extends T&gt;可以接受任何继承自T的类型的List，而List&lt;? super T&gt;可以接受任何T的父类构成的List。例如List&lt;? extends Number&gt;可以接受List<Integer>或List<Float></Float></Integer></p><ol start="5"><li>你可以把List<String>传递给一个接受List<Object>参数的方法吗？</Object></String></li></ol><p>对任何一个不太熟悉泛型的人来说，这个Java泛型题目看起来令人疑惑，因为乍看起来String是一种Object，所以List<String>应当可以用在需要List<Object>的地方，但是事实并非如此。真这样做的话会导致编译错误。如果你再深一步考虑，你会发现Java这样做是有意义的，因为List<Object>可以存储任何类型的对象包括String, Integer等等，而List<String>却只能用来存储Strings。</String></Object></Object></String></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Object&gt; objectList;</span><br><span class="line">List&lt;String&gt; stringList;</span><br><span class="line">objectList &#x3D; stringList; &#x2F;&#x2F;compilation error incompatible types</span><br></pre></td></tr></table></figure><ol start="7"><li>Array中可以用泛型吗?</li></ol><p>这可能是Java泛型面试题中最简单的一个了，当然前提是你要知道Array事实上并不支持泛型，这也是为什么Joshua Bloch在Effective Java一书中建议使用List来代替Array，因为List可以提供编译期的类型安全保证，而Array却不能。</p><ol start="8"><li>如何阻止Java中的类型未检查的警告?</li></ol><p>如果你把泛型和原始类型混合起来使用，例如下列代码，Java 5的javac编译器会产生类型未检查的警告，例如</p><p>List<String> rawList = new ArrayList()</String></p>]]></content>
       
+      
+      <categories>
+          
+          <category> Generic </category>
+          
+      </categories>
       
       
     </entry>
@@ -451,9 +554,9 @@
       
         <tags>
             
-            <tag> decoupling </tag>
-            
             <tag> asynchronous </tag>
+            
+            <tag> decoupling </tag>
             
             <tag> Peak cliping </tag>
             

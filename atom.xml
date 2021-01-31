@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wuhewuhe.github.io/"/>
-  <updated>2020-03-10T22:05:46.087Z</updated>
+  <updated>2021-01-31T12:02:52.757Z</updated>
   <id>https://wuhewuhe.github.io/</id>
   
   <author>
@@ -15,6 +15,74 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>blazor</title>
+    <link href="https://wuhewuhe.github.io/2021/01/31/blazor/"/>
+    <id>https://wuhewuhe.github.io/2021/01/31/blazor/</id>
+    <published>2021-01-31T12:01:45.000Z</published>
+    <updated>2021-01-31T12:02:52.757Z</updated>
+    
+    <content type="html"><![CDATA[<p>my first time to try blazor webassemlble</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;my first time to try blazor webassemlble&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>graph</title>
+    <link href="https://wuhewuhe.github.io/2020/03/18/graph/"/>
+    <id>https://wuhewuhe.github.io/2020/03/18/graph/</id>
+    <published>2020-03-18T15:02:24.000Z</published>
+    <updated>2020-03-19T17:54:15.246Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>microservices</title>
+    <link href="https://wuhewuhe.github.io/2020/03/18/microservices/"/>
+    <id>https://wuhewuhe.github.io/2020/03/18/microservices/</id>
+    <published>2020-03-18T14:44:34.000Z</published>
+    <updated>2020-03-18T14:44:34.648Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>jackon</title>
+    <link href="https://wuhewuhe.github.io/2020/03/18/jackon/"/>
+    <id>https://wuhewuhe.github.io/2020/03/18/jackon/</id>
+    <published>2020-03-18T14:44:16.000Z</published>
+    <updated>2020-03-18T14:44:16.698Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>ASCII, UNICODE, UTF-8来龙去脉</title>
@@ -548,140 +616,6 @@ RDB 持久化是指在指定的时间间隔内将内存中的数据集快照写�
       <category term="RDB" scheme="https://wuhewuhe.github.io/tags/RDB/"/>
     
       <category term="AOF" scheme="https://wuhewuhe.github.io/tags/AOF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>active mq tutorial</title>
-    <link href="https://wuhewuhe.github.io/2020/03/01/active-mq-tutorial/"/>
-    <id>https://wuhewuhe.github.io/2020/03/01/active-mq-tutorial/</id>
-    <published>2020-03-01T09:19:34.000Z</published>
-    <updated>2020-03-01T17:00:43.415Z</updated>
-    
-    <content type="html"><![CDATA[<p>Activemq</p><p>connectionFactory -&gt; cinnection -&gt; session</p><p>message producer.msg. Message consumer</p><p>​         Destination : queue / topic</p><p>​msg : byte, stream, text, map, object</p><h3 id="消费message的方法">消费message的方法</h3><h4 id="receive">receive</h4><p>block and synchronous</p><h4 id="message-listener">message listener</h4><p>Asynchronous no block</p><h4 id="consumer-situation">consumer situation</h4><p>一共6条消息，先启动两个consumer， 再启动producer，两个人平均分配，like load balance</p><p>Topic</p><p>生产者消费者有时间上的关系，先订阅后发布，topic是无状态，不存储消息</p><p>一共6条消息，先启动两个consumer， 再启动producer，两个人分别收到6条</p><p>port 6116 queue   topic 8161</p><p>1 one to one , one to N</p><p>2 save in mq server, no stateless</p><p>3 not throw wait the consumer the message, throw to trash</p><h4 id="jms-structure">jms structure</h4><p>jms producer provider message consumer</p><h3 id="jms-message">jms message</h3><p>message header, body, attribute</p><p>message header : destination, delvierymode, expiration, <strong>messagID</strong> and priority.messageId is most important to ensure it not duplicate</p><p>Message body : text message, mapmessage</p><p>Property : setproperty  识别去重 重点标注</p><h4 id="jms三大特性：持久性，事物，签收">jms三大特性：持久性，事物，签收</h4><h5 id="persistance">persistance</h5><ul><li>Queue</li></ul><p>jms如何保证消息的可靠性</p><p>queue : jms setDeliveryMode (PERSISTENT) / NO-PERSISTENT</p><p>Par default : persistent</p><ul><li>topic</li></ul><p>Topic consumer setclientid,</p><p>session.createTopic,</p><p>top subscriber = session.createdurablesubscriber</p><p>connection.start</p><p>Message.receive</p><p>Topic 看在线和离线，关注多久 好比微信公众号</p><h5 id="transaction">transaction</h5><p>Acid, 隔离级别 事物偏向于生产者</p><ul><li>producer</li></ul><p>设置事物为true，session.commit提交</p><p>正常情况手动提交异常情况rollback， tolerance</p><ul><li>consumer</li></ul><p>transaction = false 直接收一次</p><p>transaction = true，没有commit，重复消费</p><h5 id="ack-签收">ack 签收</h5><p>ack偏向于consumer</p><p>非事物签收</p><p>1 Auto-acknowledge</p><p>2 client-acknowledge</p><p>如果用client调用ack签收</p><p>3 dups-ok</p><p>带副本，重复签收</p><p>sessiontransaction 事物签收</p><p>如果选择sessionmode，默认自动签收，第二个参数作用不大</p><p>切记用了事物 一定要用session.commit();</p><h3 id="queue-vs-topic">queue vs topic</h3><p>Queue asycho, send one time, persistance par deafult</p><p>Topic, first start consumer, active/offline subscribe, recover, 高可用</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;Activemq&lt;/p&gt;
-&lt;p&gt;connectionFactory -&amp;gt; cinnection -&amp;gt; session&lt;/p&gt;
-&lt;p&gt;message producer.msg. Message consumer&lt;/p&gt;
-&lt;p&gt;​         Destinati
-      
-    
-    </summary>
-    
-    
-      <category term="Activemq" scheme="https://wuhewuhe.github.io/categories/Activemq/"/>
-    
-    
-      <category term="message" scheme="https://wuhewuhe.github.io/tags/message/"/>
-    
-      <category term="persistance" scheme="https://wuhewuhe.github.io/tags/persistance/"/>
-    
-      <category term="transaction" scheme="https://wuhewuhe.github.io/tags/transaction/"/>
-    
-      <category term="acknowledge" scheme="https://wuhewuhe.github.io/tags/acknowledge/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>activemq 高级特性</title>
-    <link href="https://wuhewuhe.github.io/2020/03/01/activemq/"/>
-    <id>https://wuhewuhe.github.io/2020/03/01/activemq/</id>
-    <published>2020-03-01T08:33:40.000Z</published>
-    <updated>2020-03-01T09:19:21.010Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="Advanced-character">Advanced character</h2><h3 id="1-Deadetter">1 Deadetter</h3><p>1 Dead letter queue  catch</p><p>2 core queue.try</p><p>share deadletterqueue, individual dead queue 专门为重要的模块设置一个</p><p>配置：</p><ul><li>processExpired = false, delete dead letter</li><li>processNonPersisent = true, 不会把非持久的消息放进来</li></ul><h3 id="2-async-send">2 async send</h3><p>in most of case, active mq use async send the message</p><p>slow consumer : pool</p><p>no transaction but need persistant message, mq will use synchro send</p><p>提升性能，挤压broker，慢消费，不能有效的设置消息发送成功</p><p>connectionfactory设置异步send, activemqproducer : message.setJMSmessageid, and get messageID</p><p>Activemq.send() : onSuccess, onException</p><p><strong>如何确保发送成功</strong></p><p>消息丢失，挤压消息在broker</p><p>同步的话： send不阻塞，表示发送成功</p><p>异步的话：回执确保消息是否发送成功</p><h3 id="3repeat-message">3repeat message</h3><p>查看message ID， idematory</p><p>Create a map, save key and value.or we can use a tier app, like redis, who can help us to manage the message</p><h3 id="4-delivery-mode-：set-and-delay">4 delivery mode ：set and delay</h3><p>delay and schedule message delivery</p><p>Activemq : delay - long , period - int , repeat - int</p><p>XML properties : schduler support</p><p>create two new class : delayAndSchduleProducer and delayAndSchdulerConsumer</p><h3 id="5-retry-message-resend">5 retry  message resend</h3><p>1 client 用transaction 且在session中调用rollback</p><p>2 client用transaction, but not commit or close before commit</p><p>3 clien use client_ackonwledge delivery mode and call recover in session</p><p>Activemq : interval 1 s and resend 6 times</p><p>poison ack : redelivered pass 6 times, consumer will send poison ack to MQ, tell broker not resend, and send them to dead letter queue</p><p>two propertites: maximumdelivery and maimumintervaltime</p><p>Spring activemqRedeliveryPolicy</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;Advanced-character&quot;&gt;Advanced character&lt;/h2&gt;
-&lt;h3 id=&quot;1-Deadetter&quot;&gt;1 Deadetter&lt;/h3&gt;
-&lt;p&gt;1 Dead letter queue  catch&lt;/p&gt;
-&lt;p&gt;2 core queue.
-      
-    
-    </summary>
-    
-    
-    
-      <category term="dead letter queue" scheme="https://wuhewuhe.github.io/tags/dead-letter-queue/"/>
-    
-      <category term="asyc send" scheme="https://wuhewuhe.github.io/tags/asyc-send/"/>
-    
-      <category term="delivery mode" scheme="https://wuhewuhe.github.io/tags/delivery-mode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>commonMessageProbleme</title>
-    <link href="https://wuhewuhe.github.io/2020/02/29/commonMessageProbleme/"/>
-    <id>https://wuhewuhe.github.io/2020/02/29/commonMessageProbleme/</id>
-    <published>2020-02-29T17:50:36.000Z</published>
-    <updated>2020-02-29T17:51:43.584Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="保证-MQ-消息不丢">保证 MQ 消息不丢</h2><p>MQ 传递非常核心的消息，比如：广告计费系统，用户点击一次广告，扣费一块钱，如果扣费的时候消息丢了，则会不断少钱，积少成多，对公司是一个很大的损失。</p><h3 id="RabbitMQ可能存在的数据丢失问题">RabbitMQ可能存在的数据丢失问题</h3><p>Ack nack autoack</p><ol><li>生产者写消息的过程中，消息都没有到 rabbitmq，在网络传输过程中就丢了。或者消息到了 rabbitmq，但是人家内部出错了没保存下来。</li><li>RabbitMQ 接收到消息之后先暂存在主机的内存里，结果消费者还没来得及消费，RabbitMQ自己挂掉了，就导致暂存在内存里的数据给搞丢了。</li><li>消费者消费到了这个消费，但是还没来得及处理，自己就挂掉了，RabbitMQ 以为这个消费者已经处理完了。</li></ol><p>问题 1解决方案：事务机制：（一般不采用，同步的，生产者发送消息会同步阻塞卡住等待你是成功还是失败。会导致生产者发送消息的吞吐量降下来）</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">channel.txSelect</span><br><span class="line">try &#123;</span><br><span class="line">    &#x2F;&#x2F;发送消息</span><br><span class="line">&#125; catch(Exception e)&#123;</span><br><span class="line">    channel.txRollback;</span><br><span class="line">    &#x2F;&#x2F;再次重试发送这条消息</span><br><span class="line">&#125; </span><br><span class="line">    channel.txCommit;</span><br></pre></td></tr></table></figure><p>confirm机制：（一般采用这种机制，异步的模式，不会阻塞，吞吐量会比较高）</p><ol><li>先把 channel 设置成 confirm 模式</li><li>发送一个消息到 rabbitmq</li><li>发送完消息后就不用管了</li><li>rabbitmq 如果接收到了这条消息，就会回调你生产者本地的一个接口，通知你说这条消息我已经收到了</li><li>rabbitmq 如果在接收消息的时候报错了，就会回调你的接口，告诉你这个消息接收失败了，你可以再次重发。</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public void ack(String messageId)&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public void nack(String messageId)&#123;</span><br><span class="line">    &#x2F;&#x2F;再次重发一次这个消息</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>问题 2 解决方案：持久化到磁盘</p><ol><li><p>创建queue的时候将其设置为持久化的，这样就可以保证 rabbitmq持久化queue的元数据，但是不会持久化queue里的数据</p></li><li><p>发送消息的时候将 deliveryMode 设置为 2，将消息设置为持久化的，此时 rabbitmq就会将消息持久化到磁盘上去。必须同时设置 2 个持久化才行。</p></li><li><p>持久化可以跟生产者那边的 confirm机制配合起来，只有消息被持久化到磁盘之后，才会通知生产者 ack了 ，所以哪怕是在持久化到磁盘之前 ，rabbitmq挂了，数据丢了，生产者收不到 ack，你也可以自己重发。</p><p>缺点：可能会有一点点丢失数据的可能，消息刚好写到了 rabbitmq中，但是还没来得及持久化到磁盘上，结果不巧， rabbitmq挂了，会导致内存里的一点点数据会丢失。</p></li></ol><p>问题 3 解决方案：原因：消费者打开了 autoAck机制（消费到一条消息，还在处理中，还没处理完，此时消费者自动 autoAck了，通知 rabbitmq说这条消息已经消费了，此时不巧，消费者系统宕机了，那条消息丢失了，还没处理完，而且 rabbitmq还以为这个消息已经处理掉了）解决方案：关闭 autoAck, 自己处理完了一条消息后，再发送 ack给 rabbitmq, 如果此时还没处理完就宕机了，此时rabbitmq没收到你发的ack消息，然后 rabbitmq 就会将这条消息重新分配给其他的消费者去处理。</p><h2 id="消息队列重复数据">消息队列重复数据</h2><p>Idempotent</p><p>默认情况下就不会被重复消费，ack消息确认机制</p><pre><code>activemq会重试，重试6次1.你要保证调用方是幂等的。幂等：多次调用和一次调用结果一致（查询，更新2.程序不是幂等的，需要手动做一些操作：    1）维护一个map，在map中对消息进行记录，有内存泄露的风险    2）维护一张表（mysql,redis)：消息消费表        好处：即使你的 mq不可用，我也可以把源源不断发送过来的消息记录下来，等你的mq上线了，持续消费        来自于硬件的信息，接口文档中明确说明，接收信息后不能有太长的处理时间（解析，分类，存入数据库）        接收一条消息，立马发送到activemq进行后续处理        消息表记录每条消息的内容，消费状态    3）消息重试6次依然失败，会进入死信队列，等服务正常之后消费死信队列中的消息</code></pre><p>举例：例子哪里来呢？</p><pre><code>生产环境中会遇到的bug，异常情况</code></pre><h2 id="消息队列顺序性">消息队列顺序性</h2><p>背景：mysql binlog 同步的系统，在mysql里增删改一条数据，对应出来了增删改 3 条binlog，接着这 3 条binlog发送到 MQ 里面，到消费出来依次执行，起码是要保证顺序的吧，不然顺序变成了 删除、修改、增加。日同步数据达到上亿，mysql-&gt;mysql, 比如大数据 team，需要同步一个mysql库，来对公司的业务系统的数据做各种复杂的操作。场景：</p><ol><li>rabbitmq,一个queue,多个consumer，这不明显乱了</li></ol><h3 id="RabbitMQ-消息顺序错乱">RabbitMQ 消息顺序错乱</h3><p><img src="https://imgedu.lagou.com/dd26987914c5453eb08d6fa2bcb256bd.jpg" alt="img"></p><h3 id="如何保证消息顺序性">如何保证消息顺序性</h3><h4 id="activemq">activemq</h4><p>需要保证顺序的数据放到同一个queue里</p><p><img src="https://imgedu.lagou.com/e26e247047ab472597f70bd618de6b0f.jpg" alt="img"></p><p>1）通过高级特性consumer独有消费者（exclusive consumer）<br>queue = new ActiveMQQueue(“TEST. QUEUE?consumer.exclusive=true”);<br>consumer = session.createConsumer(queue);<br>上面的代码很明显是说如果是独占消费者，并且是循环里面的当前消费者，或者没有独占消费者。则循环里面的当前消费者即被选中能够消费该条消息。</p><p>2）利用Activemq的高级特性：messageGroups</p><p>Message Groups特性是一种负载均衡的机制。在一个消息被分发到consumer之前，broker首先检查消息JMSXGroupID属性。如果存在，那么broker会检查是否有某个consumer拥有这个message group。如果没有，那么broker会选择一个consumer，并将它关联到这个message group。此后，这个consumer会接收这个message group的所有消息，直到：</p><p>Consumer被关闭</p><p>Message group被关闭，通过发送一个消息，并设置这个消息的JMSXGroupSeq为-1</p><p>可以看到消费者实际上根据两个维度排序了，一个是消费者的Priority，即消费者的优先级。还有一个是消费者的指定的消息组的个数AssignedGroupCount。这个顺序直接影响到下一条小时是谁来接收。</p><h4 id="rabbitmq">rabbitmq</h4><p>首先我们可以确认的是，触发消息重复执行的条件会是很苛刻的！ 也就说 在大多数场景下不会触发该条件！！！ 一般出在任务超时，或者没有及时返回状态，引起任务重新入队列，重新消费！  在rabbtimq里连接的断开也会触发消息重新入队列。</p><p>消费任务类型最好要支持幂等性，这样的好处是 任务执行多少次都没关系，顶多消耗一些性能！ 如果不支持幂等，比如发送信息？ 那么需要构建一个map来记录任务的执行情况！ 不仅仅是成功和失败，还要有心跳！！！  这个map在消费端实现就可以了！！！   这里会出现一个问题，有两个消费者 c1, c2 ，一个任务有可能被c1消费，如果再来一次，被c2执行？ 那么如何得知任务的情况？ 任务派发！  任务做成hash，固定消费者！</p><p>坚决不要想方设法在mq扩展这个future。</p><p>一句话，要不保证消息幂等性，要不就用map记录任务状态.</p><blockquote><p>Section 4.7 of the AMQP 0-9-1 core specification explains the conditions under which ordering is guaranteed: messages published in one channel, passing through one exchange and one queue and one outgoing channel will be received in the same order that they were sent. RabbitMQ offers stronger guarantees since release 2.7.0.</p><p>Messages can be returned to the queue using AMQP methods that feature a requeue parameter (basic.recover, basic.reject and basic.nack), or due to a channel closing while holding unacknowledged messages. Any of these scenarios caused messages to be requeued at the back of the queue for RabbitMQ releases earlier than 2.7.0. From RabbitMQ release 2.7.0, messages are always held in the queue in publication order, <em>even in the presence of requeueing or channel closure.</em> (emphasis added)</p></blockquote><p>So, it is clear that RabbitMQ, from 2.7.0 onward, is making a rather drastic improvement over the original AMQP specification with regard to message ordering.</p><h1>MQ积压几百万条数据怎么办？</h1><p><img src="https://user-gold-cdn.xitu.io/2019/3/27/169bde8fd9da7f56?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="img"></p><p>这个是我们真实遇到过的一个场景，确实是线上故障了，这个时候要不然就是修复consumer的问题，让他恢复消费速度，然后傻傻的等待几个小时消费完毕。这个肯定不能在面试的时候说吧。</p><p>一个消费者一秒是1000条，一秒3个消费者是3000条，一分钟是18万条，1000多万条</p><p>所以如果你积压了几百万到上千万的数据，即使消费者恢复了，也需要大概1小时的时间才能恢复过来</p><p>一般这个时候，只能操作临时紧急扩容了，具体操作步骤和思路如下：</p><ol><li>先修复consumer的问题，确保其恢复消费速度，然后将现有cnosumer都停掉</li><li>新建一个topic，partition是原来的10倍，临时建立好原先10倍或者20倍的queue数量</li><li>然后写一个临时的分发数据的consumer程序，这个程序部署上去消费积压的数据，消费之后不做耗时的处理，直接均匀轮询写入临时建立好的10倍数量的queue</li><li>接着临时征用10倍的机器来部署consumer，每一批consumer消费一个临时queue的数据</li><li>这种做法相当于是临时将queue资源和consumer资源扩大10倍，以正常的10倍速度来消费数据</li><li>等快速消费完积压数据之后，得恢复原先部署架构，重新用原先的consumer机器来消费消息</li></ol><p><strong>这里我们假设再来第二个坑</strong></p><p>假设你用的是rabbitmq，rabbitmq是可以设置过期时间的，就是TTL，如果消息在queue中积压超过一定的时间就会被rabbitmq给清理掉，这个数据就没了。那这就是第二个坑了。这就不是说数据会大量积压在mq里，而是大量的数据会直接搞丢。</p><p>这个情况下，就不是说要增加consumer消费积压的消息，因为实际上没啥积压，而是丢了大量的消息。我们可以采取一个方案，就是批量重导，这个我们之前线上也有类似的场景干过。就是大量积压的时候，我们当时就直接丢弃数据了，然后等过了高峰期以后，比如大家一起喝咖啡熬夜到晚上12点以后，用户都睡觉了。</p><p>这个时候我们就开始写程序，将丢失的那批数据，写个临时程序，一点一点的查出来，然后重新灌入mq里面去，把白天丢的数据给他补回来。也只能是这样了。</p><p>假设1万个订单积压在mq里面，没有处理，其中1000个订单都丢了，你只能手动写程序把那1000个订单给查出来，手动发到mq里去再补一次</p><p><strong>然后我们再来假设第三个坑</strong></p><p>如果走的方式是消息积压在mq里，那么如果你很长时间都没处理掉，此时导致mq都快写满了，咋办？这个还有别的办法吗？没有，谁让你第一个方案执行的太慢了，你临时写程序，接入数据来消费，消费一个丢弃一个，都不要了，快速消费掉所有的消息。然后走第二个方案，到了晚上再补数据！</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;保证-MQ-消息不丢&quot;&gt;保证 MQ 消息不丢&lt;/h2&gt;
-&lt;p&gt;MQ 传递非常核心的消息，比如：广告计费系统，用户点击一次广告，扣费一块钱，如果扣费的时候消息丢了，则会不断少钱，积少成多，对公司是一个很大的损失。&lt;/p&gt;
-&lt;h3 id=&quot;RabbitMQ可能存在的数
-      
-    
-    </summary>
-    
-    
-      <category term="ActiveMq" scheme="https://wuhewuhe.github.io/categories/ActiveMq/"/>
-    
-      <category term="RabbitMq" scheme="https://wuhewuhe.github.io/categories/ActiveMq/RabbitMq/"/>
-    
-    
-      <category term="repeat message" scheme="https://wuhewuhe.github.io/tags/repeat-message/"/>
-    
-      <category term="lost messgae" scheme="https://wuhewuhe.github.io/tags/lost-messgae/"/>
-    
-      <category term="message order" scheme="https://wuhewuhe.github.io/tags/message-order/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Advanced Message Queue Protocol</title>
-    <link href="https://wuhewuhe.github.io/2020/02/29/ampq/"/>
-    <id>https://wuhewuhe.github.io/2020/02/29/ampq/</id>
-    <published>2020-02-29T15:39:10.000Z</published>
-    <updated>2020-02-29T16:33:27.637Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>JMS：</strong></p><p>Java Message Service，Java消息服务应用程序接口，Java中定义的消息中间件服务的一个标准和API定义</p><p>JMS是Java平台上有关面向消息中间件（MOM）的技术规范，它便于消息系统中的Java应用程序进行消息交换，并且通过提供标准的产生、发送、接收消息的接口简化企业应用的开发。</p><p><strong>MQ：</strong></p><p>Message Queue，消息队列，是一种应用程序对应用程序的通信方法。</p><p>MQ是遵循AMQP协议的具体实现和产品。</p><p>生产者模型则是MQ的一个典型的代表，一端往消息队列中不断的写入消息，而另一端则可以读取或者订阅队列中的消息。</p><p><strong>JMS和MQ的关系：</strong></p><p>JMS是一个用于提供消息服务的技术规范，它制定了在整个消息服务提供过程中的所有数据结构和交互流程。而MQ则是消息队列服务，是面向消息中间件（MOM）的最终实现，是真正的服务提供者，MQ的实现可以基于JMS，也可以基于其他规范或标准。</p><p><strong>What is ActiveMQ?</strong></p><p>Apache ActiveMQ is the most popular and powerful open source messaging and Integration Patterns server.</p><p>Apache ActiveMQ is fast, supports many Cross Language Clients and Protocols, comes with easy to use Enterprise Integration Patterns and many advanced features while fully supporting JMS 1.1 and J2EE 1.4. Apache ActiveMQ is released under the Apache 2.0 License</p><p><strong>What is RabbitMQ?</strong></p><p>·Robust messaging for applications</p><p>·Easy to use</p><p>·Runs on all major operating systems</p><p>·Supports a huge number of developer platforms</p><p>·Open source and commercially supported</p><h4 id="解耦">解耦</h4><p>看这么个场景。A 系统发送数据到 BCD 三个系统，通过接口调用发送。如果 E 系统也要这个数据呢？那如果 C 系统现在不需要了呢？A 系统负责人几乎崩溃…</p><p><img src="https://www.javazhiyin.com/wp-content/uploads/2019/01/java0-1547173402.png" alt="面试题：Kafka、ActiveMQ、RabbitMQ、RocketMQ 有什么优缺点"></p><p>在这个场景中，A 系统跟其它各种乱七八糟的系统严重耦合，A 系统产生一条比较关键的数据，很多系统都需要 A 系统将这个数据发送过来。A 系统要时时刻刻考虑 BCDE 四个系统如果挂了该咋办？要不要重发，要不要把消息存起来？头发都白了啊！</p><p>如果使用 MQ，A 系统产生一条数据，发送到 MQ 里面去，哪个系统需要数据自己去 MQ 里面消费。如果新系统需要数据，直接从 MQ 里消费即可；如果某个系统不需要这条数据了，就取消对 MQ 消息的消费即可。这样下来，A 系统压根儿不需要去考虑要给谁发送数据，不需要维护这个代码，也不需要考虑人家是否调用成功、失败超时等情况。</p><p><img src="https://www.javazhiyin.com/wp-content/uploads/2019/01/java3-1547173402.png" alt="面试题：Kafka、ActiveMQ、RabbitMQ、RocketMQ 有什么优缺点"></p><p>总结：通过一个 MQ，Pub/Sub 发布订阅消息这么一个模型，A 系统就跟其它系统彻底解耦了。</p><p>面试技巧：你需要去考虑一下你负责的系统中是否有类似的场景，就是一个系统或者一个模块，调用了多个系统或者模块，互相之间的调用很复杂，维护起来很麻烦。但是其实这个调用是不需要直接同步调用接口的，如果用 MQ 给它异步化解耦，也是可以的，你就需要去考虑在你的项目里，是不是可以运用这个 MQ 去进行系统的解耦。在简历中体现出来这块东西，用 MQ 作解耦。</p><h4 id="异步">异步</h4><p>再来看一个场景，A 系统接收一个请求，需要在自己本地写库，还需要在 BCD 三个系统写库，自己本地写库要 3ms，BCD 三个系统分别写库要 300ms、450ms、200ms。最终请求总延时是 3 + 300 + 450 + 200 = 953ms，接近 1s，用户感觉搞个什么东西，慢死了慢死了。用户通过浏览器发起请求，等待个 1s，这几乎是不可接受的。</p><p><img src="https://www.javazhiyin.com/wp-content/uploads/2019/01/java10-1547173402.png" alt="面试题：Kafka、ActiveMQ、RabbitMQ、RocketMQ 有什么优缺点"></p><p>一般互联网类的企业，对于用户直接的操作，一般要求是每个请求都必须在 200 ms 以内完成，对用户几乎是无感知的。</p><p>如果使用 MQ，那么 A 系统连续发送 3 条消息到 MQ 队列中，假如耗时 5ms，A 系统从接受一个请求到返回响应给用户，总时长是 3 + 5 = 8ms，对于用户而言，其实感觉上就是点个按钮，8ms 以后就直接返回了，爽！网站做得真好，真快！</p><p><img src="https://www.javazhiyin.com/wp-content/uploads/2019/01/java9-1547173402.png" alt="面试题：Kafka、ActiveMQ、RabbitMQ、RocketMQ 有什么优缺点"></p><h4 id="削峰">削峰</h4><p>每天 0:00 到 12:00，A 系统风平浪静，每秒并发请求数量就 50 个。结果每次一到 12:00 ~ 13:00 ，每秒并发请求数量突然会暴增到 5k+ 条。但是系统是直接基于 MySQL的，大量的请求涌入 MySQL，每秒钟对 MySQL 执行约 5k 条 SQL。</p><p>一般的 MySQL，扛到每秒 2k 个请求就差不多了，如果每秒请求到 5k 的话，可能就直接把 MySQL 给打死了，导致系统崩溃，用户也就没法再使用系统了。</p><p>但是高峰期一过，到了下午的时候，就成了低峰期，可能也就 1w 的用户同时在网站上操作，每秒中的请求数量可能也就 50 个请求，对整个系统几乎没有任何的压力。</p><p><img src="https://www.javazhiyin.com/wp-content/uploads/2019/01/java1-1547173402.png" alt="面试题：Kafka、ActiveMQ、RabbitMQ、RocketMQ 有什么优缺点"></p><p>如果使用 MQ，每秒 5k 个请求写入 MQ，A 系统每秒钟最多处理 2k 个请求，因为 MySQL 每秒钟最多处理 2k 个。A 系统从 MQ 中慢慢拉取请求，每秒钟就拉取 2k 个请求，不要超过自己每秒能处理的最大请求数量就 ok，这样下来，哪怕是高峰期的时候，A 系统也绝对不会挂掉。而 MQ 每秒钟 5k 个请求进来，就 2k 个请求出去，结果就导致在中午高峰期（1 个小时），可能有几十万甚至几百万的请求积压在 MQ 中。</p><p><img src="https://www.javazhiyin.com/wp-content/uploads/2019/01/java8-1547173403.png" alt="面试题：Kafka、ActiveMQ、RabbitMQ、RocketMQ 有什么优缺点"></p><p>这个短暂的高峰期积压是 ok 的，因为高峰期过了之后，每秒钟就 50 个请求进 MQ，但是 A 系统依然会按照每秒 2k 个请求的速度在处理。所以说，只要高峰期一过，A 系统就会快速将积压的消息给解决掉。</p><h3 id="消息队列有什么优缺点">消息队列有什么优缺点</h3><p>优点上面已经说了，就是在特殊场景下有其对应的好处，解耦、异步、削峰。</p><p>缺点有以下几个：</p><p>**1. 系统可用性降低<br>**系统引入的外部依赖越多，越容易挂掉。本来你就是 A 系统调用 BCD 三个系统的接口就好了，人 ABCD 四个系统好好的，没啥问题，你偏加个 MQ 进来，万一 MQ 挂了咋整，MQ 一挂，整套系统崩溃的，你不就完了？</p><p>**2. 系统复杂度提高<br>**硬生生加个 MQ 进来，你怎么保证消息没有重复消费？怎么处理消息丢失的情况？怎么保证消息传递的顺序性？头大头大，问题一大堆，痛苦不已。</p><p>**3. 一致性问题<br>**A 系统处理完了直接返回成功了，人都以为你这个请求就成功了；但是问题是，要是 BCD 三个系统那里，BD 两个系统写库成功了，结果 C 系统写库失败了，咋整？你这数据就不一致了。</p><p>所以消息队列实际是一种非常复杂的架构，你引入它有很多好处，但是也得针对它带来的坏处做各种额外的技术方案和架构来规避掉，做好之后，你会发现，妈呀，系统复杂度提升了一个数量级，也许是复杂了 10 倍。但是关键时刻，用，还是得用的。</p><h3 id="Kafka、ActiveMQ、RabbitMQ、RocketMQ-有什么优缺点？">Kafka、ActiveMQ、RabbitMQ、RocketMQ 有什么优缺点？</h3><p><img src="https://www.javazhiyin.com/wp-content/uploads/2019/01/java10-1547173403.jpg" alt="面试题：Kafka、ActiveMQ、RabbitMQ、RocketMQ 有什么优缺点"></p><p>一般的业务系统要引入 MQ，最早大家都用 ActiveMQ，但是现在确实大家用的不多了，没经过大规模吞吐量场景的验证，社区也不是很活跃，所以大家还是算了吧，我个人不推荐用这个了；综上，各种对比之后，有如下建议：</p><p>后来大家开始用 RabbitMQ，但是确实 erlang 语言阻止了大量的 Java 工程师去深入研究和掌控它，对公司而言，几乎处于不可控的状态，但是确实人家是开源的，比较稳定的支持，活跃度也高；</p><p>不过现在确实越来越多的公司，会去用 RocketMQ，确实很不错（阿里出品），但社区可能有突然黄掉的风险，对自己公司技术实力有绝对自信的，推荐用 RocketMQ，否则回去老老实实用 RabbitMQ 吧，人家有活跃的开源社区，绝对不会黄。</p><p>所以中小型公司，技术实力较为一般，技术挑战不是特别高，用 RabbitMQ 是不错的选择；大型公司，基础架构研发实力较强，用 RocketMQ 是很好的选择。</p><p>如果是大数据领域的实时计算、日志采集等场景，用 Kafka 是业内标准的，绝对没问题，社区活跃度很高，绝对不会黄，何况几乎是全世界这个领域的事实性规范。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;strong&gt;JMS：&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Java Message Service，Java消息服务应用程序接口，Java中定义的消息中间件服务的一个标准和API定义&lt;/p&gt;
-&lt;p&gt;JMS是Java平台上有关面向消息中间件（MOM）的技术规范，它便于消息系统
-      
-    
-    </summary>
-    
-    
-      <category term="ActiveMq" scheme="https://wuhewuhe.github.io/categories/ActiveMq/"/>
-    
-      <category term="RabbitMq" scheme="https://wuhewuhe.github.io/categories/ActiveMq/RabbitMq/"/>
-    
-    
-      <category term="decoupling" scheme="https://wuhewuhe.github.io/tags/decoupling/"/>
-    
-      <category term="asynchronous" scheme="https://wuhewuhe.github.io/tags/asynchronous/"/>
-    
-      <category term="Peak cliping" scheme="https://wuhewuhe.github.io/tags/Peak-cliping/"/>
     
   </entry>
   
